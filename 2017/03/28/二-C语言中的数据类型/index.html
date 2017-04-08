@@ -1,0 +1,1230 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C,The C Programming Language," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.  转义字符
+1.1  演示代码12345678910111213#include&amp;lt;stdio.h&amp;gt;#include&amp;lt;stdlib.h&amp;gt;#include&amp;lt;Windows.h&amp;gt;void main() &amp;#123;	while (-1) &amp;#123;		putchar(&apos;\x42&apos;);//16  4*16+2=66		putchar(&apos;\a&apos;);//发声		Sl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二.C语言中的数据类型">
+<meta property="og:url" content="http://javami.com/2017/03/28/二-C语言中的数据类型/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="1.  转义字符
+1.1  演示代码12345678910111213#include&amp;lt;stdio.h&amp;gt;#include&amp;lt;stdlib.h&amp;gt;#include&amp;lt;Windows.h&amp;gt;void main() &amp;#123;	while (-1) &amp;#123;		putchar(&apos;\x42&apos;);//16  4*16+2=66		putchar(&apos;\a&apos;);//发声		Sl">
+<meta property="og:image" content="http://javami.com/2017/03/28/二-C语言中的数据类型/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/二-C语言中的数据类型/2.png">
+<meta property="og:updated_time" content="2017-03-28T07:44:06.337Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二.C语言中的数据类型">
+<meta name="twitter:description" content="1.  转义字符
+1.1  演示代码12345678910111213#include&amp;lt;stdio.h&amp;gt;#include&amp;lt;stdlib.h&amp;gt;#include&amp;lt;Windows.h&amp;gt;void main() &amp;#123;	while (-1) &amp;#123;		putchar(&apos;\x42&apos;);//16  4*16+2=66		putchar(&apos;\a&apos;);//发声		Sl">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/二-C语言中的数据类型/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/二-C语言中的数据类型/"/>
+
+
+
+
+
+  <title> 二.C语言中的数据类型 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/二-C语言中的数据类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                二.C语言中的数据类型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T15:27:55+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/二-C语言中的数据类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/二-C语言中的数据类型/" class="leancloud_visitors" data-flag-title="二.C语言中的数据类型">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-转义字符"><a href="#1-转义字符" class="headerlink" title="1.  转义字符"></a>1.  转义字符</h1><p><img src="/2017/03/28/二-C语言中的数据类型/1.png" alt="转义字符" title="转义字符"></p>
+<h2 id="1-1-演示代码"><a href="#1-1-演示代码" class="headerlink" title="1.1  演示代码"></a>1.1  演示代码</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">#include&lt;Windows.h&gt;</div><div class="line"></div><div class="line">void main() &#123;</div><div class="line">	while (-1) &#123;</div><div class="line">		putchar('\x42');//16  4*16+2=66</div><div class="line">		putchar('\a');//发声</div><div class="line">		Sleep(1000);</div><div class="line">		system("\"D:\\Program Files (x86)\\Tencent\\QQ\\Bin\\QQScLauncher.exe\"");</div><div class="line">		putchar('\0');</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="2-什么是变量与常量"><a href="#2-什么是变量与常量" class="headerlink" title="2.  什么是变量与常量"></a>2.  什么是变量与常量</h1><ul>
+<li><p>常量就是计算机内存里面不变得数据</p>
+</li>
+<li><p>变量就是计算机内存里面需要并且经常改变的数据</p>
+</li>
+</ul>
+<p>变量是指其值可以变化的量.计算机中,指令代码/数据都存储于内存中.变量也需要存储在内存中.在计算机中,每个变量都被分配了一块内存空间,在这些空间里存储的就是变量的值.变量之所以可以变化,就是这个存储空间可以存储不同的数值.存储空间里的值变化,则变量对应的值也变化.同一个时间,内存空间里只能保存一份值,新值冲掉了原来的旧值.每个内存单元都有编号,这些是内存的地址.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</div><div class="line">    <span class="comment">//这段代码表示了从寄存器修改数据</span></div><div class="line">	_asm &#123;</div><div class="line">		mov eax,<span class="number">8</span></div><div class="line">		mov a,eax</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;a); <span class="comment">//%p 是以16进制的形式输出内存地址</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, a);</div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-1-定义变量"><a href="#2-1-定义变量" class="headerlink" title="2.1  定义变量"></a>2.1  定义变量</h2><ul>
+<li><strong>标识符</strong><ul>
+<li>定义  :<br>程序中用于标识常量、变量、函数的字符序列</li>
+<li>组成  :<br>只能由字母/数字/下划线组成,第一个字母必须是字母或下划线,大小写有区别<br>不能使用C语言的关键字.</li>
+<li>规则  :<br>见名知意<br>不宜混淆</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-1-变量为何一定要初始化"><a href="#2-1-1-变量为何一定要初始化" class="headerlink" title="2.1.1  变量为何一定要初始化"></a>2.1.1  变量为何一定要初始化</h3><p>变量如果不初始化,可以编译成功,但是执行的时候,很可能报错 .</p>
+<p><strong>操作系统是如何管理内存的!</strong></p>
+<p>每当一个应用程序打开时,操作系统为其分配内存,内存有内存地址与内存单元,当应用程序初始化运行时,就会往内存单元里面写数据,当操作系统回收的时候,并不清空内存单元,所以存在大量的垃圾数据.</p>
+<p>如果变量不初始化,就会默认读取垃圾数据,有些垃圾数据会导致程序崩溃.<br>VC++2010的编译器可以感知变量没有初始化,调试的时候就会出错.<br>所以,变量使用之前,必须初始化.</p>
+<h3 id="2-1-2-变量交换"><a href="#2-1-2-变量交换" class="headerlink" title="2.1.2  变量交换"></a>2.1.2  变量交换</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main1</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</div><div class="line">	<span class="keyword">int</span> b = <span class="number">5</span>;</div><div class="line">	<span class="keyword">int</span> temp;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"a=%d,b=%d\n"</span>, a, b);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"交换后:\n"</span>);</div><div class="line"></div><div class="line">	temp = a;	<span class="comment">//temp = 10;a = 10; b = 5;</span></div><div class="line">	a = b;	<span class="comment">//temp = 10;a = 5; b = 5;</span></div><div class="line">	b = temp; <span class="comment">// temp = 10;a = 5; b = 10;</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"a=%d,b=%d\n"</span>, a, b);</div><div class="line">	getchar();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</div><div class="line">	<span class="keyword">int</span> b = <span class="number">5</span>;</div><div class="line"></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"a=%d,b=%d\n"</span>, a, b);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"交换后:\n"</span>);</div><div class="line"></div><div class="line">	a = a ^ b;	<span class="comment">//a=15,b=5</span></div><div class="line">	b = a ^ b;	<span class="comment">//a=10,a=15</span></div><div class="line">	a = a ^ b;	<span class="comment">//a=5,b=10</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"a=%d,b=%d\n"</span>, a, b);</div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-2-定义常量"><a href="#2-2-定义常量" class="headerlink" title="2.2  定义常量"></a>2.2  定义常量</h2><ul>
+<li>定义常量有什么好处呢?<ul>
+<li>通过有意义的单词符号,可以指明该常量的意思,使得程序员在阅读代码时,减少迷惑.</li>
+<li>需要修改常量的时候,可以只需要修改一次,实现批量修改,效率高而且准确.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Windows.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> 诸葛亮	100</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="comment">//真正的常量,不能直接修改!因为C语言只能操作内存,不能操作寄存器</span></div><div class="line">	<span class="keyword">const</span> <span class="keyword">int</span> a = <span class="number">1000</span>;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,诸葛亮);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a);</div><div class="line"></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="3-进制问题"><a href="#3-进制问题" class="headerlink" title="3.  进制问题"></a>3.  进制问题</h1><h2 id="3-1-进制的计算"><a href="#3-1-进制的计算" class="headerlink" title="3.1  进制的计算"></a>3.1  进制的计算</h2><p><img src="/2017/03/28/二-C语言中的数据类型/2.png" alt="进制转换" title="进制转换"></p>
+<h2 id="3-2-二进制转换八进制"><a href="#3-2-二进制转换八进制" class="headerlink" title="3.2  二进制转换八进制"></a>3.2  二进制转换八进制</h2><ul>
+<li>二进制转换成八进制  :  从右向左,每3位一组(不足3位左补0),转换成八进制<br>(1101001)2=(001,101,001)2=(151)8</li>
+<li>八进制转换成二进制  :  用3位二进制数代替每一位八进制数.<br>(246)8=(010,100,110)2=(10100110)2</li>
+</ul>
+<h2 id="3-3-二进制转换十六进制"><a href="#3-3-二进制转换十六进制" class="headerlink" title="3.3  二进制转换十六进制"></a>3.3  二进制转换十六进制</h2><ul>
+<li>二进制转换成十六进制  :  从右向左,每4位一组(不足4位左补0),转换成十六进制<br>(11010101111101)2=(0011,0101,0111,1101)2=(357D)16</li>
+<li>十六进制转换成二进制  :  用4位二进制数代替每一位十六进制数<br>(4B9E)16=(0100,1011,1001,1110)2=(100101110011110)2<blockquote>
+<p>0000 ~ 0<br>0001 ~ 1<br>0010 ~ 2<br>0011 ~ 3<br>0100 ~ 4<br>0101 ~ 5<br>0110 ~ 6<br>0111 ~ 7<br>1000 ~ 8<br>1001 ~ 9<br>1010 ~ A<br>1011 ~ B<br>1100 ~ C<br>1101 ~ D<br>1110 ~ E<br>1111 ~ F</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-4-十进制转换二进制"><a href="#3-4-十进制转换二进制" class="headerlink" title="3.4  十进制转换二进制"></a>3.4  十进制转换二进制</h2><ul>
+<li><p><strong>十进制整数转换为二进制  :  方法是除以2取余,逆序排列,以(89)10为例,如下.</strong><br>89 ÷ 2     余1<br>44 ÷ 2     余0<br>22 ÷ 2     余0<br>11 ÷ 2     余1<br>5  ÷ 2     余1<br>2  ÷ 2     余0<br>1    余1<br>(89)10 = (1011001)2<br>(5)10 = (101)2<br>(2)10 = (10)2  </p>
+</li>
+<li><p><strong>二进制转换为十进制</strong><br>十进制是逢十进一,由数字符号0,1,2,3,4,5,6,7,8,9组成,可以这样分析十进制数  :<br>(1234)10 = 1 <em> 10^3 + 2 </em> 10^2 + 3 <em> 10^1 + 4 </em> 10^0 = 1000 + 200 +30 + 4 =(1234)10</p>
+</li>
+<li><p><strong>采用同样的方式转换二进制到十进制</strong><br>(1101)2 = 1 <em> 2^3 + 1 </em> 2^2 + 0 <em> 2^1 + 1 </em> 2^0 = 8 + 4 + 0 + 1 = (13)10<br>(10.01)2 = 1 <em> 2^1 + 0 </em> 2^0 + 0 <em> 2^-1 + 1 </em> 2^-2 = 2 + 0 + 0 + 0.25 = (2.25)10</p>
+</li>
+<li><p><strong>十进制小数的转换为二进制  :  方法是乘以2取整,顺序排列,以(0.625)10为例,如下  :</strong><br>0.625 <em> 2 = 1.25    取整1<br>0.25 </em> 2 = 0.5    取整0<br>0.5 * 2 = 1    取整1<br>(0.625)10 = (0.101)2<br>(0.25)10 = (0.01)2<br>(0.5)10 = (0.1)2</p>
+</li>
+</ul>
+<h1 id="4-计算机存储数据"><a href="#4-计算机存储数据" class="headerlink" title="4.  计算机存储数据"></a>4.  计算机存储数据</h1><p>程序员编写的程序以及所使用的数据在计算机的内存中是以二进制位序列的方式存放的.</p>
+<p>典型的计算机内存段二进制位序如下  :<br>…0001000101010101000101010111011001010010100100010010010010….</p>
+<p>上面的二进制位序里,每一位上的数字,要么是0,要么是1.在计算机中,位(bit)是含有0或者1值的一个单元.在物理上,它的值是一个负或是一个正电荷.也就是计算机中可以通过电压的高低来表示一位所含有的值.如果是0,则用低电压表示,如果是1,则用高电压表示.</p>
+<p>在上面的二进制位序这个层次上,位的集合没有结构,很难来解释这些系列的意义.为了能够从整体上考虑这些位,于是给这些位序列强加上结构的概念,这样的结构被称作为字节(byte)和字(word).通常,一个字节由8位构成,而一个字由32位构成.或者说是4个字节构成。</p>
+<h1 id="5-sizeof运算符"><a href="#5-sizeof运算符" class="headerlink" title="5.  sizeof运算符"></a>5.  sizeof运算符</h1><p>sizeof是个单目运算符,用来计算操作数在内存中占据的字节数,其操作数既可以是括在圆括号中的类型标识符,其返回值是size_t类型,即无符号整数.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">sizeof</span>(<span class="keyword">short</span>);				<span class="comment">/*返回2*/</span></div><div class="line"><span class="keyword">sizeof</span>(<span class="keyword">long</span>);				<span class="comment">/*返回4*/</span></div><div class="line"><span class="keyword">sizeof</span>(<span class="keyword">int</span>);	       <span class="comment">/*不确定，取决于不同的系统*/</span></div><div class="line">也可以是一个表达式，如：</div><div class="line"><span class="keyword">short</span> x；</div><div class="line"><span class="keyword">sizeof</span>(x);					<span class="comment">/*返回2*/</span></div></pre></td></tr></table></figure>
+<h1 id="6-原码和反码和补码"><a href="#6-原码和反码和补码" class="headerlink" title="6.  原码和反码和补码"></a>6.  原码和反码和补码</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>原码</th>
+<th>反码</th>
+<th>补码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+7</td>
+<td>00000111</td>
+<td>00000111</td>
+<td>00000111</td>
+</tr>
+<tr>
+<td>-7</td>
+<td>10000111</td>
+<td>11111000</td>
+<td>11111001</td>
+</tr>
+<tr>
+<td>+0</td>
+<td>00000000</td>
+<td>00000000</td>
+<td>00000000</td>
+</tr>
+<tr>
+<td>-0</td>
+<td>10000000</td>
+<td>11111111</td>
+<td>00000000</td>
+</tr>
+<tr>
+<td>数的范围</td>
+<td>01111111~11111111(-127~+127)</td>
+<td>01111111~10000000(-127~+127)</td>
+<td>01111111~10000000(-128~+127)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>负数补码转换成十进制数  :  最高位不动,其余位取反加1.</strong></p>
+<blockquote>
+<p>补码  :  11111001<br>取反  :  10000110<br>加1  :  10000111=-7</p>
+</blockquote>
+<p><strong>数值的表示方法——原码/反码和补码</strong></p>
+<ul>
+<li>原码  :  最高位为符号位,其余各位为数值本身的绝对值</li>
+<li>反码  :<br>正数  :  反码与原码相同<br>负数  :  符号位为1,其余位对原码取反</li>
+<li>补码  :<br>正数  :  原码  /  反码  /  补码相同<br>负数  :  最高位为1,其余位为原码取反,再对整个数加1</li>
+</ul>
+<p>在计算机系统中,数值一律用补码来表示(存储). 主要原因  :  使用补码,可以将符号位和其它位统一处理;同时,减法也可按加法来处理.另外,两个用补码表示的数相加时,如果最高位(符号位)有进位,则进位被舍弃.</p>
+<p>采用原码表示法简单易懂,但它的最大缺点是加法运算复杂.这是因为,当两数相加时,如果是同号则数值相加;如果是异号,则要进行减法.而在进行减法时还要比较绝对值的大小,然后大数减去小数,最后还要给结果选择符号.为了解决这些矛盾,人们找到了补码表示法.机器数的补码可由原码得到.如果机器数是正数m则该机器数的补码与原码一样;如果机器数是负数,则该机器数的补码是对它的原码(除符号位外)各位取反,并在未位加1而得到的.</p>
+<h1 id="7-总结与练习"><a href="#7-总结与练习" class="headerlink" title="7.  总结与练习"></a>7.  总结与练习</h1><ul>
+<li>计算  :<ul>
+<li>十进制192 到二进制  :  11000000</li>
+<li>十进制62 到二进制  :  111110</li>
+<li>二进制1111001001010 到十进制  :  7754</li>
+<li>二进制1111101111010 到十进制  :  8058</li>
+<li>0.5转化为二进制  :  0.1</li>
+<li>1.25转换为二进制  :  1.01</li>
+</ul>
+</li>
+<li>推理运算结果  :</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> num = <span class="number">-2</span>;</div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data = <span class="number">4294967294u</span>;</div><div class="line"><span class="keyword">int</span> num1 = <span class="number">4294967294u</span>;</div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data1 = <span class="number">-2</span>;</div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d"</span>, num);  <span class="comment">//-2</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%u"</span>, num); <span class="comment">//4294967294</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%d"</span>, num1); <span class="comment">//-2</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%u"</span>, num1); <span class="comment">//4294967294</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%u"</span>, data); <span class="comment">//4294967294</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%d"</span>, data); <span class="comment">//-2</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%u"</span>, data1); <span class="comment">//4294967294</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%d"</span>, data1); <span class="comment">//-2</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C</a>
+          
+            <a href="/tags/The-C-Programming-Language/" rel="tag"># The C Programming Language</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/一-愉快的开始-hello-world/" rel="next" title="一.愉快的开始-hello world">
+                <i class="fa fa-chevron-left"></i> 一.愉快的开始-hello world
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/1-安卓基础之Android介绍与入门/" rel="prev" title="1.安卓基础之Android介绍与入门">
+                1.安卓基础之Android介绍与入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-转义字符"><span class="nav-number">1.</span> <span class="nav-text">1.  转义字符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-演示代码"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  演示代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-什么是变量与常量"><span class="nav-number">2.</span> <span class="nav-text">2.  什么是变量与常量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-定义变量"><span class="nav-number">2.1.</span> <span class="nav-text">2.1  定义变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-变量为何一定要初始化"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1  变量为何一定要初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-变量交换"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2  变量交换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-定义常量"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  定义常量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-进制问题"><span class="nav-number">3.</span> <span class="nav-text">3.  进制问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-进制的计算"><span class="nav-number">3.1.</span> <span class="nav-text">3.1  进制的计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-二进制转换八进制"><span class="nav-number">3.2.</span> <span class="nav-text">3.2  二进制转换八进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-二进制转换十六进制"><span class="nav-number">3.3.</span> <span class="nav-text">3.3  二进制转换十六进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-十进制转换二进制"><span class="nav-number">3.4.</span> <span class="nav-text">3.4  十进制转换二进制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-计算机存储数据"><span class="nav-number">4.</span> <span class="nav-text">4.  计算机存储数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-sizeof运算符"><span class="nav-number">5.</span> <span class="nav-text">5.  sizeof运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-原码和反码和补码"><span class="nav-number">6.</span> <span class="nav-text">6.  原码和反码和补码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-总结与练习"><span class="nav-number">7.</span> <span class="nav-text">7.  总结与练习</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

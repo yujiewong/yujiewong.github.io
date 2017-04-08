@@ -1,0 +1,1267 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PythonBasics," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="数据结构是通过某种方式(例如对元素进行编号) 数据结构,在Python中,最基本的数据结构是序列(sequence).序列中的每个元素分配一个序号-&amp;gt;元素的位置,也称为索引.第一个索引是0,第二个则是1.
+
+注意  :序列中的最后一个元素标记为-1,倒数第二个原始为-2,以此类推.
+
+1.  序列概览列表和元组的主要区别在于  :  列表可以修改,元组则不能.如  :  使用元组作为字典的键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第2章 列表和元素">
+<meta property="og:url" content="http://javami.com/2017/03/28/第2章-列表和元素/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="数据结构是通过某种方式(例如对元素进行编号) 数据结构,在Python中,最基本的数据结构是序列(sequence).序列中的每个元素分配一个序号-&amp;gt;元素的位置,也称为索引.第一个索引是0,第二个则是1.
+
+注意  :序列中的最后一个元素标记为-1,倒数第二个原始为-2,以此类推.
+
+1.  序列概览列表和元组的主要区别在于  :  列表可以修改,元组则不能.如  :  使用元组作为字典的键">
+<meta property="og:updated_time" content="2017-03-28T15:46:02.228Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第2章 列表和元素">
+<meta name="twitter:description" content="数据结构是通过某种方式(例如对元素进行编号) 数据结构,在Python中,最基本的数据结构是序列(sequence).序列中的每个元素分配一个序号-&amp;gt;元素的位置,也称为索引.第一个索引是0,第二个则是1.
+
+注意  :序列中的最后一个元素标记为-1,倒数第二个原始为-2,以此类推.
+
+1.  序列概览列表和元组的主要区别在于  :  列表可以修改,元组则不能.如  :  使用元组作为字典的键">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/第2章-列表和元素/"/>
+
+
+
+
+
+  <title> 第2章 列表和元素 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第2章-列表和元素/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第2章 列表和元素
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:45:46+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/第2章-列表和元素/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第2章-列表和元素/" class="leancloud_visitors" data-flag-title="第2章 列表和元素">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数据结构是通过某种方式(例如对元素进行编号) 数据结构,在Python中,最基本的数据结构是序列(sequence).序列中的每个元素分配一个序号-&gt;元素的位置,也称为索引.第一个索引是0,第二个则是1.</p>
+<blockquote>
+<p>注意  :<br>序列中的最后一个元素标记为-1,倒数第二个原始为-2,以此类推.</p>
+</blockquote>
+<h1 id="1-序列概览"><a href="#1-序列概览" class="headerlink" title="1.  序列概览"></a>1.  序列概览</h1><p>列表和元组的主要区别在于  :  列表可以修改,元组则不能.如  :  使用元组作为字典的键,在这种情况下,因为键不能修改,所以不能用列表.</p>
+<p>在需要操作一组数值的时候,序列很好用.可以用序列表示数据库中的一个人信息  :  第1个元素是姓名,第2个元素是年龄.根据上述内容编写一个列表(列表的各个元素通过逗号分隔,写在方括号内),如  :  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">edward = [<span class="string">'kevin'</span>,<span class="number">20</span>]</div></pre></td></tr></table></figure>
+<p>同时,序列也可以包含其他的序列,因此,构建如下的一个人员信息的列表也是可以的,这个列表就是你的数据库  :  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">husband = [<span class="string">'kevin'</span>,<span class="number">20</span>]</div><div class="line">wife =[<span class="string">'leona'</span>,<span class="number">20</span>]</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 注意  :<br>Python之中还有一种名为容器(container)的数据结构,容器基本上是包含其他对象的任意对象.序列(例如列表和元组)和映射(例如字典)是两类主要的容器.序列中的每个元素都有自己的编号,而映射中的每个元素则有一个名字(键).既不是序列也不是映射的容器类型,集合(set)就是一个例子.</p>
+</blockquote>
+<h1 id="2-通用序列操作"><a href="#2-通用序列操作" class="headerlink" title="2.  通用序列操作"></a>2.  通用序列操作</h1><p>所有序列类型都可以进行某些特定的操作,这些操作包括  :  索引(indexing)  /  分片(slicing)  /  加(adding)  /  乘(multiplying)  以及检查某个元素是否属于序列的成员(成员资格).</p>
+<p>迭代(ineration)  :  依次对序列中的每个元素重复执行某些操作.</p>
+<h2 id="2-1-索引"><a href="#2-1-索引" class="headerlink" title="2.1  索引"></a>2.1  索引</h2><p>序列中的所有元素都是有编号的(从0开始递增).这些元素是可以通过编号来访问的.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>greeting = <span class="string">'hello'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>greeting[<span class="number">0</span>]</div><div class="line"><span class="string">'h'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>greeting[<span class="number">-1</span>]</div><div class="line"><span class="string">'o'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 注意  :<br>字符串就是一个由字符组成的序列.索引0指向第1个元素.</p>
+</blockquote>
+<p>我们可以通过索引获取元素,所有序列都可以通过这种方式进行索引.使用负数索引时,Python会从右边,也就是最后一个元素开始计数.最后1个元素的位置编号是-1.</p>
+<p>还有一种办法是用<code>&#39;hello[1]&#39;</code>,结果为<code>e</code>,效果是一样的.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Print out a date, given year, month, and day as numbers</span></div><div class="line"></div><div class="line">months = [</div><div class="line">    <span class="string">'January'</span>,</div><div class="line">    <span class="string">'February'</span>,</div><div class="line">    <span class="string">'March'</span>,</div><div class="line">    <span class="string">'April'</span>,</div><div class="line">    <span class="string">'May'</span>,</div><div class="line">    <span class="string">'June'</span>,</div><div class="line">    <span class="string">'July'</span>,</div><div class="line">    <span class="string">'August'</span>,</div><div class="line">    <span class="string">'September'</span>,</div><div class="line">    <span class="string">'October'</span>,</div><div class="line">    <span class="string">'November'</span>,</div><div class="line">    <span class="string">'December'</span></div><div class="line">]</div><div class="line"></div><div class="line"><span class="comment"># A list with one ending for each number from 1 to 31</span></div><div class="line">endings = [<span class="string">'st'</span>, <span class="string">'nd'</span>, <span class="string">'rd'</span>] + <span class="number">17</span> * [<span class="string">'th'</span>] \</div><div class="line">        + [<span class="string">'st'</span>, <span class="string">'nd'</span>, <span class="string">'rd'</span>] +  <span class="number">7</span> * [<span class="string">'th'</span>] \</div><div class="line">        + [<span class="string">'st'</span>]</div><div class="line"></div><div class="line">year    = raw_input(<span class="string">'Year: '</span>)</div><div class="line">month   = raw_input(<span class="string">'Month (1-12): '</span>)</div><div class="line">day     = raw_input(<span class="string">'Day (1-31): '</span>)</div><div class="line"></div><div class="line">month_number = int(month)</div><div class="line">day_number = int(day)</div><div class="line"></div><div class="line"><span class="comment"># Remember to subtract 1 from month and day to get a correct index</span></div><div class="line">month_name = months[month_number<span class="number">-1</span>]</div><div class="line">ordinal = day + endings[day_number<span class="number">-1</span>]</div><div class="line"></div><div class="line"><span class="keyword">print</span> month_name + <span class="string">' '</span> + ordinal + <span class="string">', '</span> + year</div></pre></td></tr></table></figure>
+<h2 id="2-2-分片"><a href="#2-2-分片" class="headerlink" title="2.2  分片"></a>2.2  分片</h2><p>可以使用分片操作来访问一定范围内的元素,分片通过冒号隔开的两个索引来实现  :  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>tag = <span class="string">'&lt;a href="http://www.python.com"&gt;Python Web site&lt;/a&gt;'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>tag[<span class="number">9</span>:<span class="number">30</span>]</div><div class="line"><span class="string">'http://www.python.com'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>tag[<span class="number">32</span>:<span class="number">-4</span>]</div><div class="line"><span class="string">'Python Web site'</span></div></pre></td></tr></table></figure>
+<p>简而言之,分片操作的实现需要提供两个索引作为边界,第1个索引的元素是包含在分片内的,而第2个则不包含在分片内.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[<span class="number">3</span>:<span class="number">6</span>]</div><div class="line">[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[<span class="number">0</span>:<span class="number">1</span>]</div><div class="line">[<span class="number">1</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[<span class="number">7</span>:<span class="number">10</span>]</div><div class="line">[<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p><strong>优雅的捷径  :</strong></p>
+<p>假设需要访问最后的3个元素,那么可以显示的操作:<code>numbers[7:10]</code>,现在,索引10指向的是11个元素,但是这个元素是不存在的,却是在最后的一个元素之后.这种做法是可行的.如果需要从列表的结尾开始计数.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[<span class="number">-3</span>:<span class="number">-1</span>]</div><div class="line">[<span class="number">8</span>, <span class="number">9</span>]</div></pre></td></tr></table></figure></p>
+<p>实际上,只要分片中最左边的索引比它右边的晚出现在序列中,结果就是一个空序列.不过,可以使用一个捷径  :  如果分片所得部分包括序列结尾的元素,只需置空最后一个索引即可!<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[<span class="number">-3</span>:]</div><div class="line">[<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div></pre></td></tr></table></figure></p>
+<p>可以复制整个序列,可以将两个索引置空<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[:]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Split up a URL of the form http://www.something.com</span></div><div class="line"></div><div class="line">url = raw_input(<span class="string">'Please enter the URL: '</span>)</div><div class="line">domain = url[<span class="number">11</span>:<span class="number">-4</span>]</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"Domain name: "</span> + domain</div></pre></td></tr></table></figure>
+<p><strong>更大的步长  :</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</div><div class="line"></div><div class="line"><span class="comment"># 分片操作就是按照这个步长逐个便利序列的元素,然后返回开始和结束之间的代码.</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[<span class="number">0</span>:<span class="number">10</span>:<span class="number">1</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[<span class="number">0</span>:<span class="number">10</span>:<span class="number">2</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]</div><div class="line"></div><div class="line"><span class="comment"># 从索引3到6,取第3个</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[<span class="number">3</span>:<span class="number">6</span>:<span class="number">3</span>]</div><div class="line">[<span class="number">4</span>]</div><div class="line"></div><div class="line"><span class="comment"># 将每4个元素的第1个提取出来</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[::<span class="number">4</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">5</span>, <span class="number">9</span>]</div><div class="line"><span class="comment"># 步长可以是负数,此时分片从右到左提取元素  :  </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[<span class="number">8</span>:<span class="number">3</span>:<span class="number">-1</span>]</div><div class="line">[<span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+<p>当使用一个负数作为步长时,必须让开始点大于结束点.在没有明确指定开始点和结束点的时候,正负数的使用可能会带来些混迹.在python明确规定 :  <strong>对于正数步长,python会从序列的头部开始向右提取元素;直到最后一个元素;而对于负数步长,则是从序列的尾部开始向左提取元素,直到最后一个元素.</strong></p>
+<h2 id="2-3-序列相加"><a href="#2-3-序列相加" class="headerlink" title="2.3  序列相加"></a>2.3  序列相加</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]+[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'hello;+;world!'</span></div><div class="line"><span class="string">'hello;+;world!'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]+<span class="string">'world'</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">TypeError: can only concatenate list (<span class="keyword">not</span> <span class="string">"str"</span>) to list</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>两种相同的类型的序列才能连接操作.</p>
+<h2 id="2-4-乘法"><a href="#2-4-乘法" class="headerlink" title="2.4  乘法"></a>2.4  乘法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'python'</span>*<span class="number">5</span></div><div class="line"><span class="string">'pythonpythonpythonpythonpython'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">42</span>]*<span class="number">10</span></div><div class="line">[<span class="number">42</span>, <span class="number">42</span>, <span class="number">42</span>, <span class="number">42</span>, <span class="number">42</span>, <span class="number">42</span>, <span class="number">42</span>, <span class="number">42</span>, <span class="number">42</span>, <span class="number">42</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>如果想要初始化一个长度为10的空值,可以使用<code>None</code>,<code>None</code>是Python的一个内建值.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>sum = [<span class="keyword">None</span>]*<span class="number">10</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>sum</div><div class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h2 id="2-5-成员资格"><a href="#2-5-成员资格" class="headerlink" title="2.5  成员资格"></a>2.5  成员资格</h2><p>为了检查一个值是否在序列中,可以使用<code>in</code>运算符,这个运算符检查某个条件是否为真,然后返回相应的值.条件为真True,条件为假返回False.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>permissions = <span class="string">'kevin'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'e'</span><span class="keyword">in</span> permissions</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>users = [<span class="string">'mlh'</span>,<span class="string">'foo'</span>,<span class="string">'bar'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>kevin = raw_input(<span class="string">"请输入"</span>)</div><div class="line">请输入f</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> kevin <span class="keyword">in</span> users</div><div class="line"><span class="keyword">False</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">database = [<span class="string">'kevin'</span>,<span class="string">'1234'</span>]</div><div class="line">username = raw_input(<span class="string">"请输入用户名"</span>)</div><div class="line">pin = raw_input(<span class="string">"请输入密码"</span>)</div><div class="line"><span class="keyword">if</span>(username,pin)<span class="keyword">in</span> database:</div><div class="line">    <span class="keyword">print</span> <span class="string">'登录成功!'</span></div></pre></td></tr></table></figure>
+<h2 id="2-6-长度-最小值和最大值"><a href="#2-6-长度-最小值和最大值" class="headerlink" title="2.6  长度,最小值和最大值."></a>2.6  长度,最小值和最大值.</h2><p>len函数返回列表中所包含元素的数量,min函数和max函数则分别返回序列中最大和最小的元素.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers = [<span class="number">100</span>,<span class="number">56</span>,<span class="number">89</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>len(numbers)</div><div class="line"><span class="number">3</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>max(numbers)</div><div class="line"><span class="number">100</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>min(numbers)</div><div class="line"><span class="number">56</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>max(<span class="number">7</span>,<span class="number">9</span>)</div><div class="line"><span class="number">9</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h1 id="3-列表"><a href="#3-列表" class="headerlink" title="3.  列表"></a>3.  列表</h1><p>列表是可变的  :  可以改变列表的内容,并且列表有很多有用的,专门的方法.</p>
+<h2 id="3-1-list函数"><a href="#3-1-list函数" class="headerlink" title="3.1  list函数"></a>3.1  list函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>list(<span class="string">'hello'</span>)</div><div class="line">[<span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'o'</span>]</div></pre></td></tr></table></figure>
+<h2 id="3-2-基本的列表操作"><a href="#3-2-基本的列表操作" class="headerlink" title="3.2  基本的列表操作"></a>3.2  基本的列表操作</h2><ul>
+<li>改变列表  :  元素赋值<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>num = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>num[<span class="number">2</span>]=<span class="number">22</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>num</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">22</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p> 注意<br>不能为一个位置不存在的元素进行赋值.</p>
+</blockquote>
+<ul>
+<li><p>删除元素<br>从列表中删除元素用del语句来实现  :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>names = [<span class="string">"kevin"</span>,<span class="string">"shy_kevin"</span>,<span class="string">"yujiewong"</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> names[<span class="number">1</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>names</div><div class="line">[<span class="string">'kevin'</span>, <span class="string">'yujiewong'</span>]</div></pre></td></tr></table></figure>
+</li>
+<li><p>分片赋值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>name = list(<span class="string">'Kevin'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>name</div><div class="line">[<span class="string">'K'</span>, <span class="string">'e'</span>, <span class="string">'v'</span>, <span class="string">'i'</span>, <span class="string">'n'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>name[<span class="number">2</span>:]=list(<span class="string">'ar'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>name</div><div class="line">[<span class="string">'K'</span>, <span class="string">'e'</span>, <span class="string">'a'</span>, <span class="string">'r'</span>]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-3-列表方法"><a href="#3-3-列表方法" class="headerlink" title="3.3  列表方法"></a>3.3  列表方法</h2><p>方法是一个与某个对象有紧密联系的函数,对象可能是列表,数字,也可能是字符串或者其他的类型的对象.一般来说,方法可以这样进行调用  :<br><code>对象.方法(参数)</code></p>
+<p>列表提供了几个方法,用于检查或者修改其中的内容.</p>
+<ul>
+<li><p>append<br>append方法用于在列表末尾追加新的对象  :  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>lst=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>lst.append(<span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>lst</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div></pre></td></tr></table></figure>
+</li>
+<li><p>count<br>count方法统计某个元素在列表中出现的次数  :  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="string">'what'</span>,<span class="string">'be'</span>,<span class="string">'am'</span>,<span class="string">'is'</span>,<span class="string">'are'</span>].count(<span class="string">'is'</span>)</div><div class="line"><span class="number">1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x=[[<span class="number">1</span>,<span class="number">2</span>],<span class="number">1</span>,<span class="number">1</span>,[<span class="number">2</span>,<span class="number">1</span>,[<span class="number">1</span>,<span class="number">2</span>]]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x.count(<span class="number">1</span>)</div><div class="line"><span class="number">2</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>extend<br>extend方法可以在列表的末尾一次性追加另一个序列中的多个值.换句话说,可以用新列表扩展原有列表.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.extend(b)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>它与a+b的区别在于extend方法修改被扩展的序列,而原始的操作则不然,这是因为原始的操作创建了一个包含a和b的副本的新列表,那么连接操作的效率会比extend方法低.</strong></p>
+<ul>
+<li>index<br>index方法用于从列表中找出某个值第一个匹配项的索引位置  :<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>names = [<span class="string">'kevin'</span>,<span class="string">'shy_kevin'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>names.index(<span class="string">'kevin'</span>)</div><div class="line"><span class="number">0</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>要注意的是  :  如果搜索到的字符串不存在,会抛出异常.</p>
+<ul>
+<li>insert<br>insert方法用于将对象插入到列表中  :  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers,insert(<span class="number">3</span>,<span class="string">'kevin'</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>与extend方法一样,insert方法的操作也可以用分片赋值来实现.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'kevin'</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers[<span class="number">3</span>:<span class="number">3</span>] = [<span class="string">'four'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'four'</span>, <span class="string">'kevin'</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</div></pre></td></tr></table></figure></p>
+<ul>
+<li>pop<br>pop方法会移除列表中的一个元素(默认是最后一个),并且返回该元素的值  :  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x.pop()</div><div class="line"><span class="number">3</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x.pop(<span class="number">0</span>)</div><div class="line"><span class="number">1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>pop</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x</div><div class="line">[<span class="number">2</span>]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p> 注意<br>pop方法是唯一一个既能修改列表又返回元素值(除了None)的列表方法.</p>
+</blockquote>
+<ul>
+<li><p>remove<br>remove方法用于移除列表中的某个值的第一个匹配项  :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = [<span class="string">'to'</span>,<span class="string">'hello'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x.remove(<span class="string">'hello'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x</div><div class="line">[<span class="string">'to'</span>]</div></pre></td></tr></table></figure>
+</li>
+<li><p>reverse<br>reverse方法将列表中的元素反向存放</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>k = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>k.reverse()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>k</div><div class="line">[<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</div></pre></td></tr></table></figure>
+</li>
+<li><p>sort<br>sort方法用于在原位置对列表进行排序.在”原位置排序”意味着改变原来的列表,从而其中的元素能按一定的顺序排列,而不是简单地返回一个已排序的列表副本.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>k</div><div class="line">[<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>k.sort()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>k</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure>
+</li>
+<li><p>高级排序<br>可以通过compare(x,y)的形式自定义比较函数,compare(x,y)函数会在x<y时返回负数,在x>y时返回正数,如果x=y则返回0(根据自定义),定义好该函数后,就可以提供给sort方法作为参数.内建函数cmp提供了比较函数的默认实现方式  :  </y时返回负数,在x></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>cmp(<span class="number">42</span>,<span class="number">32</span>)</div><div class="line"><span class="number">1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>cmp(<span class="number">99</span>,<span class="number">100</span>)</div><div class="line"><span class="number">-1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>cmp(<span class="number">10</span>,<span class="number">10</span>)</div><div class="line"><span class="number">0</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers.sort(cmp)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>numbers</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>sort方法有另外两个可选的参数(key和reverse),如果要使用它们,那么就要通过名字来指定(这个叫关键字参数),参数key和参数cmp类型(必须提供一个在排序过程中使用的函数).然而,该函数并不是用来确定对象的大小,而是为每个元素创建一个键,然后所有元素根据键来排序.因此,如果要根据元素的长度进行排序,那么可以使用len作为键函数.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x=[<span class="string">'aa'</span>,<span class="string">'ab'</span>,<span class="string">'ac'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x.sort(key=len)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x</div><div class="line">[<span class="string">'aa'</span>, <span class="string">'ab'</span>, <span class="string">'ac'</span>]</div></pre></td></tr></table></figure></p>
+<p>另一个关键字reverse是简单的布尔值,用来指明列表是否要进行反向排序.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x=[<span class="number">4</span>,<span class="number">671</span>,<span class="number">2</span>,<span class="number">78</span>,<span class="number">21</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x.sort(reverse=<span class="keyword">True</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x</div><div class="line">[<span class="number">671</span>, <span class="number">78</span>, <span class="number">21</span>, <span class="number">4</span>, <span class="number">2</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="4-元组-不可变序列"><a href="#4-元组-不可变序列" class="headerlink" title="4.  元组  :  不可变序列"></a>4.  元组  :  不可变序列</h1><p>如果你用逗号来分隔开一些值,那么你就会自动创建了元组.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span></div><div class="line">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div></pre></td></tr></table></figure>
+<p>如果想要实现一个值得元组,必须加上逗号.如 :  <code>42,</code></p>
+<h2 id="4-1-tuple函数"><a href="#4-1-tuple函数" class="headerlink" title="4.1  tuple函数"></a>4.1  tuple函数</h2><p>以一个序列作为参数并把它转换为元组.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>tuple([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>tuple(<span class="string">'abc'</span>)</div><div class="line">(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>tuple((<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>))</div><div class="line">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h2 id="4-2-元组的意义"><a href="#4-2-元组的意义" class="headerlink" title="4.2  元组的意义"></a>4.2  元组的意义</h2><ul>
+<li>元组可以在映射(和集合的成员)中当做键使用,而列表则不行.</li>
+<li>元组作为很多内建函数和方法的返回值存在,也就是说你必须对元组进行处理.只要不尝试修改元组.那么,”处理”元组在绝大多数情况下就是把它们当做列表来进行操作.</li>
+</ul>
+<h1 id="5-小结"><a href="#5-小结" class="headerlink" title="5.  小结"></a>5.  小结</h1><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmp(x,y)</td>
+<td>比较两个值</td>
+</tr>
+<tr>
+<td>len(seq)</td>
+<td>返回序列的长度</td>
+</tr>
+<tr>
+<td>list(seq)</td>
+<td>把序列转换成列表</td>
+</tr>
+<tr>
+<td>max(args)</td>
+<td>返回列表或者参数集合中最大值</td>
+</tr>
+<tr>
+<td>min(args)</td>
+<td>返回序列或者参数集合中的最小值</td>
+</tr>
+<tr>
+<td>reversed(seq)</td>
+<td>把序列进行反向迭代</td>
+</tr>
+<tr>
+<td>sorted(seq)</td>
+<td>返回已排序的包含seq所有元素的列表</td>
+</tr>
+<tr>
+<td>tuple(seq)</td>
+<td>把序列转换成元组</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PythonBasics/" rel="tag"># PythonBasics</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/第1章-快速改造-基础知识/" rel="next" title=" 第1章 快速改造 : 基础知识">
+                <i class="fa fa-chevron-left"></i>  第1章 快速改造 : 基础知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/第3章-使用字符串/" rel="prev" title="第3章 使用字符串">
+                第3章 使用字符串 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-序列概览"><span class="nav-number">1.</span> <span class="nav-text">1.  序列概览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-通用序列操作"><span class="nav-number">2.</span> <span class="nav-text">2.  通用序列操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-索引"><span class="nav-number">2.1.</span> <span class="nav-text">2.1  索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-分片"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  分片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-序列相加"><span class="nav-number">2.3.</span> <span class="nav-text">2.3  序列相加</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-乘法"><span class="nav-number">2.4.</span> <span class="nav-text">2.4  乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-成员资格"><span class="nav-number">2.5.</span> <span class="nav-text">2.5  成员资格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-长度-最小值和最大值"><span class="nav-number">2.6.</span> <span class="nav-text">2.6  长度,最小值和最大值.</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-列表"><span class="nav-number">3.</span> <span class="nav-text">3.  列表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-list函数"><span class="nav-number">3.1.</span> <span class="nav-text">3.1  list函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-基本的列表操作"><span class="nav-number">3.2.</span> <span class="nav-text">3.2  基本的列表操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-列表方法"><span class="nav-number">3.3.</span> <span class="nav-text">3.3  列表方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-元组-不可变序列"><span class="nav-number">4.</span> <span class="nav-text">4.  元组  :  不可变序列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-tuple函数"><span class="nav-number">4.1.</span> <span class="nav-text">4.1  tuple函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-元组的意义"><span class="nav-number">4.2.</span> <span class="nav-text">4.2  元组的意义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-小结"><span class="nav-number">5.</span> <span class="nav-text">5.  小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

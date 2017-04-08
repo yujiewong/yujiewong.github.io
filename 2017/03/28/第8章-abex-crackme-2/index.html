@@ -1,0 +1,1195 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ReverseEngineerin," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.  运行abex’crackme#2
+输入合适的Name与Serial,按Check按钮,会弹出错误的消息框!
+2.  Visual  Basic文件的特征2.1  VB专用引擎  举个VB引擎的例子,显示消息框时,VB代码中要调用MsgBox()函数.其实,VB编辑器真正调用到的MSVBVM60.dll里的rtcMsgBox()函数,在该函数内部通过调用user32.dll里的Message">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第8章 abex'crackme#2">
+<meta property="og:url" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="1.  运行abex’crackme#2
+输入合适的Name与Serial,按Check按钮,会弹出错误的消息框!
+2.  Visual  Basic文件的特征2.1  VB专用引擎  举个VB引擎的例子,显示消息框时,VB代码中要调用MsgBox()函数.其实,VB编辑器真正调用到的MSVBVM60.dll里的rtcMsgBox()函数,在该函数内部通过调用user32.dll里的Message">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/2.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/3.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/4.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/5.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/6.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/7.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/8.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/9.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/10.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/11.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/12.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/13.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/14.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/15.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/16.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/17.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/18.png">
+<meta property="og:updated_time" content="2017-03-28T09:38:29.824Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第8章 abex'crackme#2">
+<meta name="twitter:description" content="1.  运行abex’crackme#2
+输入合适的Name与Serial,按Check按钮,会弹出错误的消息框!
+2.  Visual  Basic文件的特征2.1  VB专用引擎  举个VB引擎的例子,显示消息框时,VB代码中要调用MsgBox()函数.其实,VB编辑器真正调用到的MSVBVM60.dll里的rtcMsgBox()函数,在该函数内部通过调用user32.dll里的Message">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/第8章-abex-crackme-2/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/第8章-abex-crackme-2/"/>
+
+
+
+
+
+  <title> 第8章 abex'crackme#2 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第8章-abex-crackme-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第8章 abex'crackme#2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:32:40+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
+                    <span itemprop="name">ReverseEngineerin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/第8章-abex-crackme-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第8章-abex-crackme-2/" class="leancloud_visitors" data-flag-title="第8章 abex'crackme#2">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-运行abex’crackme-2"><a href="#1-运行abex’crackme-2" class="headerlink" title="1.  运行abex’crackme#2"></a>1.  运行abex’crackme#2</h1><p><img src="/2017/03/28/第8章-abex-crackme-2/1.png" alt="运行界面" title="运行界面"></p>
+<p>输入合适的Name与Serial,按Check按钮,会弹出错误的消息框!<br><img src="/2017/03/28/第8章-abex-crackme-2/2.png" alt="错误的消息框" title="错误的消息框"></p>
+<h1 id="2-Visual-Basic文件的特征"><a href="#2-Visual-Basic文件的特征" class="headerlink" title="2.  Visual  Basic文件的特征"></a>2.  Visual  Basic文件的特征</h1><h2 id="2-1-VB专用引擎"><a href="#2-1-VB专用引擎" class="headerlink" title="2.1  VB专用引擎"></a>2.1  VB专用引擎</h2><p>  举个VB引擎的例子,显示消息框时,VB代码中要调用MsgBox()函数.其实,VB编辑器真正调用到的MSVBVM60.dll里的rtcMsgBox()函数,在该函数内部通过调用user32.dll里的MessageBoxW()函数(Win32  API)来工作(也可以在VB代码中直接调用user32.dll里的MessageBoxM()).</p>
+<h2 id="2-2-本地代码和伪代码"><a href="#2-2-本地代码和伪代码" class="headerlink" title="2.2  本地代码和伪代码"></a>2.2  本地代码和伪代码</h2><p>VB文件可以编译为本地代码  (N  code)  与伪代码  (P  code)  .本地代码一般使用易于调试器解析的IA-32指令;而伪代码是一种解析器  (Interpreter)  语言,它使用由VB引擎实现虚拟机并自解析的指令  (字节码)  .因此,若想准确解析VB的伪代码,就需要分析VB引擎并实现模拟器.</p>
+<h2 id="2-3-事件处理程序"><a href="#2-3-事件处理程序" class="headerlink" title="2.3  事件处理程序"></a>2.3  事件处理程序</h2><p>VB主要用来编写GUI程序,由于VB程序采用windows操作系统的事件驱动工作,所以在main()或winmain()中并不吃存在用户代码(希望调试的代码),用户代码存在于各个事件处理程序(event  handler)之中.</p>
+<p>就上述abex’crackme#2而言,用户代码在点击check按钮时触发的事件处理程序内.</p>
+<h2 id="2-4-未文档化的结构体"><a href="#2-4-未文档化的结构体" class="headerlink" title="2.4  未文档化的结构体"></a>2.4  未文档化的结构体</h2><p>  VB中使用的各种信息  (diglog,control,form,module,function等)  以结构体形式保存在文件内部.由于微软未作公开这种结构体信息,所以调试VB文件会难一些.</p>
+<h1 id="3-开始调试"><a href="#3-开始调试" class="headerlink" title="3.  开始调试"></a>3.  开始调试</h1><p>运行OllyDbg,查看abex’crackme#2文件的反汇编代码<br><img src="/2017/03/28/第8章-abex-crackme-2/3.png" alt="EP" title="EP"></p>
+<p>执行程序后,在EP代码中首先要做的是调用VB引擎的主函数  (ThunRTMain()).<br><img src="/2017/03/28/第8章-abex-crackme-2/4.png" alt="ThunRTMain()" title="ThunRTMain()"></p>
+<p>EP的地址为401238.401238地址处的PUSH  401E14命令用来把RT_MainStruct结构体的地址(401E14)压入栈.然后40123D地址处的CALL  00401232命令调用401232地址处的的JMP DOWRD  PTR  DS:[4010A0]指令.该JMP指令会跳转至VB引擎的主函数ThunRTMain()(前面压入栈的401E14的值作为ThunRTMain()的参数.)</p>
+<h2 id="3-1-间接调用"><a href="#3-1-间接调用" class="headerlink" title="3.1  间接调用"></a>3.1  间接调用</h2><p>40123地址处的CALL 401232命令用于调用ThunRTMain()函数,这里使用了较为特别的技法.不是直接转到MSVBVM60.dll里的ThunRTMain()函数,而是通过中间401232地址处的JMP指令跳转.<br><img src="/2017/03/28/第8章-abex-crackme-2/5.png" alt="间接调用" title="间接调用"></p>
+<p>这就是VC++,VB编译器中常用的间接调用法  (Indirect  Call).</p>
+<blockquote>
+<p> 4010A0地址是IAT  (Import  Address  Table,导入地址表)区域,包含着MSVBVM60.ThunRTMain()函数的实际地址.</p>
+</blockquote>
+<h2 id="3-2-RT-MainStruct结构体"><a href="#3-2-RT-MainStruct结构体" class="headerlink" title="3.2  RT_MainStruct结构体"></a>3.2  RT_MainStruct结构体</h2><p>要注意的是ThunRTMain()函数的参数RT_MainStruct结构体.这里,RT_MainStruct结构体存在于401E14地址处.VB引擎通过参数传递过来的RT_MainStruct结构体获取到程序运行需要的所有信息.</p>
+<h2 id="3-3-ThunRTMain-函数"><a href="#3-3-ThunRTMain-函数" class="headerlink" title="3.3  ThunRTMain()函数"></a>3.3  ThunRTMain()函数</h2><p><img src="/2017/03/28/第8章-abex-crackme-2/6.png" alt="ThunRTMain()代码开始" title="ThunRTMain()代码开始"></p>
+<h1 id="4-分析crackme"><a href="#4-分析crackme" class="headerlink" title="4.  分析crackme"></a>4.  分析crackme</h1><p>目前找RT_MainSturct结构体非容易之事,我们借助思路查找错误消息框和字符串.</p>
+<h2 id="4-1-检索字符串"><a href="#4-1-检索字符串" class="headerlink" title="4.1  检索字符串"></a>4.1  检索字符串</h2><p><img src="/2017/03/28/第8章-abex-crackme-2/7.png" alt="All  referenced  text  strings" title="All  referenced  text  strings"></p>
+<p>双击相应字符串,转到其他地址处.<br><img src="/2017/03/28/第8章-abex-crackme-2/8.png" alt="403458地址处" title="403458地址处"></p>
+<p>消息框的标题(“Wrong  serial!”),内容(“Nope,this  serial  is  wrong!”),还有实际调用信息框函数的代码(4034A6)都显示出来了.</p>
+<p>从编程的观点来看,使用某种算法生成序列号,通过比较用户输入的序列号与字符串,代码分为TRUE(序列号相同)与FALSE(序列号不同)两大部分.通俗点说,就是前后存在的字符串比较代码.且序列号正确时程序代码会调用消息框输出成功信息.</p>
+<p>往上拖动滚动条,在前面看到了条件转移语句的代码.<br><img src="/2017/03/28/第8章-abex-crackme-2/9.png" alt="条件转移指令" title="条件转移指令"></p>
+<p>调用403329地址的_vbaVarTstEq()函数,比较(Test命令)返回值(AX)后,由403332地址的条件转移指令(JE指令)决定执行”真”代码还是”假”代码.</p>
+<blockquote>
+<p> 上述代码使用的汇编指令说明</p>
+<ul>
+<li>Test  :  逻辑比较  (Logical  Compare)<br>与bit-wise  logical”AND”一样(仅改变EFLAGS寄存器而不改变操作数的值)若两个操作数中一个为0,则AND运算结果被置为0-&gt;ZF=1.</li>
+<li>JE  :  条件跳转指令  (Jump  if  equal),  若ZF=1,则跳转.</li>
+</ul>
+</blockquote>
+<h2 id="4-2-查找字符串地址"><a href="#4-2-查找字符串地址" class="headerlink" title="4.2  查找字符串地址"></a>4.2  查找字符串地址</h2><p>403329地址处的_vbaVarTstEq()函数为字符串比较函数,起上方的2个PUSH指令为比较函数的参数,即比较字符串.</p>
+<p><strong>调试至403329</strong></p>
+<p><img src="/2017/03/28/第8章-abex-crackme-2/10.png" alt="403329地址处" title="403329地址处"><br>00403321地址处的SS:[EBP-44]表达的是  :  SS是栈段,EBP是基址指针寄存器.换言之,SS:[EBP-44]指的是栈内地址,它恰好又是函数中声明的局部对象的地址(局部对象存储在栈内).在此状态下查看栈.(栈地址会随调试的环境不同而改变)</p>
+<p><img src="/2017/03/28/第8章-abex-crackme-2/11.png" alt="跟随堆栈地址" title="跟随堆栈地址"></p>
+<p>EDX表示实际的地址,EAX表示用户输入的地址.</p>
+<p>我们选择数据窗口,<strong>长型</strong>查看实际的字符串.<br><img src="/2017/03/28/第8章-abex-crackme-2/12.png" alt="Serial字符串" title="Serial字符串"></p>
+<p>我们重新运行程序,输入Name=”kevin”,Serial=”CFC9DACD”并提示破解成功!<br><img src="/2017/03/28/第8章-abex-crackme-2/13.png" alt="成功" title="成功"></p>
+<p>但是Name和Serial之间什么关系呢?为了测试我们输入Name的另外一个值,Serial保存不变.程序显示错误!这就证明了最初的判断  :  “以name字符串为基础随时生成Serial”的算法.</p>
+<h2 id="4-3-生成Serial的算法"><a href="#4-3-生成Serial的算法" class="headerlink" title="4.3  生成Serial的算法"></a>4.3  生成Serial的算法</h2><p><strong>查找函数开始部分</strong></p>
+<p>很显然条件转移代码属于某个函数,该函数可能就是Check按钮的事件来处理程序.原因在于选择Check按钮后,该函数会被调用执行.且含有用户代码来弹出成功/失败消息框.</p>
+<p>我们向上查找函数开始部分,仔细查看00402ED0地址处的命令.</p>
+<p><img src="/2017/03/28/第8章-abex-crackme-2/14.png" alt="00402ED0地址处" title="00402ED0地址处"></p>
+<p>上述代码是栈帧代码,开始执行函数就会形成栈帧.由此得知该位置就是函数开始部分,即是Check按钮事件的处理程序.</p>
+<blockquote>
+<p> 汇编指令<br>VB文件的函数之间存在着NOP指令.NOP指令表示不执行任何动作的指令.</p>
+</blockquote>
+<p><strong>为了准确分析代码,在402ED0位置处下断点后调试.</strong></p>
+<p><img src="/2017/03/28/第8章-abex-crackme-2/15.png" alt="按钮事件的处理程序" title="按钮事件的处理程序"></p>
+<h2 id="4-4-预测代码"><a href="#4-4-预测代码" class="headerlink" title="4.4  预测代码"></a>4.4  预测代码</h2><ul>
+<li>若是Win32  API程序,则有如下特点.<ul>
+<li>读取Name字符串  (使用GetWindowText  /  GetDlgItemText  等API).</li>
+<li>启动循环,对字符加密  (XOR  /  ADD  /  SUB等).</li>
+</ul>
+</li>
+</ul>
+<p>上述代码使用VB引擎函数编写而成,若预测正确,在事件处理程序开始代码开始调试.查找读取Name字符串的部分后,接着就是出现加密循环.</p>
+<h2 id="4-5-读取Name字符串的代码"><a href="#4-5-读取Name字符串的代码" class="headerlink" title="4.5  读取Name字符串的代码"></a>4.5  读取Name字符串的代码</h2><p><img src="/2017/03/28/第8章-abex-crackme-2/16.png" alt="读取Name字符串的代码" title="读取Name字符串的代码"></p>
+<p>查看00402F8E地址处的代码可以看到,函数的局部对象ss:[ebp-0x88]地址传递给(PUSH)函数的参数.查看该地址.<strong>先在00402FA0处下一个断点</strong>然后选中跟随数据<br><img src="/2017/03/28/第8章-abex-crackme-2/17.png" alt="ss:[ebp-0x88]" title="ss:[ebp-0x88"></p>
+<p>Name字符串(以字符串对象形式)存储到[EBP-88]地址处.</p>
+<h2 id="4-6-加密循环"><a href="#4-6-加密循环" class="headerlink" title="4.6  加密循环"></a>4.6  加密循环</h2><p>继续调试,遇到如下循环,即一系列循环语句.</p>
+<p><img src="/2017/03/28/第8章-abex-crackme-2/18.png" alt="循环语句" title="循环语句"></p>
+<p>简单的动作原理为  :  链表中使用next指针引用下一个元素,并且设置EBX,4  使其按指定的次数运转循环.</p>
+<blockquote>
+<p> 实际仅使用了接收的Name字符串中的4个字符.在代码内检查字符串的长度,若少于4个字符,就会弹出错误消息框.</p>
+</blockquote>
+<h2 id="4-7-加密方法"><a href="#4-7-加密方法" class="headerlink" title="4.7  加密方法"></a>4.7  加密方法</h2><ul>
+<li>从该给定的Name字符串前端逐一读取字符(共4次).</li>
+<li>将字符转换为数字(ASCII代码).</li>
+<li>向变换后的数字加64.</li>
+<li>再次将数字转换为字符.</li>
+<li>连接变换后的字符.</li>
+</ul>
+<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5.  总结"></a>5.  总结</h1><p>通过”Wrong  serial”字符串作为目标,然后查找该字符串的代码.从查找的代码开始,向上拖动滑动条.找到生成栈帧(函数开始)的部分.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ReverseEngineerin/" rel="tag"># ReverseEngineerin</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/第7章-栈帧/" rel="next" title="第7章 栈帧">
+                <i class="fa fa-chevron-left"></i> 第7章 栈帧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/第9章-Process-Explorer-最优秀的进程管理工具/" rel="prev" title="第9章 Process Explorer - 最优秀的进程管理工具">
+                第9章 Process Explorer - 最优秀的进程管理工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-运行abex’crackme-2"><span class="nav-number">1.</span> <span class="nav-text">1.  运行abex’crackme#2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Visual-Basic文件的特征"><span class="nav-number">2.</span> <span class="nav-text">2.  Visual  Basic文件的特征</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-VB专用引擎"><span class="nav-number">2.1.</span> <span class="nav-text">2.1  VB专用引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-本地代码和伪代码"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  本地代码和伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-事件处理程序"><span class="nav-number">2.3.</span> <span class="nav-text">2.3  事件处理程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-未文档化的结构体"><span class="nav-number">2.4.</span> <span class="nav-text">2.4  未文档化的结构体</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-开始调试"><span class="nav-number">3.</span> <span class="nav-text">3.  开始调试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-间接调用"><span class="nav-number">3.1.</span> <span class="nav-text">3.1  间接调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-RT-MainStruct结构体"><span class="nav-number">3.2.</span> <span class="nav-text">3.2  RT_MainStruct结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-ThunRTMain-函数"><span class="nav-number">3.3.</span> <span class="nav-text">3.3  ThunRTMain()函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-分析crackme"><span class="nav-number">4.</span> <span class="nav-text">4.  分析crackme</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-检索字符串"><span class="nav-number">4.1.</span> <span class="nav-text">4.1  检索字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-查找字符串地址"><span class="nav-number">4.2.</span> <span class="nav-text">4.2  查找字符串地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-生成Serial的算法"><span class="nav-number">4.3.</span> <span class="nav-text">4.3  生成Serial的算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-预测代码"><span class="nav-number">4.4.</span> <span class="nav-text">4.4  预测代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-读取Name字符串的代码"><span class="nav-number">4.5.</span> <span class="nav-text">4.5  读取Name字符串的代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-加密循环"><span class="nav-number">4.6.</span> <span class="nav-text">4.6  加密循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-加密方法"><span class="nav-number">4.7.</span> <span class="nav-text">4.7  加密方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-总结"><span class="nav-number">5.</span> <span class="nav-text">5.  总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1438 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ReverseEngineerin," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1. Hello World!程序123456789101112#include &quot;windows.h&quot;#include &quot;tchar.h&quot;int _tmain(int argc, TCHAR *argv[])&amp;#123;	MessageBox(NULL,			   L&quot;Hello World!&quot;,			   L&quot;www.reversecore.com&quot;,			   MB_OK);	return">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第2章 逆向分析Hello World! 程序">
+<meta property="og:url" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="1. Hello World!程序123456789101112#include &quot;windows.h&quot;#include &quot;tchar.h&quot;int _tmain(int argc, TCHAR *argv[])&amp;#123;	MessageBox(NULL,			   L&quot;Hello World!&quot;,			   L&quot;www.reversecore.com&quot;,			   MB_OK);	return">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/2.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/3.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/4.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/5.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/6.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/7.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/8.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/9.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/10.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/11.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/12.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/13.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/14.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/15.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/16.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/17.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/18.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/19.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/20.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/21.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/22.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/23.png">
+<meta property="og:updated_time" content="2017-03-28T09:12:39.956Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第2章 逆向分析Hello World! 程序">
+<meta name="twitter:description" content="1. Hello World!程序123456789101112#include &quot;windows.h&quot;#include &quot;tchar.h&quot;int _tmain(int argc, TCHAR *argv[])&amp;#123;	MessageBox(NULL,			   L&quot;Hello World!&quot;,			   L&quot;www.reversecore.com&quot;,			   MB_OK);	return">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/"/>
+
+
+
+
+
+  <title> 第2章 逆向分析Hello World! 程序 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第2章 逆向分析Hello World! 程序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:05:19+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
+                    <span itemprop="name">ReverseEngineerin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/第2章-逆向分析Hello-World-程序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第2章-逆向分析Hello-World-程序/" class="leancloud_visitors" data-flag-title="第2章 逆向分析Hello World! 程序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-Hello-World-程序"><a href="#1-Hello-World-程序" class="headerlink" title="1. Hello World!程序"></a>1. Hello World!程序</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"windows.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"tchar.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, TCHAR *argv[])</div><div class="line">&#123;</div><div class="line">	MessageBox(<span class="literal">NULL</span>,</div><div class="line">			   <span class="string">L"Hello World!"</span>,</div><div class="line">			   <span class="string">L"www.reversecore.com"</span>,</div><div class="line">			   MB_OK);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>不论用那种语言编写的程序,编译后都会生成二进制可执行文件.</p>
+<h1 id="2-调试HelloWorld-exe程序"><a href="#2-调试HelloWorld-exe程序" class="headerlink" title="2. 调试HelloWorld.exe程序"></a>2. 调试HelloWorld.exe程序</h1><p><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/1.png" alt="OllyDbg基本界面" title="OllyDbg基本界面"></p>
+<p><strong> 提示 </strong></p>
+<ul>
+<li>分析时可采用 OllyDbg 的 Win32 专业调试工具.</li>
+<li>达到一定水平建议使用 Hex -Rays 公司的 IDA Pro.<blockquote>
+<p>代码窗口 : 默认用于显示反汇编代码,适用于显示各种注释,标签,分析代码时显示循环,跳转位置等信息.<br>寄存器窗口 : 实时显示CPU寄存器的值,可用于修改特定的寄存器.<br>栈窗口 : 实时显示ESP寄存器指向的进程栈内存,并允许修改.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-1-入口点"><a href="#2-1-入口点" class="headerlink" title="2.1 入口点"></a>2.1 入口点</h2><p>调试器停止的地点即为HelloWorld.exe执行的起始地址(4011A0),它是一段EP(EntryPoint入口点)代码.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/2.png" alt="地址-指令-反汇编代码-注释]" title="地址-指令-反汇编代码-注释]"></p>
+<p><strong> EP(EntryPoint,入口点)</strong><br>EP是 Window 可执行文件(EXE,DLL,SYS等)的代码入口点,是执行应用程序最先执行的代码的起始位置,它依赖于CPU.</p>
+<h2 id="2-2-跟踪-40270C-函数"><a href="#2-2-跟踪-40270C-函数" class="headerlink" title="2.2 跟踪 40270C 函数"></a>2.2 跟踪 40270C 函数</h2><p><strong> OllyDbg基本指令(适用于代码窗)</strong></p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>快捷键</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td>Ctrl+F2</td>
+<td>重新开始调试</td>
+</tr>
+<tr>
+<td>Step Into</td>
+<td>F7</td>
+<td>执行一句OP code(操作码),若遇到命令(CALL),将进入函数代码内部</td>
+</tr>
+<tr>
+<td>Step Over</td>
+<td>F8</td>
+<td>执行一句OP code(操作码),若遇到命令(CALL),仅执行函数自身,不跟随进入</td>
+</tr>
+<tr>
+<td>Execute till Return(执行到返回)</td>
+<td>Ctrl+F9</td>
+<td>一直在函数代码内部运行,直到遇到RETN命令,跳出函数</td>
+</tr>
+</tbody>
+</table>
+<p>在 EP 代码的40010A0地址处使用Step Into(F7)指令,进入40270C函数.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/3.png" alt="40270C函数" title="40270C函数"></p>
+<p>4027A1地址处有一个RETN指令,它用于返回函数调用者的下一条指令,一般是被调用函数的最后一句.在4027A1地址处的RETN指令上执行SETP over(F8)或Execute till Return(Ctrl+F9)命令.程序会跳转到4011A5地址处.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/4.png" alt="4011A5函数" title="4011A5函数"></p>
+<h2 id="2-3-跟踪-40104F-跳转语句"><a href="#2-3-跟踪-40104F-跳转语句" class="headerlink" title="2.3 跟踪 40104F 跳转语句"></a>2.3 跟踪 40104F 跳转语句</h2><p>执行4011A5 地址处的跳转命令JMP 0040104F,跳转到40104F.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/5.png" alt="40104F处的部分代码" title="40104F处的部分代码"></p>
+<h2 id="2-4-查找main-函数"><a href="#2-4-查找main-函数" class="headerlink" title="2.4 查找main()函数"></a>2.4 查找main()函数</h2><p>在40104F地址开始,每执行一次Step Into(F7)命令就下移1行代码,移动到401056地址处的CALL 402524函数调用命令时,执行Step Into(F7)命令,进入402524函数.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/6.png" alt="调用40104F" title="调用40104F"></p>
+<p><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/7.png" alt="402524函数" title="402524函数"></p>
+<p>我们很难把402524函数称为Main()函数,因为在它的代码中没发现调用MessageBox()API的代码.执行Execute till Return(Ctrl+F9)指令,跳出402524函数,返回到40105B地址处.</p>
+<p>同样,在40104F地址处执行Step Into(F7)命令调试,遇到函数调用就进入函数查看代码,确认是否是main()函数.若不是main()函数,则使用(Ctrl+F9)命令跳出相关函数,继续以相同方式调试.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/8.png" alt="调用API" title="调用API"></p>
+<p>4010E4地址处的CALL Kernel32.GetCommandLineW指令是调用Win32 API的代码.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/9.png" alt="main()函数" title="main()函数"></p>
+<p>401000函数内部出现了调用MessageBoxW()API的代码,该API的函数参数为与源码内容一致,由此可以判断401000函数就是我们需要找的main()函数.</p>
+<h1 id="3-进一步熟悉调试器"><a href="#3-进一步熟悉调试器" class="headerlink" title="3. 进一步熟悉调试器"></a>3. 进一步熟悉调试器</h1><h2 id="3-1-调试器指令"><a href="#3-1-调试器指令" class="headerlink" title="3.1 调试器指令"></a>3.1 调试器指令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>快捷键</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Go to</td>
+<td>Ctrl+G</td>
+<td>移动到指定地址,用来查看代码或内存,运行时不可用</td>
+</tr>
+<tr>
+<td>Execute till Cursor</td>
+<td>F4</td>
+<td>执行到光标位置,即直接转到要调试的地址</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>;</td>
+<td>添加注释</td>
+</tr>
+<tr>
+<td>User-defined comment</td>
+<td></td>
+<td>鼠标右键菜单Search for User-defined comment</td>
+</tr>
+<tr>
+<td>Set/Reset BreakPoint</td>
+<td>F2</td>
+<td>设置或取消断点(BP)</td>
+</tr>
+<tr>
+<td>Run</td>
+<td>F9</td>
+<td>运行(若设置了断点,则执行到断点处)</td>
+</tr>
+<tr>
+<td>Show the previous Cursor</td>
+<td>-</td>
+<td>显示上一个光标的位置</td>
+</tr>
+<tr>
+<td>Preview CALL/JMP address</td>
+<td>Enter</td>
+<td>若光标处有CALL/JMP等指令,则跟踪并显示相关地址(运行时不可用,简单查看函数内容时非常好用)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-2-“大本营”"><a href="#3-2-“大本营”" class="headerlink" title="3.2 “大本营”"></a>3.2 “大本营”</h2><p>当每次重新运行调试器时,调试器会返回到EP处,并从此处新开始调试.</p>
+<h2 id="3-3-设置”大本营”的四种方法"><a href="#3-3-设置”大本营”的四种方法" class="headerlink" title="3.3 设置”大本营”的四种方法"></a>3.3 设置”大本营”的四种方法</h2><ul>
+<li><strong>GoTo命令 </strong></li>
+</ul>
+<p>设置地址40104F.执行Go to(Ctrl+G)命令,在文本框中输入”40104F”<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/10.png" alt="Go to(Ctrl+G)命令" title="Go to(Ctrl+G)命令"></p>
+<p>执行Execute till cursor(F4)命令,让调试运行到该处,然后从40104F处开始调试代码.</p>
+<ul>
+<li><strong>设置断点 </strong></li>
+</ul>
+<p>调试代码,还可以设置BP断点,让调试直接流转到”大本营”.设置断点后,程序运行到断点处将会暂停.</p>
+<p>在OllyDbg菜单栏中依次选择View-Breakpoints(快捷键ALT+B),打开Breakpoints对话框,列出代码中设置的断点.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/11.png" alt="断点" title="断点"></p>
+<ul>
+<li><strong> 注释 </strong></li>
+</ul>
+<p>键盘上的”;”键可以在指定位置添加注释,还可以通过命令找到它.</p>
+<p>在鼠标右键中依次选择Search for User defined comment,这样就能看到用户输入的所有注释.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/12.png" alt="用户的注释" title="用户的注释"></p>
+<p>红色显示的文字即是光标当前所在的位置,当注释位置与光标位置重合时,将仅以红色方式显示.</p>
+<ul>
+<li><strong> 标签 </strong></li>
+</ul>
+<p>我们能通过标签功能在指定的地址添加特定名称.移动光标到40104F地址处,按”:”键输入标签.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/13.png" alt="标签" title="标签"></p>
+<h1 id="4-快速查找指定代码的四种方法"><a href="#4-快速查找指定代码的四种方法" class="headerlink" title="4. 快速查找指定代码的四种方法"></a>4. 快速查找指定代码的四种方法</h1><p>调试代码时,main()函数并不直接位于可执行代码的EP位置上,出现的是开发工具生成的启动函数.</p>
+<h2 id="4-1-代码执行法"><a href="#4-1-代码执行法" class="headerlink" title="4.1 代码执行法"></a>4.1 代码执行法</h2><p>按F8键逐行执行命令,在某个时刻弹出信息对话框,显示”hello world!”信息.按Ctrl+F2再次载入待调试的可执行文件并重新调试,不断按F8键,某个时刻一定会弹出信息对话框.弹出信息对话框调用时的函数即为main()函数.</p>
+<p><strong> 提示 </strong><br>Win32 应用程序中,API函数的参数是通过栈传递的.VC++中默认字符串是使用Unicode码表示,并且,处理字符串的API函数也全部变更为Unicode系列函数.</p>
+<h2 id="4-2-字符串检索法"><a href="#4-2-字符串检索法" class="headerlink" title="4.2 字符串检索法"></a>4.2 字符串检索法</h2><p>鼠标右键菜单 - Search for - All referenced text strings</p>
+<p>OllDbg初次载入待调试程序有预分析过程,此过程中会查看进程内存,程序中引用的字符串和调用的API都会被摘录出来,调整到另外一个列表中.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/14.png" alt="All referenced text strings" title="All referenced text strings"></p>
+<p>地址401007处有一个PUSH 004092A0命令,该命令引用004092A0处即是字符串”helloworld!”双击,光标定位到main()函数中调用MessageBoxW()函数的代码处,在Dump窗口中使用Go to(Ctrl+G)命令,进一步查看内存4092A0地址处的字符串.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/15.png" alt="4092A0地址处的字符串" title="4092A0地址处的字符串"></p>
+<p><strong> 提示: </strong><br>VC++中,static字符串会被默认保存为Unicode码格式.需要注意的是4092A0地址,它与我们之前代码区地址(401XXX)不同,在helloworld.exe进程中,409XXX地址空间被用来保存程序中的数据,<strong> 代码与数据所在的区域是彼此分开的.</strong></p>
+<h2 id="4-3-API索引法-1-在调用代码中设置断点"><a href="#4-3-API索引法-1-在调用代码中设置断点" class="headerlink" title="4.3 API索引法(1) : 在调用代码中设置断点"></a>4.3 API索引法(1) : 在调用代码中设置断点</h2><p><strong> 鼠标右键菜单 - Search for - All  intermodular calls </strong><br>应用程序想向显示屏输出内容时,需要在程序内部调用Win 32 API.helloworld.exe,它在运行时会弹出一个信息窗口,由此可以判断该程序调用了user32.MessageBox()API.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/16.png" alt="Intermodular calls" title="Intermodular calls"></p>
+<p>可以查看调用MessageBoxW()的代码,该函数位于40100E地址处,它是user.MessageBoxW()API.</p>
+<h2 id="4-4-API索引法-2-在API代码中设置断点"><a href="#4-4-API索引法-2-在API代码中设置断点" class="headerlink" title="4.4 API索引法(2) : 在API代码中设置断点"></a>4.4 API索引法(2) : 在API代码中设置断点</h2><p><strong> 鼠标右键菜单  Search for - Name in all calls </strong><br>如果使用了压缩器/保护器工具对可执行文件进行压缩或保护,因为文件结构的改变.此时用该方法显得十分困难.</p>
+<p>DLL代码库会被加载到进程内存中,然后我们可以直接向DLL代码库添加断点,API是操作系统对用户应用程序提供一系列函数,它们位于C:\windows\system32文件夹中的*.dll文件(如kernel32.dll,user32.dll,gdi32.dll,advapi32.dll,ws2_32.dll等)内部.因为编写的应用程序执行某些操作时,必须使用os提供的API向os提出请求,然后与被调用API对用的系统DLL文件就会被加载到应用程序的进程内存.</p>
+<p>菜单栏-&gt;View-Memory菜单(快捷键ALT+M),打开内存映射窗口.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/17.png" alt="内存映射窗口" title="内存映射窗口"></p>
+<p>然后通过查找命令将光标定位到MessageBoxW上.</p>
+<h1 id="5-使用”打补丁”方式修改”hello-world-”字符串"><a href="#5-使用”打补丁”方式修改”hello-world-”字符串" class="headerlink" title="5. 使用”打补丁”方式修改”hello world!”字符串"></a>5. 使用”打补丁”方式修改”hello world!”字符串</h1><h2 id="5-1-“打补丁”"><a href="#5-1-“打补丁”" class="headerlink" title="5.1 “打补丁”"></a>5.1 “打补丁”</h2><p>使调试流运行到main函数的起始地址处(401000),在401000地址处按F2设置断点,再按F9执行程序.</p>
+<h2 id="5-2-修改字符串的两种方法"><a href="#5-2-修改字符串的两种方法" class="headerlink" title="5.2 修改字符串的两种方法"></a>5.2 修改字符串的两种方法</h2><p><strong> 直接修改字符缓冲区(buffer).</strong><br><strong> 在其他内存区域生成新字符串并传递给消息函数.</strong></p>
+<ul>
+<li><strong> 直接修改字符串缓冲区 </strong><br>在Dump窗口中Ctrl+G快捷键Go to 命令,在窗口中输入4092A0字符串缓冲区.使用鼠标选中4092A0地址的内容,按Ctrl+E快捷键打开编辑窗口 .<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/18.png" alt="helloworld字符串" title="helloworld字符串"></li>
+</ul>
+<p>在Dump窗口中,选中更改后的字符串,通过鼠标右键,在弹出的菜单中选中Copy to executable file 菜单,然后选中保存即可.</p>
+<ul>
+<li><strong> 在其他内存区域新建字符串并传递给消息函数</strong><br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/19.png" alt="main()函数" title="main()函数"></li>
+</ul>
+<p>401007地址处有一条PUSH 00409A0命令,它把409A0地址处的”Hello world!”字符串以参数形式传递给MessageBoxW()函数.</p>
+<p>我们修改字符串地址为4092A0,下面用Dump窗口查看该部分,相应内存区域由NULL填充(NULL padding)结束.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/20.png" alt="内存中NULL填充区域" title="内存中NULL填充区域"></p>
+<p>这就是程序中未使用NULL填充区域.</p>
+<p><strong> 提示 </strong><br>应用程序被加载到内存时有一个最小的内存分配大小,一般为1000.即使程序运行时只占用了100内存,它被加载到内存时依然会分到1000左右的内存,这些内存一部分被程序占用,其余部分分为空余区域,全部被填充为NULL.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/21.png" alt="从空白区域写入新的字符串" title="从空白区域写入新的字符串"></p>
+<p>因为新建了缓冲区,接下来把新的缓冲区地址(409F50)作为参数传递给MessageBoxW()函数.为此,我们在代码窗口使用汇编命令修改代码.用空格键打开Assemble窗口.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/22.png" alt="原字符串地址" title="原字符串地址"></p>
+<p>在打开的Assemble窗口中输入”PUSH 409F50”指令,那么将把409F50作为新字符串的首地址!<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/23.png" alt="新字符串地址" title="新字符串地址"></p>
+<p><strong> 提示 </strong><br>可执行文件被加载到内存并以进程形式运行时,文件并非原封不动地载入内存,而要遵守一定规则进行.在这一过程中,通常进程的内存地址是存在的,但是相应的文件偏移(offset)并不存在.</p>
+<h1 id="6-小结"><a href="#6-小结" class="headerlink" title="6. 小结"></a>6. 小结</h1><ul>
+<li><strong> OllDbg常用命令 </strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Step Into</td>
+<td>F7</td>
+<td>执行一条OP code(操作码),遇到CALL命令时,进入函数代码内部.</td>
+</tr>
+<tr>
+<td>Step Over</td>
+<td>F8</td>
+<td>执行一条OP code(操作码),遇到CALL命令时,不进入函数代码内部,仅执行函数本身.</td>
+</tr>
+<tr>
+<td>Restart</td>
+<td>Ctrl+F2</td>
+<td>再次从头调试(终止调试中的过程,重新载入调试程序)</td>
+</tr>
+<tr>
+<td>Go to</td>
+<td>Ctrl+G</td>
+<td>跳转到指定地址(查看代码时使用,非运行时命令)</td>
+</tr>
+<tr>
+<td>Run</td>
+<td>F9</td>
+<td>运行(运动断点会暂停)</td>
+</tr>
+<tr>
+<td>Execute till return</td>
+<td>Ctrl+F9</td>
+<td>执行函数代码内的命令,直到遇到RETN命令,用于跳出函数整体.</td>
+</tr>
+<tr>
+<td>Execute till cursor</td>
+<td>F4</td>
+<td>执行到光标所在的位置(直接调到要指定的位置)</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>;</td>
+<td>添加注释</td>
+</tr>
+<tr>
+<td>User-defined comment</td>
+<td>鼠标右键菜单Search for - User-defined comment</td>
+<td>查看用户的注释目录</td>
+</tr>
+<tr>
+<td>Label</td>
+<td>:</td>
+<td>添加标签</td>
+</tr>
+<tr>
+<td>User -defined label</td>
+<td>鼠标右键菜单Search for - Usr-defined label</td>
+<td>查看用户输入的标签目录</td>
+</tr>
+<tr>
+<td>Breakpoint</td>
+<td>F2</td>
+<td>设置或取消断点</td>
+</tr>
+<tr>
+<td>All referenced text strings</td>
+<td>鼠标右键菜单Search for -All referenced text strings</td>
+<td>查看代码中引用的字符串</td>
+</tr>
+<tr>
+<td>All intermodular calls</td>
+<td>鼠标右键菜单Search for -All intermodular calls</td>
+<td>查看代码中调用的所有API函数</td>
+</tr>
+<tr>
+<td>Name is all modules</td>
+<td>鼠标右键菜单Search for -Name is all modules</td>
+<td>查看所有的API函数</td>
+</tr>
+<tr>
+<td>Edit data</td>
+<td>Ctrl+E</td>
+<td>编辑数据</td>
+</tr>
+<tr>
+<td>Assemble</td>
+<td>Space</td>
+<td>编写汇编代码</td>
+</tr>
+<tr>
+<td>Copy to executable file</td>
+<td>鼠标右键菜单Copy to executable file</td>
+<td>创建文本副本(修改的项目被保留)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Assemble(汇编语言)基础指令</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CALL XXXX</td>
+<td>调用XXXX地址处的函数</td>
+</tr>
+<tr>
+<td>JMP XXXX</td>
+<td>跳转到XXXX地址处</td>
+</tr>
+<tr>
+<td>PUSH XXXX</td>
+<td>保存XXXX到栈</td>
+</tr>
+<tr>
+<td>RETN</td>
+<td>跳转到栈中保持的地址</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>修改(Path)进程数据与代码的方法</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VA(Virtual Address)</td>
+<td>进程的虚拟地址</td>
+</tr>
+<tr>
+<td>OP code(Operation code)</td>
+<td>CPU指令(字节码byte code)</td>
+</tr>
+<tr>
+<td>PE(Portable Executable)</td>
+<td>Window可执行文件(EXE,DLL,SYS等)</td>
+</tr>
+</tbody>
+</table>
+<p><strong> 疑问 </strong></p>
+<ul>
+<li>快捷键F4与F9最大的不同在于F4可以看做为断点+运行的组合.</li>
+<li>启动函数(Stub code)不是用户编写的代码,在调试程序中,我们不需要仔细分析启动函数.</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ReverseEngineerin/" rel="tag"># ReverseEngineerin</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/第1章-关于逆向工程/" rel="next" title="第1章 关于逆向工程">
+                <i class="fa fa-chevron-left"></i> 第1章 关于逆向工程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/第3章-小端序标记法/" rel="prev" title="第3章 小端序标记法">
+                第3章 小端序标记法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Hello-World-程序"><span class="nav-number">1.</span> <span class="nav-text">1. Hello World!程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-调试HelloWorld-exe程序"><span class="nav-number">2.</span> <span class="nav-text">2. 调试HelloWorld.exe程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-入口点"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 入口点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-跟踪-40270C-函数"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 跟踪 40270C 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-跟踪-40104F-跳转语句"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 跟踪 40104F 跳转语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-查找main-函数"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 查找main()函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-进一步熟悉调试器"><span class="nav-number">3.</span> <span class="nav-text">3. 进一步熟悉调试器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-调试器指令"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 调试器指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-“大本营”"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 “大本营”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-设置”大本营”的四种方法"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 设置”大本营”的四种方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-快速查找指定代码的四种方法"><span class="nav-number">4.</span> <span class="nav-text">4. 快速查找指定代码的四种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-代码执行法"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 代码执行法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-字符串检索法"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 字符串检索法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-API索引法-1-在调用代码中设置断点"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 API索引法(1) : 在调用代码中设置断点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-API索引法-2-在API代码中设置断点"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 API索引法(2) : 在API代码中设置断点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-使用”打补丁”方式修改”hello-world-”字符串"><span class="nav-number">5.</span> <span class="nav-text">5. 使用”打补丁”方式修改”hello world!”字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-“打补丁”"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 “打补丁”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-修改字符串的两种方法"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 修改字符串的两种方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-小结"><span class="nav-number">6.</span> <span class="nav-text">6. 小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

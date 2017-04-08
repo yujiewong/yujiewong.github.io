@@ -1,0 +1,1137 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AndroidBasis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1. Android中的测试1.1 应用层的测试测试常规的功能是否完善,不会出现致命的BUG.
+1.2 Google 的CTS的测试谷歌CTS,英文为 Compatibility Test Suite ,中文意思是兼容性测试,手机设备需要通过Android的兼容性测试(CTS),以确保在android上开发的程序在手机设备上都能运行.Google并没有在源代码中提供Android Market应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.安卓基础之Android文件存储">
+<meta property="og:url" content="http://javami.com/2017/03/28/2-安卓基础之Android文件存储/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="1. Android中的测试1.1 应用层的测试测试常规的功能是否完善,不会出现致命的BUG.
+1.2 Google 的CTS的测试谷歌CTS,英文为 Compatibility Test Suite ,中文意思是兼容性测试,手机设备需要通过Android的兼容性测试(CTS),以确保在android上开发的程序在手机设备上都能运行.Google并没有在源代码中提供Android Market应用">
+<meta property="og:image" content="http://javami.com/2017/03/28/2-安卓基础之Android文件存储/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/2-安卓基础之Android文件存储/2.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/2-安卓基础之Android文件存储/3.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/2-安卓基础之Android文件存储/4.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/2-安卓基础之Android文件存储/5.png">
+<meta property="og:updated_time" content="2017-03-28T07:47:35.318Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2.安卓基础之Android文件存储">
+<meta name="twitter:description" content="1. Android中的测试1.1 应用层的测试测试常规的功能是否完善,不会出现致命的BUG.
+1.2 Google 的CTS的测试谷歌CTS,英文为 Compatibility Test Suite ,中文意思是兼容性测试,手机设备需要通过Android的兼容性测试(CTS),以确保在android上开发的程序在手机设备上都能运行.Google并没有在源代码中提供Android Market应用">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/2-安卓基础之Android文件存储/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/2-安卓基础之Android文件存储/"/>
+
+
+
+
+
+  <title> 2.安卓基础之Android文件存储 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/2-安卓基础之Android文件存储/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2.安卓基础之Android文件存储
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T15:44:49+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/2-安卓基础之Android文件存储/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/2-安卓基础之Android文件存储/" class="leancloud_visitors" data-flag-title="2.安卓基础之Android文件存储">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-Android中的测试"><a href="#1-Android中的测试" class="headerlink" title="1. Android中的测试"></a>1. Android中的测试</h1><h2 id="1-1-应用层的测试"><a href="#1-1-应用层的测试" class="headerlink" title="1.1 应用层的测试"></a>1.1 应用层的测试</h2><p>测试常规的功能是否完善,不会出现致命的BUG.</p>
+<h2 id="1-2-Google-的CTS的测试"><a href="#1-2-Google-的CTS的测试" class="headerlink" title="1.2 Google 的CTS的测试"></a>1.2 Google 的CTS的测试</h2><p>谷歌CTS,英文为 Compatibility Test Suite ,中文意思是兼容性测试,手机设备需要通过Android的兼容性测试(CTS),以确保在android上开发的程序在手机设备上都能运行.Google并没有在源代码中提供Android Market应用,因为他们希望所有设备生产商能够通过CTS测试.如果他们通过了CTS测试,那么就可以向Google申请使用Android market,Google才会给Market应用.</p>
+<h2 id="1-3-Framework的测试"><a href="#1-3-Framework的测试" class="headerlink" title="1.3 Framework的测试"></a>1.3 Framework的测试</h2><p>在android 中谷歌程序员也将 junit 测试框架引入进来了.</p>
+<h5 id="1-4-android中测试程序的编写步骤"><a href="#1-4-android中测试程序的编写步骤" class="headerlink" title="1.4. android中测试程序的编写步骤"></a>1.4. android中测试程序的编写步骤</h5><ul>
+<li>编写一个类去继承 AndroidTestCase</li>
+<li>编写一个测试的运行的方法</li>
+<li>在manifest文件中添加如下内容</li>
+</ul>
+<p><img src="/2017/03/28/2-安卓基础之Android文件存储/1.png" alt="mainfest添加的内容" title="mainfest添加的内容"></p>
+<ul>
+<li>在 application 元素下添加如下内容</li>
+</ul>
+<p><img src="/2017/03/28/2-安卓基础之Android文件存储/2.png" alt="添加类库" title="添加类库"></p>
+<h1 id="2-Log级别的分类"><a href="#2-Log级别的分类" class="headerlink" title="2. Log级别的分类"></a>2. Log级别的分类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Log.v(TAG, <span class="string">"俺是 一个 详细 的日志 信息"</span>);</div><div class="line">Log.i(TAG, <span class="string">"俺是 一个 一般的 的日志 信息"</span>);</div><div class="line">Log.w(TAG, <span class="string">"俺是 一个  警告  的日志 信息"</span>);  </div><div class="line">Log.e(TAG, <span class="string">"俺是 一个 错误 的日志 信息"</span>);</div><div class="line">Log.wtf(TAG, <span class="string">"俺是 一个xxxxx 的日志 信息"</span>);</div></pre></td></tr></table></figure>
+<p><img src="/2017/03/28/2-安卓基础之Android文件存储/3.png" alt="查看窗口" title="查看窗口"></p>
+<h1 id="3-android下保存数据"><a href="#3-android下保存数据" class="headerlink" title="3. android下保存数据"></a>3. android下保存数据</h1><h2 id="3-1-将数据保存到应用程序中-私有的"><a href="#3-1-将数据保存到应用程序中-私有的" class="headerlink" title="3.1 将数据保存到应用程序中(私有的)"></a>3.1 将数据保存到应用程序中(私有的)</h2><p><img src="/2017/03/28/2-安卓基础之Android文件存储/4.png" alt="保存数据存在的问题" title="保存数据存在的问题"></p>
+<p>是因为 , 这里的路径以及保存的方式都有问题 , 目前是运行在androd中, android底层是linux内核, linux 文件系统的根目录是 一个 / .</p>
+<p>写 <code>File  file = new File(“info.txt”);</code> 将数据保存到  linux  根目录 / 下, 而这时当前的应用程序不可能取得这样的权限的.</p>
+<p>每个应用程序可以将数据保存到自己独有的一个文件夹下 :</p>
+<p><img src="/2017/03/28/2-安卓基础之Android文件存储/5.png" alt="独有的文件夹" title="独有的文件夹"></p>
+<h2 id="3-2-android中图片的缓存策略"><a href="#3-2-android中图片的缓存策略" class="headerlink" title="3.2 android中图片的缓存策略:"></a>3.2 android中图片的缓存策略:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line">**MainActivity.java:**</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        <span class="comment">//初始化控件</span></div><div class="line">        ed_qqnumber = (EditText) findViewById(R.id.qqnumber);</div><div class="line">        ed_qqpassword = (EditText) findViewById(R.id.qqpassword);</div><div class="line">        cbx = (CheckBox) findViewById(R.id.remember);</div><div class="line"></div><div class="line">        File file = <span class="keyword">new</span> File(<span class="keyword">this</span>.getFilesDir(), <span class="string">"info.txt"</span>);</div><div class="line"></div><div class="line">        <span class="comment">//如果文件里面存在内容,显示数据</span></div><div class="line">        <span class="keyword">if</span>(file.exists()&amp;&amp;file.length()&gt;<span class="number">0</span>)&#123;</div><div class="line">        	<span class="comment">//读取file中的数据,然后显示   	</span></div><div class="line"></div><div class="line">        	<span class="keyword">try</span> &#123;</div><div class="line">        		<span class="comment">//111#itceo#111</span></div><div class="line">        		BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(file));</div><div class="line">				String line = bufferedReader.readLine();</div><div class="line"></div><div class="line">				String num =line.split(<span class="string">"#itceo#"</span>)[<span class="number">0</span>];</div><div class="line">				String pwd = line.split(<span class="string">"#itceo#"</span>)[<span class="number">1</span>];</div><div class="line">				ed_qqnumber.setText(num);</div><div class="line">				ed_qqpassword.setText(pwd);</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				<span class="comment">// TODO Auto-generated catch block</span></div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//点击登陆后执行 login 的方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">(View view)</span></span>&#123;</div><div class="line"></div><div class="line">    	<span class="comment">//获得输入框中写入的数据,trim()去掉字符串的首尾空格</span></div><div class="line">    	String number = ed_qqnumber.getText().toString().trim();</div><div class="line">    	String password  = ed_qqpassword.getText().toString().trim();</div><div class="line">    	<span class="keyword">if</span>(TextUtils.isEmpty(number)||TextUtils.isEmpty(password))&#123;</div><div class="line">    		Toast.makeText(<span class="keyword">this</span>, <span class="string">"请输入您的账号或密码!"</span>, <span class="number">0</span>).show();</div><div class="line">    		<span class="keyword">return</span>;</div><div class="line">    	&#125;</div><div class="line"></div><div class="line">    	<span class="comment">//判断是否勾选了checkbox,如果勾选了checkbox,那么就将QQ号和密码保存起来</span></div><div class="line">    	<span class="keyword">boolean</span> isChecked = cbx.isChecked();</div><div class="line"></div><div class="line">    	<span class="keyword">if</span>(isChecked)&#123;</div><div class="line">    		<span class="keyword">try</span> &#123;</div><div class="line">				<span class="comment">//如果勾选了,将数据保存起来.</span></div><div class="line">				File file = <span class="keyword">new</span> File(<span class="keyword">this</span>.getFilesDir(),<span class="string">"info.txt"</span>);</div><div class="line">				OutputStream outputStream = <span class="keyword">new</span> FileOutputStream(file);</div><div class="line">				String value = number+<span class="string">"#itceo#"</span>+password;</div><div class="line"></div><div class="line">				outputStream.write(value.getBytes());</div><div class="line">				outputStream.close();</div><div class="line">				Toast.makeText(<span class="keyword">this</span>, <span class="string">"勾选,保存成功!"</span>, <span class="number">0</span>).show();</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">				Toast.makeText(<span class="keyword">this</span>, <span class="string">"勾选,但不保存成功!"</span>, <span class="number">0</span>).show();</div><div class="line">			&#125;</div><div class="line">    	&#125;<span class="keyword">else</span> &#123;</div><div class="line">    		Toast.makeText(<span class="keyword">this</span>, <span class="string">"没勾选成功!"</span>, <span class="number">0</span>).show();</div><div class="line">		&#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">activity_main.xml</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">"net.itceo.qqlogin.MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:src</span>=<span class="string">"@drawable/qq"</span></div><div class="line">        /&gt;</div><div class="line"></div><div class="line">  	  	<span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">  	    <span class="attr">android:id</span>=<span class="string">"@+id/qqnumber"</span></div><div class="line">  	    <span class="attr">android:hint</span>=<span class="string">"请输入账号:"</span></div><div class="line">  	    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">  	    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">  	    /&gt;</div><div class="line"></div><div class="line">  	  	<span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">  	    <span class="attr">android:id</span>=<span class="string">"@+id/qqpassword"</span></div><div class="line">  	    <span class="attr">android:hint</span>=<span class="string">"请输入密码:"</span></div><div class="line">  	    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">  	    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">  	    /&gt;</div><div class="line"></div><div class="line">  	  	<span class="tag">&lt;<span class="name">CheckBox</span></span></div><div class="line">  	  	    <span class="attr">android:id</span>=<span class="string">"@+id/remember"</span></div><div class="line">  	  	    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">  	  	    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">  	  	    <span class="attr">android:text</span>=<span class="string">"请记住你的密码"</span>/&gt;</div><div class="line">  	  	<span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">  	  	    <span class="attr">android:onClick</span>=<span class="string">"login"</span></div><div class="line">  	  	    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">  	  	    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">  	  	    <span class="attr">android:text</span>=<span class="string">"登陆"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="3-3-android中sdcard的细节问题"><a href="#3-3-android中sdcard的细节问题" class="headerlink" title="3.3 android中sdcard的细节问题:"></a>3.3 android中sdcard的细节问题:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">MainActivity.java</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        <span class="comment">//初始化控件</span></div><div class="line">        ed_qqnumber = (EditText) findViewById(R.id.qqnumber);</div><div class="line">        ed_qqpassword = (EditText) findViewById(R.id.qqpassword);</div><div class="line">        cbx = (CheckBox) findViewById(R.id.remember);</div><div class="line">        File file = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), <span class="string">"info.txt"</span>);</div><div class="line">        <span class="comment">//如果文件里面包含数据</span></div><div class="line">        <span class="keyword">if</span> (file.exists()&amp;&amp;file.length()&gt;<span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(file));</div><div class="line"></div><div class="line">				String line = bufferedReader.readLine();</div><div class="line">				String num = line.split(<span class="string">"#itceo#"</span>)[<span class="number">0</span>];</div><div class="line">				String pwd = line.split(<span class="string">"#itceo#"</span>)[<span class="number">1</span>];</div><div class="line">				ed_qqnumber.setText(num);</div><div class="line">				ed_qqpassword.setText(pwd);</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">(View v)</span></span>&#123;</div><div class="line">    	<span class="comment">//获得输入框的值</span></div><div class="line">    	String number = ed_qqnumber.toString().trim();</div><div class="line">    	String password = ed_qqpassword.toString().trim();</div><div class="line"></div><div class="line">    	<span class="comment">//判断是否填入了number和password的值</span></div><div class="line">    	<span class="keyword">if</span> (TextUtils.isEmpty(number)||TextUtils.isEmpty(password)) &#123;</div><div class="line">			Toast.makeText(<span class="keyword">this</span>, <span class="string">"请输入账号或密码"</span>, <span class="number">0</span>).show();</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">    <span class="comment">//判断是否勾选了checkbox,如果勾选了checkbox,那么就将QQ和密码保存起来;</span></div><div class="line">    	<span class="keyword">boolean</span> isChecked = cbx.isChecked();</div><div class="line">    	<span class="keyword">if</span> (isChecked) &#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="comment">//说明勾选了,给提示!</span></div><div class="line">				<span class="comment">// sdcard 做为 一个外部的 存储 设备, 有时候 sdcard 是处于 弹出状态, 未插入状态, 强制拔出 状态.</span></div><div class="line">				<span class="comment">// 那么在这些 情况下,如果 要向 sdcard 中写数据, 为了 保证 数据 确切的存储, 提高用户的感受, 所以 , 在存储到</span></div><div class="line">				<span class="comment">// sd 卡中之前, 会去动态 判断 sdcard 的状态,只有 在sdcard 是处于 挂载 的状态下 , 再去 写 sd 卡数据</span></div><div class="line">				String status = Environment.getExternalStorageState();<span class="comment">//返回的状态</span></div><div class="line">				<span class="keyword">if</span> (!Environment.MEDIA_MOUNTED.equals(status)) &#123;<span class="comment">//如果返回的状态非挂载</span></div><div class="line">					Toast.makeText(<span class="keyword">this</span>, <span class="string">"请检查你的内存卡状态"</span>, <span class="number">0</span>).show();</div><div class="line">					<span class="keyword">return</span>;</div><div class="line">				&#125;</div><div class="line">				<span class="comment">//返回内存卡可用的空闲空间</span></div><div class="line">				<span class="keyword">long</span> freeSpace = Environment.getExternalStorageDirectory()</div><div class="line">						.getFreeSpace();</div><div class="line">				<span class="comment">//拿到SD卡的总大小</span></div><div class="line">				Environment.getExternalStorageDirectory().getTotalSpace();</div><div class="line">				<span class="comment">//拿到已经使用的大小</span></div><div class="line">				Environment.getExternalStorageDirectory().getUsableSpace();</div><div class="line">				<span class="comment">//将返回的字节转换为单位</span></div><div class="line">				String avalabSize = Formatter.formatFileSize(<span class="keyword">this</span>, freeSpace);</div><div class="line">				Toast.makeText(<span class="keyword">this</span>, <span class="string">"你的可用大小为:"</span> + avalabSize, <span class="number">0</span>).show();</div><div class="line">				File file = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(),</div><div class="line">						<span class="string">"info.txt"</span>);</div><div class="line"></div><div class="line">				<span class="comment">//取出数据</span></div><div class="line">				OutputStream outputStream = <span class="keyword">new</span> FileOutputStream(file);</div><div class="line">				<span class="comment">//写入数据</span></div><div class="line">				String value = number+<span class="string">"#itceo#"</span>+password;</div><div class="line">				outputStream.write(value.getBytes());</div><div class="line">				outputStream.close();</div><div class="line"></div><div class="line">				Toast.makeText(<span class="keyword">this</span>, <span class="string">"勾选成功"</span>, <span class="number">0</span>).show();</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				Toast.makeText(<span class="keyword">this</span>, <span class="string">"没勾选成功"</span>, <span class="number">0</span>).show();</div><div class="line">			&#125;</div><div class="line"></div><div class="line">    	&#125;<span class="keyword">else</span>&#123;</div><div class="line">    		Toast.makeText(<span class="keyword">this</span>, <span class="string">"不勾选,是无法保存数据的"</span>, <span class="number">0</span>).show();</div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">activity_main.xml</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:src</span>=<span class="string">"@drawable/qq"</span></div><div class="line">        /&gt;</div><div class="line">	<span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">	    <span class="attr">android:id</span>=<span class="string">"@+id/qqnumber"</span></div><div class="line">	    <span class="attr">android:hint</span>=<span class="string">"请输入qq号码"</span></div><div class="line">	     <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	    /&gt;</div><div class="line">	<span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">	    <span class="attr">android:id</span>=<span class="string">"@+id/qqpassword"</span></div><div class="line">	    <span class="attr">android:hint</span>=<span class="string">"请输入qq密码"</span></div><div class="line">	    <span class="attr">android:inputType</span>=<span class="string">"textPassword"</span></div><div class="line">	     <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	    /&gt;</div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">CheckBox</span></span></div><div class="line">	    <span class="attr">android:id</span>=<span class="string">"@+id/remember"</span></div><div class="line">	    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">	    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	    <span class="attr">android:text</span>=<span class="string">"记住用户名和密码"</span> /&gt;</div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">	    <span class="attr">android:onClick</span>=<span class="string">"login"</span></div><div class="line">	    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">	    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	    <span class="attr">android:text</span>=<span class="string">"登录"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="3-4-android中文件权限问题"><a href="#3-4-android中文件权限问题" class="headerlink" title="3.4 android中文件权限问题"></a>3.4 android中文件权限问题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">    <span class="comment">/*</span></div><div class="line"> * 创建一个私有的文件</div><div class="line"> *</div><div class="line"> * 每个应用程序 都一个私有的文件夹, /data/data/net.itceo.filemode</div><div class="line"> *</div><div class="line"> *</div><div class="line"> * 私有的文件 ,只有当前的应用 自己可以去访问, 其他的应用没有办法 去访问，其他的应用既不可以读，也不可以写　</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getPrivateFile</span><span class="params">(View v)</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		File file = <span class="keyword">new</span> File(<span class="keyword">this</span>.getFilesDir(), <span class="string">"private.txt"</span>);</div><div class="line">		OutputStream out = <span class="keyword">new</span> FileOutputStream(file);</div><div class="line">		out.write(<span class="string">"private"</span>.getBytes());</div><div class="line">		out.close();</div><div class="line">		Toast.makeText(<span class="keyword">this</span>, <span class="string">"写入私有文件成功"</span>, <span class="number">0</span>).show();</div><div class="line"></div><div class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">		Toast.makeText(<span class="keyword">this</span>, <span class="string">"写入私有文件失败 "</span>, <span class="number">0</span>).show();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 谷歌不推荐咱们这样做 :  引入了新的组件 --- contentProvider</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 创建一个只读的文件 :其他的应用可以去读但是不能去写　</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getReadOnlyFile</span><span class="params">(View v)</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		FileOutputStream out = openFileOutput(<span class="string">"readonly.txt"</span>,</div><div class="line">				Context.MODE_WORLD_READABLE);</div><div class="line"></div><div class="line">		out.write(<span class="string">"readonly"</span>.getBytes());</div><div class="line">		out.close();</div><div class="line">		Toast.makeText(<span class="keyword">this</span>, <span class="string">"写入只读文件成功"</span>, <span class="number">0</span>).show();</div><div class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">		Toast.makeText(<span class="keyword">this</span>, <span class="string">"写入只读文件失败 "</span>, <span class="number">0</span>).show();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//写入只可写文件</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getWriteOnlyFile</span><span class="params">(View v)</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		FileOutputStream out = openFileOutput(<span class="string">"writeonly.txt"</span>,</div><div class="line">				Context.MODE_WORLD_WRITEABLE);</div><div class="line"></div><div class="line">		out.write(<span class="string">"writeonly"</span>.getBytes());</div><div class="line">		out.close();</div><div class="line">		Toast.makeText(<span class="keyword">this</span>, <span class="string">"写入只可写文件成功"</span>, <span class="number">0</span>).show();</div><div class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">		Toast.makeText(<span class="keyword">this</span>, <span class="string">"写入只可写文件失败 "</span>, <span class="number">0</span>).show();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 其他应用可以读也可以写的文件</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getPublicFile</span><span class="params">(View v)</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		FileOutputStream out = openFileOutput(<span class="string">"public.txt"</span>,</div><div class="line">				Context.MODE_WORLD_WRITEABLE+Context.MODE_WORLD_READABLE);</div><div class="line"></div><div class="line">		out.write(<span class="string">"public"</span>.getBytes());</div><div class="line">		out.close();</div><div class="line">		Toast.makeText(<span class="keyword">this</span>, <span class="string">"写入可读可写成功"</span>, <span class="number">0</span>).show();</div><div class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">		Toast.makeText(<span class="keyword">this</span>, <span class="string">"写入可读可写失败 "</span>, <span class="number">0</span>).show();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-5-android中SharedPreferences的使用"><a href="#3-5-android中SharedPreferences的使用" class="headerlink" title="3.5 android中SharedPreferences的使用"></a>3.5 android中SharedPreferences的使用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">MainActivity.java</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        <span class="comment">//初始化控件</span></div><div class="line">        ed_qqnumber = (EditText) findViewById(R.id.qqnumber);</div><div class="line">        ed_qqpaswword = (EditText) findViewById(R.id.qqpassword);</div><div class="line">        cbx = (CheckBox) findViewById(R.id.remember);</div><div class="line">        sp = getSharedPreferences(<span class="string">"config"</span>, <span class="number">0</span>);</div><div class="line"></div><div class="line">        <span class="comment">//如果找到了number的值,那么就返回number的值,否则就返回这里的默认值</span></div><div class="line">        String num = sp.getString(<span class="string">"number"</span>, <span class="string">""</span>);</div><div class="line">        String pwd = sp.getString(<span class="string">"password"</span>, <span class="string">""</span>);</div><div class="line"></div><div class="line">        ed_qqnumber.setText(num);</div><div class="line">        ed_qqpaswword.setText(pwd);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">  <span class="comment">//点击登录后会执行 login 方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">(View v)</span></span>&#123;</div><div class="line">    	<span class="comment">//获得输入框中写入的值</span></div><div class="line">    	String number = ed_qqnumber.getText().toString().trim();</div><div class="line">    	String password= ed_qqpaswword.getText().toString().trim();</div><div class="line"></div><div class="line">    	<span class="comment">//判断是否输入了number以及password的值</span></div><div class="line">    	<span class="keyword">if</span> (TextUtils.isEmpty(number)||TextUtils.isEmpty(password)) &#123;</div><div class="line">			Toast.makeText(<span class="keyword">this</span>, <span class="string">"请输入QQ号或密码"</span>, <span class="number">0</span>).show();</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line">    	<span class="comment">//判断是否勾选了checkbox,如果勾选了即把数据保存起来</span></div><div class="line">    	<span class="keyword">boolean</span> isChecked = cbx.isChecked();</div><div class="line"></div><div class="line">    	<span class="keyword">if</span>(isChecked)&#123;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				<span class="comment">// 将数据 保存起来,使用 sharedPreference</span></div><div class="line">				<span class="comment">// config文件将会生成 在 应用的文件夹下 --- 一个 xml格式 的文件</span></div><div class="line">				<span class="comment">// 一般情况下,应用自己的数据只有当前应用 自己可以去读, 所以通常会写  </span></div><div class="line">				sp = getSharedPreferences(<span class="string">"config"</span>, <span class="number">0</span>);</div><div class="line">				Editor editor = sp.edit();</div><div class="line">				editor.putString(<span class="string">"number"</span>, number);</div><div class="line">				editor.putString(<span class="string">"password"</span>, password);</div><div class="line">				editor.commit();</div><div class="line">				Toast.makeText(<span class="keyword">this</span>, <span class="string">"勾选了,保存成功"</span>, <span class="number">0</span>).show();</div><div class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">				Toast.makeText(<span class="keyword">this</span>, <span class="string">"勾选了,不保存成功"</span>, <span class="number">0</span>).show();</div><div class="line">			&#125;</div><div class="line">    	&#125;<span class="keyword">else</span>&#123;</div><div class="line">    		Toast.makeText(<span class="keyword">this</span>, <span class="string">"没勾选"</span>, <span class="number">0</span>).show();</div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">activity_main.xml</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:src</span>=<span class="string">"@drawable/qq"</span></div><div class="line">        /&gt;</div><div class="line">	<span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">	    <span class="attr">android:id</span>=<span class="string">"@+id/qqnumber"</span></div><div class="line">	    <span class="attr">android:hint</span>=<span class="string">"请输入qq号码"</span></div><div class="line">	     <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	    /&gt;</div><div class="line">	<span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">	    <span class="attr">android:id</span>=<span class="string">"@+id/qqpassword"</span></div><div class="line">	    <span class="attr">android:hint</span>=<span class="string">"请输入qq密码"</span></div><div class="line">	    <span class="attr">android:inputType</span>=<span class="string">"textPassword"</span></div><div class="line">	     <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	    /&gt;</div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">CheckBox</span></span></div><div class="line">	    <span class="attr">android:id</span>=<span class="string">"@+id/remember"</span></div><div class="line">	    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">	    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	    <span class="attr">android:text</span>=<span class="string">"记住用户名和密码"</span> /&gt;</div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">	    <span class="attr">android:onClick</span>=<span class="string">"login"</span></div><div class="line">	    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">	    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	    <span class="attr">android:text</span>=<span class="string">"登录"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="3-6-android中模拟setting设置使用sp保存数据"><a href="#3-6-android中模拟setting设置使用sp保存数据" class="headerlink" title="3.6 android中模拟setting设置使用sp保存数据"></a>3.6 android中模拟setting设置使用sp保存数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">MainActivity.java</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        cbx = (CheckBox) findViewById(R.id.cbx);</div><div class="line">        sb = (SeekBar) findViewById(R.id.seekBar);</div><div class="line"></div><div class="line">        sp = <span class="keyword">this</span>.getSharedPreferences(<span class="string">"config"</span>, <span class="number">0</span>);</div><div class="line">        <span class="keyword">boolean</span> isCheckStatus = sp.getBoolean(<span class="string">"isChecked"</span>, <span class="keyword">false</span>);</div><div class="line">        <span class="keyword">int</span> pgs = sp.getInt(<span class="string">"progress"</span>, <span class="number">0</span>);</div><div class="line">        sb.setProgress(pgs);</div><div class="line"></div><div class="line">        cbx.setChecked(isCheckStatus);</div><div class="line">        cbx.setOnCheckedChangeListener(<span class="keyword">new</span> OnCheckedChangeListener() &#123;</div><div class="line"></div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCheckedChanged</span><span class="params">(CompoundButton arg0, <span class="keyword">boolean</span> arg1)</span> </span>&#123;</div><div class="line">				Editor edit = sp.edit();</div><div class="line">				edit.putBoolean(<span class="string">"isChecked"</span>, arg1);</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line"></div><div class="line">        sb.setOnSeekBarChangeListener(<span class="keyword">new</span> OnSeekBarChangeListener() &#123;</div><div class="line"></div><div class="line">        	<span class="comment">//停止 拖动 seek bar</span></div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStopTrackingTouch</span><span class="params">(SeekBar arg0)</span> </span>&#123;</div><div class="line">				<span class="comment">//拿到 停止 拖动的时刻的进度</span></div><div class="line">				<span class="keyword">int</span> progress = arg0.getProgress();</div><div class="line">				<span class="comment">//将进度条保存到sharedPreference中</span></div><div class="line">				Editor editor = sp.edit();</div><div class="line">				editor.putInt(<span class="string">"progress"</span>,progress);</div><div class="line">				editor.commit();</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			<span class="comment">//开始 拖动   seek bar</span></div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStartTrackingTouch</span><span class="params">(SeekBar arg0)</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">			&#125;</div><div class="line"></div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onProgressChanged</span><span class="params">(SeekBar arg0, <span class="keyword">int</span> arg1, <span class="keyword">boolean</span> arg2)</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">Activity_Main.xml</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:background</span>=<span class="string">"#113965"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:background</span>=<span class="string">"#000000"</span>&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span> <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"自动旋转屏幕"</span></div><div class="line">            <span class="attr">android:textColor</span>=<span class="string">"#ffffff"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">CheckBox</span> <span class="attr">android:id</span>=<span class="string">"@+id/cbx"</span></span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">View</span> <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"1dip"</span></div><div class="line">        <span class="attr">android:background</span>=<span class="string">"#ff0000"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">SeekBar</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/seekBar"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:max</span>=<span class="string">"100"</span></div><div class="line">        <span class="attr">android:visibility</span>=<span class="string">"visible"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="3-7-android中XmlSerializer的应用"><a href="#3-7-android中XmlSerializer的应用" class="headerlink" title="3.7 android中XmlSerializer的应用"></a>3.7 android中XmlSerializer的应用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line">MainActivity.java</div><div class="line"></div><div class="line"><span class="keyword">package</span> net.itceo.studentsystem;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</div><div class="line"><span class="keyword">import</span> java.io.FileOutputStream;</div><div class="line"><span class="keyword">import</span> java.io.OutputStream;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.xmlpull.v1.XmlSerializer;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.app.Activity;</div><div class="line"><span class="keyword">import</span> android.os.Bundle;</div><div class="line"><span class="keyword">import</span> android.text.TextUtils;</div><div class="line"><span class="keyword">import</span> android.util.Xml;</div><div class="line"><span class="keyword">import</span> android.view.Menu;</div><div class="line"><span class="keyword">import</span> android.view.MenuItem;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.widget.EditText;</div><div class="line"><span class="keyword">import</span> android.widget.RadioGroup;</div><div class="line"><span class="keyword">import</span> android.widget.Toast;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> EditText ed_ssname;</div><div class="line">	<span class="keyword">private</span> EditText ed_ssnumber;</div><div class="line">	<span class="keyword">private</span> RadioGroup rgb;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        <span class="comment">//控件的初始化</span></div><div class="line">        ed_ssname = (EditText) findViewById(R.id.studentname);</div><div class="line">        ed_ssnumber = (EditText) findViewById(R.id.studentnumber);</div><div class="line">        rgb = (RadioGroup) findViewById(R.id.radiogb);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(View v)</span></span>&#123;</div><div class="line">    	String studentName = ed_ssname.getText().toString().trim();</div><div class="line">    	String studentNumber = ed_ssnumber.getText().toString().trim();</div><div class="line">    	<span class="keyword">if</span>(TextUtils.isEmpty(studentName)||TextUtils.isEmpty(studentNumber))&#123;</div><div class="line">    		Toast.makeText(<span class="keyword">this</span>, <span class="string">"学生姓名或密码不能为空"</span>, <span class="number">0</span>).show();</div><div class="line">    		<span class="keyword">return</span>;</div><div class="line">    	&#125;</div><div class="line">    	<span class="comment">//获得性别</span></div><div class="line">    	<span class="keyword">int</span> id = rgb.getCheckedRadioButtonId();</div><div class="line">    	String sex = <span class="string">"男"</span>;</div><div class="line">    	<span class="keyword">if</span>(id==R.id.male)&#123;</div><div class="line">    		sex = <span class="string">"男"</span>;</div><div class="line">    	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(id==R.id.female)&#123;</div><div class="line">    		sex = <span class="string">"女"</span>;</div><div class="line">    	&#125;</div><div class="line"></div><div class="line">    	<span class="keyword">try</span> &#123;</div><div class="line">			File  file = <span class="keyword">new</span> File(getFilesDir(), studentName+<span class="string">".xml"</span>);</div><div class="line">			OutputStream outputStream = <span class="keyword">new</span> FileOutputStream(file);</div><div class="line"></div><div class="line">			<span class="comment">// 专门生成xml 文件的 序列化器  </span></div><div class="line">			XmlSerializer serializer = Xml.newSerializer();</div><div class="line">			serializer.setOutput(outputStream, <span class="string">"UTF-8"</span>);</div><div class="line"></div><div class="line">			<span class="comment">//   &lt;?xml version="1.0" encoding="utf-8" standalone?&gt;</span></div><div class="line">			serializer.startDocument(<span class="string">"UTF-8"</span>, <span class="keyword">true</span>);</div><div class="line"></div><div class="line">			serializer.startTag(<span class="keyword">null</span>, <span class="string">"student"</span>);</div><div class="line">			<span class="comment">//设置 文本信息 -- 学生的姓名</span></div><div class="line">			serializer.startTag(<span class="keyword">null</span>, <span class="string">"name"</span>);</div><div class="line">			serializer.text(studentName);</div><div class="line">			serializer.endTag(<span class="keyword">null</span>, <span class="string">"name"</span>);</div><div class="line"></div><div class="line">			serializer.startTag(<span class="keyword">null</span>, <span class="string">"number"</span>);</div><div class="line">			serializer.text(studentNumber);</div><div class="line">			serializer.endTag(<span class="keyword">null</span>, <span class="string">"number"</span>);</div><div class="line"></div><div class="line">			serializer.startTag(<span class="keyword">null</span>, <span class="string">"sex"</span>);</div><div class="line">			serializer.text(sex);</div><div class="line">			serializer.endTag(<span class="keyword">null</span>, <span class="string">"sex"</span>);</div><div class="line">			serializer.endTag(<span class="keyword">null</span>, <span class="string">"student"</span>);</div><div class="line">			serializer.endDocument();</div><div class="line"></div><div class="line">			outputStream.close();</div><div class="line">			Toast.makeText(<span class="keyword">this</span>, <span class="string">"保存"</span>+studentName+<span class="string">"信息 成功 ..."</span>, <span class="number">0</span>).show();</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line"></div><div class="line">			e.printStackTrace();</div><div class="line">			Toast.makeText(<span class="keyword">this</span>, <span class="string">"保存"</span>+studentName+<span class="string">"信息  失败 .... ..."</span>, <span class="number">0</span>).show();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">Activity_main.xml</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line"></div><div class="line">     <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/studentname"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:hint</span>=<span class="string">"请输入学生的姓名"</span> /&gt;</div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/studentnumber"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:hint</span>=<span class="string">"请输入学生的学号"</span> /&gt;</div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">RadioGroup</span></span></div><div class="line">          <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></div><div class="line">          <span class="attr">android:id</span>=<span class="string">"@+id/radiogb"</span></div><div class="line">          <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">          <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>&gt;</div><div class="line"></div><div class="line">           <span class="tag">&lt;<span class="name">RadioButton</span></span></div><div class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/male"</span></div><div class="line">                <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">                <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">                <span class="attr">android:checked</span>=<span class="string">"true"</span></div><div class="line">                <span class="attr">android:text</span>=<span class="string">"男"</span> /&gt;</div><div class="line"></div><div class="line">            <span class="tag">&lt;<span class="name">RadioButton</span></span></div><div class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/female"</span></div><div class="line">                <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">                <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">                <span class="attr">android:text</span>=<span class="string">"女"</span> /&gt;</div><div class="line">      <span class="tag">&lt;/<span class="name">RadioGroup</span>&gt;</span></div><div class="line"></div><div class="line">      	<span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">		    <span class="attr">android:text</span>=<span class="string">"保存"</span></div><div class="line">		    <span class="attr">android:onClick</span>=<span class="string">"save"</span></div><div class="line">		    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">		    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">		    /&gt;</div><div class="line">		<span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">		    <span class="attr">android:text</span>=<span class="string">"查询"</span></div><div class="line">		    <span class="attr">android:onClick</span>=<span class="string">"save"</span></div><div class="line">		    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">		    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">		    /&gt;</div><div class="line">		<span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">		    <span class="attr">android:id</span>=<span class="string">"@+id/tv_display"</span></div><div class="line">		    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">		    <span class="attr">android:layout_height</span>=<span class="string">"fill_parent"</span></div><div class="line">		    /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h1><p>不够细心,当点击一次就保存一次.不用考虑循环问题.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AndroidBasis/" rel="tag"># AndroidBasis</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/1-安卓基础之Android介绍与入门/" rel="next" title="1.安卓基础之Android介绍与入门">
+                <i class="fa fa-chevron-left"></i> 1.安卓基础之Android介绍与入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/3-安卓基础之数据库-listview-对话框/" rel="prev" title="3.安卓基础之数据库&listview&对话框">
+                3.安卓基础之数据库&listview&对话框 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Android中的测试"><span class="nav-number">1.</span> <span class="nav-text">1. Android中的测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-应用层的测试"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 应用层的测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Google-的CTS的测试"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Google 的CTS的测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Framework的测试"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Framework的测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-android中测试程序的编写步骤"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">1.4. android中测试程序的编写步骤</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Log级别的分类"><span class="nav-number">2.</span> <span class="nav-text">2. Log级别的分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-android下保存数据"><span class="nav-number">3.</span> <span class="nav-text">3. android下保存数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-将数据保存到应用程序中-私有的"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 将数据保存到应用程序中(私有的)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-android中图片的缓存策略"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 android中图片的缓存策略:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-android中sdcard的细节问题"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 android中sdcard的细节问题:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-android中文件权限问题"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 android中文件权限问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-android中SharedPreferences的使用"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 android中SharedPreferences的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-android中模拟setting设置使用sp保存数据"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 android中模拟setting设置使用sp保存数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-android中XmlSerializer的应用"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 android中XmlSerializer的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-总结"><span class="nav-number">4.</span> <span class="nav-text">4 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1195 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PythonBasics," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="字典是Python中唯一内建的映射类型.字典中的值并没有特殊的顺序,但是都存储在一个特定的键(Key)下.键可以是数字/字符串甚至是元组.
+1.  字典的使用
+表示一个游戏棋盘的状态,每个键都是由坐标值组成的元组;
+存储文件修改时间,用文件名作为键.
+数字电话/地址簿.
+
+2.  创建和使用字典
+字典可以通过下面的方式创建  :phonebook = {&amp;#39;Kevin&amp;#39;:&amp;#39;5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第4章 字典:当索引不好用时">
+<meta property="og:url" content="http://javami.com/2017/03/28/第4章-字典-当索引不好用时/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="字典是Python中唯一内建的映射类型.字典中的值并没有特殊的顺序,但是都存储在一个特定的键(Key)下.键可以是数字/字符串甚至是元组.
+1.  字典的使用
+表示一个游戏棋盘的状态,每个键都是由坐标值组成的元组;
+存储文件修改时间,用文件名作为键.
+数字电话/地址簿.
+
+2.  创建和使用字典
+字典可以通过下面的方式创建  :phonebook = {&amp;#39;Kevin&amp;#39;:&amp;#39;5">
+<meta property="og:updated_time" content="2017-03-28T15:47:01.079Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第4章 字典:当索引不好用时">
+<meta name="twitter:description" content="字典是Python中唯一内建的映射类型.字典中的值并没有特殊的顺序,但是都存储在一个特定的键(Key)下.键可以是数字/字符串甚至是元组.
+1.  字典的使用
+表示一个游戏棋盘的状态,每个键都是由坐标值组成的元组;
+存储文件修改时间,用文件名作为键.
+数字电话/地址簿.
+
+2.  创建和使用字典
+字典可以通过下面的方式创建  :phonebook = {&amp;#39;Kevin&amp;#39;:&amp;#39;5">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/第4章-字典-当索引不好用时/"/>
+
+
+
+
+
+  <title> 第4章 字典:当索引不好用时 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第4章-字典-当索引不好用时/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第4章 字典:当索引不好用时
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:46:49+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/第4章-字典-当索引不好用时/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第4章-字典-当索引不好用时/" class="leancloud_visitors" data-flag-title="第4章 字典:当索引不好用时">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>字典是Python中唯一内建的映射类型.字典中的值并没有特殊的顺序,但是都存储在一个特定的键(Key)下.键可以是数字/字符串甚至是元组.</p>
+<h1 id="1-字典的使用"><a href="#1-字典的使用" class="headerlink" title="1.  字典的使用"></a>1.  字典的使用</h1><ul>
+<li>表示一个游戏棋盘的状态,每个键都是由坐标值组成的元组;</li>
+<li>存储文件修改时间,用文件名作为键.</li>
+<li>数字电话/地址簿.</li>
+</ul>
+<h1 id="2-创建和使用字典"><a href="#2-创建和使用字典" class="headerlink" title="2.  创建和使用字典"></a>2.  创建和使用字典</h1><ul>
+<li>字典可以通过下面的方式创建  :<br><code>phonebook = {&#39;Kevin&#39;:&#39;520&#39;,&#39;Leona&#39;:&#39;1314&#39;}</code></li>
+</ul>
+<p>字典由多个键及其对应的值构成的键-值对组成,在上面的例子中,名字是键,数字则是值.每个键和它的值之间用冒号(:)隔开,项之间用逗号(,)隔开,而整个字典都是由一对大括号括起来.空字典(不包括任何项)由两个大括号组成,像这样  :  {}.</p>
+<h2 id="2-1-dict函数"><a href="#2-1-dict函数" class="headerlink" title="2.1  dict函数"></a>2.1  dict函数</h2><p>dict函数,通过其它映射(比如其他字典)或者(键,值)对的序列建立字典.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>items = [(<span class="string">'name'</span>,<span class="string">'kevin'</span>),(<span class="string">'age'</span>,<span class="number">21</span>)]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = dict(items)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d[<span class="string">'name'</span>]</div><div class="line"><span class="string">'kevin'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>dict函数也可以通过关键字参数来创建字典  :<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = dict(name=<span class="string">"Kevin"</span>,age=<span class="number">42</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">&#123;<span class="string">'age'</span>: <span class="number">42</span>, <span class="string">'name'</span>: <span class="string">'Kevin'</span>&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="2-2-基本字典操作"><a href="#2-2-基本字典操作" class="headerlink" title="2.2  基本字典操作"></a>2.2  基本字典操作</h2><p>字典的基本行为在很多方面与序列(sequence)类型  :  </p>
+<ul>
+<li>len(d)返回d中项(键-值对)的数量;</li>
+<li>d[k]返回关联到键k上的值;</li>
+<li>d[k]  =  v  将值v关联到见k上;</li>
+<li>del  d[k]  删除键为k的项</li>
+<li>k  in  d  检查d中是否有含有键为k的项.</li>
+<li>键类型  :  字典的键不一定为整数类型,键可以是任意的不可变类型,比如浮点型(实型),字符串或者元组.</li>
+<li>自动添加  :  即使键起初在字典中并不存在,也可以为它赋值,这样字典就会建立新的项.</li>
+<li>成员资格  :  表达式  k  in  d(d为字典)查找的键,而不是值.表达式v  in  l(l为列表)则用来查找值,而不是索引.</li>
+</ul>
+<p>键可以是任意不可变类型  :<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = &#123;&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x[<span class="number">12</span>] = <span class="string">'kevin'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x</div><div class="line">&#123;<span class="number">12</span>: <span class="string">'kevin'</span>&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="2-3-字典的格式化字符串"><a href="#2-3-字典的格式化字符串" class="headerlink" title="2.3  字典的格式化字符串"></a>2.3  字典的格式化字符串</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"Cecil's phone number is %(Cecil)s."</span>%phonebook</div><div class="line"><span class="string">"Cecil's phone number is 3258."</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h2 id="2-4-字典方法"><a href="#2-4-字典方法" class="headerlink" title="2.4  字典方法"></a>2.4  字典方法</h2><ul>
+<li>clear<br>clear方法清除字典中所有的项.这个是原地操作,所以无返回值.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d[<span class="string">'name'</span>] = <span class="string">'kevin'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">&#123;<span class="string">'name'</span>: <span class="string">'kevin'</span>&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.clear()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">&#123;&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>copy<br>copy方法返回一个具有相同键-值对的新字典.(这个方法实现的浅复制,因为值本身就是相同的,而不是副本.)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  &gt;&gt;&gt; x = &#123;<span class="string">'username'</span>:<span class="string">'admin'</span>,<span class="string">'pasword'</span>:<span class="number">123456</span>&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = x.copy()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y</div><div class="line">&#123;<span class="string">'username'</span>: <span class="string">'admin'</span>, <span class="string">'pasword'</span>: <span class="number">123456</span>&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>但是,如果修改了某个值(原地修改,而不是替换),原始的值也会改变,因为同样的值存储在原字典中.模块的deepcopy函数来完成操作.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> copy <span class="keyword">import</span> deepcopy</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d[<span class="string">'names'</span>] = [<span class="string">'Kevin'</span>,<span class="string">'Leona'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = d.copy()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>dc = deepcopy(d)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d[<span class="string">'names'</span>].append(<span class="string">'Clive'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c</div><div class="line">&#123;<span class="string">'names'</span>: [<span class="string">'Kevin'</span>, <span class="string">'Leona'</span>, <span class="string">'Clive'</span>]&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>fromkeys<br>fromkeys方法使用给定的键建立新的字典,每个键都对应一个默认的的值None.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>&#123;&#125;.fromkeys([<span class="string">'name'</span>,<span class="string">'age'</span>])</div><div class="line">&#123;<span class="string">'age'</span>: <span class="keyword">None</span>, <span class="string">'name'</span>: <span class="keyword">None</span>&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>get<br>get方法是个更宽松的字典项的方法,当使用get访问一个不存在的键时,没有任何异常,而得到了None值.还可以自定义”默认值”,替换None.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.get(<span class="string">'name'</span>,<span class="string">'N/A'</span>)</div><div class="line"><span class="string">'N/A'</span></div></pre></td></tr></table></figure>
+<ul>
+<li>has_key<br>has_key方法可以检查字典中是否有特定的键.表达式d.has_key(k)相当于表达式k  in  d.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;<span class="string">'name'</span>:<span class="string">'kevin'</span>&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.has_key(<span class="string">'name'</span>)</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.has_key(<span class="string">"password"</span>)</div><div class="line"><span class="keyword">False</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>items和iteritems<br>items方法将所有字典的项以列表方式返回,列表中的每一项都表示为(键,值)对的形式.但是项在返回时并没有遵循特定的次序.</p>
+</li>
+<li><p>keys和iterkeys<br>keys方法将字典中的键以列表形式返回,而iterkeys则返回针对键的迭代器.</p>
+</li>
+<li><p>pop<br>pop方法用来获得对应给定键的值,然后将这个键-值对从字典中移除.</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;<span class="string">'x'</span>:<span class="number">1</span>,<span class="string">'y'</span>:<span class="number">2</span>&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.pop(<span class="string">'x'</span>)</div><div class="line"><span class="number">1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">&#123;<span class="string">'y'</span>: <span class="number">2</span>&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>popitem<br>popitem方法类似于list.pop,后者会弹出列表的最后一个元素.</p>
+</li>
+<li><p>setdefault<br>setdefault方法在某种程度上类型于get方法,能够获得与给定键相关联的值,除此之外,setdefault还能在字典中不包含有给定键的情况下设定相应的键值.</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.setdefault(<span class="string">'name'</span>,<span class="string">'N/A'</span>)</div><div class="line"><span class="string">'N/A'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d[<span class="string">'name'</span>] = <span class="string">'kevin'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.setdefault(<span class="string">'name'</span>,<span class="string">'N/A'</span>)</div><div class="line"><span class="string">'kevin'</span></div></pre></td></tr></table></figure>
+<p>可以看到,当键不存在的时,setdefault返回默认值并且相应地更新字典.如果键存在,那么就返回与其对应的值,但不改变字典.默认值是可选的,这点和get一样.</p>
+<ul>
+<li>update<br>update方法可以利用一个字典项更新另外一个字典  :  </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;<span class="string">'title'</span>:<span class="string">'python Web Site'</span>,<span class="string">'url'</span>:<span class="string">'http://www.python.org'</span>&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = &#123;<span class="string">'title'</span>:<span class="string">'python language website'</span>&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.update(x)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">&#123;<span class="string">'url'</span>: <span class="string">'http://www.python.org'</span>, <span class="string">'title'</span>: <span class="string">'python language website'</span>&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>values和itervalues<br>values方法以列表的形式返回字典中的值(itervalues返回值的迭代器).与返回键的列表不同的是,返回值的列表中可以包含重复的元素.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;&#125;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d[<span class="number">1</span>] = <span class="number">1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d[<span class="number">2</span>] = <span class="number">2</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.values()</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h1 id="3-小结"><a href="#3-小结" class="headerlink" title="3.  小结"></a>3.  小结</h1><ul>
+<li><strong>映射  :  </strong>映射可以使用任意不可变对象标识元素,最常用的类型是字符串和元组.</li>
+<li><strong>利用字典格式化字符串  :  </strong>可以通过在格式化说明中包括名称(键)来对字典应用字符串格式化操作.当在字符格式化中使用元组时,还需要对元组中每一个元素都设定”格式化说明符”.在使用字典时,所有的说明符可以比在字典中用到的项少.</li>
+<li><strong>字典的方法  :  </strong>字典很多方法,调用的方式和调用列表以及字符串方法的方式相同.</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PythonBasics/" rel="tag"># PythonBasics</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/第3章-使用字符串/" rel="next" title="第3章 使用字符串">
+                <i class="fa fa-chevron-left"></i> 第3章 使用字符串
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/第5章-条件-循环和其他语句/" rel="prev" title="第5章 条件,循环和其他语句">
+                第5章 条件,循环和其他语句 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-字典的使用"><span class="nav-number">1.</span> <span class="nav-text">1.  字典的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-创建和使用字典"><span class="nav-number">2.</span> <span class="nav-text">2.  创建和使用字典</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-dict函数"><span class="nav-number">2.1.</span> <span class="nav-text">2.1  dict函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-基本字典操作"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  基本字典操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-字典的格式化字符串"><span class="nav-number">2.3.</span> <span class="nav-text">2.3  字典的格式化字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-字典方法"><span class="nav-number">2.4.</span> <span class="nav-text">2.4  字典方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-小结"><span class="nav-number">3.</span> <span class="nav-text">3.  小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1257 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PythonBasics," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.  交互式解析器当我们输入下面的指令  :  print &amp;quot;Hello,world!&amp;quot;,当按下回车按键后,会得到下面的输出  :  Hello,world!.
+
+ 注意  :Python一行就是一行,不管多少.
+
+2.  算法是什么对于如何做某事的一份详细描述.
+3.  数字和表达式1/2  得到的结果为  0  ,因为一个整数被另外一个整数除,计算结果的小数部分被截除了,">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" 第1章 快速改造 : 基础知识">
+<meta property="og:url" content="http://javami.com/2017/03/28/第1章-快速改造-基础知识/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="1.  交互式解析器当我们输入下面的指令  :  print &amp;quot;Hello,world!&amp;quot;,当按下回车按键后,会得到下面的输出  :  Hello,world!.
+
+ 注意  :Python一行就是一行,不管多少.
+
+2.  算法是什么对于如何做某事的一份详细描述.
+3.  数字和表达式1/2  得到的结果为  0  ,因为一个整数被另外一个整数除,计算结果的小数部分被截除了,">
+<meta property="og:updated_time" content="2017-03-28T15:45:30.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" 第1章 快速改造 : 基础知识">
+<meta name="twitter:description" content="1.  交互式解析器当我们输入下面的指令  :  print &amp;quot;Hello,world!&amp;quot;,当按下回车按键后,会得到下面的输出  :  Hello,world!.
+
+ 注意  :Python一行就是一行,不管多少.
+
+2.  算法是什么对于如何做某事的一份详细描述.
+3.  数字和表达式1/2  得到的结果为  0  ,因为一个整数被另外一个整数除,计算结果的小数部分被截除了,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/第1章-快速改造-基础知识/"/>
+
+
+
+
+
+  <title>  第1章 快速改造 : 基础知识 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第1章-快速改造-基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                 第1章 快速改造 : 基础知识
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:44:53+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/第1章-快速改造-基础知识/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第1章-快速改造-基础知识/" class="leancloud_visitors" data-flag-title=" 第1章 快速改造 : 基础知识">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-交互式解析器"><a href="#1-交互式解析器" class="headerlink" title="1.  交互式解析器"></a>1.  交互式解析器</h1><p>当我们输入下面的指令  :  <code>print &quot;Hello,world!&quot;</code>,当按下回车按键后,会得到下面的输出  :  <code>Hello,world!</code>.</p>
+<blockquote>
+<p> 注意  :<br>Python一行就是一行,不管多少.</p>
+</blockquote>
+<h1 id="2-算法是什么"><a href="#2-算法是什么" class="headerlink" title="2.  算法是什么"></a>2.  算法是什么</h1><p>对于如何做某事的一份详细描述.</p>
+<h1 id="3-数字和表达式"><a href="#3-数字和表达式" class="headerlink" title="3.  数字和表达式"></a>3.  数字和表达式</h1><p>1/2  得到的结果为  0  ,因为一个整数被另外一个整数除,计算结果的小数部分被截除了,只剩下整数部分.所以结果为  0  .</p>
+<p>实数在  Python  中被称为浮点数(Float),如果参与除法的两个数中有一个数为浮点数,则运算结果为浮点数.  <code>1.0  /  2.0  =  0.5</code></p>
+<p>Python提供了另外一个实现整除的操作符(双斜线).<code>1  //  2  =  0    1.0  //  2.0  ==  0.0</code></p>
+<p><code>1  %  2  =  1</code>这是取余运算符(x%y的结果为x除以y的余数)</p>
+<p>幕(乘方)运算符  :<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span>**<span class="number">3</span></div><div class="line"><span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span>**<span class="number">3</span></div><div class="line"><span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">-3</span>**<span class="number">2</span></div><div class="line"><span class="number">-9</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>(<span class="number">-3</span>)**<span class="number">2</span></div><div class="line"><span class="number">9</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<p>注意  :  幕运算符比取反的优先级要高,所以<code>-3**2</code>等同于<code>-(3**2)</code>,如果想计算<code>(-3)**2</code>,就需要显式说明.</p>
+<h2 id="3-1-长整数"><a href="#3-1-长整数" class="headerlink" title="3.1  长整数"></a>3.1  长整数</h2><p>普通整数不能大于2147483647(也不能小于-2147483648),如果需要跟大的数,可以使用长整数.长整数的书写方法和普通整数一样,但要在结尾加L.</p>
+<h2 id="3-2-十六进制和八进制"><a href="#3-2-十六进制和八进制" class="headerlink" title="3.2  十六进制和八进制"></a>3.2  十六进制和八进制</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">0xaf</span></div><div class="line"><span class="number">175</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">010</span></div><div class="line"><span class="number">8</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>十六进制和八进制的首位数字都是0.</p>
+<h1 id="4-变量"><a href="#4-变量" class="headerlink" title="4.  变量"></a>4.  变量</h1><p>如果希望用名字X代表3,只需要执行下面的语句  :<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x=<span class="number">3</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>x*<span class="number">2</span></div><div class="line"><span class="number">6</span></div></pre></td></tr></table></figure></p>
+<p>这样的操作称为赋值(assignment),数值3被赋给了变量x.另外的一种说法是  :  将变量x绑定到了值(或者对象)3上面.在变量被赋值之后,就可以在表达式中使用变量.</p>
+<blockquote>
+<p> 注意  :<br>变量名可以包括字母,数字和下划线(_).变量名不能以数字开头,所以Plan9是合法变量名,而9Plan不是.</p>
+</blockquote>
+<h1 id="5-语句"><a href="#5-语句" class="headerlink" title="5.  语句"></a>5.  语句</h1><p>表达式就是某件事情,而语句是做某件事情.变量就像临时的存储器,它的强大之处在于操作变量的时候并不需要知道它们存储了什么值.</p>
+<h1 id="6-获取用户输入"><a href="#6-获取用户输入" class="headerlink" title="6.  获取用户输入"></a>6.  获取用户输入</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>input(<span class="string">"The meaning of life:"</span>)</div><div class="line">The meaning of life:<span class="number">42</span></div><div class="line"><span class="number">42</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>接着下面的内容  :<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = input(<span class="string">"x:"</span>)</div><div class="line">x:<span class="number">34</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = input(<span class="string">"y:"</span>)</div><div class="line">y:<span class="number">42</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> x*y</div><div class="line"><span class="number">1428</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="7-函数"><a href="#7-函数" class="headerlink" title="7.  函数"></a>7.  函数</h1><p>可以用一个函数pow来代替幕运算符(**),来实现.我们通常会把pow等标准函数称为内建函数.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span>**<span class="number">3</span></div><div class="line"><span class="number">8</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>pow(<span class="number">2</span>,<span class="number">3</span>)</div><div class="line"><span class="number">8</span></div></pre></td></tr></table></figure>
+<p>上面的例子我们称之为调用函数,你可以给它提供参数,它会返回值给用户.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span> + pow(<span class="number">2</span>,<span class="number">10</span>)</div><div class="line"><span class="number">1026</span></div></pre></td></tr></table></figure>
+<p>还有很多内建函数,比如用abs函数可以得到数的绝对值,round函数则会把浮点数四舍五入为最接近的整数值  :<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>abs(<span class="number">-10</span>)</div><div class="line"><span class="number">10</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>round(<span class="number">6.999</span>)</div><div class="line"><span class="number">7.0</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="8-模板"><a href="#8-模板" class="headerlink" title="8.  模板"></a>8.  模板</h1><p>模板可以想象为导入到python以增强其功能扩展.如  :<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> math</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>math.floor(<span class="number">32.9</span>)</div><div class="line"><span class="number">32.0</span></div></pre></td></tr></table></figure></p>
+<p>用<code>import</code>导入模板,然后按照”魔板.函数”的格式使用这个模块的函数.</p>
+<p>你确认自己不会导入多个同命函数(从不同模块导入)的情况下,那么可以使用import命令的另外一种方式  :<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>sqrt(<span class="number">9</span>)</div><div class="line"><span class="number">3.0</span></div></pre></td></tr></table></figure></p>
+<h2 id="8-1-cmath和复数"><a href="#8-1-cmath和复数" class="headerlink" title="8.1  cmath和复数"></a>8.1  cmath和复数</h2><p>sqrt函数用于计算一个数的平方根.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>sqrt(<span class="number">-2</span>)</div><div class="line"></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;pyshell#28&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    sqrt(<span class="number">-2</span>)</div><div class="line">ValueError: math domain error</div></pre></td></tr></table></figure>
+<p>因为负数的平方根是虚数又因为sprt只能处理浮点数,而虚数是完全不同的.因此,它们由另外一个叫做cmath(复数)的模板来处理.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> cmath</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>cmath.sqrt(<span class="number">-2</span>)</div><div class="line"><span class="number">1.4142135623730951j</span></div></pre></td></tr></table></figure>
+<h1 id="9-保存并执行程序"><a href="#9-保存并执行程序" class="headerlink" title="9.  保存并执行程序"></a>9.  保存并执行程序</h1><p>注释  :  <code>#打印圆的周长  :</code></p>
+<h1 id="10-字符串"><a href="#10-字符串" class="headerlink" title="10.  字符串"></a>10.  字符串</h1><ul>
+<li><p>单引号字符串和转义引号</p>
+</li>
+<li><p>拼接字符串  :  建议使用+进行拼接</p>
+</li>
+<li><p>字符串表示,str和repr<br>所有通过python打印的字符串还是被引号括起来,这是因为python打印值的时候会保持该值在python代码中的状态,而不是你希望用户所看到的状态.如果使用print语句,结果就不一样了  :  </p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"Hello,world!"</span></div><div class="line"><span class="string">'Hello,world!'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> <span class="string">"hello,world!"</span></div><div class="line">hello,world!</div></pre></td></tr></table></figure>
+<ul>
+<li>一种是通过str函数,它会把值转换为合理形式的字符串,另外一种是通过repr函数,它会创建一个字符串,以合法的python表达式的形式来表示值.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> repr(<span class="number">100000l</span>)</div><div class="line"><span class="number">100000L</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> str(<span class="number">1000l</span>)</div><div class="line"><span class="number">1000</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>input和raw_input的比较</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; name = input("what is your name?")</div><div class="line">what is your name?诸葛亮</div><div class="line"></div><div class="line">Traceback (most recent call last):</div><div class="line">  File "&lt;pyshell#36&gt;", line 1, in &lt;module&gt;</div><div class="line">    name = input("what is your name?")</div><div class="line">  File "&lt;string&gt;", line 1</div><div class="line">    诸葛亮</div></pre></td></tr></table></figure>
+<p>出现错误的原因是用户必须输入的是合法的python表达式.所以我们必须要以字符串作为输入的名字.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; name = input("what is your name?")</div><div class="line">what is your name?"诸葛亮"</div><div class="line">&gt;&gt;&gt; print "hello,"+name</div><div class="line">hello,诸葛亮</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>因此,要求用户带入引号是不好的体验,我们需要raw_input函数,它会把所有的输入当做原始数据(raw  data),然后将其放入字符串中.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input(<span class="string">"hello!"</span>)</div><div class="line">hello!hi</div><div class="line"><span class="string">'hi'</span></div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>长字符串,原始字符串和Unicode<ul>
+<li>长字符串  :  可以使用三个引号代替普通引号<code>&#39;&#39;&#39;My  name  is  诸葛亮!&#39;&#39;&#39;</code>.  也可以使用<code>&quot;&quot;&quot;爽不爽!&quot;&quot;&quot;</code></li>
+<li>原始字符串  :  它不会把反斜线当作特殊字符.在原字符串中输入的每个字符都会与书写的方式保存一致  :  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> <span class="string">r'c:\nowhere'</span></div><div class="line">c:\nowhere</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>可以看到,原始字符串以r开头.但不能以反斜线结尾!</p>
+<ul>
+<li>Unicode字符串  :  在python3.0中,所有的字符串都是Unicode字符串.</li>
+</ul>
+<h1 id="11-小结"><a href="#11-小结" class="headerlink" title="11.  小结"></a>11.  小结</h1><ul>
+<li>算法  :  算法是对如何完成一项任务的详尽描述,实际上,在篇写程序的时候,就是要使用计算机能够理解的语言来描述算法.这类对机器友好的描述就叫做程序.</li>
+<li>表达式  :  表达式是计算机程序的组成部分,它用于表示值.</li>
+<li>变量  :  变量是一个名字,它表示某个值.</li>
+<li>语句  :  语句是告诉计算机做某些事情的指令.</li>
+<li>函数  :  Python中的函数就像数学中的函数,它们可以带有参数.并且具有返回值.</li>
+<li>模块  :  模块是一些对python功能的扩展,它可以被导入到python中.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abs(number)</td>
+<td>返回数字的绝对值</td>
+</tr>
+<tr>
+<td>cmath.sqrt(number)</td>
+<td>返回平方根,也可以用于负数</td>
+</tr>
+<tr>
+<td>float(object)</td>
+<td>将字符串和数字转换为浮点数</td>
+</tr>
+<tr>
+<td>help()</td>
+<td>提供交互式帮助</td>
+</tr>
+<tr>
+<td>input(prompt)</td>
+<td>获取用户输入</td>
+</tr>
+<tr>
+<td>int(object)</td>
+<td>将字符串和数字转换为整数</td>
+</tr>
+<tr>
+<td>long(objet)</td>
+<td>将字符串和数字转换为长整型数</td>
+</tr>
+<tr>
+<td>math.ceil(number)</td>
+<td>返回数的上入整数,返回值的类型为浮点数</td>
+</tr>
+<tr>
+<td>math.floor(number)</td>
+<td>返回数的下舍整数,返回值的类型为浮点数</td>
+</tr>
+<tr>
+<td>math.sqrt(number)</td>
+<td>返回平方根,不适用于负数</td>
+</tr>
+<tr>
+<td>pow(x,y[,z])</td>
+<td>返回x的y次幂(所有结果对z取模)</td>
+</tr>
+<tr>
+<td>raw_input(prompt)</td>
+<td>获取用户输入,结果被看做原始字符串</td>
+</tr>
+<tr>
+<td>repr(object)</td>
+<td>返回值的字符串表示形式</td>
+</tr>
+<tr>
+<td>round(number[,ndigits])</td>
+<td>根据给定的精度对数字进行四舍五入</td>
+</tr>
+<tr>
+<td>str(object)</td>
+<td>将值转换为字符串</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PythonBasics/" rel="tag"># PythonBasics</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/1-PS基础及选框工具/" rel="next" title="1.PS基础及选框工具">
+                <i class="fa fa-chevron-left"></i> 1.PS基础及选框工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/第2章-列表和元素/" rel="prev" title="第2章 列表和元素">
+                第2章 列表和元素 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-交互式解析器"><span class="nav-number">1.</span> <span class="nav-text">1.  交互式解析器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-算法是什么"><span class="nav-number">2.</span> <span class="nav-text">2.  算法是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-数字和表达式"><span class="nav-number">3.</span> <span class="nav-text">3.  数字和表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-长整数"><span class="nav-number">3.1.</span> <span class="nav-text">3.1  长整数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-十六进制和八进制"><span class="nav-number">3.2.</span> <span class="nav-text">3.2  十六进制和八进制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-变量"><span class="nav-number">4.</span> <span class="nav-text">4.  变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-语句"><span class="nav-number">5.</span> <span class="nav-text">5.  语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-获取用户输入"><span class="nav-number">6.</span> <span class="nav-text">6.  获取用户输入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-函数"><span class="nav-number">7.</span> <span class="nav-text">7.  函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-模板"><span class="nav-number">8.</span> <span class="nav-text">8.  模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-cmath和复数"><span class="nav-number">8.1.</span> <span class="nav-text">8.1  cmath和复数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-保存并执行程序"><span class="nav-number">9.</span> <span class="nav-text">9.  保存并执行程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-字符串"><span class="nav-number">10.</span> <span class="nav-text">10.  字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-小结"><span class="nav-number">11.</span> <span class="nav-text">11.  小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

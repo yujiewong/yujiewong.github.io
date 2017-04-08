@@ -1,0 +1,1175 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaBasis,JavaSe," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在面向对象的程序设计语言中,多态是继数据抽象和继承之后的第三种基本特征.
+1.  再论向上转型对象既可以作为它自己本身的类型使用,也可以作为它的基类使用.而这种把对某个对象的引用视为对其基类的引用的做法被称为”向上转型”  –  因为在继承书的画法中,基类是放置在上方的.
+首先,既然几个例子都要演奏乐符  (Note)  ,我们就应该在包中单独创建一个Note类.
+1234567//: polym">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第8章 多态">
+<meta property="og:url" content="http://javami.com/2017/03/28/第8章-多态/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="在面向对象的程序设计语言中,多态是继数据抽象和继承之后的第三种基本特征.
+1.  再论向上转型对象既可以作为它自己本身的类型使用,也可以作为它的基类使用.而这种把对某个对象的引用视为对其基类的引用的做法被称为”向上转型”  –  因为在继承书的画法中,基类是放置在上方的.
+首先,既然几个例子都要演奏乐符  (Note)  ,我们就应该在包中单独创建一个Note类.
+1234567//: polym">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-多态/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第8章-多态/2.png">
+<meta property="og:updated_time" content="2017-03-28T10:39:45.652Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第8章 多态">
+<meta name="twitter:description" content="在面向对象的程序设计语言中,多态是继数据抽象和继承之后的第三种基本特征.
+1.  再论向上转型对象既可以作为它自己本身的类型使用,也可以作为它的基类使用.而这种把对某个对象的引用视为对其基类的引用的做法被称为”向上转型”  –  因为在继承书的画法中,基类是放置在上方的.
+首先,既然几个例子都要演奏乐符  (Note)  ,我们就应该在包中单独创建一个Note类.
+1234567//: polym">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/第8章-多态/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/第8章-多态/"/>
+
+
+
+
+
+  <title> 第8章 多态 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第8章-多态/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第8章 多态
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:38:24+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/第8章-多态/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第8章-多态/" class="leancloud_visitors" data-flag-title="第8章 多态">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在面向对象的程序设计语言中,多态是继数据抽象和继承之后的第三种基本特征.</p>
+<h1 id="1-再论向上转型"><a href="#1-再论向上转型" class="headerlink" title="1.  再论向上转型"></a>1.  再论向上转型</h1><p>对象既可以作为它自己本身的类型使用,也可以作为它的基类使用.而这种把对某个对象的引用视为对其基类的引用的做法被称为”向上转型”  –  因为在继承书的画法中,基类是放置在上方的.</p>
+<p>首先,既然几个例子都要演奏乐符  (Note)  ,我们就应该在包中单独创建一个Note类.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/music/Note.java</span></div><div class="line"><span class="comment">// Notes to play on musical instruments.</span></div><div class="line"><span class="keyword">package</span> polymorphism.music;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Note &#123;</div><div class="line">    MIDDLE_C, C_SHARP, B_FLAT; <span class="comment">// Etc.</span></div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>在这里,Wind是一种Instrument,因此可以从Instrument类继承.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/music/Instrument.java</span></div><div class="line"><span class="keyword">package</span> polymorphism.music;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Instrument</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(Note n)</span> </span>&#123;</div><div class="line">    print(<span class="string">"Instrument.play()"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/music/Wind.java</span></div><div class="line"><span class="keyword">package</span> polymorphism.music;</div><div class="line"></div><div class="line"><span class="comment">// Wind objects are instruments</span></div><div class="line"><span class="comment">// because they have the same interface:</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Wind</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</div><div class="line">  <span class="comment">// Redefine interface method:</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(Note n)</span> </span>&#123;</div><div class="line">    System.out.println(<span class="string">"Wind.play() "</span> + n);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/music/Music.java</span></div><div class="line"><span class="comment">// Inheritance &amp; upcasting.</span></div><div class="line"><span class="keyword">package</span> polymorphism.music;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Music</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Instrument i)</span> </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    i.play(Note.MIDDLE_C);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Wind flute = <span class="keyword">new</span> Wind();</div><div class="line">    tune(flute); <span class="comment">// Upcasting</span></div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Wind.play() MIDDLE_C</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p><code>Music.tune()</code>方法接受一个Instrument引用,同时也接受任何导出自Instrument 的类.在main()方法中,当一个Wind引用传递到tune()方法时,就会出现这种情况,而不需要任何类型转换.因为Wind到Instrument继承而来,所以Instrument的接口必定存在于Wind中.从Wind向上转型到Instrument可能会缩小接口,但不会比Instrument的全部接口更窄.</p>
+<h2 id="1-1-忘记对象类型"><a href="#1-1-忘记对象类型" class="headerlink" title="1.1  忘记对象类型"></a>1.1  忘记对象类型</h2><p>如果我们不管导出类的存在,编写的代码只是与基类打交道,会不会更好呢?</p>
+<h1 id="2-转机"><a href="#2-转机" class="headerlink" title="2.  转机"></a>2.  转机</h1><h2 id="2-1-方法调用绑定"><a href="#2-1-方法调用绑定" class="headerlink" title="2.1  方法调用绑定"></a>2.1  方法调用绑定</h2><p>将一个方法调用同一个方法主体关联起来被称作绑定.若在程序执行前进行绑定(如果有的话,由编译器和连接程序实现),叫做前期绑定.</p>
+<p>后期绑定的含义就是在运行时根据对象的类型进行绑定.后期绑定也叫做动态绑定或运行时绑定.如果一种语言想实现后期绑定,就必须具有某种机制,以便在运行时能判断对象的类型,从而调用恰当的方法.也就说说,编译器一直不知道对象的类型,但是方法调用机制能找到正确的方法体,并加以调用.</p>
+<p>Java中除了static方法和final方法(private方法属于final方法)之外,其他所有的方法都是后期绑定.</p>
+<p>对某个方法声明final,它可以防止其他人覆盖该方法.但更重要的一点是告诉编译器不需要对其进行动态绑定.这样,编译器就可以为final方法调用生成更有效的代码.</p>
+<h2 id="2-2-产生正确的行为"><a href="#2-2-产生正确的行为" class="headerlink" title="2.2  产生正确的行为"></a>2.2  产生正确的行为</h2><p>发送消息给某个对象时,让该对象去判定应该做什么事.</p>
+<p><img src="/2017/03/28/第8章-多态/1.png" alt="几何形状" title="几何形状"><br>向上转型可以像下面这条语句那么简单:</p>
+<p><code>Shape s = new Circle();</code></p>
+<p>这里,创建了一个Circle对象,并把得到的引用立即赋值给Shape,因为通过继承.Circle就是一种Shape.</p>
+<p>假设你调用一个基类方法(它已在导出类中被覆盖)</p>
+<p><code>s.draw();</code></p>
+<p>由于后期绑定(多态),所以调用的是Circle.draw()方法.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/shape/Shape.java</span></div><div class="line"><span class="keyword">package</span> polymorphism.shape;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">erase</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/shape/Circle.java</span></div><div class="line"><span class="keyword">package</span> polymorphism.shape;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123; print(<span class="string">"Circle.draw()"</span>); &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">erase</span><span class="params">()</span> </span>&#123; print(<span class="string">"Circle.erase()"</span>); &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/shape/Square.java</span></div><div class="line"><span class="keyword">package</span> polymorphism.shape;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123; print(<span class="string">"Square.draw()"</span>); &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">erase</span><span class="params">()</span> </span>&#123; print(<span class="string">"Square.erase()"</span>); &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/shape/Triangle.java</span></div><div class="line"><span class="keyword">package</span> polymorphism.shape;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Triangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123; print(<span class="string">"Triangle.draw()"</span>); &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">erase</span><span class="params">()</span> </span>&#123; print(<span class="string">"Triangle.erase()"</span>); &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/shape/RandomShapeGenerator.java</span></div><div class="line"><span class="comment">// A "factory" that randomly creates shapes.</span></div><div class="line"><span class="keyword">package</span> polymorphism.shape;</div><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RandomShapeGenerator</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Random rand = <span class="keyword">new</span> Random(<span class="number">47</span>);</div><div class="line">  <span class="function"><span class="keyword">public</span> Shape <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span>(rand.nextInt(<span class="number">3</span>)) &#123;</div><div class="line">      <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">return</span> <span class="keyword">new</span> Circle();</div><div class="line">      <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">return</span> <span class="keyword">new</span> Square();</div><div class="line">      <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">return</span> <span class="keyword">new</span> Triangle();</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div><div class="line"></div><div class="line">```java</div><div class="line"><span class="comment">//: polymorphism/Shapes.java</span></div><div class="line"><span class="comment">// Polymorphism in Java.</span></div><div class="line"><span class="keyword">import</span> polymorphism.shape.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shapes</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> RandomShapeGenerator gen =</div><div class="line">    <span class="keyword">new</span> RandomShapeGenerator();</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Shape[] s = <span class="keyword">new</span> Shape[<span class="number">9</span>];</div><div class="line">    <span class="comment">// Fill up the array with shapes:</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length; i++)</div><div class="line">      s[i] = gen.next();</div><div class="line">    <span class="comment">// Make polymorphic method calls:</span></div><div class="line">    <span class="keyword">for</span>(Shape shp : s)</div><div class="line">      shp.draw();</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Triangle.draw()</div><div class="line">Triangle.draw()</div><div class="line">Square.draw()</div><div class="line">Triangle.draw()</div><div class="line">Square.draw()</div><div class="line">Triangle.draw()</div><div class="line">Square.draw()</div><div class="line">Triangle.draw()</div><div class="line">Circle.draw()</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>Shape基类为自它哪里继承而来的所有导出类建立了一个公用接口,所有形状都可以描绘和擦除.导出类通过覆盖这些定义,来为每种特殊类型的几何形状提供单独的行为.</p>
+<p>RandomShapeGenerator是一种”工厂”,在我们每次调用next()方法时,它可以随机选择Shape对象产生一个引用.向上转型是在return语句里产生的.每个return语句取得一个指向某个Cricle,Square或者Triangle的引用,并将其以Shape类型从next()方法中发送出去.所以无论我们在什么时候调用next()方法,都不会知道具体类型到底是什么,因为我们总是只能获得一个通用的Shape引用.</p>
+<h2 id="2-3-可扩展性"><a href="#2-3-可扩展性" class="headerlink" title="2.3  可扩展性"></a>2.3  可扩展性</h2><p>因为可以从通用的基类继承出新的数据类型,从而新添加一些功能.那些操纵基类接口的方法不需要任何改动就可以应用于新类.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/music3/Music3.java</span></div><div class="line"><span class="comment">// An extensible program.</span></div><div class="line"><span class="keyword">package</span> polymorphism.music3;</div><div class="line"><span class="keyword">import</span> polymorphism.music.Note;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Instrument</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">(Note n)</span> </span>&#123; print(<span class="string">"Instrument.play() "</span> + n); &#125;</div><div class="line">  <span class="function">String <span class="title">what</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Instrument"</span>; &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">adjust</span><span class="params">()</span> </span>&#123; print(<span class="string">"Adjusting Instrument"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wind</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">(Note n)</span> </span>&#123; print(<span class="string">"Wind.play() "</span> + n); &#125;</div><div class="line">  <span class="function">String <span class="title">what</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Wind"</span>; &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">adjust</span><span class="params">()</span> </span>&#123; print(<span class="string">"Adjusting Wind"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Percussion</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">(Note n)</span> </span>&#123; print(<span class="string">"Percussion.play() "</span> + n); &#125;</div><div class="line">  <span class="function">String <span class="title">what</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Percussion"</span>; &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">adjust</span><span class="params">()</span> </span>&#123; print(<span class="string">"Adjusting Percussion"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stringed</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">(Note n)</span> </span>&#123; print(<span class="string">"Stringed.play() "</span> + n); &#125;</div><div class="line">  <span class="function">String <span class="title">what</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Stringed"</span>; &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">adjust</span><span class="params">()</span> </span>&#123; print(<span class="string">"Adjusting Stringed"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Brass</span> <span class="keyword">extends</span> <span class="title">Wind</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">(Note n)</span> </span>&#123; print(<span class="string">"Brass.play() "</span> + n); &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">adjust</span><span class="params">()</span> </span>&#123; print(<span class="string">"Adjusting Brass"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Woodwind</span> <span class="keyword">extends</span> <span class="title">Wind</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">(Note n)</span> </span>&#123; print(<span class="string">"Woodwind.play() "</span> + n); &#125;</div><div class="line">  <span class="function">String <span class="title">what</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Woodwind"</span>; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Music3</span> </span>&#123;</div><div class="line">  <span class="comment">// Doesn't care about type, so new types</span></div><div class="line">  <span class="comment">// added to the system still work right:</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Instrument i)</span> </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    i.play(Note.MIDDLE_C);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tuneAll</span><span class="params">(Instrument[] e)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span>(Instrument i : e)</div><div class="line">      tune(i);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    <span class="comment">// Upcasting during addition to the array:</span></div><div class="line">    Instrument[] orchestra = &#123;</div><div class="line">      <span class="keyword">new</span> Wind(),</div><div class="line">      <span class="keyword">new</span> Percussion(),</div><div class="line">      <span class="keyword">new</span> Stringed(),</div><div class="line">      <span class="keyword">new</span> Brass(),</div><div class="line">      <span class="keyword">new</span> Woodwind()</div><div class="line">    &#125;;</div><div class="line">    tuneAll(orchestra);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Wind.play() MIDDLE_C</div><div class="line">Percussion.play() MIDDLE_C</div><div class="line">Stringed.play() MIDDLE_C</div><div class="line">Brass.play() MIDDLE_C</div><div class="line">Woodwind.play() MIDDLE_C</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>新添加的方法what()返回一个带有类型描述的string引用;另一个新添加的方法adjust()则提供每种乐其的调用方法.</p>
+<p>在main()中,当我们将某种引用置入orchestra 数组中,就会自动向上转型到Instrument.</p>
+<p>多态是一项让程序员”将改变的事物与未知的事物分离开来”的重要技术.</p>
+<h2 id="2-4-缺陷-“覆盖”私有方法"><a href="#2-4-缺陷-“覆盖”私有方法" class="headerlink" title="2.4  缺陷  :  “覆盖”私有方法"></a>2.4  缺陷  :  “覆盖”私有方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/PrivateOverride.java</span></div><div class="line"><span class="comment">// Trying to override a private method.</span></div><div class="line"><span class="keyword">package</span> polymorphism;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrivateOverride</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; print(<span class="string">"private f()"</span>); &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    PrivateOverride po = <span class="keyword">new</span> Derived();</div><div class="line">    po.f();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> <span class="keyword">extends</span> <span class="title">PrivateOverride</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; print(<span class="string">"public f()"</span>); &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">private f()</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>我们所期待的是输出public f(),但由于private方法被自动认为是final方法,而且对导出类是屏蔽的.因此,在这种情况下,Derived类中的f()方法就是一个全新的方法;既然基类的f()方法在子类中不可见,因此也不能被重载.</p>
+<p>确切地说,在导出类中,对于基类的private方法,最好采用不同的名字.</p>
+<h2 id="2-5-缺陷-域与静态方法"><a href="#2-5-缺陷-域与静态方法" class="headerlink" title="2.5  缺陷  :  域与静态方法"></a>2.5  缺陷  :  域与静态方法</h2><p>如果你直接访问某个域,这个访问就将会在编译器进行解析.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/FieldAccess.java</span></div><div class="line"><span class="comment">// Direct field access is determined at compile time.</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Super</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">int</span> field = <span class="number">0</span>;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getField</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> field; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">int</span> field = <span class="number">1</span>;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getField</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> field; &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSuperField</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="keyword">super</span>.field; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FieldAccess</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Super sup = <span class="keyword">new</span> Sub(); <span class="comment">// Upcast</span></div><div class="line">    System.out.println(<span class="string">"sup.field = "</span> + sup.field +</div><div class="line">      <span class="string">", sup.getField() = "</span> + sup.getField());</div><div class="line">    Sub sub = <span class="keyword">new</span> Sub();</div><div class="line">    System.out.println(<span class="string">"sub.field = "</span> +</div><div class="line">      sub.field + <span class="string">", sub.getField() = "</span> +</div><div class="line">      sub.getField() +</div><div class="line">      <span class="string">", sub.getSuperField() = "</span> +</div><div class="line">      sub.getSuperField());</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">sup.field = 0, sup.getField() = 1</div><div class="line">sub.field = 1, sub.getField() = 1, sub.getSuperField() = 0</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>当Sub对象转型为Super引用时,任何域访问都将由编译器解析,因此不是多态.在本例中,为Super.field和Sub.field分配了不同的存储空间.这样,Sub实际上包含两个称为field的域:它自己的和它从Super处得到的.然而,在引用Sub中的field时所产生的默认域并非Super版本的field域.因此,为了得到Super.field,必须显式地指明super.field.</p>
+<p>如果某个方法是静态的,它的行为就不具有多态性,静态方法是与类,而并非与单个的对象相关联.</p>
+<h1 id="3-构造器和多态"><a href="#3-构造器和多态" class="headerlink" title="3.  构造器和多态"></a>3.  构造器和多态</h1><p>构造器并不具有多态性(它们实际上是static方法,只不过static声明是隐式的).</p>
+<h2 id="3-1-构造器的调用顺序"><a href="#3-1-构造器的调用顺序" class="headerlink" title="3.1  构造器的调用顺序"></a>3.1  构造器的调用顺序</h2><p>基类的构造器总是在导出类的构造过程中被调用,而且按照继承层次逐渐向上链接,已使每个基类的构造器都能得到调用.<strong>因为构造器具有一项特殊的任务:检查对象是否被正确地构造.导出类只能访问它自己的成员,不能访问基类中的成员(基类的成员通常是private类型).只有基类的构造器才具有恰当的知识和权限来对自己的元素进行初始化.因此,必须令所有构造器都得到调用.这正是编译器为什么要强制每个导出类部分都必须调用构造器的原因.在导出类的构造器主体中,如果没有明确指定调用某个基类构造器,它就会默默地调用默认构造器.如果没有明确构造器,编译器就会报错!</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/Sandwich.java</span></div><div class="line"><span class="comment">// Order of constructor calls.</span></div><div class="line"><span class="keyword">package</span> polymorphism;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Meal</span> </span>&#123;</div><div class="line">  Meal() &#123; print(<span class="string">"Meal()"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bread</span> </span>&#123;</div><div class="line">  Bread() &#123; print(<span class="string">"Bread()"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cheese</span> </span>&#123;</div><div class="line">  Cheese() &#123; print(<span class="string">"Cheese()"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lettuce</span> </span>&#123;</div><div class="line">  Lettuce() &#123; print(<span class="string">"Lettuce()"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lunch</span> <span class="keyword">extends</span> <span class="title">Meal</span> </span>&#123;</div><div class="line">  Lunch() &#123; print(<span class="string">"Lunch()"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PortableLunch</span> <span class="keyword">extends</span> <span class="title">Lunch</span> </span>&#123;</div><div class="line">  PortableLunch() &#123; print(<span class="string">"PortableLunch()"</span>);&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sandwich</span> <span class="keyword">extends</span> <span class="title">PortableLunch</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Bread b = <span class="keyword">new</span> Bread();</div><div class="line">  <span class="keyword">private</span> Cheese c = <span class="keyword">new</span> Cheese();</div><div class="line">  <span class="keyword">private</span> Lettuce l = <span class="keyword">new</span> Lettuce();</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Sandwich</span><span class="params">()</span> </span>&#123; print(<span class="string">"Sandwich()"</span>); &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    <span class="keyword">new</span> Sandwich();</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Meal()</div><div class="line">Lunch()</div><div class="line">PortableLunch()</div><div class="line">Bread()</div><div class="line">Cheese()</div><div class="line">Lettuce()</div><div class="line">Sandwich()</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>用其他类创建了一个复杂的类,并且每个类都有一个声明它自己的构造器,其中最重要的类时Sandwich,它反映了三层继承(若将自Object的隐含继承地也算在内,就是四层)以及三个成员对象,当在main()里创建一个Sandwich对象后,就可以看到输出的结果.</p>
+<ul>
+<li>调用基类构造器.这个步骤还不断地反复递归下去,首先是构造这种层次结构的根,然后是下一层导出类,等等,直到最底层的导出类.</li>
+<li>按声明顺序调用成员的初始化方法.</li>
+<li>调用导出类构造器的主体.</li>
+</ul>
+<h2 id="3-2-继承和清理"><a href="#3-2-继承和清理" class="headerlink" title="3.2  继承和清理"></a>3.2  继承和清理</h2><p>通过组合和继承方法来创建新类时,永远不必担心对象的清理问题.子对象通过都会留给垃圾回收器进行处理.如果确实遇到清理的问题,那么必须用心为新类创建dispose()方法.并且由于继承的缘故,如果我们有其他作为垃圾回收器一部分的特殊清理功能,就必须在导出类中覆盖dispose()方法.当覆盖被继承的dispose()方法适,务必记住调用基类版本dispose()方法;否则,基类的清理动作就不会发生.</p>
+<h2 id="3-3-构造器内部的多态方法的行为"><a href="#3-3-构造器内部的多态方法的行为" class="headerlink" title="3.3  构造器内部的多态方法的行为"></a>3.3  构造器内部的多态方法的行为</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: polymorphism/PolyConstructors.java</span></div><div class="line"><span class="comment">// Constructors and polymorphism</span></div><div class="line"><span class="comment">// don't produce what you might expect.</span></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Glyph</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123; print(<span class="string">"Glyph.draw()"</span>); &#125;</div><div class="line">  Glyph() &#123;</div><div class="line">    print(<span class="string">"Glyph() before draw()"</span>);</div><div class="line">    draw();</div><div class="line">    print(<span class="string">"Glyph() after draw()"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RoundGlyph</span> <span class="keyword">extends</span> <span class="title">Glyph</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> radius = <span class="number">1</span>;</div><div class="line">  RoundGlyph(<span class="keyword">int</span> r) &#123;</div><div class="line">    radius = r;</div><div class="line">    print(<span class="string">"RoundGlyph.RoundGlyph(), radius = "</span> + radius);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</div><div class="line">    print(<span class="string">"RoundGlyph.draw(), radius = "</span> + radius);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PolyConstructors</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    <span class="keyword">new</span> RoundGlyph(<span class="number">5</span>);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Glyph() before draw()</div><div class="line">RoundGlyph.draw(), radius = 0</div><div class="line">Glyph() after draw()</div><div class="line">RoundGlyph.RoundGlyph(), radius = 5</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在其他任何事物发生之前,将分配给对象的存储空间初始化成二进制的零.</li>
+<li>如前所述那有调用基类构造器.此时,调用被覆盖后的draw()方法(要在调用RoundGlyph构造器之前调用),由于步骤1的缘故,我们此时会发现radius的值为0.</li>
+<li>按照声明的顺序调用成员的初始化方法.</li>
+<li>调用导出类的构造器主体.</li>
+</ul>
+<p>因此,在编写构造器时有一条有效的准则:用尽可能简单的方法使对象进入正常的状态,如果也可以的情况,避免调用其它方法.</p>
+<h1 id="4-协变返回类型"><a href="#4-协变返回类型" class="headerlink" title="4.  协变返回类型"></a>4.  协变返回类型</h1><p>它表示在导出类中的被覆盖方法可以返回基类方法的返回类型的某种导出类型:</p>
+<h1 id="5-用继承进行设计"><a href="#5-用继承进行设计" class="headerlink" title="5.  用继承进行设计"></a>5.  用继承进行设计</h1><p>用继承表达行为间的差异,并用子弹表达状态上的变化.</p>
+<h2 id="5-1-纯继承与扩展"><a href="#5-1-纯继承与扩展" class="headerlink" title="5.1  纯继承与扩展"></a>5.1  纯继承与扩展</h2><p><img src="/2017/03/28/第8章-多态/2.png" alt="纯继承与扩展" title="纯继承与扩展"></p>
+<p>这种被称作为纯粹的”is-a”关系,因为一个类的接口已经确定了它应该是什么,继承可以确保所有的导出类具有基类的接口,且绝对不会少.</p>
+<h2 id="5-2-向下转型与运行时类型识别"><a href="#5-2-向下转型与运行时类型识别" class="headerlink" title="5.2  向下转型与运行时类型识别"></a>5.2  向下转型与运行时类型识别</h2><p>由于向上转型(在继承层中向上移动)会丢失具体的类型信息.所以,我们通过向下转型(也就是在继承层次中向下移动),然而,我们知道向上转型是安全的,因为基类不会具有大于导出类的接口.因此,我们通过基类接口发送的信息保证都能被接受.但是对于向下转型,例如:我们无法知道一个”几何形状”它确实是一个”圆”还是”别的三角形”.</p>
+<p>在java中,所有的转型都会被检查,以便确保它的确是我们希望的那种类型.如果不是.则返回ClassCastException(类转型异常)</p>
+<h1 id="6-总结"><a href="#6-总结" class="headerlink" title="6.  总结"></a>6.  总结</h1><p>多态意味着”不同的形式”,在面向对象的程序设计中,我们持有从基类继承而来的相同接口,以及使用该接口的不同形式:不同版本的动态绑定方法.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaBasis/" rel="tag"># JavaBasis</a>
+          
+            <a href="/tags/JavaSe/" rel="tag"># JavaSe</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/第7章-复用类/" rel="next" title="第7章 复用类">
+                <i class="fa fa-chevron-left"></i> 第7章 复用类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/第9章-接口/" rel="prev" title="第9章 接口">
+                第9章 接口 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-再论向上转型"><span class="nav-number">1.</span> <span class="nav-text">1.  再论向上转型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-忘记对象类型"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  忘记对象类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-转机"><span class="nav-number">2.</span> <span class="nav-text">2.  转机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-方法调用绑定"><span class="nav-number">2.1.</span> <span class="nav-text">2.1  方法调用绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-产生正确的行为"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  产生正确的行为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-可扩展性"><span class="nav-number">2.3.</span> <span class="nav-text">2.3  可扩展性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-缺陷-“覆盖”私有方法"><span class="nav-number">2.4.</span> <span class="nav-text">2.4  缺陷  :  “覆盖”私有方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-缺陷-域与静态方法"><span class="nav-number">2.5.</span> <span class="nav-text">2.5  缺陷  :  域与静态方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-构造器和多态"><span class="nav-number">3.</span> <span class="nav-text">3.  构造器和多态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-构造器的调用顺序"><span class="nav-number">3.1.</span> <span class="nav-text">3.1  构造器的调用顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-继承和清理"><span class="nav-number">3.2.</span> <span class="nav-text">3.2  继承和清理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-构造器内部的多态方法的行为"><span class="nav-number">3.3.</span> <span class="nav-text">3.3  构造器内部的多态方法的行为</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-协变返回类型"><span class="nav-number">4.</span> <span class="nav-text">4.  协变返回类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-用继承进行设计"><span class="nav-number">5.</span> <span class="nav-text">5.  用继承进行设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-纯继承与扩展"><span class="nav-number">5.1.</span> <span class="nav-text">5.1  纯继承与扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-向下转型与运行时类型识别"><span class="nav-number">5.2.</span> <span class="nav-text">5.2  向下转型与运行时类型识别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-总结"><span class="nav-number">6.</span> <span class="nav-text">6.  总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1276 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="NetworkPenetration,网络渗透," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="HTTP请求模型一、连接至Web服务器一个客户端应用(如Web浏览器)打开到Web服务器的HTTP端口的一个套接字(缺省为80).
+例如:http://www.myweb.com:8080/index.html在Java中,这将等同于代码  :12InputStreamin=socket.getInputStream();OutputStreamout=socket.getOutputStream">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP请求模型和头信息参考">
+<meta property="og:url" content="http://javami.com/2017/03/28/HTTP请求模型和头信息参考/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="HTTP请求模型一、连接至Web服务器一个客户端应用(如Web浏览器)打开到Web服务器的HTTP端口的一个套接字(缺省为80).
+例如:http://www.myweb.com:8080/index.html在Java中,这将等同于代码  :12InputStreamin=socket.getInputStream();OutputStreamout=socket.getOutputStream">
+<meta property="og:updated_time" content="2017-03-28T15:59:07.176Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP请求模型和头信息参考">
+<meta name="twitter:description" content="HTTP请求模型一、连接至Web服务器一个客户端应用(如Web浏览器)打开到Web服务器的HTTP端口的一个套接字(缺省为80).
+例如:http://www.myweb.com:8080/index.html在Java中,这将等同于代码  :12InputStreamin=socket.getInputStream();OutputStreamout=socket.getOutputStream">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/HTTP请求模型和头信息参考/"/>
+
+
+
+
+
+  <title> HTTP请求模型和头信息参考 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/HTTP请求模型和头信息参考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTTP请求模型和头信息参考
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:56:58+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NetworkPenetration/" itemprop="url" rel="index">
+                    <span itemprop="name">NetworkPenetration</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/HTTP请求模型和头信息参考/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/HTTP请求模型和头信息参考/" class="leancloud_visitors" data-flag-title="HTTP请求模型和头信息参考">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="HTTP请求模型"><a href="#HTTP请求模型" class="headerlink" title="HTTP请求模型"></a>HTTP请求模型</h1><h2 id="一、连接至Web服务器"><a href="#一、连接至Web服务器" class="headerlink" title="一、连接至Web服务器"></a>一、连接至Web服务器</h2><p>一个客户端应用(如Web浏览器)打开到Web服务器的HTTP端口的一个套接字(缺省为80).</p>
+<p>例如:<br><code>http://www.myweb.com:8080/index.html</code><br>在Java中,这将等同于代码  :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">InputStreamin=socket.getInputStream();</div><div class="line">OutputStreamout=socket.getOutputStream();</div></pre></td></tr></table></figure></p>
+<h2 id="二、发送HTTP请求"><a href="#二、发送HTTP请求" class="headerlink" title="二、发送HTTP请求"></a>二、发送HTTP请求</h2><p>通过连接,客户端写一个ASCII文本请求行,后跟0或多个HTTP头标,一个空行和实现请求的任意数据.</p>
+<p>一个请求由四个部分组成  :  请求行、请求头标、空行和请求数据.</p>
+<ul>
+<li>请求行  :  请求行由三个标记组成:请求方法、请求URI和HTTP版本,它们用空格分隔.</li>
+</ul>
+<p>例如  :  GET/index.htmlHTTP/1.1</p>
+<ul>
+<li>HTTP规范定义了8种可能的请求方法  :  <ul>
+<li>GET检索URI中标识资源的一个简单请求</li>
+<li>HEAD与GET方法相同,服务器只返回状态行和头标,并不返回请求文档</li>
+<li>POST服务器接受被写入客户端输出流中的数据的请求</li>
+<li>PUT服务器保存请求数据作为指定URI新内容的请求</li>
+<li>DELETE服务器删除URI中命名的资源的请求</li>
+<li>OPTIONS关于服务器支持的请求方法信息的请求</li>
+<li>TRACEWeb服务器反馈Http请求和其头标的请求</li>
+<li>CONNECT已文档化但当前未实现的一个方法,预留做隧道处理</li>
+</ul>
+</li>
+<li>请求头标  :  由关键字/值对组成,每行一对,关键字和值用冒号(:)分隔.<br>请求头标通知服务器有关于客户端的功能和标识,典型的请求头标有  :<ul>
+<li>User-Agent客户端厂家和版本</li>
+<li>Accept客户端可识别的内容类型列表</li>
+<li>Content-Length附加到请求的数据字节数</li>
+</ul>
+</li>
+<li>空行  :  最后一个请求头标之后是一个空行,发送回车符和退行,通知服务器以下不再有头标.</li>
+<li>请求数据  :  使用POST传送数据,最常使用的是Content-Type和Content-Length头标.</li>
+</ul>
+<h2 id="三、服务端接受请求并返回HTTP响应"><a href="#三、服务端接受请求并返回HTTP响应" class="headerlink" title="三、服务端接受请求并返回HTTP响应"></a>三、服务端接受请求并返回HTTP响应</h2><p>Web服务器解析请求,定位指定资源.服务器将资源副本写至套接字,在此处由客户端读取.</p>
+<ul>
+<li><p>一个响应由四个部分组成;状态行、响应头标、空行、响应数据.</p>
+<ul>
+<li>状态行  :  状态行由三个标记组成:HTTP版本、响应代码和响应描述.</li>
+<li>HTTP版本  :  向客户端指明其可理解的最高版本.</li>
+<li>响应代码  :  3位的数字代码,指出请求的成功或失败,如果失败则指出原因.</li>
+<li>响应描述  :  为响应代码的可读性解释.</li>
+<li>例如  :  HTTP/1.1200OK</li>
+</ul>
+</li>
+<li><p><strong>HTTP响应码  :</strong><br>1xx:信息,请求收到,继续处理<br>2xx:成功,行为被成功地接受、理解和采纳<br>3xx:重定向,为了完成请求,必须进一步执行的动作<br>4xx:客户端错误  :  </p>
+</li>
+<li><p>响应头标  :  像请求头标一样,它们指出服务器的功能,标识出响应数据的细节.</p>
+</li>
+<li>空行  :  最后一个响应头标之后是一个空行,发送回车符和退行,表明服务器以下不再有头标.</li>
+<li>响应数据  :  HTML文档和图像等,也就是HTML本身.</li>
+</ul>
+<h2 id="四、服务器关闭连接-浏览器解析响应"><a href="#四、服务器关闭连接-浏览器解析响应" class="headerlink" title="四、服务器关闭连接,浏览器解析响应"></a>四、服务器关闭连接,浏览器解析响应</h2><ul>
+<li>浏览器首先解析状态行,查看表明请求是否成功的状态代码.</li>
+<li>然后解析每一个响应头标,头标告知以下为若干字节的HTML.</li>
+<li>读取响应数据HTML,根据HTML的语法和语义对其进行格式化,并在浏览器窗口中显示它.</li>
+<li>一个HTML文档可能包含其它需要被载入的资源引用,浏览器识别这些引用,对其它的资源再进行额外的请求,此过程循环多次.</li>
+</ul>
+<h2 id="五、无状态连接"><a href="#五、无状态连接" class="headerlink" title="五、无状态连接"></a>五、无状态连接</h2><p>HTTP模型是无状态的,表明在处理一个请求时,Web服务器并不记住来自同一客户端的请求.</p>
+<p>##实例</p>
+<ul>
+<li><p>浏览器发出请求<br><code>GET/index.htmlHTTP/1.1</code></p>
+</li>
+<li><p>服务器返回响应<br><code>HTTP/1.1200OK
+Date:Apr11200615:32:08GMT
+Server:Apache/2.0.46(win32)
+Content-Length:119
+Content-Type:text/html&lt;HTML&gt;&lt;HEAD&gt;&lt;LINKREL=&quot;stylesheet&quot;HREF=&quot;index.css&quot;&gt;&lt;/HEAD&gt;&lt;BODY&gt;&lt;IMGSRC=&quot;image/logo.png&quot;&gt;&lt;/BODY&gt;&lt;/HTML&gt;</code></p>
+</li>
+<li><p>浏览器发出请求<br><code>GET/index.cssHTTP/1.1</code></p>
+</li>
+<li>服务器返回响应<br><code>HTTP/1.1200OK
+Date:Apr11200615:32:08GMT
+Server:Apache/2.0.46(win32)
+Connection:Keep-alive,close
+Content-Length:70
+Content-Type:text/plane
+h3{
+font-size:20px;
+font-weight:bold;
+color:#005A9C;
+}</code></li>
+<li><p>浏览器发出请求<br><code>GETimage/logo.pngHTTP/1.1</code></p>
+</li>
+<li><p>服务器返回响应<br><code>HTTP/1.1200OK
+Date:Apr11200615:32:08GMT
+Server:Apache/2.0.46(win32)
+Connection:Keep-alive,close
+Content-Length:1280
+Content-Type:text/plane
+{Binaryimagedatafollows}</code></p>
+</li>
+<li><p>附录</p>
+<ul>
+<li>HTTP规范  :  Internet工程制定组织(IETF)发布的RFC指定Internet标准,这些RFC被Internet研究发展机构广泛接受.因为它们是标准文档,故一般用正规语言编写,如立法文标一样.</li>
+<li>RFC  :  RFC一旦被提出,就被编号且不会再改变,当一个标准被修改时,则给出一个新的RFC.作为标准,RFC在Internet上被广泛采用.</li>
+<li>HTTP的几个重要RFC  :<br>RFC1945HTTP1.0描述<br>RFC2068HTTP1.1初步描述<br>RFC2616HTTP1.1标准</li>
+<li>资源标识符URI(UniformResourceIdentifter,URI)</li>
+</ul>
+</li>
+<li><p>HTTP参考</p>
+<ul>
+<li><p>一、HTTP码应码<br>响应码由三位十进制数字组成,它们出现在由HTTP服务器发送的响应的第一行.</p>
+</li>
+<li><p>响应码分五种类型,由它们的第一位数字表示:</p>
+<ul>
+<li>1xx:信息,请求收到,继续处理</li>
+<li>2xx:成功,行为被成功地接受、理解和采纳</li>
+<li>3xx:重定向,为了完成请求,必须进一步执行的动作</li>
+<li>4xx:客户端错误,请求包含语法错误或者请求无法实现</li>
+<li>5xx:服务器错误,服务器不能实现一种明显无效的请求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>下表显示每个响应码及其含义  :<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">100            继续</div><div class="line">101            分组交换协</div><div class="line">200            OK</div><div class="line">201            被创建</div><div class="line">202            被采纳</div><div class="line">203            非授权信息</div><div class="line">204            无内容</div><div class="line">205            重置内容</div><div class="line">206            部分内容</div><div class="line">300            多选项</div><div class="line">301            永久地传送</div><div class="line">302            找到</div><div class="line">303            参见其他</div><div class="line">304            未改动</div><div class="line">305            使用代理</div><div class="line">307            暂时重定向</div><div class="line">400            错误请求</div><div class="line">401            未授权</div><div class="line">402            要求付费</div><div class="line">403            禁止</div><div class="line">404            未找到</div><div class="line">405            不允许的方法</div><div class="line">406            不被采纳</div><div class="line">407            要求代理授权</div><div class="line">408            请求超时</div><div class="line">409            冲突</div><div class="line">410            过期的</div><div class="line">411            要求的长度</div><div class="line">412            前提不成立</div><div class="line">413            请求实例太大</div><div class="line">414            请求URI太大</div><div class="line">415            不支持的媒体类型</div><div class="line">416            无法满足的请求范围</div><div class="line">417            失败的预期</div><div class="line">500            内部服务器错误</div><div class="line">501            未被使用</div><div class="line">502            网关错误</div><div class="line">503            不可用的服务</div><div class="line">504            网关超时</div><div class="line">505            HTTP版本未被支持</div></pre></td></tr></table></figure></p>
+<ul>
+<li>二、HTTP头标</li>
+</ul>
+<p>头标由主键/值对组成.它们描述客户端或者服务器的属性、被传输的资源以及应该实现连接.</p>
+<p><strong>四种不同类型的头标  :</strong></p>
+<ul>
+<li>通用头标  :  即可用于请求,也可用于响应,是作为一个整体而不是特定资源与事务相关联.</li>
+<li>请求头标  :  允许客户端传递关于自身的信息和希望的响应形式.</li>
+<li>响应头标  :  服务器和于传递自身信息的响应.</li>
+<li>实体头标  :  定义被传送资源的信息.即可用于请求,也可用于响应.<br>头标格式  :  <code>&lt;name&gt;:&lt;value&gt;&lt;CRLF&gt;</code></li>
+<li><p><strong>下表描述在HTTP/1.1中用到的头标</strong></p>
+<ul>
+<li><strong>Accept  :</strong>  定义客户端可以处理的媒体类型,按优先级排序;<br>在一个以逗号为分隔的列表中,可以定义多种类型和使用通配符.例如:Accept: image/jpeg,image/png,<em>/</em></li>
+<li><p><strong>Accept-Charset  :</strong>  定义客户端可以处理的字符集,按优先级排序;<br>在一个以逗号为分隔的列表中,可以定义多种类型和使用通配符.例如  :  Accept-Charset: iso-8859-1,*,utf-8</p>
+</li>
+<li><p><strong>Accept-Encoding</strong>  :  定义客户端可以理解的编码机制.例如:Accept-Encoding:gzip,compress</p>
+</li>
+<li><strong>Accept-Language  :  </strong> 定义客户端乐于接受的自然语言列表.例  如:Accept-Language: en,de</li>
+<li><strong>Accept-Ranges  :</strong>  一个响应头标,它允许服务器指明:将在给定的偏移  和长度处,为资源组成部分的接受请求.<br>该头标的值被理解为请求范围的度量单位.例如Accept-Ranges: bytes或Accept-Ranges: none</li>
+<li><strong>Age  :</strong>  允许服务器规定自服务器生成该响应以来所经过的时间长度,以秒为单位.<br>该头标主要用于缓存响应.例如:Age: 30</li>
+<li><strong>Allow  :</strong>  一个响应头标,它定义一个由位于请求URI中的次源所支持的HTTP方法列表.例如:Allow: GET,PUT</li>
+<li><strong>aUTHORIZATION  :  </strong>一个响应头标,用于定义访问一种资源所必需的授权(域和被编码的用户ID与口令).<br>例如  :  Authorization: Basic YXV0aG9yOnBoaWw=</li>
+<li><strong>Cache-Control  :  </strong>一个用于定义缓存指令的通用头标.例如:Cache-Control: max-age=30</li>
+<li><strong>Connection  : </strong> 一个用于表明是否保存socket连接为开放的通用头标.例如  :  Connection: close或Connection: keep-alive</li>
+<li><strong>Content-Base  :</strong>  一种定义基本URI的实体头标,为了在实体范围内解析相对URLs.<br>如果没有定义Content-Base头标解析相对URLs,使用Content-Location URI(存在且绝对)或使用URI请求.<br>例如:Content-Base: Http://<a href="http://www.myweb.com/" target="_blank" rel="external">www.myweb.com</a></li>
+<li><strong>Content-Encoding  :  </strong> 一种介质类型修饰符,标明一个实体是如何编码的.例如:Content-Encoding: zip</li>
+<li><strong>Content-Language  :  </strong>用于指定在输入流中数据的自然语言类型.例如  :  Content-Language: en</li>
+<li><strong>Content-Length  :  </strong>指定包含于请求或响应中数据的字节长度.例如  :  Content-Length:382</li>
+<li><strong>Content-Location  :  </strong>指定包含于请求或响应中的资源定位(URI).<br>如果是一绝.对URL它也作为被解析实体的相对URL的出发点.<br>例如  :  Content-Location:<a href="http://www.myweb.com/news" target="_blank" rel="external">http://www.myweb.com/news</a></li>
+<li><strong>Content-MD5  :  </strong>实体的一种MD5摘要,用作校验和.<br>发送方和接受方都计算MD5摘要,接受方将其计算的值与此头标中传递的值进行比较.<br>例如  :  Content-MD5: <base64 128="" of="" md5="" digest=""></base64></li>
+<li><strong>Content-Range  :  </strong>随部分实体一同发送;标明被插入字节的低位与高位字节偏移,也标明此实体的总长度.<br>例如  :  Content-Range  :  1001-2000/5000</li>
+<li><strong>Contern-Type  :</strong>  标明发送或者接收的实体的MIME类型.例如  :  Content-Type: text/html</li>
+<li><strong>Date  :  </strong>发送HTTP消息的日期.例如:Date: Mon,10PR 18:42:51 GMT</li>
+<li><strong>ETag  :</strong>  一种实体头标,它向被发送的资源分派一个唯一的标识符.<br>对于可以使用多种URL请求的资源,ETag可以用于确定实际被发送的资源是否为同一资源.<br>例如  :  ETag: “208f-419e-30f8dc99”</li>
+<li><strong>Expires  :  </strong>指定实体的有效期.例如  :  Expires: Mon,05 Dec 2008 12:00:00 GMT</li>
+<li><strong>Form</strong>  :  一种请求头标,给定控制用户代理的人工用户的电子邮件地址.例如  :  From:<a href="mailto:webmaster@myweb.com" target="_blank" rel="external">webmaster@myweb.com</a></li>
+<li><strong>Host</strong>被请求资源的主机名.对于使用HTTP/1.1的请求而言,此域是强制性的.例如  :  Host  :  www.myweb.com</li>
+<li><strong>If-Modified-Since</strong>如果包含了GET请求,导致该请求条件性地依赖于资源上次修改日期.<br>如果出现了此头标,并且自指定日期以来,此资源已被修改,应该反回一个304响应代码.<br>例如  :  If-Modified-Since: Mon,10PR 18:42:51 GMT</li>
+<li><strong>If-Match  :</strong>  如果包含于一个请求,指定一个或者多个实体标记.只发送其ETag与列表中标记区配的资源.<br>例如  :  If-Match  :   “208f-419e-308dc99”</li>
+<li><strong>If-None-Match  :  </strong>如果包含一个请求,指定一个或者多个实体标记.资源的ETag不与列表中的任何一个条件匹配,操作才执行.<br>例如  :  If-None-Match  :   “208f-419e-308dc99”</li>
+<li><strong>If-Range  :</strong>  指定资源的一个实体标记,客户端已经拥有此资源的一个拷贝.必须与Range头标一同使用.<br>如果此实体自上次被客户端检索以来,还不曾修改过,那么服务器只发送指定的范围,否则它将发送整个资源.<br>例如  :  Range: byte=0-499<crlf>If-Range:”208f-419e-30f8dc99”</crlf></li>
+<li><strong>If-Unmodified-Since  :  </strong>只有自指定的日期以来,被请求的实体还不曾被修改过,才会返回此实体.<br>例如  :  If-Unmodified-Since:Mon,10PR 18:42:51 GMT</li>
+<li><strong>Last-Modified  :  </strong>指定被请求资源上次被修改的日期和时间.例如:Last-Modified: Mon,10PR 18:42:51 GMT</li>
+<li><strong>Location  :  </strong>对于一个已经移动的资源,用于重定向请求者至另一个位置.<br>与状态编码302(暂时移动)或者301(永久性移动)配合使用.<br>例如  :  Location  :  <a href="http://www2.myweb.com/index.jsp" target="_blank" rel="external">http://www2.myweb.com/index.jsp</a></li>
+<li><strong>Max-Forwards  :</strong>  一个用于TRACE方法的请求头标,以指定代理或网关的最大数目,该请求通过网关才得以路由.<br>在通过请求传递之前,代理或网关应该减少此数目.例如:Max-Forwards: 3</li>
+<li><strong>Pragma  :  </strong>一个通用头标,它发送实现相关的信息.例如  :  Pragma: no-cache</li>
+<li><strong>Proxy-Authenticate  :  </strong>类似于WWW-Authenticate,便是有意请求只来自请求链(代理)的下一个服务器的认证.<br>例如  :  Proxy-Authenticate: Basic realm-admin</li>
+<li><strong>Proxy-Proxy-Authorization  :  </strong>类似于授权,但并非有意传递任何比在即时服务器链中更进一步的内容.<br>例如  :  Proxy-Proxy-Authorization: Basic YXV0aG9yOnBoaWw=</li>
+<li><strong>Public  :  </strong>列表显示服务器所支持的方法集.例如  :  Public  : OPTIONS,MGET,MHEAD,GET,HEAD</li>
+<li><strong>Range  :  </strong>指定一种度量单位和一个部分被请求资源的偏移范围.例如  :  Range  :  bytes=206-5513</li>
+<li><strong>Refener  : </strong> 一种请求头标域,标明产生请求的初始资源.对于HTML表单,它包含此表单的Web页面的地址.<br>例如  :  Refener  :  <a href="http://www.myweb.com/news/search.html" target="_blank" rel="external">http://www.myweb.com/news/search.html</a></li>
+<li><strong>Retry-After  :  </strong>一种响应头标域,由服务器与状态编码503(无法提供服务)配合发送,以标明再次请求之前应该等待多长时间.<br>此时间即可以是一种日期,也可以是一种秒单位.例如:Retry-After: 18</li>
+<li><strong>Server  :  </strong>一种标明Web服务器软件及其版本号的头标.例如  :  Server  :   Apache/2.0.46(Win32)</li>
+<li><strong>Transfer-Encoding  :  </strong>一种通用头标,标明对应被接受方反向的消息体实施变换的类型.例如:Transfer-Encoding: chunked</li>
+<li><strong>Upgrade  : </strong> 允许服务器指定一种新的协议或者新的协议版本,与响应编码101(切换协议)配合使用.<br>例如  :  Upgrade  :  HTTP/2.0</li>
+<li><strong>User-Agent  :</strong>  定义用于产生请求的软件类型(典型的如Web浏览器).<br>例如  :  User-Agent  :  Mozilla/4.0(compatible; MSIE 5.5; Windows NT; DigExt)</li>
+<li><strong>Vary  :</strong>  一个响应头标,用于表示使用服务器驱动的协商从可用的响应表示中选择响应实体.例如:Vary: *</li>
+<li><strong>Via  :</strong>  一个包含所有中间主机和协议的通用头标,用于满足请求.例如  :  Via: 1.0 fred.com, 1.1 wilma.com</li>
+<li><strong>Warning  :</strong>  用于提供关于响应状态补充信息的响应头标.例如:Warning: 99  www.myweb.com  Piano needs tuning</li>
+<li><strong>www-Authenticate  :</strong>  一个提示用户代理提供用户名和口令的响应头  标,与状态编码401(未授权)配合使用.响应一个授权头标.<br>例如  :  www-Authenticate: Basic realm=zxm.mgmt</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NetworkPenetration/" rel="tag"># NetworkPenetration</a>
+          
+            <a href="/tags/网络渗透/" rel="tag"># 网络渗透</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/第2章-算法/" rel="next" title="第2章 算法">
+                <i class="fa fa-chevron-left"></i> 第2章 算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/05/看-‘北大最短毕业致辞’-的感受/" rel="prev" title="看 ‘北大最短毕业致辞’ 的感受">
+                看 ‘北大最短毕业致辞’ 的感受 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP请求模型"><span class="nav-number">1.</span> <span class="nav-text">HTTP请求模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、连接至Web服务器"><span class="nav-number">1.1.</span> <span class="nav-text">一、连接至Web服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、发送HTTP请求"><span class="nav-number">1.2.</span> <span class="nav-text">二、发送HTTP请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、服务端接受请求并返回HTTP响应"><span class="nav-number">1.3.</span> <span class="nav-text">三、服务端接受请求并返回HTTP响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、服务器关闭连接-浏览器解析响应"><span class="nav-number">1.4.</span> <span class="nav-text">四、服务器关闭连接,浏览器解析响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、无状态连接"><span class="nav-number">1.5.</span> <span class="nav-text">五、无状态连接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

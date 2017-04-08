@@ -1,0 +1,1361 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Html,Css," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.  Css概念CSS 指层叠样式表 (Cascading Style Sheets)级联样式表
+1.1  Css与Html的关系
+Css 以 html 为基础的.
+Css 主要设置的就是 html 标签中的属性样式,css 进行网页布局.
+
+1.2  Css语法
+选择器{属性:值; 属性:值;…. }
+选择器  :  就是一个选择谁的过程.
+参数说明  :  属性和属性值之间用冒号(:)隔开,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三.Css基础(1)">
+<meta property="og:url" content="http://javami.com/2017/03/28/三-Css基础-1/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="1.  Css概念CSS 指层叠样式表 (Cascading Style Sheets)级联样式表
+1.1  Css与Html的关系
+Css 以 html 为基础的.
+Css 主要设置的就是 html 标签中的属性样式,css 进行网页布局.
+
+1.2  Css语法
+选择器{属性:值; 属性:值;…. }
+选择器  :  就是一个选择谁的过程.
+参数说明  :  属性和属性值之间用冒号(:)隔开,">
+<meta property="og:image" content="http://javami.com/2017/03/28/三-Css基础-1/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/三-Css基础-1/2.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/三-Css基础-1/3.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/三-Css基础-1/4.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/三-Css基础-1/5.png">
+<meta property="og:updated_time" content="2017-03-28T10:18:04.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="三.Css基础(1)">
+<meta name="twitter:description" content="1.  Css概念CSS 指层叠样式表 (Cascading Style Sheets)级联样式表
+1.1  Css与Html的关系
+Css 以 html 为基础的.
+Css 主要设置的就是 html 标签中的属性样式,css 进行网页布局.
+
+1.2  Css语法
+选择器{属性:值; 属性:值;…. }
+选择器  :  就是一个选择谁的过程.
+参数说明  :  属性和属性值之间用冒号(:)隔开,">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/三-Css基础-1/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/三-Css基础-1/"/>
+
+
+
+
+
+  <title> 三.Css基础(1) | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/三-Css基础-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                三.Css基础(1)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:14:21+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
+                    <span itemprop="name">WebDesign</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/三-Css基础-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/三-Css基础-1/" class="leancloud_visitors" data-flag-title="三.Css基础(1)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-Css概念"><a href="#1-Css概念" class="headerlink" title="1.  Css概念"></a>1.  Css概念</h1><p>CSS 指层叠样式表 (Cascading Style Sheets)级联样式表</p>
+<h2 id="1-1-Css与Html的关系"><a href="#1-1-Css与Html的关系" class="headerlink" title="1.1  Css与Html的关系"></a>1.1  Css与Html的关系</h2><ul>
+<li>Css 以 html 为基础的.</li>
+<li>Css 主要设置的就是 html 标签中的属性样式,css 进行网页布局.</li>
+</ul>
+<h2 id="1-2-Css语法"><a href="#1-2-Css语法" class="headerlink" title="1.2  Css语法"></a>1.2  Css语法</h2><ul>
+<li><strong>选择器{属性:值; 属性:值;…. }</strong></li>
+<li>选择器  :  就是一个选择谁的过程.</li>
+<li>参数说明  :  属性和属性值之间用冒号(:)隔开,定义多个属性时,属性之间用英文输入法下的分号;隔开.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>赋值</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>color: red;</td>
+<td>前景色（文字颜色）</td>
+</tr>
+<tr>
+<td>font-size</td>
+<td>font-size: 20px;</td>
+<td>设置文字大小</td>
+</tr>
+<tr>
+<td>width</td>
+<td>width: 30px;</td>
+<td>设置宽度</td>
+</tr>
+<tr>
+<td>width</td>
+<td>width: 30px;</td>
+<td>设置宽度</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>height:30px;</td>
+<td>设置高度</td>
+</tr>
+<tr>
+<td>Background-color</td>
+<td>background-color:red;</td>
+<td>设置背景颜色</td>
+</tr>
+<tr>
+<td>Text-align</td>
+<td>text-align:center; left/right;</td>
+<td>文字居中</td>
+</tr>
+<tr>
+<td>Text-indent</td>
+<td>text-indent: 2em；</td>
+<td>首行缩进</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Px  :  像素</li>
+<li>注意  :<ul>
+<li>Text-align:center; 在块级元素中可以让文字居中</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3-Css-书写位置介绍"><a href="#1-3-Css-书写位置介绍" class="headerlink" title="1.3  Css 书写位置介绍"></a>1.3  Css 书写位置介绍</h2><ul>
+<li>内嵌式写法<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">        p&#123;</div><div class="line">          color:red;</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="1-4-选择器的分类"><a href="#1-4-选择器的分类" class="headerlink" title="1.4  选择器的分类"></a>1.4  选择器的分类</h2><ul>
+<li>基础选择器<ul>
+<li>标签选择器</li>
+<li><strong>类选择器</strong></li>
+<li>id 选择器<br>-通配符选择器</li>
+</ul>
+</li>
+<li>复合选择器<ul>
+<li><strong>标签指定式选择器</strong></li>
+<li><strong>后代选择器</strong></li>
+<li>并集选择器</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-5-标签选择器"><a href="#1-5-标签选择器" class="headerlink" title="1.5  标签选择器"></a>1.5  标签选择器</h2><ul>
+<li>标签  :  就是 html 中的标签</li>
+<li>用法  :<br>标签名{属性:值; 属性:值;}</li>
+</ul>
+<p><img src="/2017/03/28/三-Css基础-1/1.png" alt="标签选择器" title="标签选择器"></p>
+<ul>
+<li>颜色的显示方式<ul>
+<li>直接设置对应颜色的名称<br><code>p{color:red;}</code></li>
+<li>通过十六进制显示<br><code>color:#2934DE</code>;</li>
+<li>通过 rgb 方式显示<ul>
+<li>R  :  代表的是红色（red） 0-255<br>G  :  代表的是绿色（green） 0-255<br>B  :  代表的是蓝色（blue） 0-255</li>
+</ul>
+</li>
+<li>rgba<ul>
+<li>a  :  设置透明度 alpha 0-1<br><img src="/2017/03/28/三-Css基础-1/2.png" alt="rgba" title="rgba"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-6-类选择器"><a href="#1-6-类选择器" class="headerlink" title="1.6  类选择器"></a>1.6  类选择器</h1><ul>
+<li>用法  :<ul>
+<li>.自定名称{属性:值;}</li>
+</ul>
+</li>
+<li>调用  :<ul>
+<li>标签通过 class 属性调用类样式<br><code>.fontcolor{color:red;}</code></li>
+</ul>
+</li>
+<li>特点  :<ul>
+<li>谁调用谁改变,多个标签可以同时调用一个类样式.</li>
+<li>一个标签可以调用多个类样式</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-7-类的命名规范"><a href="#1-7-类的命名规范" class="headerlink" title="1.7  类的命名规范"></a>1.7  类的命名规范</h1><p><img src="/2017/03/28/三-Css基础-1/3.png" alt="类的命名规范" title="类的命名规范"></p>
+<ul>
+<li>不能以纯数字或者以数字开头定义类名</li>
+<li>不推荐使用汉字定义类名</li>
+<li>不能以特殊符号或者以特殊符号开头（“_”除外）定义类名</li>
+<li>不建议使用标签名或者属性名定义类名</li>
+</ul>
+<h1 id="1-8-Id选择器"><a href="#1-8-Id选择器" class="headerlink" title="1.8  Id选择器"></a>1.8  Id选择器</h1><ul>
+<li>用法  :<ul>
+<li>#id名称{属性:值;}</li>
+</ul>
+</li>
+<li>调用  :<br><code>&lt;p  id  =&quot;p_color&quot;&gt;hello,world!&lt;/p&gt;</code></li>
+<li>特点  :<ul>
+<li>不建议多个标签使用同一 id 选择器的样式</li>
+<li>一个标签只能调用一个 id 样式</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-9-通配符选择器"><a href="#1-9-通配符选择器" class="headerlink" title="1.9  通配符选择器"></a>1.9  通配符选择器</h2><ul>
+<li>用法  :  <ul>
+<li><em>{属性:值; 属性:值;}<br>`</em>{color:  red;  font-size:  30px;}`</li>
+</ul>
+</li>
+<li>特点  :  <ul>
+<li>将页面中所有的标签都选中,设置样式</li>
+<li>进行页面样式的初始化</li>
+</ul>
+</li>
+<li>注意  :<ul>
+<li>在写样式的时候  (类选择器),如果有样式代码重复使用的时候,我们<br>要提取公共类.</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-10-字体相关属性"><a href="#1-10-字体相关属性" class="headerlink" title="1.10  字体相关属性"></a>1.10  字体相关属性</h2><ul>
+<li>Font-size  :  设置文字大小</li>
+<li>Font-family  :  设置文字字体</li>
+<li>Font-weight  :  设置文字加粗</li>
+<li>Font-style  :  设置文字斜体</li>
+<li>Line-height  :  行高</li>
+</ul>
+<h2 id="1-11-Font-family"><a href="#1-11-Font-family" class="headerlink" title="1.11  Font-family"></a>1.11  Font-family</h2><ul>
+<li>直接设置汉字<br><code>p{font-family:  微软雅黑;}</code></li>
+<li><p>设置对应字体的英文<br><img src="/2017/03/28/三-Css基础-1/4.png" alt="对应字体的英文" title="对应字体的英文"></p>
+</li>
+<li><p>可以设置 unicode 编码</p>
+</li>
+<li>Font-family 可以设置多个值;<br>{<code>font-family:  &quot;Simsum&quot;,&quot;宋体&quot;</code>}</li>
+</ul>
+<h2 id="1-12-Font-weight"><a href="#1-12-Font-weight" class="headerlink" title="1.12  Font-weight"></a>1.12  Font-weight</h2><ul>
+<li>取值方式  :  <ul>
+<li>直接设置数字 100-900</li>
+<li>bold (字体加粗) 效果与 700-900</li>
+<li>normal (文字字体正常显示)</li>
+</ul>
+</li>
+<li>注意  :  <ul>
+<li>文字加粗显示,推荐使用 font-weight:700;</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-13-Font-style-斜体"><a href="#1-13-Font-style-斜体" class="headerlink" title="1.13  Font-style(斜体)"></a>1.13  Font-style(斜体)</h2><ul>
+<li>italic 文字斜体显示</li>
+<li>normal 文字正常显示</li>
+</ul>
+<h2 id="1-14-Font-属性联写"><a href="#1-14-Font-属性联写" class="headerlink" title="1.14 Font 属性联写"></a>1.14 Font 属性联写</h2><ul>
+<li><p>用法  :  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">font: font-style font-weight font-size/line-height</div><div class="line">font-family</div></pre></td></tr></table></figure>
+</li>
+<li><p>注意  :</p>
+</li>
+<li>font 属性联写必须有 font-size 和 font-family(其他属性可以不写)</li>
+<li>font-size 和 font-family 的顺序不能换</li>
+</ul>
+<h1 id="2-标签指定选择器"><a href="#2-标签指定选择器" class="headerlink" title="2.  标签指定选择器"></a>2.  标签指定选择器</h1><ul>
+<li>用法  :<br>标签名.选择器名{属性:值; 属性:值;}</li>
+</ul>
+<h1 id="3-后代选择器"><a href="#3-后代选择器" class="headerlink" title="3.  后代选择器"></a>3.  后代选择器</h1><ul>
+<li>特点  :<ul>
+<li>标签之间必须属于嵌套关系.</li>
+</ul>
+</li>
+<li>用法  :<ul>
+<li>选择器 +空格+ 选择器{属性:值; 属性:值;…}</li>
+</ul>
+</li>
+<li>特点  :<ul>
+<li>选择器之间必须有空格</li>
+</ul>
+</li>
+<li>关系  :<ul>
+<li>父与子的关系</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-并集选择器"><a href="#4-并集选择器" class="headerlink" title="4.  并集选择器"></a>4.  并集选择器</h1><ul>
+<li>用法  :<ul>
+<li>选择器,选择器,选择器{属性:值;}</li>
+</ul>
+</li>
+<li>作用  :<ul>
+<li>将样式集体声明,css 样式初始化.</li>
+</ul>
+</li>
+<li>特点  :<ul>
+<li>并集选择器之间必须用逗号隔开!</li>
+<li>margin: 0 auto; 让盒子居中显示。</li>
+</ul>
+</li>
+</ul>
+<h1 id="5-作业与一些总结"><a href="#5-作业与一些总结" class="headerlink" title="5.  作业与一些总结"></a>5.  作业与一些总结</h1><p><img src="/2017/03/28/三-Css基础-1/5.png" alt="作业" title="作业"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">          .newsTitle&#123;Text-align:center;&#125;</div><div class="line">          .secondTitle&#123;Text-align:center;&#125;</div><div class="line">          .time&#123;</div><div class="line">            color: #AABBCC;</div><div class="line">            font-size: 14px;&#125;</div><div class="line">          .adTitle&#123;color: #990000;font-size: 14px;&#125;</div><div class="line">          .show&#123;color: red;&#125;</div><div class="line">          .search&#123;</div><div class="line">            color: #008000;</div><div class="line">          &#125;</div><div class="line">          .essay&#123;</div><div class="line">            text-indent:2em;</div><div class="line">          &#125;</div><div class="line">          .weibo&#123;</div><div class="line">            color: #3399CC;</div><div class="line">          &#125;</div><div class="line"></div><div class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"newsTitle"</span>&gt;</span>中乙队赛前突然换帅仍胜毅腾 高原黑马欲阻击舜天<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"secondTitle"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">font</span> <span class="attr">class</span>=<span class="string">"time"</span>&gt;</span>2014年07月16日20:11<span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">font</span> <span class="attr">class</span>=<span class="string">"adTitle"</span>&gt;</span>新浪体育 评论中大奖（11人参与）<span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.w3school.com.cn"</span>&gt;</span>收藏本文<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"show"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">"请输入查询条件"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"search"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"搜索"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">hr</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"essay"</span>&gt;</span></div><div class="line">  新浪体育讯　7月16日是燕京啤酒<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"weibo"</span> <span class="attr">href</span>=<span class="string">"http://www.w3school.com.cn"</span>&gt;</span>[微博]<span class="tag">&lt;/<span class="name">a</span>&gt;</span>2014中国足协杯第三轮比赛，丽江嘉云昊队主场迎战哈尔滨毅腾队的比赛日。然而就在比赛日中午，丽江嘉云昊队主帅李虎和另外两名成员悄然向俱乐部提出了辞呈，并且收拾行囊准备离开。在这样的情况下，丽江嘉云昊队不得不由此前的教练员杨贵东代理指挥了本场比赛。</div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"essay"</span>&gt;</span></div><div class="line">在昨日丽江嘉云昊队主帅李虎就缺席了赛前的新闻发布会，当时俱乐部给出的解释是李虎由于身体欠佳，去医院接受治疗。然而今日李虎出现在俱乐部时，向记者否认了这一说法，并且坦言已经向俱乐部提出了辞呈。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"essay"</span>&gt;</span></div><div class="line">据记者多方了解的情况，李虎<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"weibo"</span> <span class="attr">href</span>=<span class="string">"http://www.w3school.com.cn"</span>&gt;</span>[微博]<span class="tag">&lt;/<span class="name">a</span>&gt;</span>极其教练组近来在执教成绩上承受了不小的压力，在联赛间歇期期间，教练组曾向俱乐部提出能够多引进有实力的球员补强球队，然而由于和俱乐部在投入以及成绩指标上的分歧，李虎最终和教练组一起在比赛日辞职。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"essay"</span>&gt;</span></div><div class="line">这样的情况并没有影响到丽江嘉云昊队<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"weibo"</span> <span class="attr">href</span>=<span class="string">"http://www.w3school.com.cn"</span>&gt;</span>[微博]<span class="tag">&lt;/<span class="name">a</span>&gt;</span>的队员，在比赛中丽江队在主场拼的非常凶，在暴雨之中仍然发挥出了体能充沛的优势，最终凭借点球击败了中超球队哈尔滨毅腾，顺利晋级下一轮比赛。<span class="tag">&lt;<span class="name">B</span>&gt;</span>根据中国足协杯的赛程，丽江嘉云昊队将在本月23日迎战江苏舜天队。<span class="tag">&lt;/<span class="name">B</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Html/" rel="tag"># Html</a>
+          
+            <a href="/tags/Css/" rel="tag"># Css</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/二-HTML基础-2/" rel="next" title="二.HTML基础(2)">
+                <i class="fa fa-chevron-left"></i> 二.HTML基础(2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/四-Css基础-2/" rel="prev" title="四.Css基础(2)">
+                四.Css基础(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Css概念"><span class="nav-number">1.</span> <span class="nav-text">1.  Css概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Css与Html的关系"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  Css与Html的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Css语法"><span class="nav-number">1.2.</span> <span class="nav-text">1.2  Css语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Css-书写位置介绍"><span class="nav-number">1.3.</span> <span class="nav-text">1.3  Css 书写位置介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-选择器的分类"><span class="nav-number">1.4.</span> <span class="nav-text">1.4  选择器的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-标签选择器"><span class="nav-number">1.5.</span> <span class="nav-text">1.5  标签选择器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-6-类选择器"><span class="nav-number">2.</span> <span class="nav-text">1.6  类选择器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-7-类的命名规范"><span class="nav-number">3.</span> <span class="nav-text">1.7  类的命名规范</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-8-Id选择器"><span class="nav-number">4.</span> <span class="nav-text">1.8  Id选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-通配符选择器"><span class="nav-number">4.1.</span> <span class="nav-text">1.9  通配符选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-10-字体相关属性"><span class="nav-number">4.2.</span> <span class="nav-text">1.10  字体相关属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-11-Font-family"><span class="nav-number">4.3.</span> <span class="nav-text">1.11  Font-family</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-12-Font-weight"><span class="nav-number">4.4.</span> <span class="nav-text">1.12  Font-weight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-13-Font-style-斜体"><span class="nav-number">4.5.</span> <span class="nav-text">1.13  Font-style(斜体)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-14-Font-属性联写"><span class="nav-number">4.6.</span> <span class="nav-text">1.14 Font 属性联写</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-标签指定选择器"><span class="nav-number">5.</span> <span class="nav-text">2.  标签指定选择器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-后代选择器"><span class="nav-number">6.</span> <span class="nav-text">3.  后代选择器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-并集选择器"><span class="nav-number">7.</span> <span class="nav-text">4.  并集选择器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-作业与一些总结"><span class="nav-number">8.</span> <span class="nav-text">5.  作业与一些总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

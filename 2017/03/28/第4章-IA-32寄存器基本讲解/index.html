@@ -1,0 +1,1163 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ReverseEngineerin," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1. 什么是CPU寄存器寄存器(Register)是CPU内部用来存放数据的一些小型存储区域,因为其集成在CPU内部,拥有非常高的读写速度.
+2. IA-32 寄存器IA-32 是英特尔推出的32位元架构,属于复制的指令集构架.
+2.1 基本程序运行寄存器基本程序运行寄存器的组织结构,它由4类寄存器组成.
+
+通用寄存器 ( General Purpose Resgisters, 32位,8个 )">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第4章 IA-32寄存器基本讲解">
+<meta property="og:url" content="http://javami.com/2017/03/28/第4章-IA-32寄存器基本讲解/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="1. 什么是CPU寄存器寄存器(Register)是CPU内部用来存放数据的一些小型存储区域,因为其集成在CPU内部,拥有非常高的读写速度.
+2. IA-32 寄存器IA-32 是英特尔推出的32位元架构,属于复制的指令集构架.
+2.1 基本程序运行寄存器基本程序运行寄存器的组织结构,它由4类寄存器组成.
+
+通用寄存器 ( General Purpose Resgisters, 32位,8个 )">
+<meta property="og:image" content="http://javami.com/2017/03/28/第4章-IA-32寄存器基本讲解/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第4章-IA-32寄存器基本讲解/2.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第4章-IA-32寄存器基本讲解/3.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第4章-IA-32寄存器基本讲解/4.png">
+<meta property="og:updated_time" content="2017-03-28T09:17:40.899Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第4章 IA-32寄存器基本讲解">
+<meta name="twitter:description" content="1. 什么是CPU寄存器寄存器(Register)是CPU内部用来存放数据的一些小型存储区域,因为其集成在CPU内部,拥有非常高的读写速度.
+2. IA-32 寄存器IA-32 是英特尔推出的32位元架构,属于复制的指令集构架.
+2.1 基本程序运行寄存器基本程序运行寄存器的组织结构,它由4类寄存器组成.
+
+通用寄存器 ( General Purpose Resgisters, 32位,8个 )">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/第4章-IA-32寄存器基本讲解/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/第4章-IA-32寄存器基本讲解/"/>
+
+
+
+
+
+  <title> 第4章 IA-32寄存器基本讲解 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第4章-IA-32寄存器基本讲解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第4章 IA-32寄存器基本讲解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:14:49+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
+                    <span itemprop="name">ReverseEngineerin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/第4章-IA-32寄存器基本讲解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第4章-IA-32寄存器基本讲解/" class="leancloud_visitors" data-flag-title="第4章 IA-32寄存器基本讲解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-什么是CPU寄存器"><a href="#1-什么是CPU寄存器" class="headerlink" title="1. 什么是CPU寄存器"></a>1. 什么是CPU寄存器</h1><p>寄存器(Register)是CPU内部用来存放数据的一些小型存储区域,因为其集成在CPU内部,拥有非常高的读写速度.</p>
+<h1 id="2-IA-32-寄存器"><a href="#2-IA-32-寄存器" class="headerlink" title="2. IA-32 寄存器"></a>2. IA-32 寄存器</h1><p>IA-32 是英特尔推出的32位元架构,属于复制的指令集构架.</p>
+<h2 id="2-1-基本程序运行寄存器"><a href="#2-1-基本程序运行寄存器" class="headerlink" title="2.1 基本程序运行寄存器"></a>2.1 基本程序运行寄存器</h2><p>基本程序运行寄存器的组织结构,它由4类寄存器组成.</p>
+<ul>
+<li>通用寄存器 ( General Purpose Resgisters, 32位,8个 )</li>
+<li>段寄存器 ( Segment Registers, 16位,6个 )</li>
+<li>程序状态与控制寄存器 ( Program Status and Control Registers , 32位, 1个 )</li>
+<li>指令指针寄存器 ( Instruction Pointer , 32位, 1个 )</li>
+</ul>
+<p><img src="/2017/03/28/第4章-IA-32寄存器基本讲解/1.png" alt="基本程序运行寄存器" title="基本程序运行寄存器"></p>
+<h3 id="2-1-1-通用寄存器"><a href="#2-1-1-通用寄存器" class="headerlink" title="2.1.1 通用寄存器"></a>2.1.1 通用寄存器</h3><p>通用寄存器是一种通用型的寄存器,用于传送和暂存数据,也可以参与算术逻辑运算,并保持运算结果.IA-32中每个通用寄存器大小都是32位(4个字节),主要用来保存常量与地址等.<br><img src="/2017/03/28/第4章-IA-32寄存器基本讲解/2.png" alt="通用寄存器" title="通用寄存器"></p>
+<p>各寄存器的名称如下:</p>
+<ul>
+<li>EAX : ( 针对操作数和结构数据的 ) 累加器</li>
+<li>EBX : ( DS段中的数据指针 ) 基址寄存器</li>
+<li>ECX : ( 字符串和循环操作的 ) 计算器</li>
+<li>EDX : ( I/O指针 ) 数据寄存器</li>
+</ul>
+<p>以上4个寄存器主要用在算术运算( ADD,SUB,XOR,OR)等,常常用来保存变量与变量的值.某些汇编 指令( MUL,DIV,LODS等) 直接用来操作特定寄存器,执行这些命令后,仅改变特定寄存器中的值.</p>
+<p>此外,ECX和EAX也可用特殊用途,循环命令( LOOP )中,ECX用来循环计数 ( loop count ),每执行一次循环,ECX都会减1.EAX一般用在函数返回值中,所有Win 32 API函数都会先把返回值保存在EAX再返回.</p>
+<ul>
+<li>EBP : ( SS段中栈内数据指针 )扩展基址指针寄存器</li>
+<li>ESI : (字符串操作源指针) 源变址寄存器</li>
+<li>EDI : (字符串操作目标指针) 目的变址寄存器</li>
+<li>ESP : (SS段中栈指针) 栈指针寄存器</li>
+</ul>
+<p>以上4个寄存器主要用来作保存内存地址的指针.</p>
+<p>ESP指示栈区域的栈顶地址,某些指令(PUSH,POP,CALL,RET)可以直接用来操作ESP.</p>
+<p>EBP表示栈区域的基地址,函数被调用时保存ESP的值,函数返回时再把值返回ESP,保证栈不会崩溃.ESI和EDI与特定指令(LODS,STOS,REP,MOVS等)一起使用,主要用来内存复制.</p>
+<h3 id="2-1-2-段寄存器"><a href="#2-1-2-段寄存器" class="headerlink" title="2.1.2 段寄存器"></a>2.1.2 段寄存器</h3><p>段(Segment),IA-32的保护模式中,段是一种内存保护技术,它把内存划分为多个区段,并为每个区段赋予起始地址,范围,访问权限等,以保护内存.此外,它还同分页技术(Paging)一起用于将虚拟内存变更为实际物理内存.段内存记录在SDT(Segment Descriptor Table,段描述符表)中,而段寄存器就持有这些SDT的索引(index).<br><img src="/2017/03/28/第4章-IA-32寄存器基本讲解/3.png" alt="分段内存模型" title="分段内存模型"></p>
+<p>它描述了保护模式下的内存分段模型.段寄存器总共由6中寄存器组成,分别为CS,SS,DS,ES,FS,GS,每个寄存器的大小为16位,即2个字节.另外,每个段寄存器指向的段描述符(Segment Descriptor)与虚拟内存结合,形成一个线性地址(Linear Address),借助分页技术,线性地址最终被转换为实际的物理地址(Physical Address).</p>
+<p>各段寄存器的名称如下:</p>
+<ul>
+<li>CS : Code Segment, 代码段寄存器</li>
+<li>SS : Stack Segment, 栈段寄存器</li>
+<li>DS : Data Segment, 数据段寄存器</li>
+<li>ES : Extra ( Data ) Segment,附加(数据)段寄存器</li>
+<li>FS : Data Segment, 数据段寄存器</li>
+<li>GS : Data Segment, 数据段寄存器</li>
+</ul>
+<p>CS寄存器用于存放应用程序代码所在段的段基址, SS寄存器用于存放栈段的段基址,DS寄存器用于存放数据段的段基址.ES,FS,GS寄存器用来存放程序使用的附加数据段的段基址.</p>
+<h3 id="2-1-3-EFLAGS-Flag-Register-标志寄存器"><a href="#2-1-3-EFLAGS-Flag-Register-标志寄存器" class="headerlink" title="2.1.3 EFLAGS:Flag Register,标志寄存器"></a>2.1.3 EFLAGS:Flag Register,标志寄存器</h3><p>3个与程序调试相关的标志,分别为ZF (Zero Flag,零标志),OF(Overflow Flag,溢出标志),CF(Carry Flag,进位标志).<br><img src="/2017/03/28/第4章-IA-32寄存器基本讲解/4.png" alt="EFLAGS寄存器" title="EFLAGS寄存器"></p>
+<ul>
+<li><strong>ZF</strong><br>若运算结果为0,则其值为1(true),否则其值为0(False).</li>
+<li><strong>OF</strong><br>有符号整数(signed integer)溢出时,OF值被置为1.此外,MSB( Most Sginificant Bit,最高有效位)改变时,其值也被设为1.</li>
+<li><strong> CF </strong><br>无符号整数(unsigned integer )溢出时,其值也被置为1.</li>
+</ul>
+<h2 id="2-1-4-指令指针寄存器"><a href="#2-1-4-指令指针寄存器" class="headerlink" title="2.1.4 指令指针寄存器"></a>2.1.4 指令指针寄存器</h2><ul>
+<li><strong> EIP : Instruction Pointer,指令指针寄存器 </strong><br>指令指针寄存器保存着CPU要执行的指令地址,其大小为32位(4个字节).当程序运行时,CPU会读取EIP中的一条指令的地址,传送指令到指令缓冲区,EIP寄存器的值会自动增加,增加的大小即是读取指令的字节大小.</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ReverseEngineerin/" rel="tag"># ReverseEngineerin</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/第3章-小端序标记法/" rel="next" title="第3章 小端序标记法">
+                <i class="fa fa-chevron-left"></i> 第3章 小端序标记法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/第5章-栈/" rel="prev" title="第5章 栈">
+                第5章 栈 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是CPU寄存器"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是CPU寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-IA-32-寄存器"><span class="nav-number">2.</span> <span class="nav-text">2. IA-32 寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-基本程序运行寄存器"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 基本程序运行寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-通用寄存器"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 通用寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-段寄存器"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 段寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-EFLAGS-Flag-Register-标志寄存器"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 EFLAGS:Flag Register,标志寄存器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-4-指令指针寄存器"><span class="nav-number">2.2.</span> <span class="nav-text">2.1.4 指令指针寄存器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

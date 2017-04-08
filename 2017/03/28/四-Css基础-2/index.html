@@ -1,0 +1,1317 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Html,Css," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.  复习回顾概念  :  层叠样式表或者叫级联样式表
+内嵌式  :  基本实现css代码与html代码分离.当前样式只能控制当前页面
+123&amp;lt;head&amp;gt;&amp;lt;style type=”text/css”&amp;gt;&amp;lt;/style&amp;gt;&amp;lt;/head&amp;gt;
+语法  :  选择器{属性:值; }
+
+
+
+属性
+赋值
+描述
+
+
+
+
+color
+color:red;
+文字颜色">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四.Css基础(2)">
+<meta property="og:url" content="http://javami.com/2017/03/28/四-Css基础-2/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="1.  复习回顾概念  :  层叠样式表或者叫级联样式表
+内嵌式  :  基本实现css代码与html代码分离.当前样式只能控制当前页面
+123&amp;lt;head&amp;gt;&amp;lt;style type=”text/css”&amp;gt;&amp;lt;/style&amp;gt;&amp;lt;/head&amp;gt;
+语法  :  选择器{属性:值; }
+
+
+
+属性
+赋值
+描述
+
+
+
+
+color
+color:red;
+文字颜色">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/2.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/3.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/4.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/5.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/6.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/7.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/8.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/9.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/10.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/四-Css基础-2/11.png">
+<meta property="og:updated_time" content="2017-03-28T10:21:37.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="四.Css基础(2)">
+<meta name="twitter:description" content="1.  复习回顾概念  :  层叠样式表或者叫级联样式表
+内嵌式  :  基本实现css代码与html代码分离.当前样式只能控制当前页面
+123&amp;lt;head&amp;gt;&amp;lt;style type=”text/css”&amp;gt;&amp;lt;/style&amp;gt;&amp;lt;/head&amp;gt;
+语法  :  选择器{属性:值; }
+
+
+
+属性
+赋值
+描述
+
+
+
+
+color
+color:red;
+文字颜色">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/四-Css基础-2/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/四-Css基础-2/"/>
+
+
+
+
+
+  <title> 四.Css基础(2) | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/四-Css基础-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                四.Css基础(2)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:18:18+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
+                    <span itemprop="name">WebDesign</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/四-Css基础-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/四-Css基础-2/" class="leancloud_visitors" data-flag-title="四.Css基础(2)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-复习回顾"><a href="#1-复习回顾" class="headerlink" title="1.  复习回顾"></a>1.  复习回顾</h1><p>概念  :  层叠样式表或者叫级联样式表</p>
+<p>内嵌式  :  基本实现css代码与html代码分离.当前样式只能控制当前页面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">”text/css”</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>语法  :  选择器{属性:值; }</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>赋值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>color:red;</td>
+<td>文字颜色</td>
+</tr>
+<tr>
+<td>font-size</td>
+<td>font-size:20px;</td>
+<td>文字大小</td>
+</tr>
+<tr>
+<td>font-family</td>
+<td>ont-family:宋体;</td>
+<td>文字字体</td>
+</tr>
+<tr>
+<td>font-weight</td>
+<td>font-weight:bold(700)  /  normal</td>
+<td>文字加粗</td>
+</tr>
+<tr>
+<td>font-style</td>
+<td>font-style:italic  /  normal</td>
+<td>文字斜体(italic)</td>
+</tr>
+<tr>
+<td>background-color</td>
+<td>background-color:red;</td>
+<td>背景颜色</td>
+</tr>
+<tr>
+<td>width</td>
+<td>height  /  width: 12px;</td>
+<td>宽度和高度</td>
+</tr>
+<tr>
+<td>text-align</td>
+<td>text-align:center;</td>
+<td>文字居中</td>
+</tr>
+<tr>
+<td>text-indent</td>
+<td>text-indent:2em;</td>
+<td>首行缩进</td>
+</tr>
+<tr>
+<td>margin</td>
+<td>margin: 0 auto;</td>
+<td>盒子居中显示</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-1-基础选择器"><a href="#1-1-基础选择器" class="headerlink" title="1.1  基础选择器"></a>1.1  基础选择器</h2><ul>
+<li><p>标签选择器<br><code>P{属性:值;}</code></p>
+</li>
+<li><p>类选择器<br>定义  :<br><code>.fontcolor{color: red;}</code><br>调用  :<br><code>&lt;p class=”fontcolor”&gt;文字&lt;/p&gt;</code><br>特点  :<br>谁调用谁改变<br>一个标签可以同时调用多个类样式<br>多个标签可以同时调用一个类样式<br>命名  :<br>不推荐使用汉字定义类名<br>不推荐使用标签名或者属性名定义类名<br>不能使用纯数字或者特殊字符  (“_”除外)定义类名</p>
+</li>
+<li><p>id 选择器<br>定义  :<br><code>#自定义名称{属性:值;}</code><br>注意  :<br>页面中的表 id 名称不能重复<br>同一个标签不能调用多个 id 样式</p>
+</li>
+<li><p>通配符选择器<br><code>*{属性:值;}</code></p>
+</li>
+</ul>
+<h2 id="1-2-复合选择器"><a href="#1-2-复合选择器" class="headerlink" title="1.2  复合选择器"></a>1.2  复合选择器</h2><ul>
+<li>标签指定式选择器<br><code>P.类选择器{属性:值;}</code><br>既…又…</li>
+<li>后代选择器<br><code>选择器 选择器{属性:值;}</code><br>标签之间的关系属于嵌套关系</li>
+<li>并集选择器<br><code>选择器,选择器,选择器{属性:值;}</code></li>
+</ul>
+<h1 id="2-Css书写位置"><a href="#2-Css书写位置" class="headerlink" title="2.  Css书写位置"></a>2.  Css书写位置</h1><ul>
+<li>内嵌式  :  基本实现css代码与html代码分离.当前样式只能控制当前页面<br><img src="/2017/03/28/四-Css基础-2/1.png" alt="内嵌式" title="内嵌式"></li>
+</ul>
+<ul>
+<li>外链式  :  完全实现css代码与html代码分离,当前样式可以作用到整个网站<br><img src="/2017/03/28/四-Css基础-2/2.png" alt="外链式" title="外链式"></li>
+</ul>
+<ul>
+<li>行内式  :  完全没有实现css代码与html代码相分离,写法简答.维护成本高<br><img src="/2017/03/28/四-Css基础-2/3.png" alt="行内式" title="行内式"></li>
+</ul>
+<h1 id="3-Html标签的分类"><a href="#3-Html标签的分类" class="headerlink" title="3.  Html标签的分类"></a>3.  Html标签的分类</h1><h2 id="3-1-块级元素"><a href="#3-1-块级元素" class="headerlink" title="3.1  块级元素"></a>3.1  块级元素</h2><p><img src="/2017/03/28/四-Css基础-2/4.png" alt="块状元素" title="块状元素"></p>
+<ul>
+<li>特点  :<br>元素自己独占一行显示（与宽度无关）<br>可以设置宽度和高度<br>当嵌套一个块级元素,子元素如果不设置宽度,那么该子元<br>素的宽度为父元素的宽度.</li>
+</ul>
+<h2 id="3-2-行内元素"><a href="#3-2-行内元素" class="headerlink" title="3.2  行内元素"></a>3.2  行内元素</h2><p><img src="/2017/03/28/四-Css基础-2/5.png" alt="行内元素" title="行内元素"></p>
+<ul>
+<li>特点  :<br>元素在一行上显示<br>不能直接设置宽度和高度</li>
+</ul>
+<h2 id="3-3-行内块元素"><a href="#3-3-行内块元素" class="headerlink" title="3.3  行内块元素"></a>3.3  行内块元素</h2><p><img src="/2017/03/28/四-Css基础-2/6.png" alt="行内块元素" title="行内块元素"></p>
+<ul>
+<li>特点  :<br>元素在一行上显示<br>可以设置宽度和高度</li>
+</ul>
+<h2 id="3-4-元素之间的转换"><a href="#3-4-元素之间的转换" class="headerlink" title="3.4  元素之间的转换"></a>3.4  元素之间的转换</h2><p>display  :  inline 将元素转化为行内元素<br>display  :  inline-block 将元素转化行内块元素<br>display  :  block 将元素转化为块元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">div&#123;</div><div class="line">      display  :  inline;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="4-Css特性"><a href="#4-Css特性" class="headerlink" title="4.  Css特性"></a>4.  Css特性</h1><h2 id="4-1-层叠性"><a href="#4-1-层叠性" class="headerlink" title="4.1  层叠性"></a>4.1  层叠性</h2><p>样式的覆盖. 样式的层叠性与样式的调用顺序没有关系,与样式的定义顺序有关.<br>层叠性发生的前提  :  样式冲突</p>
+<h2 id="4-2-继承性"><a href="#4-2-继承性" class="headerlink" title="4.2  继承性"></a>4.2  继承性</h2><p>继承性发生的前提是标签之间属于一种嵌套关系</p>
+<ul>
+<li>文字颜色可以实现继承</li>
+<li>文字大小可以实现继承</li>
+<li>字体可以实现继承</li>
+<li>行高可以实现继承</li>
+<li>与文字有关的属性都可以,实现继承</li>
+<li>特殊性  :<br><code>&lt;a href=”#”&gt;&lt;/a&gt;</code> 不能继承父元素中的文字颜色(层叠掉了)<br><code>&lt;h1&gt;&lt;/h1&gt;</code>标题标签不能继承父元素中的文字大小</li>
+</ul>
+<h2 id="4-3-优先级"><a href="#4-3-优先级" class="headerlink" title="4.3  优先级"></a>4.3  优先级</h2><p>默认样式&lt;标签选择器&lt;类选择器&lt;id 选择器&lt;行内样式&lt;!important<br><img src="/2017/03/28/四-Css基础-2/7.png" alt="优先级" title="优先级"></p>
+<h1 id="5-伪类介绍"><a href="#5-伪类介绍" class="headerlink" title="5.  伪类介绍"></a>5.  伪类介绍</h1><ul>
+<li>:link  :  伪类,适用于未被用户访问过的链接<br><img src="/2017/03/28/四-Css基础-2/8.png" alt="a:link" title="a:link"></li>
+</ul>
+<ul>
+<li>:visited  :  伪类,适用于已被用户访问过的链接</li>
+</ul>
+<p><img src="/2017/03/28/四-Css基础-2/9.png" alt="a:visited" title="a:visited"></p>
+<ul>
+<li>:hover  :  伪类,光标指向一个元素,但此元素未被激活时的样式<br><img src="/2017/03/28/四-Css基础-2/10.png" alt="a:hover" title="a:hover"></li>
+</ul>
+<ul>
+<li>:active  :  伪类,适用于一个元素被激活时的样式<br><img src="/2017/03/28/四-Css基础-2/11.png" alt="a:active" title="a:active"></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>伪类常用属性</th>
+<th>属性介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  text-decoration:none  /  underline</td>
+<td>设置文字是否有下横线</td>
+</tr>
+</tbody>
+</table>
+<h1 id="6-背景-background"><a href="#6-背景-background" class="headerlink" title="6.  背景(background)"></a>6.  背景(background)</h1><ul>
+<li>background-color  背景颜色</li>
+<li>background-image  背景图片</li>
+</ul>
+<blockquote>
+<p> 注意  :<br>设置背景图片时候一定要设置宽度和高度</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">div&#123;</div><div class="line">	background-image:url("1.png");</div><div class="line">	width: 500px;</div><div class="line">	height:500px;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>background-repeat(设置背景平铺)<br>repeat （默认值）|no-repeat （不平铺）|repeat-x | （横向平铺）repeat-y （纵向平铺）</p>
+</li>
+<li><p>background-position(设置背景位置)<br>设置具体值  :  left| right| top| bottom| cneter</p>
+</li>
+<li><p>background-attachment(设置背景是否固定)<br>Scroll(默认值)滚动| fixed(图片固定)</p>
+</li>
+<li><p>背景属性联写  :<br>background: url(“1.png”) red   no-repeat 30px 40px;</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Html/" rel="tag"># Html</a>
+          
+            <a href="/tags/Css/" rel="tag"># Css</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/三-Css基础-1/" rel="next" title="三.Css基础(1)">
+                <i class="fa fa-chevron-left"></i> 三.Css基础(1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/五-Css基础-3/" rel="prev" title="五.Css基础(3)">
+                五.Css基础(3) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-复习回顾"><span class="nav-number">1.</span> <span class="nav-text">1.  复习回顾</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-基础选择器"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  基础选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-复合选择器"><span class="nav-number">1.2.</span> <span class="nav-text">1.2  复合选择器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Css书写位置"><span class="nav-number">2.</span> <span class="nav-text">2.  Css书写位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Html标签的分类"><span class="nav-number">3.</span> <span class="nav-text">3.  Html标签的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-块级元素"><span class="nav-number">3.1.</span> <span class="nav-text">3.1  块级元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-行内元素"><span class="nav-number">3.2.</span> <span class="nav-text">3.2  行内元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-行内块元素"><span class="nav-number">3.3.</span> <span class="nav-text">3.3  行内块元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-元素之间的转换"><span class="nav-number">3.4.</span> <span class="nav-text">3.4  元素之间的转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Css特性"><span class="nav-number">4.</span> <span class="nav-text">4.  Css特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-层叠性"><span class="nav-number">4.1.</span> <span class="nav-text">4.1  层叠性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-继承性"><span class="nav-number">4.2.</span> <span class="nav-text">4.2  继承性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-优先级"><span class="nav-number">4.3.</span> <span class="nav-text">4.3  优先级</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-伪类介绍"><span class="nav-number">5.</span> <span class="nav-text">5.  伪类介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-背景-background"><span class="nav-number">6.</span> <span class="nav-text">6.  背景(background)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

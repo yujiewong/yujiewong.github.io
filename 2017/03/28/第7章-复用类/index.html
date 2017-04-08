@@ -1,0 +1,1175 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaBasis,JavaSe," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="复用代码是Java众多因人注目的功能之一.但要想成为极具革命性的语言,仅仅能够复制代码并对之加以改变是不够的.它还必须能够做更多的事情.
+1. 组合语法假设你需要某个对象,它要具有多个String对象/几个基本类型数据,以及另一个类的对象.对于非基本类型的对象,必须将其引用置于新的类中,但可以直接定义基本类型数据:
+12345678910111213141516171819202122232425">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第7章 复用类">
+<meta property="og:url" content="http://javami.com/2017/03/28/第7章-复用类/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="复用代码是Java众多因人注目的功能之一.但要想成为极具革命性的语言,仅仅能够复制代码并对之加以改变是不够的.它还必须能够做更多的事情.
+1. 组合语法假设你需要某个对象,它要具有多个String对象/几个基本类型数据,以及另一个类的对象.对于非基本类型的对象,必须将其引用置于新的类中,但可以直接定义基本类型数据:
+12345678910111213141516171819202122232425">
+<meta property="og:updated_time" content="2017-03-28T10:38:08.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第7章 复用类">
+<meta name="twitter:description" content="复用代码是Java众多因人注目的功能之一.但要想成为极具革命性的语言,仅仅能够复制代码并对之加以改变是不够的.它还必须能够做更多的事情.
+1. 组合语法假设你需要某个对象,它要具有多个String对象/几个基本类型数据,以及另一个类的对象.对于非基本类型的对象,必须将其引用置于新的类中,但可以直接定义基本类型数据:
+12345678910111213141516171819202122232425">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/第7章-复用类/"/>
+
+
+
+
+
+  <title> 第7章 复用类 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第7章-复用类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第7章 复用类
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:37:51+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/第7章-复用类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第7章-复用类/" class="leancloud_visitors" data-flag-title="第7章 复用类">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>复用代码是Java众多因人注目的功能之一.但要想成为极具革命性的语言,仅仅能够复制代码并对之加以改变是不够的.它还必须能够做更多的事情.</strong></p>
+<h1 id="1-组合语法"><a href="#1-组合语法" class="headerlink" title="1. 组合语法"></a>1. 组合语法</h1><p>假设你需要某个对象,它要具有多个<code>String对象</code>/几个基本类型数据,以及另一个类的对象.对于非基本类型的对象,必须将其引用置于新的类中,但可以直接定义基本类型数据:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/SprinklerSystem.java</span></div><div class="line"><span class="comment">// Composition for code reuse.</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">WaterSource</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String s;</div><div class="line">  WaterSource() &#123;</div><div class="line">    System.out.println(<span class="string">"WaterSource()"</span>);</div><div class="line">    s = <span class="string">"Constructed"</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> s; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SprinklerSystem</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String valve1, valve2, valve3, valve4;</div><div class="line">  <span class="keyword">private</span> WaterSource source = <span class="keyword">new</span> WaterSource();</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> i;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">float</span> f;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span></div><div class="line">      <span class="string">"valve1 = "</span> + valve1 + <span class="string">" "</span> +</div><div class="line">      <span class="string">"valve2 = "</span> + valve2 + <span class="string">" "</span> +</div><div class="line">      <span class="string">"valve3 = "</span> + valve3 + <span class="string">" "</span> +</div><div class="line">      <span class="string">"valve4 = "</span> + valve4 + <span class="string">"\n"</span> +</div><div class="line">      <span class="string">"i = "</span> + i + <span class="string">" "</span> + <span class="string">"f = "</span> + f + <span class="string">" "</span> +</div><div class="line">      <span class="string">"source = "</span> + source;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    SprinklerSystem sprinklers = <span class="keyword">new</span> SprinklerSystem();</div><div class="line">    System.out.println(sprinklers);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">WaterSource()</div><div class="line">valve1 = null valve2 = null valve3 = null valve4 = null</div><div class="line">i = 0 f = 0.0 source = Constructed</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p><code>toString()</code>:每一个非基本类型的对象都有一个<code>toString()</code>方法,而且当编译器需要一个String而你却只有一个对象时,该方法便会被调用.所以在<code>SprinklerSystem.toString()</code>的表达式中:<br><code>&quot;source  =  &quot;  +  source;</code></p>
+<p>编译器会得知你将要一个String对象同WaterSource相加.由于只能将一个String对象和另一个String对象相加,因此编译器会告诉你:我将调用<code>toString()</code>,把source转换为一个String!所以,每当想要所创建对象的类具备这样的行为时,仅需要编写一个<code>toString()</code>方法即可.</p>
+<p> 编译器并不是简单地为每一个引用都创建默认对象.如果想初始化这些引用,可以在代码中的下列位置进行:</p>
+<ul>
+<li>在定义对象的地方.这意味着它们总是能够在构造器被调用之前被初始化.</li>
+<li>在类的构造器中.</li>
+<li>就在正要使用这些对象之前,这种方式称为惰性初始化.在生成对象不值得及不必每次都生成对象的情况下.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/Bath.java</span></div><div class="line"><span class="comment">// Constructor initialization with composition.</span></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Soap</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String s;</div><div class="line">  Soap() &#123;</div><div class="line">    print(<span class="string">"Soap()"</span>);</div><div class="line">    s = <span class="string">"Constructed"</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> s; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bath</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String <span class="comment">// Initializing at point of definition:</span></div><div class="line">    s1 = <span class="string">"Happy"</span>,</div><div class="line">    s2 = <span class="string">"Happy"</span>,</div><div class="line">    s3, s4;</div><div class="line">  <span class="keyword">private</span> Soap castille;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> i;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">float</span> toy;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Bath</span><span class="params">()</span> </span>&#123;</div><div class="line">    print(<span class="string">"Inside Bath()"</span>);</div><div class="line">    s3 = <span class="string">"Joy"</span>;</div><div class="line">    toy = <span class="number">3.14f</span>;</div><div class="line">    castille = <span class="keyword">new</span> Soap();</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// Instance initialization:</span></div><div class="line">  &#123; i = <span class="number">47</span>; &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(s4 == <span class="keyword">null</span>) <span class="comment">// Delayed initialization:</span></div><div class="line">      s4 = <span class="string">"Joy"</span>;</div><div class="line">    <span class="keyword">return</span></div><div class="line">      <span class="string">"s1 = "</span> + s1 + <span class="string">"\n"</span> +</div><div class="line">      <span class="string">"s2 = "</span> + s2 + <span class="string">"\n"</span> +</div><div class="line">      <span class="string">"s3 = "</span> + s3 + <span class="string">"\n"</span> +</div><div class="line">      <span class="string">"s4 = "</span> + s4 + <span class="string">"\n"</span> +</div><div class="line">      <span class="string">"i = "</span> + i + <span class="string">"\n"</span> +</div><div class="line">      <span class="string">"toy = "</span> + toy + <span class="string">"\n"</span> +</div><div class="line">      <span class="string">"castille = "</span> + castille;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Bath b = <span class="keyword">new</span> Bath();</div><div class="line">    print(b);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Inside Bath()</div><div class="line">Soap()</div><div class="line">s1 = Happy</div><div class="line">s2 = Happy</div><div class="line">s3 = Joy</div><div class="line">s4 = Joy</div><div class="line">i = 47</div><div class="line">toy = 3.14</div><div class="line">castille = Constructed</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<h1 id="2-继承语法"><a href="#2-继承语法" class="headerlink" title="2. 继承语法"></a>2. 继承语法</h1><p>当创建一个类时,总是在继承,因此,除非已明确指出要从其它类中继承,否则就是在隐式地从Java的标准根类<code>Object</code>进行继承.</p>
+<p>在继承的过程中,需要声明”新类与旧类相似”.需要用<code>extends</code>实现.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/Detergent.java</span></div><div class="line"><span class="comment">// Inheritance syntax &amp; properties.</span></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cleanser</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String s = <span class="string">"Cleanser"</span>;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">append</span><span class="params">(String a)</span> </span>&#123; s += a; &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dilute</span><span class="params">()</span> </span>&#123; append(<span class="string">" dilute()"</span>); &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">apply</span><span class="params">()</span> </span>&#123; append(<span class="string">" apply()"</span>); &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scrub</span><span class="params">()</span> </span>&#123; append(<span class="string">" scrub()"</span>); &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> s; &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Cleanser x = <span class="keyword">new</span> Cleanser();</div><div class="line">    x.dilute(); x.apply(); x.scrub();</div><div class="line">    print(x);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Detergent</span> <span class="keyword">extends</span> <span class="title">Cleanser</span> </span>&#123;</div><div class="line">  <span class="comment">// Change a method:</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scrub</span><span class="params">()</span> </span>&#123;</div><div class="line">    append(<span class="string">" Detergent.scrub()"</span>);</div><div class="line">    <span class="keyword">super</span>.scrub(); <span class="comment">// Call base-class version</span></div><div class="line">  &#125;</div><div class="line">  <span class="comment">// Add methods to the interface:</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">foam</span><span class="params">()</span> </span>&#123; append(<span class="string">" foam()"</span>); &#125;</div><div class="line">  <span class="comment">// Test the new class:</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Detergent x = <span class="keyword">new</span> Detergent();</div><div class="line">    x.dilute();</div><div class="line">    x.apply();</div><div class="line">    x.scrub();</div><div class="line">    x.foam();</div><div class="line">    print(x);</div><div class="line">    print(<span class="string">"Testing base class:"</span>);</div><div class="line">    Cleanser.main(args);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Cleanser dilute() apply() Detergent.scrub() scrub() foam()</div><div class="line">Testing base class:</div><div class="line">Cleanser dilute() apply() scrub()</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>Java中用<code>super</code>关键字表示超类的意思,当前类就是从超类继承来的.为此,表达式<code>super.scrub()</code>将调用基类版本的<code>scrub()</code>方法.</p>
+<h2 id="2-1-初始化基类"><a href="#2-1-初始化基类" class="headerlink" title="2.1 初始化基类"></a>2.1 初始化基类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/Cartoon.java</span></div><div class="line"><span class="comment">// Constructor calls during inheritance.</span></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Art</span> </span>&#123;</div><div class="line">  Art() &#123; print(<span class="string">"Art constructor"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Drawing</span> <span class="keyword">extends</span> <span class="title">Art</span> </span>&#123;</div><div class="line">  Drawing() &#123; print(<span class="string">"Drawing constructor"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cartoon</span> <span class="keyword">extends</span> <span class="title">Drawing</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Cartoon</span><span class="params">()</span> </span>&#123; print(<span class="string">"Cartoon constructor"</span>); &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Cartoon x = <span class="keyword">new</span> Cartoon();</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Art constructor</div><div class="line">Drawing constructor</div><div class="line">Cartoon constructor</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>在构建过程是从基类”向外”扩散的,所以基类在导出类构造器可以访问它之前,就已经完成了初始化.即使你不为<code>Catroon()</code>创建构造器,编译器也会为你合成一个默认构造器,该构造器将调用基类的构造器.</p>
+<h2 id="2-2-带参数的构造器"><a href="#2-2-带参数的构造器" class="headerlink" title="2.2 带参数的构造器"></a>2.2 带参数的构造器</h2><p>如果没有默认的基类构造器,或者想调用一个带参数的基类构造器,就必须要用关键字<code>super</code>显式地编写调用基类构造器的语句,并且配以适当的参数列表.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/Chess.java</span></div><div class="line"><span class="comment">// Inheritance, constructors and arguments.</span></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Game</span> </span>&#123;</div><div class="line">  Game(<span class="keyword">int</span> i) &#123;</div><div class="line">    print(<span class="string">"Game constructor"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BoardGame</span> <span class="keyword">extends</span> <span class="title">Game</span> </span>&#123;</div><div class="line">  BoardGame(<span class="keyword">int</span> i) &#123;</div><div class="line">    <span class="keyword">super</span>(i);</div><div class="line">    print(<span class="string">"BoardGame constructor"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Chess</span> <span class="keyword">extends</span> <span class="title">BoardGame</span> </span>&#123;</div><div class="line">  Chess() &#123;</div><div class="line">    <span class="keyword">super</span>(<span class="number">11</span>);</div><div class="line">    print(<span class="string">"Chess constructor"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Chess x = <span class="keyword">new</span> Chess();</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Game constructor</div><div class="line">BoardGame constructor</div><div class="line">Chess constructor</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>如果不在<code>BoardGame()</code>中调用基类构造器,编译器会无法找到符合<code>Game()</code>形式构造器.而且,<strong>调用基类构造器必须是你在导出类构造器中要做的第一件事.</strong><br><code>Implicit super constructor BoardGame() is undefined. Must explicitly invoke another constructor</code></p>
+<h1 id="3-代理"><a href="#3-代理" class="headerlink" title="3. 代理"></a>3. 代理</h1><p>因为我们将一个成员对象置于所有构造的类中(就像组合),但与此同时我们在新类中暴露了该成员对象的所有方法(就像继承).例如,太空船需要一个控制模块:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/SpaceShipControls.java</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpaceShipControls</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">left</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">right</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">forward</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">back</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">turboBoost</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>构造太空船的一种方式是使用继承:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/SpaceShip.java</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpaceShip</span> <span class="keyword">extends</span> <span class="title">SpaceShipControls</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String name;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">SpaceShip</span><span class="params">(String name)</span> </span>&#123; <span class="keyword">this</span>.name = name; &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> name; &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    SpaceShip protector = <span class="keyword">new</span> SpaceShip(<span class="string">"NSEA Protector"</span>);</div><div class="line">    protector.forward(<span class="number">100</span>);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure></p>
+<p>然而,<code>SpaceShip</code>并非真正的<code>SpaceShipControls</code>类型,即便你可以”告诉”<code>SpaceShip</code>向前运动<code>forward()</code>.更精确地讲,<code>Spaceship</code>包含<code>SpaceShipControls</code>,与此同时,<code>SpaceShipControls</code>的所有方法在<code>SpaceShip</code>中都暴露了出来.代理解决了此难题:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/SpaceShipDelegation.java</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpaceShipDelegation</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String name;</div><div class="line">  <span class="keyword">private</span> SpaceShipControls controls =</div><div class="line">    <span class="keyword">new</span> SpaceShipControls();</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">SpaceShipDelegation</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// Delegated methods:</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">back</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;</div><div class="line">    controls.back(velocity);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;</div><div class="line">    controls.down(velocity);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">forward</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;</div><div class="line">    controls.forward(velocity);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">left</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;</div><div class="line">    controls.left(velocity);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">right</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;</div><div class="line">    controls.right(velocity);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turboBoost</span><span class="params">()</span> </span>&#123;</div><div class="line">    controls.turboBoost();</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> velocity)</span> </span>&#123;</div><div class="line">    controls.up(velocity);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    SpaceShipDelegation protector =</div><div class="line">      <span class="keyword">new</span> SpaceShipDelegation(<span class="string">"NSEA Protector"</span>);</div><div class="line">    protector.forward(<span class="number">100</span>);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>我们使用代理时可以拥有更多的控制力,因为我们可以选择只提供在成员对象中的方法的某个子集.</p>
+<h1 id="4-结合使用组合和继承"><a href="#4-结合使用组合和继承" class="headerlink" title="4. 结合使用组合和继承"></a>4. 结合使用组合和继承</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/PlaceSetting.java</span></div><div class="line"><span class="comment">// Combining composition &amp; inheritance.</span></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Plate</span> </span>&#123;</div><div class="line">  Plate(<span class="keyword">int</span> i) &#123;</div><div class="line">    print(<span class="string">"Plate constructor"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DinnerPlate</span> <span class="keyword">extends</span> <span class="title">Plate</span> </span>&#123;</div><div class="line">  DinnerPlate(<span class="keyword">int</span> i) &#123;</div><div class="line">    <span class="keyword">super</span>(i);</div><div class="line">    print(<span class="string">"DinnerPlate constructor"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Utensil</span> </span>&#123;</div><div class="line">  Utensil(<span class="keyword">int</span> i) &#123;</div><div class="line">    print(<span class="string">"Utensil constructor"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Spoon</span> <span class="keyword">extends</span> <span class="title">Utensil</span> </span>&#123;</div><div class="line">  Spoon(<span class="keyword">int</span> i) &#123;</div><div class="line">    <span class="keyword">super</span>(i);</div><div class="line">    print(<span class="string">"Spoon constructor"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fork</span> <span class="keyword">extends</span> <span class="title">Utensil</span> </span>&#123;</div><div class="line">  Fork(<span class="keyword">int</span> i) &#123;</div><div class="line">    <span class="keyword">super</span>(i);</div><div class="line">    print(<span class="string">"Fork constructor"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Knife</span> <span class="keyword">extends</span> <span class="title">Utensil</span> </span>&#123;</div><div class="line">  Knife(<span class="keyword">int</span> i) &#123;</div><div class="line">    <span class="keyword">super</span>(i);</div><div class="line">    print(<span class="string">"Knife constructor"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// A cultural way of doing something:</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Custom</span> </span>&#123;</div><div class="line">  Custom(<span class="keyword">int</span> i) &#123;</div><div class="line">    print(<span class="string">"Custom constructor"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PlaceSetting</span> <span class="keyword">extends</span> <span class="title">Custom</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Spoon sp;</div><div class="line">  <span class="keyword">private</span> Fork frk;</div><div class="line">  <span class="keyword">private</span> Knife kn;</div><div class="line">  <span class="keyword">private</span> DinnerPlate pl;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">PlaceSetting</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>(i + <span class="number">1</span>);</div><div class="line">    sp = <span class="keyword">new</span> Spoon(i + <span class="number">2</span>);</div><div class="line">    frk = <span class="keyword">new</span> Fork(i + <span class="number">3</span>);</div><div class="line">    kn = <span class="keyword">new</span> Knife(i + <span class="number">4</span>);</div><div class="line">    pl = <span class="keyword">new</span> DinnerPlate(i + <span class="number">5</span>);</div><div class="line">    print(<span class="string">"PlaceSetting constructor"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    PlaceSetting x = <span class="keyword">new</span> PlaceSetting(<span class="number">9</span>);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Custom constructor</div><div class="line">Utensil constructor</div><div class="line">Spoon constructor</div><div class="line">Utensil constructor</div><div class="line">Fork constructor</div><div class="line">Utensil constructor</div><div class="line">Knife constructor</div><div class="line">Plate constructor</div><div class="line">DinnerPlate constructor</div><div class="line">PlaceSetting constructor</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<h2 id="4-1-确保正确清理"><a href="#4-1-确保正确清理" class="headerlink" title="4.1 确保正确清理"></a>4.1 确保正确清理</h2><p>如果你想要某个类清理一些东西,就必须显式地编写一个特殊方法来做这件事,并要确认客户程序员知晓他们必须要调用这一方法.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/CADSystem.java</span></div><div class="line"><span class="comment">// Ensuring proper cleanup.</span></div><div class="line"><span class="keyword">package</span> reusing;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  Shape(<span class="keyword">int</span> i) &#123; print(<span class="string">"Shape constructor"</span>); &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123; print(<span class="string">"Shape dispose"</span>); &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  Circle(<span class="keyword">int</span> i) &#123;</div><div class="line">    <span class="keyword">super</span>(i);</div><div class="line">    print(<span class="string">"Drawing Circle"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;</div><div class="line">    print(<span class="string">"Erasing Circle"</span>);</div><div class="line">    <span class="keyword">super</span>.dispose();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Triangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  Triangle(<span class="keyword">int</span> i) &#123;</div><div class="line">    <span class="keyword">super</span>(i);</div><div class="line">    print(<span class="string">"Drawing Triangle"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;</div><div class="line">    print(<span class="string">"Erasing Triangle"</span>);</div><div class="line">    <span class="keyword">super</span>.dispose();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Line</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> start, end;</div><div class="line">  Line(<span class="keyword">int</span> start, <span class="keyword">int</span> end) &#123;</div><div class="line">    <span class="keyword">super</span>(start);</div><div class="line">    <span class="keyword">this</span>.start = start;</div><div class="line">    <span class="keyword">this</span>.end = end;</div><div class="line">    print(<span class="string">"Drawing Line: "</span> + start + <span class="string">", "</span> + end);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;</div><div class="line">    print(<span class="string">"Erasing Line: "</span> + start + <span class="string">", "</span> + end);</div><div class="line">    <span class="keyword">super</span>.dispose();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CADSystem</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Circle c;</div><div class="line">  <span class="keyword">private</span> Triangle t;</div><div class="line">  <span class="keyword">private</span> Line[] lines = <span class="keyword">new</span> Line[<span class="number">3</span>];</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">CADSystem</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>(i + <span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; lines.length; j++)</div><div class="line">      lines[j] = <span class="keyword">new</span> Line(j, j*j);</div><div class="line">    c = <span class="keyword">new</span> Circle(<span class="number">1</span>);</div><div class="line">    t = <span class="keyword">new</span> Triangle(<span class="number">1</span>);</div><div class="line">    print(<span class="string">"Combined constructor"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;</div><div class="line">    print(<span class="string">"CADSystem.dispose()"</span>);</div><div class="line">    <span class="comment">// The order of cleanup is the reverse</span></div><div class="line">    <span class="comment">// of the order of initialization:</span></div><div class="line">    t.dispose();</div><div class="line">    c.dispose();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = lines.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</div><div class="line">      lines[i].dispose();</div><div class="line">    <span class="keyword">super</span>.dispose();</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    CADSystem x = <span class="keyword">new</span> CADSystem(<span class="number">47</span>);</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      <span class="comment">// Code and exception handling...</span></div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">      x.dispose();</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Shape constructor</div><div class="line">Shape constructor</div><div class="line">Drawing Line: 0, 0</div><div class="line">Shape constructor</div><div class="line">Drawing Line: 1, 1</div><div class="line">Shape constructor</div><div class="line">Drawing Line: 2, 4</div><div class="line">Shape constructor</div><div class="line">Drawing Circle</div><div class="line">Shape constructor</div><div class="line">Drawing Triangle</div><div class="line">Combined constructor</div><div class="line">CADSystem.dispose()</div><div class="line">Erasing Triangle</div><div class="line">Shape dispose</div><div class="line">Erasing Circle</div><div class="line">Shape dispose</div><div class="line">Erasing Line: 2, 4</div><div class="line">Shape dispose</div><div class="line">Erasing Line: 1, 1</div><div class="line">Shape dispose</div><div class="line">Erasing Line: 0, 0</div><div class="line">Shape dispose</div><div class="line">Shape dispose</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>关键字<code>try</code>表示,下面的块是保护区,其中一项特殊处理就是无论try块是怎样退出的,保护区后面的<code>finally</code>子句中的代码总是要被执行!</p>
+<h2 id="4-2-名称屏蔽"><a href="#4-2-名称屏蔽" class="headerlink" title="4.2 名称屏蔽"></a>4.2 名称屏蔽</h2> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/Hide.java</span></div><div class="line"><span class="comment">// Overloading a base-class method name in a derived</span></div><div class="line"><span class="comment">// class does not hide the base-class versions.</span></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Homer</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">char</span> <span class="title">doh</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</div><div class="line">    print(<span class="string">"doh(char)"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="string">'d'</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">float</span> <span class="title">doh</span><span class="params">(<span class="keyword">float</span> f)</span> </span>&#123;</div><div class="line">    print(<span class="string">"doh(float)"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">1.0f</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Milhouse</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bart</span> <span class="keyword">extends</span> <span class="title">Homer</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">doh</span><span class="params">(Milhouse m)</span> </span>&#123;</div><div class="line">    print(<span class="string">"doh(Milhouse)"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hide</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Bart b = <span class="keyword">new</span> Bart();</div><div class="line">    b.doh(<span class="number">1</span>);</div><div class="line">    b.doh(<span class="string">'x'</span>);</div><div class="line">    b.doh(<span class="number">1.0f</span>);</div><div class="line">    b.doh(<span class="keyword">new</span> Milhouse());</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">doh(float)</div><div class="line">doh(char)</div><div class="line">doh(float)</div><div class="line">doh(Milhouse)</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>Java  SE5新增加了<code>@Override</code>注解,当想要覆盖某个方法适,可以选择添加这个注解,在你不留心重载并非覆写了该方法时,编辑器会生成一条错误信息.</p>
+<h1 id="5-在组合和继承之间选择"><a href="#5-在组合和继承之间选择" class="headerlink" title="5. 在组合和继承之间选择"></a>5. 在组合和继承之间选择</h1><p>组合技术通常用于想在新类中使用现有类的功能而非它的接口这种形式.<br>在继承的时候,使用某个现有类,并开发一个它的特殊版本</p>
+<h1 id="6-protected-关键字"><a href="#6-protected-关键字" class="headerlink" title="6. protected 关键字"></a>6. protected 关键字</h1><p>在实际项目中,经常会想要将某些事物尽可能对这个世界隐藏起来,但仍然允许导出类的成员访问它们.</p>
+<p>关键字<code>protected</code>指明白”就类用户而言,这是private的,但对于任何继承于此类的导出类或其他任何位于同一个包内的类来说,它却是可以访问的.”(protected提供了包内访问权限)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/Orc.java</span></div><div class="line"><span class="comment">// The protected keyword.</span></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Villain</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> String name;</div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String nm)</span> </span>&#123; name = nm; &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Villain</span><span class="params">(String name)</span> </span>&#123; <span class="keyword">this</span>.name = name; &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"I'm a Villain and my name is "</span> + name;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Orc</span> <span class="keyword">extends</span> <span class="title">Villain</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> orcNumber;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Orc</span><span class="params">(String name, <span class="keyword">int</span> orcNumber)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>(name);</div><div class="line">    <span class="keyword">this</span>.orcNumber = orcNumber;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(String name, <span class="keyword">int</span> orcNumber)</span> </span>&#123;</div><div class="line">    set(name); <span class="comment">// Available because it's protected</span></div><div class="line">    <span class="keyword">this</span>.orcNumber = orcNumber;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"Orc "</span> + orcNumber + <span class="string">": "</span> + <span class="keyword">super</span>.toString();</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Orc orc = <span class="keyword">new</span> Orc(<span class="string">"Limburger"</span>, <span class="number">12</span>);</div><div class="line">    print(orc);</div><div class="line">    orc.change(<span class="string">"Bob"</span>, <span class="number">19</span>);</div><div class="line">    print(orc);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Orc 12: I'm a Villain and my name is Limburger</div><div class="line">Orc 19: I'm a Villain and my name is Bob</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<h1 id="7-向上转型"><a href="#7-向上转型" class="headerlink" title="7. 向上转型"></a>7. 向上转型</h1><p>能够向基类发送的所有信息同样也可以向导出类发送.如果Instrument类具有一个<code>play()</code>方法,那么<code>wind</code>乐器也同样具备.我们可以准确地说<code>wind</code>对象也是一种类型的<code>instrument</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/Wind.java</span></div><div class="line"><span class="comment">// Inheritance &amp; upcasting.</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Instrument</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tune</span><span class="params">(Instrument i)</span> </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    i.play();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Wind objects are instruments</span></div><div class="line"><span class="comment">// because they have the same interface:</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Wind</span> <span class="keyword">extends</span> <span class="title">Instrument</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Wind flute = <span class="keyword">new</span> Wind();</div><div class="line">    Instrument.tune(flute); <span class="comment">// Upcasting</span></div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>这种将<code>Wind</code>引用转换为<code>Instrument</code>引用的动作,我们称之为<code>向上转型</code>.</p>
+<h2 id="7-1-为什么称之为向上转型"><a href="#7-1-为什么称之为向上转型" class="headerlink" title="7.1 为什么称之为向上转型"></a>7.1 为什么称之为向上转型</h2><p>由导出类转换为基类,在继承图上是向上移动的,因此一般称为<code>向上转型</code>.由于向上转型是从一个较专业类型向通用类型转换,所以总是很安全.<strong>在向上转型的过程中,类接口中唯一可能发生的丢失方法,而不是获取它们.</strong></p>
+<h2 id="7-2-再论组合与继承"><a href="#7-2-再论组合与继承" class="headerlink" title="7.2 再论组合与继承"></a>7.2 再论组合与继承</h2><p>自己是否需要从新类向基类进行向上转型.如果必须向上转型,则继承是必要的;如果不需要,则应当好好考虑自己是否需要用到继承!</p>
+<h1 id="8-final-关键字"><a href="#8-final-关键字" class="headerlink" title="8. final 关键字"></a>8. final 关键字</h1><p>这是无法改变的.</p>
+<h2 id="8-1-final-数据"><a href="#8-1-final-数据" class="headerlink" title="8.1 final 数据"></a>8.1 final 数据</h2><p>在Java中,这类常量必须是基本数据类型,并且以关键字final表示.在对这个常量进行定义的时候,必须对其进行赋值.</p>
+<p>一个既是<code>static</code>又是<code>final</code>的域只占据一段不能改变的存储空间.</p>
+<p><strong>既是<code>static</code>又是<code>final</code>的域将用大写表示,并使用下划线分隔各个单词</strong></p>
+<p>定义为<code>static</code>则强调只有一份,定义为<code>final</code>则说明它是常量.并且<code>static</code>在装载的时候已经被初始化,并不是每次创建新对象时才初始化.</p>
+<ul>
+<li>空白final</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/BlankFinal.java</span></div><div class="line"><span class="comment">// "Blank" final fields.</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Poppet</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> i;</div><div class="line">  Poppet(<span class="keyword">int</span> ii) &#123; i = ii; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlankFinal</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> i = <span class="number">0</span>; <span class="comment">// Initialized final</span></div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> j; <span class="comment">// Blank final</span></div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> Poppet p; <span class="comment">// Blank final reference</span></div><div class="line">  <span class="comment">// Blank finals MUST be initialized in the constructor:</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">BlankFinal</span><span class="params">()</span> </span>&#123;</div><div class="line">    j = <span class="number">1</span>; <span class="comment">// Initialize blank final</span></div><div class="line">    p = <span class="keyword">new</span> Poppet(<span class="number">1</span>); <span class="comment">// Initialize blank final reference</span></div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">BlankFinal</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    j = x; <span class="comment">// Initialize blank final</span></div><div class="line">    p = <span class="keyword">new</span> Poppet(x); <span class="comment">// Initialize blank final reference</span></div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    <span class="keyword">new</span> BlankFinal();</div><div class="line">    <span class="keyword">new</span> BlankFinal(<span class="number">47</span>);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>必须在域的定义处或者每个构造器中用表达式对<code>final</code>进行赋值,这正是<code>final</code>域在使用前总是被初始化的原因.</p>
+<ul>
+<li>final参数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/FinalArguments.java</span></div><div class="line"><span class="comment">// Using "final" with method arguments.</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Gizmo</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">spin</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalArguments</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">with</span><span class="params">(<span class="keyword">final</span> Gizmo g)</span> </span>&#123;</div><div class="line">    <span class="comment">//! g = new Gizmo(); // Illegal -- g is final</span></div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">without</span><span class="params">(Gizmo g)</span> </span>&#123;</div><div class="line">    g = <span class="keyword">new</span> Gizmo(); <span class="comment">// OK -- g not final</span></div><div class="line">    g.spin();</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// void f(final int i) &#123; i++; &#125; // Can't change</span></div><div class="line">  <span class="comment">// You can only read from a final primitive:</span></div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">g</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> i)</span> </span>&#123; <span class="keyword">return</span> i + <span class="number">1</span>; &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    FinalArguments bf = <span class="keyword">new</span> FinalArguments();</div><div class="line">    bf.without(<span class="keyword">null</span>);</div><div class="line">    bf.with(<span class="keyword">null</span>);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>方法<code>f()</code>和<code>g()</code>展示了当前类型的参数指明为<code>final</code>时所出现的结果:你可以读参数,但却无法修改参数.</p>
+<h2 id="8-2-final方法"><a href="#8-2-final方法" class="headerlink" title="8.2 final方法"></a>8.2 final方法</h2><p>使用<code>final</code>方法的原因有两个:</p>
+<ul>
+<li>把方法锁定,以防任何继承类修改它的含义.</li>
+<li>效率.</li>
+</ul>
+<p><strong>final和private关键字</strong><br>类中所有的<code>private</code>方法都隐式地指定为<code>final</code>.由于无法取用<code>private</code>方法,所以也就无法覆盖它.可以对<code>private</code>方法添加<code>final</code>修饰词,但这不能给方法增加任何额外的意义.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">v</span><span class="params">()</span></span>&#123;&#125;</div></pre></td></tr></table></figure>
+<h2 id="8-3-final类"><a href="#8-3-final类" class="headerlink" title="8.3 final类"></a>8.3 final类</h2><p>当将某个类的整体定义为<code>final</code>,就表明了你不打算继承该类,而且也不允许别人这样做.<code>final</code>是禁止继承的,所以<code>final</code>类中所有的方法都隐式指定为<code>final</code>的.</p>
+<h2 id="8-4-有关final的忠告"><a href="#8-4-有关final的忠告" class="headerlink" title="8.4 有关final的忠告"></a>8.4 有关final的忠告</h2><p>如果将一个方法制定为<code>final</code>,可能会妨碍其他程序员在项目中通过继承来复用你的类,而这只是因为你没有想到它会以这种方式被运用.</p>
+<h1 id="9-初始化及类的加载"><a href="#9-初始化及类的加载" class="headerlink" title="9. 初始化及类的加载"></a>9. 初始化及类的加载</h1><p>加载发生于创建类的第一个对象之时,但是当访问<code>static</code>域或<code>static</code>方法时,也会发生加载.构造器也是<code>static</code>方法.</p>
+<h2 id="9-1-继承与初始化"><a href="#9-1-继承与初始化" class="headerlink" title="9.1 继承与初始化"></a>9.1 继承与初始化</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//: reusing/Beetle.java</span></div><div class="line"><span class="comment">// The full process of initialization.</span></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> net.mindview.util.Print.*;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Insect</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> i = <span class="number">9</span>;</div><div class="line">  <span class="keyword">protected</span> <span class="keyword">int</span> j;</div><div class="line">  Insect() &#123;</div><div class="line">    print(<span class="string">"i = "</span> + i + <span class="string">", j = "</span> + j);</div><div class="line">    j = <span class="number">39</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> x1 =</div><div class="line">    printInit(<span class="string">"static Insect.x1 initialized"</span>);</div><div class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">printInit</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">    print(s);</div><div class="line">    <span class="keyword">return</span> <span class="number">47</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Beetle</span> <span class="keyword">extends</span> <span class="title">Insect</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> k = printInit(<span class="string">"Beetle.k initialized"</span>);</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Beetle</span><span class="params">()</span> </span>&#123;</div><div class="line">    print(<span class="string">"k = "</span> + k);</div><div class="line">    print(<span class="string">"j = "</span> + j);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> x2 =</div><div class="line">    printInit(<span class="string">"static Beetle.x2 initialized"</span>);</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    print(<span class="string">"Beetle constructor"</span>);</div><div class="line">    Beetle b = <span class="keyword">new</span> Beetle();</div><div class="line">  &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">static Insect.x1 initialized</div><div class="line">static Beetle.x2 initialized</div><div class="line">Beetle constructor</div><div class="line">i = 9, j = 0</div><div class="line">Beetle.k initialized</div><div class="line">k = 47</div><div class="line">j = 39</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>在<code>Beetle</code>上运行java时,所发生的第一件事情就是试图访问<code>Bettle.main()</code>(一个static方法),于是加载器开始启动并找出<code>Bettle</code>类的编译代码.在对它进行加载的过程中,编译器注意到它由一个基类(这是由关键字<code>extends</code>得知),于是它继续进行加载.</p>
+<h1 id="10-总结"><a href="#10-总结" class="headerlink" title="10. 总结"></a>10. 总结</h1><p>继承和组合都能从现有的类型生成新的类型,组合一般是将现有的类型作为新类型底层实现的一部分来加以复用,而继承复用的是接口.</p>
+<p>在使用继承时,由于导出类具有基类接口,因此它可以向上转型为基类.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaBasis/" rel="tag"># JavaBasis</a>
+          
+            <a href="/tags/JavaSe/" rel="tag"># JavaSe</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/第6章-访问权限控制/" rel="next" title="第6章 访问权限控制">
+                <i class="fa fa-chevron-left"></i> 第6章 访问权限控制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/第8章-多态/" rel="prev" title="第8章 多态">
+                第8章 多态 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-组合语法"><span class="nav-number">1.</span> <span class="nav-text">1. 组合语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-继承语法"><span class="nav-number">2.</span> <span class="nav-text">2. 继承语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-初始化基类"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 初始化基类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-带参数的构造器"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 带参数的构造器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-代理"><span class="nav-number">3.</span> <span class="nav-text">3. 代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-结合使用组合和继承"><span class="nav-number">4.</span> <span class="nav-text">4. 结合使用组合和继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-确保正确清理"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 确保正确清理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-名称屏蔽"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 名称屏蔽</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-在组合和继承之间选择"><span class="nav-number">5.</span> <span class="nav-text">5. 在组合和继承之间选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-protected-关键字"><span class="nav-number">6.</span> <span class="nav-text">6. protected 关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-向上转型"><span class="nav-number">7.</span> <span class="nav-text">7. 向上转型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-为什么称之为向上转型"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 为什么称之为向上转型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-再论组合与继承"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 再论组合与继承</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-final-关键字"><span class="nav-number">8.</span> <span class="nav-text">8. final 关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-final-数据"><span class="nav-number">8.1.</span> <span class="nav-text">8.1 final 数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-final方法"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 final方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-final类"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 final类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-有关final的忠告"><span class="nav-number">8.4.</span> <span class="nav-text">8.4 有关final的忠告</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-初始化及类的加载"><span class="nav-number">9.</span> <span class="nav-text">9. 初始化及类的加载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-继承与初始化"><span class="nav-number">9.1.</span> <span class="nav-text">9.1 继承与初始化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-总结"><span class="nav-number">10.</span> <span class="nav-text">10. 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

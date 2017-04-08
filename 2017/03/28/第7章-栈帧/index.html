@@ -1,0 +1,1207 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ReverseEngineerin," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="栈帧  (Stack  Frame) ,在程序中用于声明局部变量/调用函数.
+1.  栈帧栈帧就是利用EBP  (栈帧指针)  寄存器访问栈内局部变量,参数,函数返回地址等的手段.ESP寄存器承担着栈顶指针的作用,而EBP寄存器则负责栈帧指针的职能.程序运行时,ESP寄存器的值随时变化,访问栈中函数的局部变量,参数时,若以ESP值为基准编写程序会十分困难,并且以很难使CPU引用到准确的地址.所以,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第7章 栈帧">
+<meta property="og:url" content="http://javami.com/2017/03/28/第7章-栈帧/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="栈帧  (Stack  Frame) ,在程序中用于声明局部变量/调用函数.
+1.  栈帧栈帧就是利用EBP  (栈帧指针)  寄存器访问栈内局部变量,参数,函数返回地址等的手段.ESP寄存器承担着栈顶指针的作用,而EBP寄存器则负责栈帧指针的职能.程序运行时,ESP寄存器的值随时变化,访问栈中函数的局部变量,参数时,若以ESP值为基准编写程序会十分困难,并且以很难使CPU引用到准确的地址.所以,">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/2.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/3.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/4.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/5.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/6.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/7.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/8.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/9.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/10.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/11.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/第7章-栈帧/12.png">
+<meta property="og:updated_time" content="2017-03-28T09:32:22.747Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第7章 栈帧">
+<meta name="twitter:description" content="栈帧  (Stack  Frame) ,在程序中用于声明局部变量/调用函数.
+1.  栈帧栈帧就是利用EBP  (栈帧指针)  寄存器访问栈内局部变量,参数,函数返回地址等的手段.ESP寄存器承担着栈顶指针的作用,而EBP寄存器则负责栈帧指针的职能.程序运行时,ESP寄存器的值随时变化,访问栈中函数的局部变量,参数时,若以ESP值为基准编写程序会十分困难,并且以很难使CPU引用到准确的地址.所以,">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/第7章-栈帧/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/第7章-栈帧/"/>
+
+
+
+
+
+  <title> 第7章 栈帧 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第7章-栈帧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第7章 栈帧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:27:03+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
+                    <span itemprop="name">ReverseEngineerin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/第7章-栈帧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第7章-栈帧/" class="leancloud_visitors" data-flag-title="第7章 栈帧">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>栈帧  (Stack  Frame) ,在程序中用于声明局部变量/调用函数.</p>
+<h1 id="1-栈帧"><a href="#1-栈帧" class="headerlink" title="1.  栈帧"></a>1.  栈帧</h1><p>栈帧就是利用EBP  (栈帧指针)  寄存器访问栈内局部变量,参数,函数返回地址等的手段.ESP寄存器承担着栈顶指针的作用,而EBP寄存器则负责栈帧指针的职能.程序运行时,ESP寄存器的值随时变化,访问栈中函数的局部变量,参数时,若以ESP值为基准编写程序会十分困难,并且以很难使CPU引用到准确的地址.所以,调用某函数时,先要把用作基准点  (函数起始地址)  的ESP值保存到EBP,并维持在函数内部.这样,无论ESP的值如何变量,以EBP的为基准  (base)  能够安全访问到相关的函数的局部变量,参数,返回地址,这就是EBP寄存器作为栈帧指针的作用.</p>
+<p><img src="/2017/03/28/第7章-栈帧/1.png" alt="栈帧结构" title="栈帧结构"></p>
+<h1 id="2-调试示例-StackFrame-exe"><a href="#2-调试示例-StackFrame-exe" class="headerlink" title="2.  调试示例:  StackFrame.exe"></a>2.  调试示例:  StackFrame.exe</h1><h2 id="2-1-StackFrame-cpp"><a href="#2-1-StackFrame-cpp" class="headerlink" title="2.1  StackFrame.cpp"></a>2.1  StackFrame.cpp</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">long</span> <span class="title">add</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">long</span> x = a, y = b;</div><div class="line">    <span class="keyword">return</span> (x + y);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">long</span> a = <span class="number">1</span>, b = <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, add(a, b));</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用OllyDbg调试工具打开StackFrame.exe文件,按CTRL+G快捷键  (Go  to命令)  转到401000地址处.<br><img src="/2017/03/28/第7章-栈帧/2.png" alt="调试器界面" title="调试器界面"></p>
+<h2 id="2-2-开始执行-main-函数-amp-生成栈帧"><a href="#2-2-开始执行-main-函数-amp-生成栈帧" class="headerlink" title="2.2  开始执行  main()  函数&amp;生成栈帧"></a>2.2  开始执行  main()  函数&amp;生成栈帧</h2><blockquote>
+<p> 首先在StackFrame.cpp源程序的主函数分析,代码如下.<br>int main(int argc, char* argv[])<br>{</p>
+</blockquote>
+<p>函数main()是程序开始执行的地方,在main()函数的起始地址(401020)处,按F2键设置一个断点,然后按F9运行程序,程序运行到main()函数的断点处暂停.</p>
+<p><img src="/2017/03/28/第7章-栈帧/3.png" alt="栈初始" title="栈初始"></p>
+<p>当前ESP的初始值为0019FF3C,EBP的值为0019FF80.切记地址401250保存在ESP(0019FF3C)中,它是main()函数执行完毕后返回的地址.</p>
+<p>main()函数一开始运行就生成与其对应的函数栈帧.</p>
+<p><code>00401020        push ebp        ;  #  main()</code></p>
+<p>PUSH是一条压栈指令,上面这条PUSH语句的含义是”把EBP值压入栈”.main()函数中,EBP为栈帧指针,用来把EBP之前的值备份到栈中  (main()函数执行完毕,返回之前,该值会再次恢复).</p>
+<p><code>00401021        mov ebp,esp</code></p>
+<p>MOV是一条数据传送命令,上面这条MOV语句的命令是”把esp值传送到ebp”.换原之,就是两值相等,并且直到main()函数执行完毕,EBP的值始终保持不变.也就是说,我们通过EBP可以安全访问到存储在栈中的函数参数与局部变量.执行完401020与401021地址处后的两条命令后,函数main()的栈帧就生成了.</p>
+<p>进入OllyDbg的栈窗口,单击鼠标右键,在弹出的菜单中依次选择Address-Relative  to  EBP,把地址转换为相对于EBP的偏移后,能够直接观察到栈内情况.</p>
+<p><img src="/2017/03/28/第7章-栈帧/4.png" alt="备份到栈中的EBP初始值" title="备份到栈中的EBP初始值"></p>
+<p>如图,当前EBP值为0019FF38,与ESP的值一致,19FF80地址处保存着19FF80,它是main()函数开始执行时EBP持有的初始值.</p>
+<h1 id="2-3-设置局部变量"><a href="#2-3-设置局部变量" class="headerlink" title="2.3  设置局部变量"></a>2.3  设置局部变量</h1><blockquote>
+<p> 下面开始分析源文件StackFrame.cpp中的变量声明与赋值语句.<br>    long a = 1, b = 2;</p>
+</blockquote>
+<p>main()函数中,上述语句用于在栈中为局部变量(a,b)分配空间,并赋初始值.</p>
+<p><code>00401023        sub esp,0x8</code></p>
+<p>SUB是汇编语言中的一条减法指令,上面这条语句用来将ESP的值减去8个字节.执行该指令前ESP的值为:0019FF38,执行后变为:0019FF30.<strong>为什么要减去8个字节</strong>,其实质为函数的局部变量  (a与b)开辟空间,以便将它们保存在栈中.由于局部变量a与b都是long型,它们分别占据4个字节大小,所以需要在栈中开辟8个字节的空间来保存这2个变量.</p>
+<p>使用SUB指令从ESP中减去8个字节,为2个函数变量开辟栈空间后,在main()内部,无论ESP的值如何变化,变量a与b的栈空间都不会受到损坏.由于EBP的值在main()函数内部是固定不变的,我们就能以它作为基准来访问函数的局部变量了.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">00401026        mov [EBP-4],1        ;  [EBP-4]  =  local  &apos;a&apos;</div><div class="line">0040102D        mov [EBP-8],2        ;  [EBP-8]  =  local  &apos;b&apos;</div></pre></td></tr></table></figure>
+<p>分析上面的2条MOV命令,它们的含义是”把数据1与2分别保存到[local.1]与[local2]中”.</p>
+<p><img src="/2017/03/28/第7章-栈帧/5.png" alt="变量a与变量b" title="变量a与变量b"></p>
+<h1 id="2-4-add-函数参数传递与调用"><a href="#2-4-add-函数参数传递与调用" class="headerlink" title="2.4  add()函数参数传递与调用"></a>2.4  add()函数参数传递与调用</h1><blockquote>
+<p> StackFrame.cpp源代码中使用如下语句调用add()函数,执行加法运算并输出函数返回值.<br>    printf(“%d\n”, add(a, b));</p>
+</blockquote>
+<p><img src="/2017/03/28/第7章-栈帧/6.png" alt="5行汇编代码" title="5行汇编代码"></p>
+<p>请看上面5行汇编代码,它描述了调用add()函数的整个过程.地址40103C处为”CALL  401000”命令,该命令用于调用401000处的函数,而401000处的函数即为add()函数.函数add()接收a,b这2个长整型参数,所以调用add()之前先把2个参数压入栈, 地址401034~40103B之间的代码即用于此.参数入栈的顺序与C语言源码中的参数顺序刚好相反.换言之,变量b首先入栈,接着变量a再入栈.执行完地址401034~40103B之间的代码后,栈内变化情况所示.</p>
+<p><img src="/2017/03/28/第7章-栈帧/7.png" alt="传递add()函数的参数" title="传递add()函数的参数"></p>
+<p>接下来进入add()函数(401000)内部,分析整个函数调用过程.</p>
+<p><strong>返回地址</strong><br>执行CALL命令进入被调用的函数之前,CPU会先把函数的返回地址压入栈,用作函数执行完毕后的返回地址.在地址处调用了40103C处调用了add()函数,它的下 一条命令的地址为401041.函数add()执行完毕后,程序执行完返回到401041地址处,该地址即被称为add()函数的返回地址.执行完40103C地址处的CALL命令后进入函数,栈内情况如图:<br><img src="/2017/03/28/第7章-栈帧/8.png" alt="函数add()返回地址" title="函数add()返回地址"></p>
+<h1 id="2-5-开始执行add-函数-amp-生成栈帧"><a href="#2-5-开始执行add-函数-amp-生成栈帧" class="headerlink" title="2.5  开始执行add()函数&amp;生成栈帧"></a>2.5  开始执行add()函数&amp;生成栈帧</h1><blockquote>
+<p> StackFrame.cpp源代码中,函数add()的前2行代码如下:<br>long add(long a, long b)<br>{</p>
+</blockquote>
+<p>函数开始执行时,栈中会单独生成与其对应的栈帧.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">0040100        push ebp                                                                                                     </div><div class="line">00401001      mov ebp,esp</div></pre></td></tr></table></figure>
+<p>上述2行代码与开始执行main()函数时的代码完全相同,先把EBP值保存到栈中,再把当前的ESP存储到EBP,这样函数add()的栈帧就生成了.</p>
+<p><img src="/2017/03/28/第7章-栈帧/9.png" alt="函数add()的栈帧" title="函数add()的栈帧"></p>
+<p>可以看到,main()函数使用的EBP值(19FF38)被备份到栈中,然后EBP的值被设置为一个新值19FF20.</p>
+<h2 id="2-6-设置add-函数的局部变量-X-Y"><a href="#2-6-设置add-函数的局部变量-X-Y" class="headerlink" title="2.6  设置add()函数的局部变量(X,Y)"></a>2.6  设置add()函数的局部变量(X,Y)</h2><blockquote>
+<p> StackFrame.cpp源代码中.<br>    long x = a, y = b;</p>
+</blockquote>
+<p>上面一行语句声明了2个长整型的局部变量(X,Y),并使用2个形式参数(a,b)分别为它们进行赋值初始.</p>
+<p><code>00401003  sub esp,0x8</code></p>
+<p>在栈内存中为局部变量X,Y开辟8个字节的空间.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">00401006  mov eax,[arg.1]  //a</div><div class="line"></div><div class="line">00401009  mov [local.2],eax  //x</div><div class="line"></div><div class="line">0040100C  mov ecx,[arg.2]  //b</div><div class="line"></div><div class="line">0040100F  mov [local.1],ecx  //y</div></pre></td></tr></table></figure>
+<p><img src="/2017/03/28/第7章-栈帧/10.png" alt="函数add()的局部变量X/Y" title="函数add()的局部变量X/Y"></p>
+<h2 id="2-7-ADD-运算"><a href="#2-7-ADD-运算" class="headerlink" title="2.7  ADD  运算"></a>2.7  ADD  运算</h2><blockquote>
+<p> StackFrame.cpp源代码中,下面这条语句用于返回2个局部变量之和.<br>    return (x + y);</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">00401012  mov eax,[local.2]        //语句执行完毕,变量X的值会被传送到EAX</div><div class="line"></div><div class="line">00401015  add eax,[local.1]        //变量Y</div></pre></td></tr></table></figure>
+<p>上述这条语句中,变量Y与EAX的原值(X)相加,且运算结果被存储到EAX中,运算完后EAX的值为3.</p>
+<h2 id="2-8-删除函数add-的栈帧-amp-函数执行完毕-返回"><a href="#2-8-删除函数add-的栈帧-amp-函数执行完毕-返回" class="headerlink" title="2.8  删除函数add()的栈帧&amp;函数执行完毕(返回)"></a>2.8  删除函数add()的栈帧&amp;函数执行完毕(返回)</h2><blockquote>
+<p> “删除函数栈帧与函数执行完毕返回”对应于StackFrame.app文件中的如下代码.<br>    return (x + y);<br>}</p>
+</blockquote>
+<p>执行完加法运算后,要返回函数add(),在此之前要先删除函数add()的栈帧.</p>
+<p><code>00401018  mov esp,ebp</code></p>
+<p>上面这条命令将当前的EBP赋值给ESP,等价于将EBP中的值恢复到ESP中.</p>
+<p><strong>提示</strong><br>执行完上面的命令后,地址401003处的SUB  ESP,8命令失效,即是函数里面的局部变量不再有效.</p>
+<p><code>0040101A  pop ebp</code></p>
+<p>上面这条命令用于恢复函数add()开始执行时备份到栈中的EBP值,它与401000地址处的PUSH  EBP  命令对应.EBP值恢复为0019FF38,它是main()函数的EBP值.到此,add()函数的栈帧就被删除了.</p>
+<p><img src="/2017/03/28/第7章-栈帧/11.png" alt="删除函数add()的栈帧" title="删除函数add()的栈帧"></p>
+<p>可以看到ESP的值为:0019FF24,该地址值位:401041,它是执行CALL  401000命令时CPU存储到栈中的返回地址.</p>
+<p><code>0040101B  retn</code></p>
+<p>执行上述语句,存储在栈中的返回地址被返回.</p>
+<h2 id="2-9-从栈中删除函数add-的参数-整理栈"><a href="#2-9-从栈中删除函数add-的参数-整理栈" class="headerlink" title="2.9  从栈中删除函数add()的参数  (整理栈)"></a>2.9  从栈中删除函数add()的参数  (整理栈)</h2><p><code>00401041  add esp,0x8</code></p>
+<p>函数add()执行完毕后,就不需要参数a与b了,所以要把esp加上8,将它们从栈中清理掉.</p>
+<h2 id="2-10-调用-printf-函数"><a href="#2-10-调用-printf-函数" class="headerlink" title="2.10  调用  printf()  函数"></a>2.10  调用  printf()  函数</h2><blockquote>
+<p> StackFrame.cpp源代码中用于打印运算结果的语句如下所示.<br>    printf(“%d\n”, add(a, b));</p>
+</blockquote>
+<p>调用printf()函数的汇编代码如下.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">00401044  push eax</div><div class="line"></div><div class="line">00401045  push StackFra.0040B384                           ;  ASCII &quot;%d\n&quot;</div><div class="line"></div><div class="line">0040104A  call StackFra.00401067</div><div class="line"></div><div class="line">0040104F  add esp,0x8</div></pre></td></tr></table></figure>
+<p>地址401044处的EAX寄存器中存储函数add()的返回值,它是执行加法运算后的结果3.地址40104A处的CALL  401067命令中调用的是401067地址处的函数.它是一个C标准函数printf(),由于上面的printf()函数有两个参数,大小为8个字节,所以在40104F地址处使用ADD命令,将ESP加上8个字节,把函数的参数从栈中删除,函数printf()执行完毕后通过ADD命令删除参数.</p>
+<h2 id="2-11-设置返回值"><a href="#2-11-设置返回值" class="headerlink" title="2.11  设置返回值"></a>2.11  设置返回值</h2><blockquote>
+<p>StackFrame.cpp中设置返回值的语句如下:<br>    return 0;</p>
+</blockquote>
+<p>main()函数使用该语句设置返回值  (0).</p>
+<p><code>00401052  xor eax,eax</code></p>
+<p>XOR命令用来进行异或运算,起特点为  <strong>“2个相同的值进行XOR运算,结果为0”.</strong>XOR命令比MOV  EAX  ,0命令执行速度快,常用语寄存器的初始化操作.</p>
+<h2 id="2-12-删除栈帧-main-函数终止"><a href="#2-12-删除栈帧-main-函数终止" class="headerlink" title="2.12  删除栈帧%main()函数终止"></a>2.12  删除栈帧%main()函数终止</h2><blockquote>
+<p>StackFrame.cpp中对于代码如下:<br>    return 0;<br>}<br>最终主函数终止,同add()函数一样,其返回值要先从栈中删除与其对应的栈帧.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">00401054  mov esp,ebp</div><div class="line"></div><div class="line">00401056  pop ebp</div></pre></td></tr></table></figure>
+<p>执行完上面2条命令后,main()函数的栈帧即将被删除,其局部变量a,b也不再有效.执行完毕.</p>
+<p><code>00401057  RETN</code></p>
+<p>执行完上面命令后,主函数执行完毕之后,程序执行跳转到  (401250),该地址指向Visual  C++的启动函数区域,随后执行进程终止代码.</p>
+<h1 id="3-设置-OllyDbg的选项"><a href="#3-设置-OllyDbg的选项" class="headerlink" title="3.  设置  OllyDbg的选项"></a>3.  设置  OllyDbg的选项</h1><h2 id="3-1-打开OllyDbg的Debugging-options对话框-快捷键Alt-O"><a href="#3-1-打开OllyDbg的Debugging-options对话框-快捷键Alt-O" class="headerlink" title="3.1  打开OllyDbg的Debugging  options对话框  (快捷键Alt+O)."></a>3.1  打开OllyDbg的Debugging  options对话框  (快捷键Alt+O).</h2><p><img src="/2017/03/28/第7章-栈帧/12.png" alt="OllyDbg的Debugging  options对话框" title="OllyDbg的Debugging  options对话框"></p>
+<p>可以设置一些适合自己的选项.</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4.  总结"></a>4.  总结</h1><p>栈帧技术使用EBP寄存器(而非ESP寄存器)管理局部变量/参数/返回地址等.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ReverseEngineerin/" rel="tag"># ReverseEngineerin</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/第6章-分析abex-crackme-1/" rel="next" title="第6章 分析abex'crackme#1">
+                <i class="fa fa-chevron-left"></i> 第6章 分析abex'crackme#1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/第8章-abex-crackme-2/" rel="prev" title="第8章 abex'crackme#2">
+                第8章 abex'crackme#2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-栈帧"><span class="nav-number">1.</span> <span class="nav-text">1.  栈帧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-调试示例-StackFrame-exe"><span class="nav-number">2.</span> <span class="nav-text">2.  调试示例:  StackFrame.exe</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-StackFrame-cpp"><span class="nav-number">2.1.</span> <span class="nav-text">2.1  StackFrame.cpp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-开始执行-main-函数-amp-生成栈帧"><span class="nav-number">2.2.</span> <span class="nav-text">2.2  开始执行  main()  函数&生成栈帧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-3-设置局部变量"><span class="nav-number">3.</span> <span class="nav-text">2.3  设置局部变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-4-add-函数参数传递与调用"><span class="nav-number">4.</span> <span class="nav-text">2.4  add()函数参数传递与调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-5-开始执行add-函数-amp-生成栈帧"><span class="nav-number">5.</span> <span class="nav-text">2.5  开始执行add()函数&生成栈帧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-设置add-函数的局部变量-X-Y"><span class="nav-number">5.1.</span> <span class="nav-text">2.6  设置add()函数的局部变量(X,Y)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-ADD-运算"><span class="nav-number">5.2.</span> <span class="nav-text">2.7  ADD  运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8-删除函数add-的栈帧-amp-函数执行完毕-返回"><span class="nav-number">5.3.</span> <span class="nav-text">2.8  删除函数add()的栈帧&函数执行完毕(返回)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-9-从栈中删除函数add-的参数-整理栈"><span class="nav-number">5.4.</span> <span class="nav-text">2.9  从栈中删除函数add()的参数  (整理栈)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-10-调用-printf-函数"><span class="nav-number">5.5.</span> <span class="nav-text">2.10  调用  printf()  函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-11-设置返回值"><span class="nav-number">5.6.</span> <span class="nav-text">2.11  设置返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-12-删除栈帧-main-函数终止"><span class="nav-number">5.7.</span> <span class="nav-text">2.12  删除栈帧%main()函数终止</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-设置-OllyDbg的选项"><span class="nav-number">6.</span> <span class="nav-text">3.  设置  OllyDbg的选项</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-打开OllyDbg的Debugging-options对话框-快捷键Alt-O"><span class="nav-number">6.1.</span> <span class="nav-text">3.1  打开OllyDbg的Debugging  options对话框  (快捷键Alt+O).</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-总结"><span class="nav-number">7.</span> <span class="nav-text">4.  总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

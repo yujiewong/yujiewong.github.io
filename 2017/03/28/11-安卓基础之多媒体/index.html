@@ -1,0 +1,1255 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AndroidBasis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Android  多媒体基础知识概述计算机发展到今天,不仅表示数值和符号,已具有了对文本,图形,图像动画及音频视频等多种信息的综合处理能力,我们称之为多媒体技术.
+图像与图形在计算机中,图像是采用位图形式来表示的;图形是采用矢量图方式来表示的;
+位图图像称为光栅图或点阵图像,是由许多像小方块一样的”像素”(pixels)组成的图形.
+
+图像  :  是由像素点阵组成的画面.
+位图  :  由许多点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11.安卓基础之多媒体">
+<meta property="og:url" content="http://javami.com/2017/03/28/11-安卓基础之多媒体/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="Android  多媒体基础知识概述计算机发展到今天,不仅表示数值和符号,已具有了对文本,图形,图像动画及音频视频等多种信息的综合处理能力,我们称之为多媒体技术.
+图像与图形在计算机中,图像是采用位图形式来表示的;图形是采用矢量图方式来表示的;
+位图图像称为光栅图或点阵图像,是由许多像小方块一样的”像素”(pixels)组成的图形.
+
+图像  :  是由像素点阵组成的画面.
+位图  :  由许多点">
+<meta property="og:image" content="http://javami.com/2017/03/28/11-安卓基础之多媒体/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/11-安卓基础之多媒体/2.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/11-安卓基础之多媒体/3.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/11-安卓基础之多媒体/4.png">
+<meta property="og:updated_time" content="2017-03-28T07:58:05.337Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="11.安卓基础之多媒体">
+<meta name="twitter:description" content="Android  多媒体基础知识概述计算机发展到今天,不仅表示数值和符号,已具有了对文本,图形,图像动画及音频视频等多种信息的综合处理能力,我们称之为多媒体技术.
+图像与图形在计算机中,图像是采用位图形式来表示的;图形是采用矢量图方式来表示的;
+位图图像称为光栅图或点阵图像,是由许多像小方块一样的”像素”(pixels)组成的图形.
+
+图像  :  是由像素点阵组成的画面.
+位图  :  由许多点">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/11-安卓基础之多媒体/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/11-安卓基础之多媒体/"/>
+
+
+
+
+
+  <title> 11.安卓基础之多媒体 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/11-安卓基础之多媒体/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                11.安卓基础之多媒体
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T15:56:25+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/11-安卓基础之多媒体/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/11-安卓基础之多媒体/" class="leancloud_visitors" data-flag-title="11.安卓基础之多媒体">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Android-多媒体基础知识"><a href="#Android-多媒体基础知识" class="headerlink" title="Android  多媒体基础知识"></a>Android  多媒体基础知识</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>计算机发展到今天,不仅表示数值和符号,已具有了对文本,图形,图像动画及音频视频等多种信息的综合处理能力,我们称之为多媒体技术.</p>
+<h2 id="图像与图形"><a href="#图像与图形" class="headerlink" title="图像与图形"></a>图像与图形</h2><p>在计算机中,<br><strong>图像</strong>是采用<strong>位图形式</strong>来表示的;<br><strong>图形</strong>是采用<strong>矢量图方式</strong>来表示的;</p>
+<h3 id="位图图像"><a href="#位图图像" class="headerlink" title="位图图像"></a><strong>位图图像</strong></h3><p>称为<strong>光栅图</strong>或<strong>点阵图像</strong>,是由许多像小方块一样的”像素”(pixels)组成的图形.<br><img src="/2017/03/28/11-安卓基础之多媒体/1.png" alt="位图图像" title="位图图像"></p>
+<ul>
+<li>图像  :  是由像素点阵组成的画面.</li>
+<li>位图  :  由许多点组成的点阵图.构成位图的点称为像素.</li>
+<li>色彩深度  :  位图所能达到的最大颜色数,称为色彩深度.(对于黑白两种颜色的图像来说一个像素点可用一个二进制位来表示,如0表示黑色,1表示白色.)</li>
+</ul>
+<h3 id="图片的操作"><a href="#图片的操作" class="headerlink" title="图片的操作"></a>图片的操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1. 准备画纸:(大小和材质需要参考原图)</span></div><div class="line">Bitmap copyBitmap = Bitmap.createBitmap(srcBitmap.getWidth(),</div><div class="line">        srcBitmap.getHeight(), srcBitmap.getConfig());</div><div class="line"><span class="comment">// 2. 准备画板，将画纸放到画板上</span></div><div class="line">Canvas canvas = <span class="keyword">new</span> Canvas(copyBitmap);</div><div class="line"><span class="comment">// 3. 准备画笔</span></div><div class="line">Paint paint = <span class="keyword">new</span> Paint();</div><div class="line"><span class="comment">// 4. 按照一定的规则</span></div><div class="line">Matrix matrix = <span class="keyword">new</span> Matrix();<span class="comment">// 1:1照着画</span></div><div class="line"></div><div class="line"><span class="comment">// 5. 将原图像按照规则画到画板上</span></div><div class="line">canvas.drawBitmap(srcBitmap, matrix, paint);</div></pre></td></tr></table></figure>
+<ul>
+<li><p>图片的缩放</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">matrix.setScale(<span class="number">0.6f</span>, <span class="number">0.8f</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>图片的平移</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">matrix.setTranslate(<span class="number">50</span>, <span class="number">50</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="位图图像的缺陷"><a href="#位图图像的缺陷" class="headerlink" title="位图图像的缺陷"></a><strong>位图图像的缺陷</strong></h3><ul>
+<li>位图放大和缩小都会引起像素的增加或减少,这样会使得原由的图像的线条和形状变得参差不齐,与原图像相比出现失真;出现”锯齿形”.</li>
+</ul>
+<p><img src="/2017/03/28/11-安卓基础之多媒体/2.png" alt="位图" title="位图"></p>
+<h3 id="位图常见的文件格式"><a href="#位图常见的文件格式" class="headerlink" title="位图常见的文件格式"></a>位图常见的文件格式</h3><ul>
+<li>.bmp</li>
+<li>.jpg</li>
+<li>.gif</li>
+<li>.png</li>
+</ul>
+<h3 id="矢量图像"><a href="#矢量图像" class="headerlink" title="矢量图像"></a><strong>矢量图像</strong></h3><p>矢量图形是通过计算机将一串线条和图形转换为一系列指令,在计算机中只存储这些指令,而不是像素.矢量图像看起来没有位图图像真实,但矢量图形的存储空间比位图图像要小得多,而且矢量图像通过拉伸,移动,放大等操作,图像不会产生实真.</p>
+<p><img src="/2017/03/28/11-安卓基础之多媒体/3.png" alt="矢量图像" title="矢量图像"></p>
+<h2 id="颜色矩阵"><a href="#颜色矩阵" class="headerlink" title="颜色矩阵"></a>颜色矩阵</h2><p>1 0 0 0 0<br>0 1 0 0 0<br>0 0 1 0 0<br>0 0 0 1 0</p>
+<p>颜色矩阵的代码表述<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">New Red Value = <span class="number">1</span>*<span class="number">128</span> + <span class="number">0</span>*<span class="number">128</span> + <span class="number">0</span>*<span class="number">128</span> + <span class="number">0</span>*<span class="number">0</span> + <span class="number">0</span></div><div class="line">New Green Value = <span class="number">0</span>*<span class="number">128</span> + <span class="number">1</span>*<span class="number">128</span> + <span class="number">0</span>*<span class="number">128</span> + <span class="number">0</span>*<span class="number">0</span> + <span class="number">0</span></div><div class="line">New Blue Value = <span class="number">0</span>*<span class="number">128</span> + <span class="number">0</span>*<span class="number">128</span> + <span class="number">1</span>*<span class="number">128</span> + <span class="number">0</span>*<span class="number">0</span> + <span class="number">0</span></div><div class="line">New Alpha Value = <span class="number">0</span>*<span class="number">128</span> + <span class="number">0</span>*<span class="number">128</span> + <span class="number">0</span>*<span class="number">128</span> + <span class="number">1</span>*<span class="number">0</span> + <span class="number">0</span></div><div class="line"></div><div class="line">ColorMatrix cm = <span class="keyword">new</span> ColorMatrix();</div><div class="line">cm.set(<span class="keyword">new</span> <span class="keyword">float</span>[] &#123;</div><div class="line"><span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>,</div><div class="line"><span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>,</div><div class="line"><span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>,</div><div class="line"><span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span></div><div class="line">&#125;);</div><div class="line">paint.setColorFilter(<span class="keyword">new</span> ColorMatrixColorFilter(cm));</div></pre></td></tr></table></figure></p>
+<h2 id="传感器"><a href="#传感器" class="headerlink" title="传感器"></a>传感器</h2><p>传感器(英文名称  :  sensor)是一种检测装置,能感受到被测量的信息,并能将感受到的信息,按一定规律变换成为电信号或其他所需形式的信息输出,以满足信息的传输,处理,存储,显示,记录和控制等要求.</p>
+<p>传感器的特点包括  :  微型化,数字化,智能化,多功能化,系统化,网络化.它是实现自动检测和自动控制的首要环节.传感器的存在和发展,让物体有了触觉,味觉和嗅觉等感官,让物体慢慢变得活了起来.通常根据其基本感知功能分为热敏元件,光敏元件,气敏元件,力敏元件,磁敏元件,湿敏元件,声敏元件,放射线敏感元件,色敏元件和味敏元件等十大类.</p>
+<p><img src="/2017/03/28/11-安卓基础之多媒体/4.png" alt="传感器" title="传感器"></p>
+<table>
+<thead>
+<tr>
+<th>传感器类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SENSOR_TYPE_ACCELEROMETER</td>
+<td>加速度</td>
+</tr>
+<tr>
+<td>SENSOR_TYPE_MAGNETIC_FIELD</td>
+<td>磁力</td>
+</tr>
+<tr>
+<td>SENSOR_TYPE_ORIENTATION</td>
+<td>方向</td>
+</tr>
+<tr>
+<td>SENSOR_TYPE_GYROSCOPE</td>
+<td>陀螺仪</td>
+</tr>
+<tr>
+<td>SENSOR_TYPE_LIGHT</td>
+<td>光线感应</td>
+</tr>
+<tr>
+<td>SENSOR_TYPE_PRESSURE</td>
+<td>压力</td>
+</tr>
+<tr>
+<td>SENSOR_TYPE_TEMPERATURE</td>
+<td>温度</td>
+</tr>
+<tr>
+<td>SENSOR_TYPE_PROXIMITY</td>
+<td>接近</td>
+</tr>
+<tr>
+<td>SENSOR_TYPE_GRAVITY</td>
+<td>重力</td>
+</tr>
+<tr>
+<td>SENSOR_TYPE_LINEAR_ACCELERATION</td>
+<td>线性加速度</td>
+</tr>
+</tbody>
+</table>
+<h2 id="练习案例"><a href="#练习案例" class="headerlink" title="练习案例"></a>练习案例</h2><ul>
+<li>加载大图片到内存</li>
+</ul>
+<p><strong>获取到读写内存权限</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"&gt;&lt;/uses-permission&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>代码实现部分</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">private</span> ImageView iv;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        iv =(ImageView) findViewById(R.id.iv);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadBitmap</span><span class="params">(View v)</span></span>&#123;</div><div class="line">        String path = <span class="string">"mnt/sdcard/1.jpg"</span>;</div><div class="line"></div><div class="line">        <span class="comment">//通过手机的屏幕的宽高和图片的宽高来计算采样率</span></div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//屏幕宽高</span></div><div class="line">        DisplayMetrics metrics = getResources().getDisplayMetrics();</div><div class="line">        <span class="keyword">int</span> screenWidth = metrics.widthPixels;<span class="comment">//获取屏幕宽度</span></div><div class="line">        <span class="keyword">int</span> screentHeight = metrics.heightPixels;<span class="comment">//获取屏幕高度</span></div><div class="line"></div><div class="line">        <span class="comment">//图片的宽高</span></div><div class="line">        <span class="keyword">try</span>&#123;</div><div class="line">            ExifInterface exif = <span class="keyword">new</span> ExifInterface(path);</div><div class="line">            <span class="keyword">int</span> picWidth = exif.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH,<span class="number">0</span>);</div><div class="line">            <span class="keyword">int</span> picHeight = exif.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH,<span class="number">0</span>);</div><div class="line"></div><div class="line">            <span class="comment">//用图片的宽度/屏幕的宽度</span></div><div class="line">            <span class="keyword">int</span> widthSample = (<span class="keyword">int</span>)(picWidth*<span class="number">1f</span>/screenWidth+<span class="number">0.5f</span>);<span class="comment">//四舍五入</span></div><div class="line">            <span class="keyword">int</span> heightSample = (<span class="keyword">int</span>)(picHeight*<span class="number">1f</span>/screentHeight+<span class="number">0.5f</span>);<span class="comment">//四舍五入</span></div><div class="line"></div><div class="line">            <span class="keyword">int</span> sample = (<span class="keyword">int</span>) (Math.sqrt(widthSample * widthSample</div><div class="line">                    + heightSample * heightSample) + <span class="number">0.5f</span>);</div><div class="line"></div><div class="line">            <span class="comment">//加载图片</span></div><div class="line">            BitmapFactory.Options opts = <span class="keyword">new</span> BitmapFactory.Options();</div><div class="line">            opts.inSampleSize = sample;<span class="comment">//采样率</span></div><div class="line"></div><div class="line">            Bitmap bitmap = BitmapFactory.decodeFile(path,opts);</div><div class="line">            iv.setImageBitmap(bitmap);</div><div class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>图片的缩放</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">opts</span><span class="params">(View v)</span></span>&#123;</div><div class="line">        String path = <span class="string">"mnt/sdcard/1.jpg"</span>;</div><div class="line">        <span class="comment">//显示图片</span></div><div class="line">        Bitmap srcBitmap = BitmapFactory.decodeFile(path);</div><div class="line">        ivSrc.setImageBitmap(srcBitmap);</div><div class="line"></div><div class="line">        <span class="comment">//准备画纸(大小和材质参照原材料)</span></div><div class="line">        Bitmap copyBitmap = Bitmap.createBitmap(srcBitmap.getWidth(),srcBitmap.getHeight(),srcBitmap.getConfig());</div><div class="line">        <span class="comment">//准备画板,将画纸放到画板上</span></div><div class="line">        Canvas canvas = <span class="keyword">new</span> Canvas(copyBitmap);</div><div class="line">        <span class="comment">//准备画笔</span></div><div class="line">        Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">        <span class="comment">//按照一定规则</span></div><div class="line">        Matrix matrix = <span class="keyword">new</span> Matrix();<span class="comment">//1:1画</span></div><div class="line">        <span class="comment">//按照比例缩放图片</span></div><div class="line">        matrix.setScale(<span class="number">24.6f</span>,<span class="number">22.8f</span>);</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//将原图像按照规则画到画板上</span></div><div class="line">        canvas.drawBitmap(srcBitmap,matrix,paint);</div><div class="line"></div><div class="line">        <span class="comment">//画板有数据了</span></div><div class="line">        ivDest.setImageBitmap(copyBitmap);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>图片的位移</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 位移操作:dx:x方向的增量 dy：y方向的增量</span></div><div class="line">matrix.setTranslate(<span class="number">50</span>, <span class="number">50</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>图片的旋转</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">matrix.setRotate(<span class="number">45</span>, srcBitmap.getWidth() / <span class="number">2f</span>,</div><div class="line">		srcBitmap.getHeight() / <span class="number">2f</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>对图片颜色的处理</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">OnSeekBarChangeListener</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> ImageView iv;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> SeekBar skbRed;</div><div class="line">	<span class="keyword">private</span> SeekBar skbGreen;</div><div class="line">	<span class="keyword">private</span> SeekBar skbBlue;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> redPercent = <span class="number">1</span>;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> greenPercent = <span class="number">1</span>;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> bluePercent = <span class="number">1</span>;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> Bitmap srcBitmap;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">		iv = (ImageView) findViewById(R.id.iv);</div><div class="line">		skbRed = (SeekBar) findViewById(R.id.skb_red);</div><div class="line">		skbGreen = (SeekBar) findViewById(R.id.skb_green);</div><div class="line">		skbBlue = (SeekBar) findViewById(R.id.skb_blue);</div><div class="line"></div><div class="line">		skbRed.setOnSeekBarChangeListener(<span class="keyword">this</span>);</div><div class="line">		skbGreen.setOnSeekBarChangeListener(<span class="keyword">this</span>);</div><div class="line">		skbBlue.setOnSeekBarChangeListener(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 加载图片显示</span></div><div class="line"></div><div class="line">		String path = <span class="string">"mnt/sdcard/img_small_1.jpg"</span>;</div><div class="line">		srcBitmap = BitmapFactory.decodeFile(path);</div><div class="line">		iv.setImageBitmap(srcBitmap);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onProgressChanged</span><span class="params">(SeekBar seekBar, <span class="keyword">int</span> progress,</span></span></div><div class="line">			<span class="keyword">boolean</span> fromUser) &#123;</div><div class="line">		<span class="comment">// seekbar进度改变时的回调</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStartTrackingTouch</span><span class="params">(SeekBar seekBar)</span> </span>&#123;</div><div class="line">		<span class="comment">// 开始拖动seekbar的回调</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStopTrackingTouch</span><span class="params">(SeekBar seekBar)</span> </span>&#123;</div><div class="line">		<span class="comment">// 停止拖动seekbar的回调</span></div><div class="line"></div><div class="line">		<span class="comment">// 0-100;//0-2</span></div><div class="line">		<span class="keyword">int</span> progress = seekBar.getProgress();</div><div class="line">		<span class="keyword">float</span> percent = progress / <span class="number">50f</span>;<span class="comment">// (0-2f)</span></div><div class="line"></div><div class="line">		<span class="keyword">if</span> (seekBar == skbRed) &#123;</div><div class="line">			<span class="keyword">this</span>.redPercent = percent;</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (seekBar == skbGreen) &#123;</div><div class="line">			<span class="keyword">this</span>.greenPercent = percent;</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (seekBar == skbBlue) &#123;</div><div class="line">			<span class="keyword">this</span>.bluePercent = percent;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">// 去改变图片的颜色</span></div><div class="line">		<span class="comment">// 1.去获得图片的拷贝</span></div><div class="line"></div><div class="line">		Bitmap copyBitmap = Bitmap.createBitmap(srcBitmap.getWidth(),</div><div class="line">				srcBitmap.getHeight(), srcBitmap.getConfig());</div><div class="line">		Canvas canvas = <span class="keyword">new</span> Canvas(copyBitmap);</div><div class="line">		Matrix matrix = <span class="keyword">new</span> Matrix();</div><div class="line"></div><div class="line">		<span class="comment">// 2.去处理图片的中的颜色数据</span></div><div class="line">		Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">		<span class="comment">// 设置画笔的颜色过滤</span></div><div class="line">		<span class="comment">// vector:0-2 0:没有 2：最多</span></div><div class="line">		<span class="keyword">float</span>[] cm = <span class="keyword">new</span> <span class="keyword">float</span>[] &#123; <span class="number">1</span> * redPercent, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="comment">// red vector</span></div><div class="line">				<span class="number">0</span>, <span class="number">1</span> * greenPercent, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="comment">// green vector</span></div><div class="line">				<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span> * bluePercent, <span class="number">0</span>, <span class="number">0</span>, <span class="comment">// blue vector</span></div><div class="line">				<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span> <span class="comment">// alpha vector</span></div><div class="line">		&#125;;</div><div class="line">		paint.setColorFilter(<span class="keyword">new</span> ColorMatrixColorFilter(<span class="keyword">new</span> ColorMatrix(cm)));</div><div class="line"></div><div class="line">		canvas.drawBitmap(srcBitmap, matrix, paint);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">		<span class="comment">// 3.将处理的结果展示</span></div><div class="line">		iv.setImageBitmap(copyBitmap);</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>canvas相关api</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> ImageView iv;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">		iv = (ImageView) findViewById(R.id.iv);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">line</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">		<span class="comment">// 1.画线</span></div><div class="line">		<span class="comment">// 准备画纸</span></div><div class="line">		Bitmap bitmap = Bitmap.createBitmap(<span class="number">320</span>, <span class="number">320</span>, Config.ARGB_8888);</div><div class="line">		<span class="comment">// 准备画布</span></div><div class="line">		Canvas canvas = <span class="keyword">new</span> Canvas(bitmap);</div><div class="line">		Paint paint = <span class="keyword">new</span> Paint();</div><div class="line"></div><div class="line">		canvas.drawLine(<span class="number">10</span>, <span class="number">10</span>, <span class="number">200</span>, <span class="number">200</span>, paint);</div><div class="line"></div><div class="line">		iv.setImageBitmap(bitmap);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rect</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">		<span class="comment">// 1.画矩形</span></div><div class="line">		<span class="comment">// 准备画纸</span></div><div class="line">		Bitmap bitmap = Bitmap.createBitmap(<span class="number">320</span>, <span class="number">320</span>, Config.ARGB_8888);</div><div class="line">		<span class="comment">// 准备画布</span></div><div class="line">		Canvas canvas = <span class="keyword">new</span> Canvas(bitmap);</div><div class="line"></div><div class="line">		Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">		<span class="comment">// 设置画笔的颜色</span></div><div class="line">		paint.setColor(Color.RED);</div><div class="line">		<span class="comment">// 设置画笔的样式</span></div><div class="line">		paint.setStyle(Style.STROKE);</div><div class="line">		paint.setStrokeWidth(<span class="number">10</span>);<span class="comment">// 设置粗细</span></div><div class="line"></div><div class="line">		canvas.drawRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">200</span>, <span class="number">200</span>, paint);</div><div class="line"></div><div class="line">		iv.setImageBitmap(bitmap);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">circle</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">		<span class="comment">// 1.画圆形</span></div><div class="line">		<span class="comment">// 准备画纸</span></div><div class="line">		Bitmap bitmap = Bitmap.createBitmap(<span class="number">320</span>, <span class="number">320</span>, Config.ARGB_8888);</div><div class="line">		<span class="comment">// 准备画布</span></div><div class="line">		Canvas canvas = <span class="keyword">new</span> Canvas(bitmap);</div><div class="line"></div><div class="line">		Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">		<span class="comment">// 设置画笔的颜色</span></div><div class="line">		paint.setColor(Color.RED);</div><div class="line">		paint.setAntiAlias(<span class="keyword">true</span>);<span class="comment">// 设置抗锯齿</span></div><div class="line"></div><div class="line">		<span class="keyword">float</span> cx = <span class="number">160</span>;<span class="comment">// 圆心的坐标X</span></div><div class="line">		<span class="keyword">float</span> cy = <span class="number">160</span>;<span class="comment">// 圆心的坐标Y</span></div><div class="line">		<span class="keyword">float</span> radius = <span class="number">100</span>;<span class="comment">// 半径</span></div><div class="line">		canvas.drawCircle(cx, cy, radius, paint);</div><div class="line"></div><div class="line">		iv.setImageBitmap(bitmap);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">arc</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">		<span class="comment">// 1.扇形</span></div><div class="line">		<span class="comment">// 准备画纸</span></div><div class="line">		Bitmap bitmap = Bitmap.createBitmap(<span class="number">320</span>, <span class="number">320</span>, Config.ARGB_8888);</div><div class="line">		<span class="comment">// 准备画布</span></div><div class="line">		Canvas canvas = <span class="keyword">new</span> Canvas(bitmap);</div><div class="line">		Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">		paint.setColor(Color.RED);</div><div class="line">		paint.setAntiAlias(<span class="keyword">true</span>);<span class="comment">// 设置抗锯齿</span></div><div class="line"></div><div class="line">		<span class="comment">// 1:矩形</span></div><div class="line">		RectF oval = <span class="keyword">new</span> RectF(<span class="number">20</span>, <span class="number">20</span>, <span class="number">200</span>, <span class="number">200</span>);</div><div class="line">		<span class="keyword">float</span> startAngle = <span class="number">0</span>;<span class="comment">// 起始角度</span></div><div class="line">		<span class="keyword">float</span> sweepAngle = <span class="number">120</span>;<span class="comment">// 扫过的角度</span></div><div class="line">		<span class="keyword">boolean</span> useCenter = <span class="keyword">false</span>;<span class="comment">// 是否画中心部分</span></div><div class="line">		canvas.drawArc(oval, startAngle, sweepAngle, useCenter, paint);</div><div class="line"></div><div class="line">		iv.setImageBitmap(bitmap);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">trangle</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">		<span class="comment">// 1.多边形</span></div><div class="line">		<span class="comment">// 准备画纸</span></div><div class="line">		Bitmap bitmap = Bitmap.createBitmap(<span class="number">320</span>, <span class="number">320</span>, Config.ARGB_8888);</div><div class="line">		<span class="comment">// 准备画布</span></div><div class="line">		Canvas canvas = <span class="keyword">new</span> Canvas(bitmap);</div><div class="line">		Paint paint = <span class="keyword">new</span> Paint();</div><div class="line">		paint.setColor(Color.RED);</div><div class="line">		paint.setAntiAlias(<span class="keyword">true</span>);<span class="comment">// 设置抗锯齿</span></div><div class="line"></div><div class="line">		<span class="keyword">float</span> x1 = <span class="number">160</span>;</div><div class="line">		<span class="keyword">float</span> y1 = <span class="number">20</span>;</div><div class="line"></div><div class="line">		<span class="keyword">float</span> x2 = <span class="number">140</span>;</div><div class="line">		<span class="keyword">float</span> y2 = <span class="number">200</span>;</div><div class="line"></div><div class="line">		<span class="keyword">float</span> x3 = <span class="number">180</span>;</div><div class="line">		<span class="keyword">float</span> y3 = <span class="number">200</span>;</div><div class="line"></div><div class="line">		Path path = <span class="keyword">new</span> Path();</div><div class="line">		path.moveTo(x1, y1);<span class="comment">// 将画笔移动到点1</span></div><div class="line">		path.lineTo(x2, y2);<span class="comment">// 连线点2</span></div><div class="line">		path.arcTo(<span class="keyword">new</span> RectF(<span class="number">140</span>, <span class="number">180</span>, <span class="number">180</span>, <span class="number">220</span>), <span class="number">0</span>, <span class="number">180</span>);</div><div class="line">		path.lineTo(x3, y3);<span class="comment">// 连线点3</span></div><div class="line">		path.lineTo(x1, y1);<span class="comment">// 连线点1</span></div><div class="line">		path.close();</div><div class="line"></div><div class="line">		canvas.drawPath(path, paint);</div><div class="line"></div><div class="line">		iv.setImageBitmap(bitmap);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>画画板</li>
+</ul>
+<p>Menu的写法  :<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">menu</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span> &gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">item</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/action_save"</span></div><div class="line">        <span class="attr">android:orderInCategory</span>=<span class="string">"100"</span></div><div class="line">        <span class="attr">android:showAsAction</span>=<span class="string">"never"</span></div><div class="line">        <span class="attr">android:title</span>=<span class="string">"保存图片"</span>/&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">menu</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>布局写法  :<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span> &gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">View</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/color_red"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"35dp"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"35dp"</span></div><div class="line">            <span class="attr">android:background</span>=<span class="string">"#ff0000"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">View</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/color_green"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"35dp"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"35dp"</span></div><div class="line">            <span class="attr">android:background</span>=<span class="string">"#00ff00"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">View</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/color_blue"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"35dp"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"35dp"</span></div><div class="line">            <span class="attr">android:background</span>=<span class="string">"#0000ff"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">View</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/color_yellow"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"35dp"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"35dp"</span></div><div class="line">            <span class="attr">android:background</span>=<span class="string">"#ffff00"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">View</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/color_pink"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"35dp"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"35dp"</span></div><div class="line">            <span class="attr">android:background</span>=<span class="string">"#ff99ff"</span> /&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- 画笔的粗细 --&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">SeekBar</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/skb_stroke"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/iv"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Java代码的实现  :<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">OnClickListener</span>,</span></div><div class="line">		<span class="title">OnSeekBarChangeListener</span>, <span class="title">OnTouchListener</span> &#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"MainActivity"</span>;</div><div class="line">	<span class="keyword">private</span> View redView;</div><div class="line">	<span class="keyword">private</span> View greenView;</div><div class="line">	<span class="keyword">private</span> View blueView;</div><div class="line">	<span class="keyword">private</span> View yellowView;</div><div class="line">	<span class="keyword">private</span> View pinkView;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> SeekBar skbStroke;</div><div class="line">	<span class="keyword">private</span> ImageView iv;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> Bitmap bitmap;</div><div class="line">	<span class="keyword">private</span> Canvas canvas;</div><div class="line">	<span class="keyword">private</span> Paint paint;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> startX;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">float</span> startY;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">		redView = findViewById(R.id.color_red);</div><div class="line">		greenView = findViewById(R.id.color_green);</div><div class="line">		blueView = findViewById(R.id.color_blue);</div><div class="line">		yellowView = findViewById(R.id.color_yellow);</div><div class="line">		pinkView = findViewById(R.id.color_pink);</div><div class="line">		skbStroke = (SeekBar) findViewById(R.id.skb_stroke);</div><div class="line"></div><div class="line">		iv = (ImageView) findViewById(R.id.iv);</div><div class="line"></div><div class="line">		redView.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">		greenView.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">		blueView.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">		yellowView.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">		pinkView.setOnClickListener(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">		skbStroke.setOnSeekBarChangeListener(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">		iv.setOnTouchListener(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 准备画纸画布画笔</span></div><div class="line">		bitmap = Bitmap.createBitmap(<span class="number">320</span>, <span class="number">320</span>, Config.ARGB_8888);</div><div class="line">		canvas = <span class="keyword">new</span> Canvas(bitmap);</div><div class="line">		paint = <span class="keyword">new</span> Paint();</div><div class="line">		canvas.drawColor(Color.WHITE);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">		<span class="keyword">switch</span> (v.getId()) &#123;</div><div class="line">		<span class="comment">// 更改画笔的颜色</span></div><div class="line">		<span class="keyword">case</span> R.id.color_red:</div><div class="line">			paint.setColor(Color.RED);</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> R.id.color_green:</div><div class="line">			paint.setColor(Color.GREEN);</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> R.id.color_blue:</div><div class="line">			paint.setColor(Color.BLUE);</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> R.id.color_yellow:</div><div class="line">			paint.setColor(Color.YELLOW);</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> R.id.color_pink:</div><div class="line">			paint.setColor(<span class="number">0xffff99ff</span>);</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">default</span>:</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onProgressChanged</span><span class="params">(SeekBar seekBar, <span class="keyword">int</span> progress,</span></span></div><div class="line">			<span class="keyword">boolean</span> fromUser) &#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStartTrackingTouch</span><span class="params">(SeekBar seekBar)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStopTrackingTouch</span><span class="params">(SeekBar seekBar)</span> </span>&#123;</div><div class="line">		<span class="comment">// 改变画笔的粗细</span></div><div class="line">		<span class="keyword">int</span> progress = seekBar.getProgress();<span class="comment">// 0-100(1sp---&gt;10sp)</span></div><div class="line">		<span class="comment">// paint.setStrokeWidth(progress);</span></div><div class="line">		paint.setStrokeWidth(<span class="number">10</span> * progress / <span class="number">100f</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouch</span><span class="params">(View v, MotionEvent event)</span> </span>&#123;</div><div class="line">		<span class="comment">// 触摸Imageview的回调</span></div><div class="line"></div><div class="line">		<span class="comment">// 触摸的时候需要绘制图像,并且显示</span></div><div class="line"></div><div class="line">		<span class="keyword">switch</span> (event.getAction()) &#123;</div><div class="line">		<span class="keyword">case</span> MotionEvent.ACTION_DOWN:<span class="comment">// 1次</span></div><div class="line">			<span class="comment">// 1. 手指按下</span></div><div class="line"></div><div class="line">			startX = event.getX();<span class="comment">// 触摸的x坐标</span></div><div class="line">			startY = event.getY();<span class="comment">// 触摸的y坐标</span></div><div class="line"></div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> MotionEvent.ACTION_MOVE:<span class="comment">// 0-多次</span></div><div class="line">			<span class="comment">// 2. 手指移动</span></div><div class="line">			<span class="keyword">float</span> stopX = event.getX();</div><div class="line">			<span class="keyword">float</span> stopY = event.getY();</div><div class="line"></div><div class="line">			<span class="comment">// 绘制图像，并且显示到imgeview上</span></div><div class="line"></div><div class="line">			canvas.drawLine(startX, startY, stopX, stopY, paint);</div><div class="line"></div><div class="line">			<span class="comment">// 画纸上有数据了</span></div><div class="line">			iv.setImageBitmap(bitmap);</div><div class="line"></div><div class="line">			<span class="comment">// 更新起始点</span></div><div class="line">			startX = stopX;</div><div class="line">			startY = stopY;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> MotionEvent.ACTION_UP:<span class="comment">// 1次</span></div><div class="line">			<span class="comment">// 3. 手指抬起</span></div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">default</span>:</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">// 消费触摸事件</span></div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 对应的菜单按钮</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</div><div class="line">		getMenuInflater().inflate(R.menu.main, menu);</div><div class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.onCreateOptionsMenu(menu);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 菜单按钮的点击事件</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line"></div><div class="line">		<span class="keyword">int</span> itemId = item.getItemId();</div><div class="line">		<span class="keyword">switch</span> (itemId) &#123;</div><div class="line">		<span class="keyword">case</span> R.id.action_save:</div><div class="line">			Log.d(TAG, <span class="string">"点击了保存按钮!"</span>);</div><div class="line">			<span class="comment">// 将bitmap存储到本地</span></div><div class="line"></div><div class="line">			File file = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(),</div><div class="line">					System.currentTimeMillis() + <span class="string">".jpg"</span>);</div><div class="line">			FileOutputStream fos = <span class="keyword">null</span>;</div><div class="line">			<span class="keyword">try</span> &#123;</div><div class="line">				fos = <span class="keyword">new</span> FileOutputStream(file);</div><div class="line">				<span class="comment">// 将bitmap压缩到流中</span></div><div class="line">				bitmap.compress(CompressFormat.JPEG, <span class="number">100</span>, fos);</div><div class="line">			&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">				e.printStackTrace();</div><div class="line">			&#125; <span class="keyword">finally</span> &#123;</div><div class="line">				<span class="keyword">if</span> (fos != <span class="keyword">null</span>) &#123;</div><div class="line">					<span class="keyword">try</span> &#123;</div><div class="line">						fos.close();</div><div class="line">					&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">						e.printStackTrace();</div><div class="line">					&#125;</div><div class="line">					fos = <span class="keyword">null</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			<span class="comment">// 模拟 sdcard的挂载</span></div><div class="line">			Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_MEDIA_MOUNTED);</div><div class="line">			intent.setData(Uri.fromFile(Environment</div><div class="line">					.getExternalStorageDirectory()));</div><div class="line">			sendBroadcast(intent);</div><div class="line"></div><div class="line">			<span class="keyword">break</span>;</div><div class="line"></div><div class="line">		<span class="keyword">default</span>:</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.onOptionsItemSelected(item);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>播放器的同步和异步</li>
+</ul>
+<p>播放网络歌曲权限  :<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>播放器的代码实现  :  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">OnSeekBarChangeListener</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> EditText etPath;</div><div class="line">	<span class="keyword">private</span> SeekBar skbProgress;</div><div class="line">	<span class="keyword">private</span> MediaPlayer player;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span> tracking = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">		etPath = (EditText) findViewById(R.id.et_path);</div><div class="line">		skbProgress = (SeekBar) findViewById(R.id.skb_progress);</div><div class="line"></div><div class="line">		skbProgress.setOnSeekBarChangeListener(<span class="keyword">this</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">		String path = etPath.getText().toString().trim();</div><div class="line">		<span class="keyword">if</span> (TextUtils.isEmpty(path)) &#123;</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">// 播放音乐</span></div><div class="line">		<span class="keyword">if</span> (player == <span class="keyword">null</span>) &#123;</div><div class="line">			player = <span class="keyword">new</span> MediaPlayer();</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 重置播放器</span></div><div class="line">		player.reset();</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			player.setOnErrorListener(<span class="keyword">new</span> OnErrorListener() &#123;</div><div class="line"></div><div class="line">				<span class="meta">@Override</span></div><div class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onError</span><span class="params">(MediaPlayer mp, <span class="keyword">int</span> what, <span class="keyword">int</span> extra)</span> </span>&#123;</div><div class="line">					System.out.println(<span class="string">"what : "</span> + what);</div><div class="line">					<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;);</div><div class="line"></div><div class="line">			<span class="comment">// 设置播放的资源</span></div><div class="line">			player.setDataSource(path);</div><div class="line"></div><div class="line">			player.prepare();<span class="comment">// 准备播放</span></div><div class="line">			player.start();<span class="comment">// 开始播放</span></div><div class="line">			performProgress();</div><div class="line"></div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">performProgress</span><span class="params">()</span> </span>&#123;</div><div class="line">		skbProgress.setMax(player.getDuration());<span class="comment">// 音乐文件的时长</span></div><div class="line"></div><div class="line">		<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line"></div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">				<span class="keyword">while</span> (player != <span class="keyword">null</span> &amp;&amp; player.isPlaying()) &#123;</div><div class="line"></div><div class="line">					<span class="keyword">if</span> (!tracking) &#123;</div><div class="line">						<span class="comment">// 获得当前的进度</span></div><div class="line">						<span class="keyword">int</span> currentPosition = player.getCurrentPosition();</div><div class="line">						skbProgress.setProgress(currentPosition);<span class="comment">//子线程中更新UI</span></div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;).start();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pause</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">		<span class="comment">// 暂停</span></div><div class="line">		<span class="keyword">if</span> (player != <span class="keyword">null</span> &amp;&amp; player.isPlaying()) &#123;</div><div class="line">			player.pause();</div><div class="line">			((Button) view).setText(<span class="string">"继续"</span>);</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (player != <span class="keyword">null</span>) &#123;</div><div class="line">			player.start();</div><div class="line">			performProgress();</div><div class="line">			((Button) view).setText(<span class="string">"暂停"</span>);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (player != <span class="keyword">null</span>) &#123;</div><div class="line">			player.stop();</div><div class="line">			player.release();<span class="comment">// 释放资源</span></div><div class="line">			player = <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onProgressChanged</span><span class="params">(SeekBar seekBar, <span class="keyword">int</span> progress,</span></span></div><div class="line">			<span class="keyword">boolean</span> fromUser) &#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStartTrackingTouch</span><span class="params">(SeekBar seekBar)</span> </span>&#123;</div><div class="line">		<span class="comment">// 开始拖动</span></div><div class="line">		tracking = <span class="keyword">true</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStopTrackingTouch</span><span class="params">(SeekBar seekBar)</span> </span>&#123;</div><div class="line">		<span class="comment">// 结束拖动</span></div><div class="line">		tracking = <span class="keyword">false</span>;</div><div class="line">		<span class="comment">// 播放对应的位置</span></div><div class="line">		<span class="keyword">if</span> (player != <span class="keyword">null</span>) &#123;</div><div class="line">			player.seekTo(seekBar.getProgress());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>声音池</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> SoundPool pool;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> soundID;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">		<span class="keyword">int</span> maxStreams = <span class="number">10</span>;<span class="comment">// 声音池中同时可以播放声音的数量</span></div><div class="line">		<span class="keyword">int</span> streamType = AudioManager.STREAM_MUSIC;</div><div class="line">		<span class="keyword">int</span> srcQuality = <span class="number">0</span>;</div><div class="line">		pool = <span class="keyword">new</span> SoundPool(maxStreams, streamType, srcQuality);</div><div class="line"></div><div class="line">		<span class="comment">// 加载一个声音文件</span></div><div class="line">		soundID = pool.load(<span class="keyword">this</span>, R.raw.shoot, <span class="number">1</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shoot</span><span class="params">(View view)</span> </span>&#123;</div><div class="line"></div><div class="line">		<span class="keyword">float</span> leftVolume = <span class="number">1f</span>;</div><div class="line">		<span class="keyword">float</span> rightVolume = <span class="number">1f</span>;</div><div class="line">		<span class="keyword">int</span> priority = <span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span> loop = <span class="number">0</span>;</div><div class="line">		<span class="keyword">float</span> rate = <span class="number">1</span>;<span class="comment">// 播放的速率</span></div><div class="line">		pool.play(soundID, leftVolume, rightVolume, priority, loop, rate);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>视频播放器</li>
+</ul>
+<p>xml界面的简写  :<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">VideoView</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/vv"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span> /&gt;</div></pre></td></tr></table></figure></p>
+<p>Java代码的实现  :<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> VideoView vv;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">		vv = (VideoView) findViewById(R.id.vv);</div><div class="line"></div><div class="line">		MediaController mc = <span class="keyword">new</span> MediaController(<span class="keyword">this</span>);</div><div class="line">		mc.setAnchorView(vv);</div><div class="line"></div><div class="line">		vv.setMediaController(mc);</div><div class="line">		vv.setVideoPath(<span class="string">"mnt/sdcard/areyouok.3gp"</span>);</div><div class="line">		vv.start();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>拍照</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = <span class="number">100</span>;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">takephoto</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">		<span class="comment">// create Intent to take a picture and return control to the calling</span></div><div class="line">		<span class="comment">// application</span></div><div class="line">		<span class="comment">// 意图</span></div><div class="line">		Intent intent = <span class="keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);<span class="comment">// 去打开系统的照相机</span></div><div class="line"></div><div class="line">		<span class="comment">// 准备一个接收系统拍好照片后的文件路径</span></div><div class="line">		File file = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(),</div><div class="line">				System.currentTimeMillis() + <span class="string">".jpg"</span>);</div><div class="line"></div><div class="line">		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file)); <span class="comment">// set the</span></div><div class="line">																		<span class="comment">// image</span></div><div class="line">																		<span class="comment">// file</span></div><div class="line">		<span class="comment">// name</span></div><div class="line"></div><div class="line">		<span class="comment">// start the image capture Intent</span></div><div class="line">		<span class="comment">// 请求code</span></div><div class="line">		startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) &#123;</div><div class="line">			<span class="comment">// 为你的某个请求返回的结果</span></div><div class="line"></div><div class="line">			<span class="comment">// 给你数据的Activity设置的结果标记</span></div><div class="line">			<span class="comment">// resultCode</span></div><div class="line">			<span class="keyword">switch</span> (resultCode) &#123;</div><div class="line">			<span class="keyword">case</span> Activity.RESULT_OK:</div><div class="line">				<span class="comment">// 获取数据成功</span></div><div class="line">				System.out.println(<span class="string">"ok"</span>);</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			<span class="keyword">case</span> Activity.RESULT_CANCELED:</div><div class="line">				<span class="comment">// 用户取消操作</span></div><div class="line">				System.out.println(<span class="string">"cancel"</span>);</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			<span class="keyword">default</span>:</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>传感器指南针</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> SensorManager manager;</div><div class="line">	<span class="keyword">private</span> Sensor sensor;</div><div class="line">	<span class="keyword">private</span> SensorEventListener listener = <span class="keyword">new</span> SensorEventListener() &#123;</div><div class="line"></div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSensorChanged</span><span class="params">(SensorEvent event)</span> </span>&#123;</div><div class="line">			<span class="comment">// 1. 获取 传感器的数据</span></div><div class="line">			<span class="keyword">float</span>[] values = event.values;</div><div class="line"></div><div class="line">			<span class="comment">// value</span></div><div class="line">			<span class="comment">// values[0]: Azimuth, angle between the magnetic north direction</span></div><div class="line">			<span class="comment">// and the y-axis, around the z-axis (0 to 359). 0=North, 90=East,</span></div><div class="line">			<span class="comment">// 180=South, 270=West</span></div><div class="line"></div><div class="line">			<span class="keyword">float</span> angle = values[<span class="number">0</span>];</div><div class="line">			<span class="keyword">if</span> (angle == <span class="number">0</span>) &#123;</div><div class="line">				System.out.println(<span class="string">"北"</span>);</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (angle == <span class="number">90</span>) &#123;</div><div class="line">				System.out.println(<span class="string">"东"</span>);</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (angle == <span class="number">180</span>) &#123;</div><div class="line">				System.out.println(<span class="string">"南"</span>);</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (angle == <span class="number">270</span>) &#123;</div><div class="line">				System.out.println(<span class="string">"西"</span>);</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (angle &gt; <span class="number">0</span> &amp;&amp; angle &lt; <span class="number">90</span>) &#123;</div><div class="line">				System.out.println(<span class="string">"东北"</span>);</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (angle &gt; <span class="number">90</span> &amp;&amp; angle &lt; <span class="number">180</span>) &#123;</div><div class="line">				System.out.println(<span class="string">"东南"</span>);</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (angle &gt; <span class="number">180</span> &amp;&amp; angle &lt; <span class="number">270</span>) &#123;</div><div class="line">				System.out.println(<span class="string">"西南"</span>);</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (angle &gt; <span class="number">270</span> &amp;&amp; angle &lt; <span class="number">360</span>) &#123;</div><div class="line">				System.out.println(<span class="string">"西北"</span>);</div><div class="line">			&#125;</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAccuracyChanged</span><span class="params">(Sensor sensor, <span class="keyword">int</span> accuracy)</span> </span>&#123;</div><div class="line">			<span class="comment">// 1. 传感器的精确度发送改变时</span></div><div class="line"></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">		<span class="comment">// 传感器的管理者</span></div><div class="line"></div><div class="line">		manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);</div><div class="line"></div><div class="line">		<span class="comment">// List&lt;Sensor&gt; list = manager.getSensorList(Sensor.TYPE_ALL);</span></div><div class="line">		<span class="comment">// for (Sensor sensor : list) &#123;</span></div><div class="line">		<span class="comment">// System.out.println(sensor.getName());</span></div><div class="line">		<span class="comment">// &#125;</span></div><div class="line"></div><div class="line">		<span class="comment">// 获得光的传感器</span></div><div class="line"></div><div class="line">		sensor = manager.getDefaultSensor(Sensor.TYPE_ORIENTATION);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onResume();</div><div class="line"></div><div class="line">		<span class="comment">// 1:监听传感器</span></div><div class="line">		<span class="comment">// 2:哪个传感器</span></div><div class="line">		<span class="comment">// 3:采样频率</span></div><div class="line">		manager.registerListener(listener, sensor,</div><div class="line">				SensorManager.SENSOR_DELAY_NORMAL);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onPause();</div><div class="line"></div><div class="line">		manager.unregisterListener(listener);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AndroidBasis/" rel="tag"># AndroidBasis</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/10-安卓基础之新特性和知识点回顾/" rel="next" title="10.安卓基础之新特性和知识点回顾">
+                <i class="fa fa-chevron-left"></i> 10.安卓基础之新特性和知识点回顾
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/Lesson-18-He-often-does-this-他经常干这种事-1/" rel="prev" title="Lesson 18 He often does this! 他经常干这种事">
+                Lesson 18 He often does this! 他经常干这种事 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-多媒体基础知识"><span class="nav-number">1.</span> <span class="nav-text">Android  多媒体基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像与图形"><span class="nav-number">1.2.</span> <span class="nav-text">图像与图形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#位图图像"><span class="nav-number">1.2.1.</span> <span class="nav-text">位图图像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片的操作"><span class="nav-number">1.2.2.</span> <span class="nav-text">图片的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位图图像的缺陷"><span class="nav-number">1.2.3.</span> <span class="nav-text">位图图像的缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位图常见的文件格式"><span class="nav-number">1.2.4.</span> <span class="nav-text">位图常见的文件格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矢量图像"><span class="nav-number">1.2.5.</span> <span class="nav-text">矢量图像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#颜色矩阵"><span class="nav-number">1.3.</span> <span class="nav-text">颜色矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传感器"><span class="nav-number">1.4.</span> <span class="nav-text">传感器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#练习案例"><span class="nav-number">1.5.</span> <span class="nav-text">练习案例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

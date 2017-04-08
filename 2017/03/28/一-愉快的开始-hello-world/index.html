@@ -1,0 +1,1181 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C,The C Programming Language," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.  include 头文件包含1234567#include &amp;lt;stdio.h&amp;gt;/*包含该头文件的目的是使用了函数printf*/		       /*空行，主要是为了分隔，编译器忽略。*/void main(void)		/*主函数，入口点*/&amp;#123;					/*函数开始*/	printf(&quot;Hello World!&quot;);	/*打印字符串*/         getchar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一.愉快的开始-hello world">
+<meta property="og:url" content="http://javami.com/2017/03/28/一-愉快的开始-hello-world/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="1.  include 头文件包含1234567#include &amp;lt;stdio.h&amp;gt;/*包含该头文件的目的是使用了函数printf*/		       /*空行，主要是为了分隔，编译器忽略。*/void main(void)		/*主函数，入口点*/&amp;#123;					/*函数开始*/	printf(&quot;Hello World!&quot;);	/*打印字符串*/         getchar">
+<meta property="og:image" content="http://javami.com/2017/03/28/一-愉快的开始-hello-world/1.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/一-愉快的开始-hello-world/2.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/一-愉快的开始-hello-world/3.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/一-愉快的开始-hello-world/4.png">
+<meta property="og:image" content="http://javami.com/2017/03/28/一-愉快的开始-hello-world/5.png">
+<meta property="og:updated_time" content="2017-03-28T07:26:41.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一.愉快的开始-hello world">
+<meta name="twitter:description" content="1.  include 头文件包含1234567#include &amp;lt;stdio.h&amp;gt;/*包含该头文件的目的是使用了函数printf*/		       /*空行，主要是为了分隔，编译器忽略。*/void main(void)		/*主函数，入口点*/&amp;#123;					/*函数开始*/	printf(&quot;Hello World!&quot;);	/*打印字符串*/         getchar">
+<meta name="twitter:image" content="http://javami.com/2017/03/28/一-愉快的开始-hello-world/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/一-愉快的开始-hello-world/"/>
+
+
+
+
+
+  <title> 一.愉快的开始-hello world | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/一-愉快的开始-hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                一.愉快的开始-hello world
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T13:04:48+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/一-愉快的开始-hello-world/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/一-愉快的开始-hello-world/" class="leancloud_visitors" data-flag-title="一.愉快的开始-hello world">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-include-头文件包含"><a href="#1-include-头文件包含" class="headerlink" title="1.  include 头文件包含"></a>1.  include 头文件包含</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;/*包含该头文件的目的是使用了函数printf*/</span></span></div><div class="line">		       <span class="comment">/*空行，主要是为了分隔，编译器忽略。*/</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span>		<span class="comment">/*主函数，入口点*/</span></span></div><div class="line">&#123;					<span class="comment">/*函数开始*/</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"Hello World!"</span>);	<span class="comment">/*打印字符串*/</span></div><div class="line">         getchar();<span class="comment">//等待输入，起到等待的作用</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>include 是要告诉编译器，包含一个头文件,在 C 语言当中,任何库函数调用都需要提前包含头文件&lt;头文件&gt;,代表让 C 语言编译器去系统目录下寻找相关的头文件”头文件”,代表让 C 语言编译器去用户当前目录下寻找相关头文件如果是使用了一个 C 语言库函数需要的头文件，那么一定是<code>#include &lt;&gt;</code>如果使用了一个自定义的 h 文件,那么一定是<code>#include &quot;&quot;</code>.</p>
+<h1 id="2-main-函数"><a href="#2-main-函数" class="headerlink" title="2.  main 函数"></a>2.  main 函数</h1><p>main 函数是 C 语言中的主函数,一个 C 语言的程序必须有一个主函数,也只能有一个主函数.</p>
+<h1 id="3-注释"><a href="#3-注释" class="headerlink" title="3.  注释"></a>3.  注释</h1><p>//,单行注释,代表注释,就是一个文字说明,没有实质的意义，单行注释是 C++语言的注释方法.</p>
+<p>/<em> </em>/,多行注释,多行注释是标准 C 语言的注释方法.</p>
+<h1 id="4-括号，程序题和代码块"><a href="#4-括号，程序题和代码块" class="headerlink" title="4.  {} 括号，程序题和代码块"></a>4.  {} 括号，程序题和代码块</h1><p>C 语言所有的函数的代码都是在{}里包着的</p>
+<h1 id="5-声明"><a href="#5-声明" class="headerlink" title="5.  声明"></a>5.  声明</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>  a;</div></pre></td></tr></table></figure>
+<p>声明一个变量名字叫 a,对于 c 语言,变量的名称是可以子定义的.</p>
+<h1 id="6-C-语言自定义名字的要求"><a href="#6-C-语言自定义名字的要求" class="headerlink" title="6.  C 语言自定义名字的要求"></a>6.  C 语言自定义名字的要求</h1><p>可以使用大小写字母,下划线,数字,但第一个字母必须是字母或者下划线字母区分大小写不能用 C 语言的关键字做为变量名称每一行,必须是<code>;</code>结尾!</p>
+<h1 id="7-printf-函数"><a href="#7-printf-函数" class="headerlink" title="7.  printf 函数"></a>7.  printf 函数</h1><p>printf 是向标准输出设备输出字符串的如果要输出一个字符串.</p>
+<p>例如：<code>printf(&quot;hello world&quot;);</code></p>
+<p>如果要输出一个整数.</p>
+<p>例如：<code>printf(&quot;%d&quot;,6）;</code></p>
+<p><code>Printf(&quot;\n&quot;);</code>会输出一个回车换行</p>
+<h1 id="8-return-语句"><a href="#8-return-语句" class="headerlink" title="8. return 语句"></a>8. return 语句</h1><p>一个函数遇到 return 语句就终止了,return 是 c 语言的关键字.</p>
+<h1 id="9-System-系统调用"><a href="#9-System-系统调用" class="headerlink" title="9.  System 系统调用"></a>9.  System 系统调用</h1><p>System 库函数的功能是执行操作系统的命令或者运行指定的程序,system 库函数的调用需要<code>include&lt;stdlib.h&gt;</code></p>
+<h1 id="10-C-语言编译过程-gcc-参数简介"><a href="#10-C-语言编译过程-gcc-参数简介" class="headerlink" title="10.  C 语言编译过程,gcc 参数简介"></a>10.  C 语言编译过程,gcc 参数简介</h1><p><img src="/2017/03/28/一-愉快的开始-hello-world/1.png" alt="C语言编译过程" title="C语言编译过程"></p>
+<ul>
+<li><p>-E  预编译</p>
+<ul>
+<li><p><code>Gcc –E –o a.e a.c</code><br>预编译 a.c 文件,生成的目标文件名为 a.e</p>
+</li>
+<li><p>预编译是将 include 包含的头文件内容替换到 C 文件中中,同时将代码中没用的注释部分删除.</p>
+</li>
+</ul>
+</li>
+<li><p>-S 汇编</p>
+<ul>
+<li>-S 就是将 c 语言转化为汇编语言</li>
+</ul>
+</li>
+<li>-C 编译<ul>
+<li>将代码编译为二进制的机器指令</li>
+</ul>
+</li>
+<li>链接<ul>
+<li>Gcc 没有任何参数，代表就是链接</li>
+</ul>
+</li>
+</ul>
+<h1 id="11-操作系统结构"><a href="#11-操作系统结构" class="headerlink" title="11.  操作系统结构"></a>11.  操作系统结构</h1><p><img src="/2017/03/28/一-愉快的开始-hello-world/2.png" alt="操作系统结构" title="操作系统结构"></p>
+<ul>
+<li>用户模式<ul>
+<li>应用程序都是运行在用户区域</li>
+</ul>
+</li>
+<li>内核模式<ul>
+<li>操作系统的内核,设备驱动程序,这些都是在内核模式下运行的</li>
+</ul>
+</li>
+</ul>
+<h1 id="12-C-语言关键字"><a href="#12-C-语言关键字" class="headerlink" title="12.  C  语言关键字"></a>12.  C  语言关键字</h1><p><img src="/2017/03/28/一-愉快的开始-hello-world/3.png" alt="C语言的32个关键字" title="C语言的32个关键字"></p>
+<h1 id="13-C-语言的控制符"><a href="#13-C-语言的控制符" class="headerlink" title="13.  C  语言的控制符"></a>13.  C  语言的控制符</h1><p><img src="/2017/03/28/一-愉快的开始-hello-world/4.png" alt="9种控制语句" title="9种控制语句"></p>
+<h1 id="14-C语言的运算符"><a href="#14-C语言的运算符" class="headerlink" title="14.  C语言的运算符"></a>14.  C语言的运算符</h1><p><img src="/2017/03/28/一-愉快的开始-hello-world/5.png" alt="34种运算符" title="34种运算符"></p>
+<h1 id="15-总结与训练"><a href="#15-总结与训练" class="headerlink" title="15.  总结与训练"></a>15.  总结与训练</h1><ul>
+<li><p><strong>.c和.cpp的区别</strong></p>
+<ul>
+<li><p>在编译源文件时,C编译器和C++编译器都会对符号(函数或变量)名作某些修正,但两者采用的修正方法不同,所以两者生成的目标文件不能互相链接.</p>
+</li>
+<li><p>在C++中使用extern “C”可以让C++符号获得C链接特性.由于C++编译器会自动定义__cplusplus宏,所以在C语言头文件中采用这种结构可以保证无论使用何种编译器,生成的目标文件都具有C链接特性,能够与标准C编译器所生成的目标文件相链接.通常c/c++编译器会根据文件后缀来选择符号修正,所以最好把c的代码放到.c文件中,把c++的代码放到.cpp文件中.</p>
+</li>
+</ul>
+</li>
+<li><p>Windows  实现工具箱</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line">	system(<span class="string">"mspaint"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>利用  define  进行代码混迹</p>
+<ul>
+<li><p>可以自定义一个<code>1.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	给哥跑起来	main</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	输出	printf</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在源文件这样写:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"1.h"</span></span></div><div class="line"><span class="keyword">void</span> 给哥跑起来()</div><div class="line">&#123;</div><div class="line">	输出(<span class="string">"哈哈"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C</a>
+          
+            <a href="/tags/The-C-Programming-Language/" rel="tag"># The C Programming Language</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/Lesson-60-The-future-卜算未来/" rel="next" title="Lesson 60 The future 卜算未来">
+                <i class="fa fa-chevron-left"></i> Lesson 60 The future 卜算未来
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/二-C语言中的数据类型/" rel="prev" title="二.C语言中的数据类型">
+                二.C语言中的数据类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-include-头文件包含"><span class="nav-number">1.</span> <span class="nav-text">1.  include 头文件包含</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-main-函数"><span class="nav-number">2.</span> <span class="nav-text">2.  main 函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-注释"><span class="nav-number">3.</span> <span class="nav-text">3.  注释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-括号，程序题和代码块"><span class="nav-number">4.</span> <span class="nav-text">4.  {} 括号，程序题和代码块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-声明"><span class="nav-number">5.</span> <span class="nav-text">5.  声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-C-语言自定义名字的要求"><span class="nav-number">6.</span> <span class="nav-text">6.  C 语言自定义名字的要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-printf-函数"><span class="nav-number">7.</span> <span class="nav-text">7.  printf 函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-return-语句"><span class="nav-number">8.</span> <span class="nav-text">8. return 语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-System-系统调用"><span class="nav-number">9.</span> <span class="nav-text">9.  System 系统调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-C-语言编译过程-gcc-参数简介"><span class="nav-number">10.</span> <span class="nav-text">10.  C 语言编译过程,gcc 参数简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-操作系统结构"><span class="nav-number">11.</span> <span class="nav-text">11.  操作系统结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-C-语言关键字"><span class="nav-number">12.</span> <span class="nav-text">12.  C  语言关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-C-语言的控制符"><span class="nav-number">13.</span> <span class="nav-text">13.  C  语言的控制符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-C语言的运算符"><span class="nav-number">14.</span> <span class="nav-text">14.  C语言的运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-总结与训练"><span class="nav-number">15.</span> <span class="nav-text">15.  总结与训练</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

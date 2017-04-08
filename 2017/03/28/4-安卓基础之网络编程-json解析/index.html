@@ -1,0 +1,1225 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AndroidBasis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.  ListView的使用步骤
+首先在layout文件中定义一个listview
+找到定义的listview控件,设置一个适配器(adapter)
+在适配器中将要绑定listview中的数据传递给adapter
+
+MVC  的设计思想
+
+M:数据
+V:listview
+C:adapter
+
+2.  AnimationDrawable  的使用:
+先在drawable准备好图片
+在xml文件里面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.安卓基础之网络编程&json解析">
+<meta property="og:url" content="http://javami.com/2017/03/28/4-安卓基础之网络编程-json解析/index.html">
+<meta property="og:site_name" content="杰言杰语">
+<meta property="og:description" content="1.  ListView的使用步骤
+首先在layout文件中定义一个listview
+找到定义的listview控件,设置一个适配器(adapter)
+在适配器中将要绑定listview中的数据传递给adapter
+
+MVC  的设计思想
+
+M:数据
+V:listview
+C:adapter
+
+2.  AnimationDrawable  的使用:
+先在drawable准备好图片
+在xml文件里面">
+<meta property="og:updated_time" content="2017-03-28T07:48:45.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4.安卓基础之网络编程&json解析">
+<meta name="twitter:description" content="1.  ListView的使用步骤
+首先在layout文件中定义一个listview
+找到定义的listview控件,设置一个适配器(adapter)
+在适配器中将要绑定listview中的数据传递给adapter
+
+MVC  的设计思想
+
+M:数据
+V:listview
+C:adapter
+
+2.  AnimationDrawable  的使用:
+先在drawable准备好图片
+在xml文件里面">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://javami.com/2017/03/28/4-安卓基础之网络编程-json解析/"/>
+
+
+
+
+
+  <title> 4.安卓基础之网络编程&json解析 | 杰言杰语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f055d048add16794b8eabf8930a8ded";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰言杰语</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/4-安卓基础之网络编程-json解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                4.安卓基础之网络编程&json解析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T15:48:32+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/28/4-安卓基础之网络编程-json解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/28/4-安卓基础之网络编程-json解析/" class="leancloud_visitors" data-flag-title="4.安卓基础之网络编程&json解析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-ListView的使用步骤"><a href="#1-ListView的使用步骤" class="headerlink" title="1.  ListView的使用步骤"></a>1.  ListView的使用步骤</h1><ul>
+<li>首先在layout文件中定义一个listview</li>
+<li>找到定义的listview控件,设置一个适配器(adapter)</li>
+<li>在适配器中将要绑定listview中的数据传递给adapter</li>
+</ul>
+<p><strong>MVC  的设计思想</strong></p>
+<ul>
+<li>M:数据</li>
+<li>V:listview</li>
+<li>C:adapter</li>
+</ul>
+<h1 id="2-AnimationDrawable-的使用"><a href="#2-AnimationDrawable-的使用" class="headerlink" title="2.  AnimationDrawable  的使用:"></a>2.  AnimationDrawable  的使用:</h1><ul>
+<li>先在<code>drawable</code>准备好图片</li>
+<li>在<code>xml</code>文件里面设置根元素和子原始</li>
+<li>代码中调用</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">AnimationDrawable rocketAnimation;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">  setContentView(R.layout.main);</div><div class="line"></div><div class="line">  ImageView rocketImage = (ImageView) findViewById(R.id.rocket_image);</div><div class="line">  rocketImage.setBackgroundResource(R.drawable.rocket_thrust);</div><div class="line">  rocketAnimation = (AnimationDrawable) rocketImage.getBackground();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_DOWN) &#123;</div><div class="line">    rocketAnimation.start();</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="3-Android的国际化相关"><a href="#3-Android的国际化相关" class="headerlink" title="3. Android的国际化相关"></a>3. Android的国际化相关</h1><p>常见的有：<br>zh_cn: 简体中文<br>zh_hk: 繁体中文(中国香港)<br>zh_tw: 繁体中文(中国台湾地区)<br>en-hk: 英语(香港)<br>en_us: 英语(美国)<br>en_gb: 英语(英国)<br>en_ww: 英语(全球)<br>ja_jp: 日语(日本)<br>ko_kr: 韩文(韩国)</p>
+<p>在Android工程的res目录下,通过定义特殊的文件夹名称就可以实现多语言支持.比如我们的程序兼容简体中文/英文,在values文件夹中建立默认strings.xml,再建立values-zh-rCN文件夹.</p>
+<p>在每个文件夹里放置一个strings.xml,<code>strings.xml</code>里是各种语言字符串.如果涉及到参数配置类xml文件夹名称也要改成xml-zh/xml.这样在android的系统中进行语言切换,所开发的程序也会跟着切换语言.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Resources resources = getResources();<span class="comment">//获得res资源对象</span></div><div class="line">Configuration config = resources.getConfiguration();<span class="comment">//获得设置对象</span></div><div class="line">DisplayMetrics dm = resources .getDisplayMetrics();<span class="comment">//获得屏幕参数：主要是分辨率,像素等.</span></div><div class="line">config.locale = Locale.SIMPLIFIED_CHINESE; <span class="comment">//简体中文</span></div><div class="line">resources.updateConfiguration(config, dm);</div></pre></td></tr></table></figure>
+<h1 id="4-Android-连接网络-获得数据"><a href="#4-Android-连接网络-获得数据" class="headerlink" title="4. Android 连接网络,获得数据"></a>4. Android 连接网络,获得数据</h1><ul>
+<li>先定义一个秘书:<code>Handler handler = new Handler()</code></li>
+<li>获取到一个篮子:<code>Message msg = Message.obtain();</code></li>
+<li>让篮子交给秘书处理:<code>msg.obj = data;</code><br>通过生活的例子融入代码的想法中,在耗时的事儿不允许放在主线程中去完成.</li>
+</ul>
+<h2 id="4-1-在线获得网址的图片"><a href="#4-1-在线获得网址的图片" class="headerlink" title="4.1 在线获得网址的图片"></a>4.1 在线获得网址的图片</h2><ul>
+<li>需要在AndroidManifest.xml开启权限</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在主线程重写handler的handleMessage( )方法,在工作线程发送消息.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SUCCESS = <span class="number">0</span>;</div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NETWORK_ERROR = <span class="number">1</span>;</div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ERROR = <span class="number">2</span>;</div><div class="line">    <span class="keyword">private</span> EditText ed_path;</div><div class="line">    <span class="keyword">private</span> ImageView iv;</div><div class="line">    <span class="keyword">private</span> String path;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Handler mHandler = <span class="keyword">new</span> Handler()&#123;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line"></div><div class="line">            <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">                <span class="keyword">case</span> SUCCESS:</div><div class="line">                    <span class="comment">//取出消息中的数据</span></div><div class="line">                    Bitmap bitmap = (Bitmap) msg.obj;</div><div class="line">                    iv.setImageBitmap(bitmap);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> NETWORK_ERROR:</div><div class="line">                    Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"连接错误 ...."</span>, <span class="number">0</span>).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> ERROR:</div><div class="line">                    Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"  获得资源失败  ...."</span>, <span class="number">0</span>).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line"></div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line"></div><div class="line">        &#125;;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        ed_path = (EditText) findViewById(R.id.ed_path);</div><div class="line">        iv = (ImageView) findViewById(R.id.iv);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gogetImage</span><span class="params">(View v)</span></span>&#123;</div><div class="line"></div><div class="line">        path = ed_path.getText().toString().trim();</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(TextUtils.isEmpty(path))&#123;</div><div class="line">            Toast.makeText(<span class="keyword">this</span>, <span class="string">"路径有错误..."</span>, <span class="number">0</span>).show();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">new</span> Thread()&#123;</div><div class="line"></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    URL url = <span class="keyword">new</span> URL(path);</div><div class="line">                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();</div><div class="line">                    conn.setConnectTimeout(<span class="number">5000</span>);</div><div class="line"></div><div class="line">                    <span class="comment">//设置请求的方式</span></div><div class="line">                    conn.setRequestMethod(<span class="string">"GET"</span>);</div><div class="line"></div><div class="line">                    <span class="comment">//拿到返回的数据的类型</span></div><div class="line">                    String contentType = conn.getContentType();</div><div class="line"></div><div class="line">                    <span class="comment">//数据的长度</span></div><div class="line">                    <span class="keyword">int</span> length = conn.getContentLength();</div><div class="line"></div><div class="line">                    <span class="comment">// 获得服务器返回的状态码 , 根据状态码去判断是否成功</span></div><div class="line">                    <span class="keyword">int</span> code = conn.getResponseCode();</div><div class="line"></div><div class="line">                    <span class="keyword">if</span>(code==<span class="number">200</span>)&#123;</div><div class="line">                        InputStream in = conn.getInputStream();</div><div class="line">                        Bitmap bitmap = BitmapFactory.decodeStream(in);</div><div class="line">                        Message msg = Message.obtain();</div><div class="line">                        msg.what=SUCCESS;</div><div class="line">                        msg.obj = bitmap;</div><div class="line">                        mHandler.sendMessage(msg);</div><div class="line"></div><div class="line">                        in.close();</div><div class="line">                    &#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">                        Message msg = Message.obtain();</div><div class="line">                        msg.what=ERROR;</div><div class="line">                        mHandler.sendMessage(msg);</div><div class="line"></div><div class="line">                    &#125;</div><div class="line"></div><div class="line"></div><div class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                    Message message =  Message.obtain();</div><div class="line">                    message.what= NETWORK_ERROR;</div><div class="line">                    mHandler.sendMessage(message);</div><div class="line"></div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;;</div><div class="line"></div><div class="line">        &#125;.start();</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>activity_main.xml的实现</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span></div><div class="line">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/ed_path"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:onClick</span>=<span class="string">"gogetImage"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"Get"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/iv"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="4-2-网页源码查看器的实现"><a href="#4-2-网页源码查看器的实现" class="headerlink" title="4.2 网页源码查看器的实现"></a>4.2 网页源码查看器的实现</h2><ul>
+<li>需要在AndroidManifest.xml开启权限</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在主线程中重写hander的handleMessage()方法,让工作线程发送信息.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span>  <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SUCCESS = <span class="number">0</span>;</div><div class="line">    <span class="keyword">protected</span>  <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ERROR = <span class="number">1</span>;</div><div class="line">    <span class="keyword">protected</span>  <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NETWORK_ERROR = <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> EditText ed_path;</div><div class="line">    <span class="keyword">private</span> TextView tv;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ed_path = (EditText) findViewById(R.id.ed_path);</div><div class="line">        tv = (TextView)findViewById(R.id.tv);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//定义一个秘书</span></div><div class="line">    Handler handler = <span class="keyword">new</span> Handler()&#123;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span></span>&#123;</div><div class="line">            <span class="keyword">switch</span> (msg.what)&#123;</div><div class="line">                <span class="keyword">case</span> SUCCESS:</div><div class="line">                    String value = (String) msg.obj;</div><div class="line">                    tv.setText(value);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> ERROR:</div><div class="line">                    Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"ERROR"</span>,<span class="number">0</span>).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> NETWORK_ERROR:</div><div class="line">                    Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"NETWORK_ERROR"</span>,<span class="number">0</span>).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    String path = <span class="keyword">null</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">viewPageSource</span><span class="params">(View view)</span></span>&#123;</div><div class="line">        path = ed_path.getText().toString().trim();</div><div class="line">        <span class="keyword">if</span>(TextUtils.isEmpty(path))&#123;</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"PATH NOT NOT!"</span>,<span class="number">0</span>).show();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//否则连接网络，启动一个新的线程</span></div><div class="line">        <span class="keyword">new</span> Thread()&#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">                <span class="keyword">try</span>&#123;</div><div class="line">                    URL url = <span class="keyword">new</span> URL(path);</div><div class="line">                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();</div><div class="line"></div><div class="line">                    <span class="comment">//设置连接超时为5秒钟</span></div><div class="line">                    conn.setConnectTimeout(<span class="number">5000</span>);</div><div class="line">                    conn.setRequestMethod(<span class="string">"GET"</span>);</div><div class="line">                    <span class="comment">//这句能伪装成电脑访问</span></div><div class="line">                    conn.setRequestProperty(<span class="string">"User-Agent"</span>, <span class="string">"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)"</span>);</div><div class="line">                    String contentType = conn.getContentType();</div><div class="line">                    <span class="keyword">int</span> code = conn.getResponseCode();</div><div class="line">                    <span class="keyword">if</span>(code == <span class="number">200</span>)&#123;</div><div class="line">                        InputStream in = conn.getInputStream();</div><div class="line">                        String data = StreamTool.decodeStream(in);</div><div class="line"></div><div class="line">                        <span class="comment">//Message 称为篮子</span></div><div class="line">                        Message msg = Message.obtain();</div><div class="line">                        msg.what = SUCCESS;</div><div class="line">                        msg.obj = data;</div><div class="line">                        handler.sendMessage(msg);</div><div class="line">                    &#125;<span class="keyword">else</span>&#123;</div><div class="line">                        Message msg = Message.obtain();</div><div class="line">                        msg.what = ERROR;</div><div class="line">                        handler.sendMessage(msg);</div><div class="line">                    &#125;</div><div class="line">                &#125;<span class="keyword">catch</span> (Exception e)&#123;</div><div class="line">                    Message msg = Message.obtain();</div><div class="line">                    msg.what = NETWORK_ERROR;</div><div class="line">                    handler.sendMessage(msg);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>定义一个底层流实现代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decodeStream</span><span class="params">(InputStream in)</span> <span class="keyword">throws</span> IOException</span>&#123;</div><div class="line">		<span class="comment">//底层流</span></div><div class="line">		ByteArrayOutputStream bas = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line">		<span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line"></div><div class="line">		<span class="keyword">while</span> ((len=in.read(buf))&gt;<span class="number">0</span>)&#123;</div><div class="line">				bas.write(buf,<span class="number">0</span>,len);</div><div class="line">		&#125;</div><div class="line">		String data = bas.toString();</div><div class="line">		<span class="keyword">return</span> data;</div></pre></td></tr></table></figure>
+<ul>
+<li>activity_mail.xml的编写</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/ed_path"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"http://www.itceo.net"</span>/&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:onClick</span>=<span class="string">"viewPageSource"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"显示"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">ScrollView</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/tv"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="4-3-解析json格式的数据"><a href="#4-3-解析json格式的数据" class="headerlink" title="4.3 解析json格式的数据"></a>4.3 解析json格式的数据</h2><ul>
+<li>需要在AndroidManifest.xml开启权限</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在主线程中重写hander的handleMessage()方法,让工作线程发送信息.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> EditText ed_city;</div><div class="line">    <span class="keyword">private</span> TextView city_result1;</div><div class="line">    <span class="keyword">private</span> TextView city_result2;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        ed_city = (EditText) findViewById(R.id.ed_city);</div><div class="line">        city_result1 = (TextView) findViewById(R.id.city_result1);</div><div class="line">        city_result2 = (TextView) findViewById(R.id.city_result2);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String PATH = <span class="string">"http://wthrcdn.etouch.cn/weather_mini?city="</span>;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SUCCESS = <span class="number">0</span>;</div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> INVALID_CITY = <span class="number">1</span>;</div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ERROR = <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String city;</div><div class="line">    String ul;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Handler mHandler = <span class="keyword">new</span> Handler()&#123;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(android.os.Message msg)</span> </span>&#123;</div><div class="line"></div><div class="line">            <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">                <span class="keyword">case</span> SUCCESS:</div><div class="line"></div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        JSONArray data = (JSONArray) msg.obj;</div><div class="line">                        String day01 = data.getString(<span class="number">0</span>);</div><div class="line">                        city_result1.setText(day01);</div><div class="line"></div><div class="line">                        String day02 = data.getString(<span class="number">1</span>);</div><div class="line">                        city_result2.setText(day02);</div><div class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                        e.printStackTrace();</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> INVALID_CITY:</div><div class="line">                    Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"城市无效"</span>, <span class="number">0</span>).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> ERROR:</div><div class="line"></div><div class="line">                    Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"网络问题"</span>, <span class="number">0</span>).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line"></div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">searchCityWeather</span><span class="params">(View v)</span></span>&#123;</div><div class="line"></div><div class="line">        city = ed_city.getText().toString().trim();</div><div class="line">        <span class="keyword">if</span>(TextUtils.isEmpty(city))&#123;</div><div class="line">            Toast.makeText(<span class="keyword">this</span>, <span class="string">"路径错误..."</span>, <span class="number">0</span>).show();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//http://wthrcdn.etouch.cn/weather_mini?city=%E6%B7%B1%E5%9C%B3</span></div><div class="line">        <span class="keyword">new</span> Thread()&#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line"></div><div class="line">                    ul = PATH + URLEncoder.encode(city, <span class="string">"UTF-8"</span>);</div><div class="line">                    URL url = <span class="keyword">new</span> URL(ul);</div><div class="line"></div><div class="line">                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();</div><div class="line"></div><div class="line">                    <span class="comment">// 设置必要的参数信息</span></div><div class="line">                    conn.setConnectTimeout(<span class="number">5000</span>);</div><div class="line">                    conn.setRequestMethod(<span class="string">"GET"</span>);</div><div class="line"></div><div class="line">                    <span class="comment">//判断响应码</span></div><div class="line">                    <span class="keyword">int</span> code = conn.getResponseCode();</div><div class="line"></div><div class="line">                    <span class="keyword">if</span>(code==<span class="number">200</span>)&#123;</div><div class="line"></div><div class="line">                        InputStream in = conn.getInputStream();</div><div class="line">                        String data = StreamTool.decodeStream(in);</div><div class="line"></div><div class="line">                        System.out.println(data);</div><div class="line"></div><div class="line">                        <span class="comment">//解析json格式的数据</span></div><div class="line">                        JSONObject jsonObj = <span class="keyword">new</span> JSONObject(data);</div><div class="line"></div><div class="line">                        <span class="comment">// 获得desc的值</span></div><div class="line">                        String result = jsonObj.getString(<span class="string">"desc"</span>);</div><div class="line">                        <span class="keyword">if</span>(<span class="string">"OK"</span>.equals(result))&#123;</div><div class="line"></div><div class="line">                            <span class="comment">//城市有效,返回了需要的数据</span></div><div class="line">                            JSONObject dataObj = jsonObj.getJSONObject(<span class="string">"data"</span>);</div><div class="line"></div><div class="line">                            JSONArray jsonArray = dataObj.getJSONArray(<span class="string">"forecast"</span>);</div><div class="line"></div><div class="line">                            <span class="comment">//通知更新ui</span></div><div class="line">                            Message msg = Message.obtain();</div><div class="line">                            msg.obj = jsonArray;</div><div class="line">                            msg.what=SUCCESS;</div><div class="line">                            mHandler.sendMessage(msg);</div><div class="line"></div><div class="line">                        &#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">                            <span class="comment">//城市无效</span></div><div class="line">                            Message msg = Message.obtain();</div><div class="line">                            msg.what=INVALID_CITY;</div><div class="line">                            mHandler.sendMessage(msg);</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line"></div><div class="line">                    Message msg = Message.obtain();</div><div class="line">                    msg.what=ERROR;</div><div class="line">                    mHandler.sendMessage(msg);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;;</div><div class="line">        &#125;.start();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>定义一个底层流实现代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decodeStream</span><span class="params">(InputStream in)</span> <span class="keyword">throws</span> IOException</span>&#123;</div><div class="line">		ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line">		<span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">		<span class="keyword">while</span> ((len=in.read(buf))&gt;<span class="number">0</span>)&#123;</div><div class="line">				baos.write(buf,<span class="number">0</span>,len);</div><div class="line">		&#125;</div><div class="line">		String data = buf.toString();</div><div class="line">		<span class="keyword">return</span> data;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>activity_mail.xml的编写</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"请输入要查询的城市"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/ed_city"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:onClick</span>=<span class="string">"searchCityWeather"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"查询"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/city_result1"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/city_result2"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="4-4-联网解析xml格式的数据"><a href="#4-4-联网解析xml格式的数据" class="headerlink" title="4.4 联网解析xml格式的数据"></a>4.4 联网解析xml格式的数据</h2><ul>
+<li>需要在AndroidManifest.xml开启权限</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在主线程重写handler的handleMessage( )方法,在工作线程发送消息.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SUCCESS = <span class="number">0</span>;</div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ERROR = <span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> EditText ed_phone;</div><div class="line">    <span class="keyword">private</span> TextView tv_phonenumber;</div><div class="line">    <span class="keyword">private</span> TextView tv_phonelocation;</div><div class="line">    <span class="keyword">private</span> TextView tv_phonejx;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Handler mHandler = <span class="keyword">new</span> Handler()&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line"></div><div class="line">            dialog.dismiss();</div><div class="line">            <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">                <span class="keyword">case</span> SUCCESS:</div><div class="line"></div><div class="line">                    p = (Product) msg.obj;</div><div class="line"></div><div class="line">                    <span class="keyword">if</span>(p!=<span class="keyword">null</span>)&#123;</div><div class="line"></div><div class="line">                        tv_phonenumber.setText(p.getPhonenum());</div><div class="line">                        tv_phonelocation.setText(p.getLocation());</div><div class="line">                        tv_phonejx.setText(p.getPhoneJx());</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="keyword">break</span>;</div><div class="line"></div><div class="line">                <span class="keyword">case</span> ERROR:</div><div class="line">                    Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"对不起, 俺比较忙, 稍后再来 "</span>, <span class="number">0</span>).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ed_phone = (EditText) findViewById(R.id.ed_phone);</div><div class="line">        tv_phonenumber = (TextView) findViewById(R.id.tv_phonenumber);</div><div class="line">        tv_phonelocation = (TextView) findViewById(R.id.tv_phonelocation);</div><div class="line">        tv_phonejx = (TextView) findViewById(R.id.tv_phonejx);</div><div class="line">    &#125;</div><div class="line">    String number;</div><div class="line"></div><div class="line">    Product p = <span class="keyword">null</span>;</div><div class="line">    ProgressDialog dialog = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getPhoneJX</span><span class="params">(View v)</span></span>&#123;</div><div class="line"></div><div class="line">        number = ed_phone.getText().toString().trim();</div><div class="line">        <span class="keyword">if</span>(TextUtils.isEmpty(number))&#123;</div><div class="line">            Toast.makeText(<span class="keyword">this</span>, <span class="string">"手机号码 错误 "</span>, <span class="number">0</span>).show();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// http://www.096.me/api.php?phone=13691689110&amp;mode=xml</span></div><div class="line"></div><div class="line">        <span class="keyword">final</span> String path =<span class="string">"http://www.096.me/api.php?phone="</span>+number+<span class="string">"&amp;mode=xml"</span>;</div><div class="line"></div><div class="line">        dialog = <span class="keyword">new</span> ProgressDialog(<span class="keyword">this</span>);</div><div class="line">        dialog.setMessage(<span class="string">"正在玩命加载中..."</span>);</div><div class="line">        dialog.show();</div><div class="line"></div><div class="line"></div><div class="line">        <span class="keyword">new</span> Thread()&#123;</div><div class="line"></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    URL url = <span class="keyword">new</span> URL(path);</div><div class="line">                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();</div><div class="line"></div><div class="line">                    conn.setConnectTimeout(<span class="number">5000</span>);</div><div class="line">                    conn.setRequestMethod(<span class="string">"GET"</span>);</div><div class="line"></div><div class="line">                    <span class="keyword">int</span> code = conn.getResponseCode();</div><div class="line"></div><div class="line">                    <span class="keyword">if</span>(code==<span class="number">200</span>)&#123;</div><div class="line">                        InputStream in = conn.getInputStream();</div><div class="line"></div><div class="line">                        String data = StreamTool.decodeStream(in);</div><div class="line">                        XmlPullParser parser = Xml.newPullParser();</div><div class="line">                        <span class="keyword">if</span>(data.contains(<span class="string">"gbk"</span>))&#123;</div><div class="line">                            parser.setInput(in, <span class="string">"gbk"</span>);</div><div class="line">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(data.contains(<span class="string">"UTF-8"</span>))&#123;</div><div class="line">                            parser.setInput(in, <span class="string">"UTF-8"</span>);</div><div class="line">                        &#125;</div><div class="line"></div><div class="line">                        <span class="comment">//以后注意, 只要出现乱码,  确保  解析的 编码和 发过来的编码一致 , 就不会有什么问题了.</span></div><div class="line"></div><div class="line">                        <span class="comment">//获得事件的类型</span></div><div class="line">                        <span class="keyword">int</span> eventType = parser.getEventType();</div><div class="line">                        <span class="comment">//</span></div><div class="line">                        <span class="keyword">while</span>(eventType!=XmlPullParser.END_DOCUMENT)&#123;</div><div class="line"></div><div class="line"><span class="comment">//							..  //准备 一个javabean ,封装数据到 bean 中 -- Product</span></div><div class="line"><span class="comment">/*</span></div><div class="line">&lt;smartresult&gt;</div><div class="line">	&lt;product type="mobile"&gt;</div><div class="line">		&lt;phonenum&gt;13691689110&lt;/phonenum&gt;</div><div class="line">		&lt;location&gt;广东深圳移动神州行卡&lt;/location&gt;</div><div class="line">		&lt;phoneJx&gt;惨淡经营，难免贫困，此数不吉，最好改名 凶&lt;/phoneJx&gt;</div><div class="line">	&lt;/product&gt;</div><div class="line">&lt;/smartresult&gt;</div><div class="line"> */</div><div class="line"></div><div class="line">                            <span class="keyword">if</span>(eventType==XmlPullParser.START_TAG)&#123;</div><div class="line">                                <span class="keyword">if</span>(<span class="string">"product"</span>.equals(parser.getName()))&#123;</div><div class="line">                                    <span class="comment">// new 一个product ,准备封装数据</span></div><div class="line">                                    String type = parser.getAttributeValue(<span class="number">0</span>);</div><div class="line"></div><div class="line">                                    p = <span class="keyword">new</span> Product();</div><div class="line">                                    p.setType(type);</div><div class="line"></div><div class="line">                                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"phonenum"</span>.equals(parser.getName()))&#123;</div><div class="line">                                    p.setPhonenum(parser.nextText());</div><div class="line"></div><div class="line">                                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"location"</span>.equals(parser.getName()))&#123;</div><div class="line"></div><div class="line">                                    p.setLocation(parser.nextText());</div><div class="line">                                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"phoneJx"</span>.equals(parser.getName()))&#123;</div><div class="line">                                    p.setPhoneJx(parser.nextText());</div><div class="line">                                &#125;</div><div class="line">                            &#125;</div><div class="line">                            eventType =parser.next();</div><div class="line">                        &#125;</div><div class="line"></div><div class="line">                        <span class="comment">//发消息 , 通知秘书去更新UI</span></div><div class="line">                        Message msg = Message.obtain();</div><div class="line">                        msg.what=SUCCESS;</div><div class="line">                        msg.obj = p;</div><div class="line">                        mHandler.sendMessage(msg);</div><div class="line">                        in.close();</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                    Message msg = Message.obtain();</div><div class="line">                    msg.what=ERROR;</div><div class="line">                    mHandler.sendMessage(msg);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;;</div><div class="line">        &#125;.start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>定义一个底层流实现代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javami.unitls;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.InputStream;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by 诸葛亮 on 2016/10/30.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StreamTool</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decodeStream</span><span class="params">(InputStream in)</span> <span class="keyword">throws</span> IOException</span>&#123;</div><div class="line">        <span class="comment">//底层流</span></div><div class="line">        ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line">        <span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">        <span class="keyword">while</span>((len=in.read(buf))&gt;<span class="number">0</span>)&#123;</div><div class="line">            baos.write(buf,<span class="number">0</span>,len);</div><div class="line">        &#125;</div><div class="line">        String data = baos.toString();</div><div class="line">        <span class="keyword">if</span> (data.contains(<span class="string">"gbk"</span>))&#123;</div><div class="line">            <span class="keyword">return</span> baos.toString(<span class="string">"gbk"</span>);</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(data.contains(<span class="string">"utf-8"</span>))&#123;</div><div class="line">            <span class="keyword">return</span> baos.toString(<span class="string">"utf-8"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> data;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>定义Product封装数据</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.javami.unitls;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.InputStream;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by 诸葛亮 on 2016/10/30.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StreamTool</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decodeStream</span><span class="params">(InputStream in)</span> <span class="keyword">throws</span> IOException</span>&#123;</div><div class="line">        <span class="comment">//底层流</span></div><div class="line">        ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line">        <span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">        <span class="keyword">while</span>((len=in.read(buf))&gt;<span class="number">0</span>)&#123;</div><div class="line">            baos.write(buf,<span class="number">0</span>,len);</div><div class="line">        &#125;</div><div class="line">        String data = baos.toString();</div><div class="line">        <span class="keyword">if</span> (data.contains(<span class="string">"gbk"</span>))&#123;</div><div class="line">            <span class="keyword">return</span> baos.toString(<span class="string">"gbk"</span>);</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(data.contains(<span class="string">"utf-8"</span>))&#123;</div><div class="line">            <span class="keyword">return</span> baos.toString(<span class="string">"utf-8"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> data;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>activity_mail.xml的编写</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"请输入手机号码"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">        <span class="attr">android:inputType</span>=<span class="string">"phone"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/ed_phone"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:onClick</span>=<span class="string">"getPhoneJX"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/tv_phonenumber"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/tv_phonelocation"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/tv_phonejx"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="王裕杰 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号,交流与学习有您！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AndroidBasis/" rel="tag"># AndroidBasis</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/3-安卓基础之数据库-listview-对话框/" rel="next" title="3.安卓基础之数据库&listview&对话框">
+                <i class="fa fa-chevron-left"></i> 3.安卓基础之数据库&listview&对话框
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/5-安卓基础之网络编程-开源框架-多线程下载/" rel="prev" title="5.安卓基础之网络编程&开源框架&多线程下载">
+                5.安卓基础之网络编程&开源框架&多线程下载 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="王裕杰" />
+          <p class="site-author-name" itemprop="name">王裕杰</p>
+           
+              <p class="site-description motion-element" itemprop="description">以中有足乐者,不知口体之奉不若人也.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yujiewong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/Yujiewong" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/yujiewong" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-drupal"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/yujiewong" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-joomla"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-ListView的使用步骤"><span class="nav-number">1.</span> <span class="nav-text">1.  ListView的使用步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-AnimationDrawable-的使用"><span class="nav-number">2.</span> <span class="nav-text">2.  AnimationDrawable  的使用:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Android的国际化相关"><span class="nav-number">3.</span> <span class="nav-text">3. Android的国际化相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Android-连接网络-获得数据"><span class="nav-number">4.</span> <span class="nav-text">4. Android 连接网络,获得数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-在线获得网址的图片"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 在线获得网址的图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-网页源码查看器的实现"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 网页源码查看器的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-解析json格式的数据"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 解析json格式的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-联网解析xml格式的数据"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 联网解析xml格式的数据</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王裕杰</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "df50af7ada4b485798f2559c6f960790",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("U6PyiS7TXWMYXwLxpOzyOlSY-gzGzoHsz", "pNGlykz5l9PfrUEpQtH8OmhY");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>
