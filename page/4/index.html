@@ -314,6 +314,495 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/一-HTML基础-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/一-HTML基础-1/" itemprop="url">
+                  一.HTML基础(1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:04:58+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
+                    <span itemprop="name">WebDesign</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/一-HTML基础-1/" class="leancloud_visitors" data-flag-title="一.HTML基础(1)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-认识windows快捷键"><a href="#1-认识windows快捷键" class="headerlink" title="1.  认识windows快捷键"></a>1.  认识windows快捷键</h1><p><img src="/2017/03/28/一-HTML基础-1/1.png" alt="快捷键的认识" title="快捷键的认识"></p>
+<h1 id="2-认识网页"><a href="#2-认识网页" class="headerlink" title="2.  认识网页"></a>2.  认识网页</h1><h2 id="2-1-网页的组成"><a href="#2-1-网页的组成" class="headerlink" title="2.1  网页的组成"></a>2.1  网页的组成</h2><p>文字,图片.按钮,输入框,视频等元素组成.</p>
+<h2 id="2-2-Web标准"><a href="#2-2-Web标准" class="headerlink" title="2.2  Web标准"></a>2.2  Web标准</h2><ul>
+<li>结构标准  :  HTML</li>
+<li>表现标准  :  CSS</li>
+<li>行为标准  :  JS</li>
+</ul>
+<h2 id="2-3-浏览器与服务器的关系"><a href="#2-3-浏览器与服务器的关系" class="headerlink" title="2.3  浏览器与服务器的关系"></a>2.3  浏览器与服务器的关系</h2><ul>
+<li>Http  :    浏览器与服务器之间传输信息的一种规范</li>
+<li>Https  :  加密处理</li>
+<li>Url地址  :    scheme://host.domain:port/filename</li>
+</ul>
+<h1 id="3-认识HTML"><a href="#3-认识HTML" class="headerlink" title="3.  认识HTML"></a>3.  认识HTML</h1><h2 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1  概述"></a>3.1  概述</h2><p>html ( Hyper   Text    Markup   Language ) 中文译为“超文本标记语言”,主要是通过html标记对网页中的文本,图片,声音等内容进行描述.</p>
+<h2 id="3-2-HTML结构"><a href="#3-2-HTML结构" class="headerlink" title="3.2  HTML结构"></a>3.2  HTML结构</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">!</span> <span class="attr">Doctype</span> <span class="attr">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>        根标签</div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p> &lt;! Doctype html&gt; 文档类型</p>
+<p><head></head> html 文档头部分</p>
+<p><title></title> 网页的标题</p>
+<p><body></body> html 结构的主体部分</p>
+</blockquote>
+<h2 id="3-3-标签的分类"><a href="#3-3-标签的分类" class="headerlink" title="3.3  标签的分类"></a>3.3  标签的分类</h2><ul>
+<li>单标签：只有开始标签没有结束标签<br><code>例如：&lt;! Doctype html&gt;</code></li>
+<li>双标签：有开始标签和有结束标签<br>`<br>例如： <body></body></li>
+</ul>
+<h2 id="3-4-标签关系分类"><a href="#3-4-标签关系分类" class="headerlink" title="3.4  标签关系分类"></a>3.4  标签关系分类</h2><ul>
+<li>并列关系（兄弟）<br><code>&lt;head&gt;&lt;/head&gt;  |  &lt;body&gt;&lt;/body&gt;</code></li>
+<li>嵌套关系（包含）<br><code>&lt;head&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;</code></li>
+</ul>
+<h1 id="4-sublime的常用快捷键"><a href="#4-sublime的常用快捷键" class="headerlink" title="4.  sublime的常用快捷键"></a>4.  sublime的常用快捷键</h1><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明书</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl+shift+D</td>
+<td>快速复制</td>
+</tr>
+<tr>
+<td>Ctrl+L</td>
+<td>快速选中</td>
+</tr>
+<tr>
+<td>Ctrl+鼠标左键</td>
+<td>集体输入</td>
+</tr>
+<tr>
+<td>Ctrl+h</td>
+<td>查找替换</td>
+</tr>
+<tr>
+<td>Ctrl+f</td>
+<td>标签查找</td>
+</tr>
+<tr>
+<td>Ctrl+shift+↑(↓)</td>
+<td>整体移动</td>
+</tr>
+</tbody>
+</table>
+<h1 id="5-Html-标签介绍"><a href="#5-Html-标签介绍" class="headerlink" title="5.  Html 标签介绍"></a>5.  Html 标签介绍</h1><h2 id="5-1-单标签"><a href="#5-1-单标签" class="headerlink" title="5.1  单标签"></a>5.1  单标签</h2><ul>
+<li>文本注释标签<br><code>&lt;!--hello,  world!--&gt;</code></li>
+<li>文本换行标签<br><code>&lt;br&gt;</code></li>
+<li>横线标签<br><code>&lt;hr&gt;</code></li>
+</ul>
+<h2 id="5-2-双标签"><a href="#5-2-双标签" class="headerlink" title="5.2  双标签"></a>5.2  双标签</h2><ul>
+<li>段落标签<br><code>&lt;p&gt;hello,world!&lt;/p&gt;</code></li>
+<li>标题标签(数字只能取1~6)<br><code>&lt;h1&gt;&lt;/h1&gt;</code></li>
+<li>文本标签<br><code>&lt;font&gt;&lt;/font&gt;</code></li>
+<li>文本格式化标签<ul>
+<li>文字加粗显示<br><code>&lt;strong&gt;&lt;strong&gt;</code><br><code>&lt;b&gt;&lt;/b&gt;</code></li>
+<li>文字斜体<br><code>&lt;em&gt;&lt;/em&gt;</code><br><code>&lt;i&gt;&lt;/i&gt;</code></li>
+<li>文字删除线<br><code>&lt;del&gt;&lt;/del&gt;</code><br><code>&lt;s&gt;&lt;/s&gt;</code></li>
+<li>文字下划线标签<br><code>&lt;ins&gt;&lt;/ins&gt;</code><br><code>&lt;u&gt;&lt;/u&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="5-3-图片标签"><a href="#5-3-图片标签" class="headerlink" title="5.3  图片标签"></a>5.3  图片标签</h2><p><code>&lt;img&gt;</code></p>
+<p><strong>属性  :</strong></p>
+<p>Src: 设置显示图片（图片名称或者图片路径）<br>Title：用来设置鼠标方到图片上显示的文字<br>Alt：当图盘无法正常显示的时候，对图片的描述<br>Width: 用来设置图片宽度<br>Height: 用来设置图片高度</p>
+<h2 id="5-4-相对路径"><a href="#5-4-相对路径" class="headerlink" title="5.4  相对路径"></a>5.4  相对路径</h2><ul>
+<li>当图片和文件（html）在同一文件夹中<br><code>&lt;img  src=&quot;1.jpg&quot;&gt;</code></li>
+<li>当图片在文件（html）的下一级目录中<br><code>`&lt;img  src=&quot;1/1.jpg&quot;&gt;</code></li>
+<li>当图片在文件（html）的上一级目录中<br><code>&lt;img  src=&quot;../图片所在文件夹名/1.jpg&quot;&gt;</code></li>
+</ul>
+<h2 id="5-5-绝对路径"><a href="#5-5-绝对路径" class="headerlink" title="5.5  绝对路径"></a>5.5  绝对路径</h2><p>凡是带有磁盘路径的都是绝对路径或者带有网站地址的也是绝对路径</p>
+<h2 id="5-6-超链接"><a href="#5-6-超链接" class="headerlink" title="5.6  超链接"></a>5.6  超链接</h2><p><code>&lt;a  href=&quot;http://www.itceo.net&quot;&gt;我是程序员&lt;/a&gt;</code><br><code>&lt;a  href=&quot;itceo.html&quot;&gt;我是程序员&lt;/a&gt;</code><br><strong>属性  :  </strong><br>Title: 当鼠标放到超链接上显示的文字<br>target=”_self” 默认值网页在当前页面中打开<br>target=”_blank” 网页在新窗口中打开</p>
+<h2 id="5-7-锚链接介绍"><a href="#5-7-锚链接介绍" class="headerlink" title="5.7  锚链接介绍"></a>5.7  锚链接介绍</h2><ul>
+<li>任何一个标签设置 id 属性,并取值<br><code>&lt;p  id=&quot;cat&quot;&gt;猫&lt;/p&gt;</code></li>
+<li>给 a 标签设置 href 属性 “#id 名称”<br><code>&lt;a  href=&quot;#cat&quot;&gt;抓猫&lt;/a&gt;</code></li>
+</ul>
+<h2 id="5-8-简单的下载功能"><a href="#5-8-简单的下载功能" class="headerlink" title="5.8  简单的下载功能"></a>5.8  简单的下载功能</h2><p>a 标签中通过给 href 属性设置一个压缩文件,即可实现下载功能.</p>
+<h2 id="5-9-超链接不跳转"><a href="#5-9-超链接不跳转" class="headerlink" title="5.9  超链接不跳转"></a>5.9  超链接不跳转</h2><p><code>&lt;a  href=&quot;#&quot;&gt;NULL&lt;/a&gt;</code></p>
+<h2 id="5-10-特殊字符"><a href="#5-10-特殊字符" class="headerlink" title="5.10  特殊字符"></a>5.10  特殊字符</h2><p><img src="/2017/03/28/一-HTML基础-1/2.png" alt="特殊字符" title="特殊字符"></p>
+<h1 id="6-列表"><a href="#6-列表" class="headerlink" title="6.  列表"></a>6.  列表</h1><h2 id="6-1-无序列表（ul-）"><a href="#6-1-无序列表（ul-）" class="headerlink" title="6.1  无序列表（ul ）"></a>6.1  无序列表（ul ）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span> 列表项</div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">......</div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>属性介绍  :  </strong><br>type=”square” 小方块显示<br>type=”circle” 小圆圈</p>
+<h2 id="6-2-有序列表（ol-）"><a href="#6-2-有序列表（ol-）" class="headerlink" title="6.2  有序列表（ol ）"></a>6.2  有序列表（ol ）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="6-3-自定义列表（dl-）"><a href="#6-3-自定义列表（dl-）" class="headerlink" title="6.3  自定义列表（dl ）"></a>6.3  自定义列表（dl ）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span> 小标题</div><div class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span> 列表项</div><div class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="7-总结"><a href="#7-总结" class="headerlink" title="7.  总结"></a>7.  总结</h1><p><code>&lt;embed  src=&quot;1.mp3&quot;  hidden=&quot;true&quot;&gt;放置背景音乐</code><br><code>&lt;marquee&gt;页面自动滚动效果&lt;/marquee&gt;</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第13章-运行时压缩/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/第13章-运行时压缩/" itemprop="url">
+                  第13章 运行时压缩
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:58:27+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
+                    <span itemprop="name">ReverseEngineerin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第13章-运行时压缩/" class="leancloud_visitors" data-flag-title="第13章 运行时压缩">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-数据压缩"><a href="#1-数据压缩" class="headerlink" title="1.  数据压缩"></a>1.  数据压缩</h1><p>经过压缩的文件若能100%恢复,就称该压缩为”无损压缩”(Lossless  Data  Compression)  ;若不能恢复原状,称之为”有损压缩”(Loss  Data  Compression).</p>
+<h2 id="1-1-无损压缩"><a href="#1-1-无损压缩" class="headerlink" title="1.1  无损压缩"></a>1.1  无损压缩</h2><p>它们最根本的压缩理念也是Run-Lenght,  Lempel-Ziv,  Huffman,  然后应有了一些各自特有的技术(压缩率,压缩/解压时间).</p>
+<h2 id="1-2-有损压缩"><a href="#1-2-有损压缩" class="headerlink" title="1.2  有损压缩"></a>1.2  有损压缩</h2><p>有损压缩允许压缩文件(数据)时损失一定信息,以此换取高压缩率.</p>
+<h1 id="2-运行时压缩器"><a href="#2-运行时压缩器" class="headerlink" title="2.  运行时压缩器"></a>2.  运行时压缩器</h1><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>普通压缩</th>
+<th>运行时压缩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对象文件</td>
+<td>所有文件</td>
+<td>PE文件(exe,dll,sys)</td>
+</tr>
+<tr>
+<td>压缩结果</td>
+<td>压缩文件(zip,rar)</td>
+<td>PE文件(exe,dll,sys)</td>
+</tr>
+<tr>
+<td>解压缩方式</td>
+<td>使用专门解压缩程序</td>
+<td>内部含有解码程序</td>
+</tr>
+<tr>
+<td>文件是否可执行</td>
+<td>本身不可执行</td>
+<td>本身可执行</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>可以对所有文件以高压缩率压缩</td>
+<td>无须专门解压缩程序便可直接运行</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>若无专门解压缩软件则无法使用压缩文件</td>
+<td>每次运行均需要解码程序导致运行时间过长</td>
+</tr>
+</tbody>
+</table>
+<p>把普通PE文件创建后运行时压缩文件的实用程序称为”压缩器(Packer)”.经反逆向(Anti-Reversing)技术特别处理的压缩器称为保护器(Protector).</p>
+<h2 id="2-1-压缩器"><a href="#2-1-压缩器" class="headerlink" title="2.1  压缩器"></a>2.1  压缩器</h2><p>PE压缩器是指可执行文件的压缩器,称为”运行时压缩器”,它是PE文件的专用压缩器.</p>
+<ul>
+<li><p>实用目的<br>压缩PE文件的大小,便于网络传输保存<br>隐藏PE文件内部代码与资源<br>压缩后的数据以难以辨认的二进制保存,从文件本身来看,还能有效隐藏内部代码与资源.</p>
+</li>
+<li><p>使用现状</p>
+</li>
+</ul>
+<p>现状的实用程序,”打补丁”文件,普通程序都广泛应用运行时压缩.</p>
+<ul>
+<li>压缩器种类<br>PE压缩器大致分两类  :  一类是单纯用于压缩普通PE文件的压缩器;另一类是对源文件进行较大变形,严重破坏PE头的压缩器.</li>
+</ul>
+<h2 id="2-2-保护器"><a href="#2-2-保护器" class="headerlink" title="2.2  保护器"></a>2.2  保护器</h2><p>不但像普通压缩器一样仅对PE文件进行运行时压缩,而应用了多种防止代码逆向分析的技术.</p>
+<ul>
+<li><p>使用目的<br>防止破解,保护代码与资源.</p>
+</li>
+<li><p>使用现状<br>安全保护程序为了防止恶意破解而使用各种保护器来保护自己,常见的恶性代码中也大量使用保护器来防止(或减少)杀毒软件的检测.有些保护器还提供”多变的代码”,每次都会生成不同形态(但功能相同)的代码,这给病毒诊断带来很大的困难.</p>
+</li>
+<li><p>保护器种类<br>保护器种类多样,有公用程序,商业程序,还有专门提供而已代码使用的保护器.</p>
+</li>
+</ul>
+<h1 id="3-运行时压缩测试"><a href="#3-运行时压缩测试" class="headerlink" title="3.  运行时压缩测试"></a>3.  运行时压缩测试</h1><p>用压缩器UPX压缩notepad.exe,比较了下文件状态.</p>
+<p><img src="/2017/03/28/第13章-运行时压缩/1.png" alt="比较notepad.exe与notepad_upx.exe" title="比较notepad.exe与notepad_upx.exe"></p>
+<blockquote>
+<p>比较notepad.exe与notepad_upx.exe</p>
+<ul>
+<li>PE头的大小一样(0~400h)</li>
+<li>节区名称改变(“.text-&gt;”upx0”,”.data”-&gt;”upx1”).</li>
+<li>第一个节区的RawDataSize=0(文件中的大小为0).</li>
+<li>EP位于第二个节区(原notepad.exe的EP在第一个节区).</li>
+<li>资源节区(.rsrc)大小几乎无变化.</li>
+</ul>
+</blockquote>
+<p>我们用PEView查看第一个节区头,如图.</p>
+<p><img src="/2017/03/28/第13章-运行时压缩/2.png" alt="PEView" title="PEView"></p>
+<p>从VirtualSize值可以发现问题,第一个节区的VirtualSize值竟被设置为10000(而SizeOFRawData值为0).也就是说,经过UPX压缩后的PE文件在运行瞬间将(文件中)压缩的代码解压到(内存中的)第一个节区.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第12章-PE文件格式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1973,412 +2462,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第4章-IA-32寄存器基本讲解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第4章-IA-32寄存器基本讲解/" itemprop="url">
-                  第4章 IA-32寄存器基本讲解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:14:49+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第4章-IA-32寄存器基本讲解/" class="leancloud_visitors" data-flag-title="第4章 IA-32寄存器基本讲解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-什么是CPU寄存器"><a href="#1-什么是CPU寄存器" class="headerlink" title="1. 什么是CPU寄存器"></a>1. 什么是CPU寄存器</h1><p>寄存器(Register)是CPU内部用来存放数据的一些小型存储区域,因为其集成在CPU内部,拥有非常高的读写速度.</p>
-<h1 id="2-IA-32-寄存器"><a href="#2-IA-32-寄存器" class="headerlink" title="2. IA-32 寄存器"></a>2. IA-32 寄存器</h1><p>IA-32 是英特尔推出的32位元架构,属于复制的指令集构架.</p>
-<h2 id="2-1-基本程序运行寄存器"><a href="#2-1-基本程序运行寄存器" class="headerlink" title="2.1 基本程序运行寄存器"></a>2.1 基本程序运行寄存器</h2><p>基本程序运行寄存器的组织结构,它由4类寄存器组成.</p>
-<ul>
-<li>通用寄存器 ( General Purpose Resgisters, 32位,8个 )</li>
-<li>段寄存器 ( Segment Registers, 16位,6个 )</li>
-<li>程序状态与控制寄存器 ( Program Status and Control Registers , 32位, 1个 )</li>
-<li>指令指针寄存器 ( Instruction Pointer , 32位, 1个 )</li>
-</ul>
-<p><img src="/2017/03/28/第4章-IA-32寄存器基本讲解/1.png" alt="基本程序运行寄存器" title="基本程序运行寄存器"></p>
-<h3 id="2-1-1-通用寄存器"><a href="#2-1-1-通用寄存器" class="headerlink" title="2.1.1 通用寄存器"></a>2.1.1 通用寄存器</h3><p>通用寄存器是一种通用型的寄存器,用于传送和暂存数据,也可以参与算术逻辑运算,并保持运算结果.IA-32中每个通用寄存器大小都是32位(4个字节),主要用来保存常量与地址等.<br><img src="/2017/03/28/第4章-IA-32寄存器基本讲解/2.png" alt="通用寄存器" title="通用寄存器"></p>
-<p>各寄存器的名称如下:</p>
-<ul>
-<li>EAX : ( 针对操作数和结构数据的 ) 累加器</li>
-<li>EBX : ( DS段中的数据指针 ) 基址寄存器</li>
-<li>ECX : ( 字符串和循环操作的 ) 计算器</li>
-<li>EDX : ( I/O指针 ) 数据寄存器</li>
-</ul>
-<p>以上4个寄存器主要用在算术运算( ADD,SUB,XOR,OR)等,常常用来保存变量与变量的值.某些汇编 指令( MUL,DIV,LODS等) 直接用来操作特定寄存器,执行这些命令后,仅改变特定寄存器中的值.</p>
-<p>此外,ECX和EAX也可用特殊用途,循环命令( LOOP )中,ECX用来循环计数 ( loop count ),每执行一次循环,ECX都会减1.EAX一般用在函数返回值中,所有Win 32 API函数都会先把返回值保存在EAX再返回.</p>
-<ul>
-<li>EBP : ( SS段中栈内数据指针 )扩展基址指针寄存器</li>
-<li>ESI : (字符串操作源指针) 源变址寄存器</li>
-<li>EDI : (字符串操作目标指针) 目的变址寄存器</li>
-<li>ESP : (SS段中栈指针) 栈指针寄存器</li>
-</ul>
-<p>以上4个寄存器主要用来作保存内存地址的指针.</p>
-<p>ESP指示栈区域的栈顶地址,某些指令(PUSH,POP,CALL,RET)可以直接用来操作ESP.</p>
-<p>EBP表示栈区域的基地址,函数被调用时保存ESP的值,函数返回时再把值返回ESP,保证栈不会崩溃.ESI和EDI与特定指令(LODS,STOS,REP,MOVS等)一起使用,主要用来内存复制.</p>
-<h3 id="2-1-2-段寄存器"><a href="#2-1-2-段寄存器" class="headerlink" title="2.1.2 段寄存器"></a>2.1.2 段寄存器</h3><p>段(Segment),IA-32的保护模式中,段是一种内存保护技术,它把内存划分为多个区段,并为每个区段赋予起始地址,范围,访问权限等,以保护内存.此外,它还同分页技术(Paging)一起用于将虚拟内存变更为实际物理内存.段内存记录在SDT(Segment Descriptor Table,段描述符表)中,而段寄存器就持有这些SDT的索引(index).<br><img src="/2017/03/28/第4章-IA-32寄存器基本讲解/3.png" alt="分段内存模型" title="分段内存模型"></p>
-<p>它描述了保护模式下的内存分段模型.段寄存器总共由6中寄存器组成,分别为CS,SS,DS,ES,FS,GS,每个寄存器的大小为16位,即2个字节.另外,每个段寄存器指向的段描述符(Segment Descriptor)与虚拟内存结合,形成一个线性地址(Linear Address),借助分页技术,线性地址最终被转换为实际的物理地址(Physical Address).</p>
-<p>各段寄存器的名称如下:</p>
-<ul>
-<li>CS : Code Segment, 代码段寄存器</li>
-<li>SS : Stack Segment, 栈段寄存器</li>
-<li>DS : Data Segment, 数据段寄存器</li>
-<li>ES : Extra ( Data ) Segment,附加(数据)段寄存器</li>
-<li>FS : Data Segment, 数据段寄存器</li>
-<li>GS : Data Segment, 数据段寄存器</li>
-</ul>
-<p>CS寄存器用于存放应用程序代码所在段的段基址, SS寄存器用于存放栈段的段基址,DS寄存器用于存放数据段的段基址.ES,FS,GS寄存器用来存放程序使用的附加数据段的段基址.</p>
-<h3 id="2-1-3-EFLAGS-Flag-Register-标志寄存器"><a href="#2-1-3-EFLAGS-Flag-Register-标志寄存器" class="headerlink" title="2.1.3 EFLAGS:Flag Register,标志寄存器"></a>2.1.3 EFLAGS:Flag Register,标志寄存器</h3><p>3个与程序调试相关的标志,分别为ZF (Zero Flag,零标志),OF(Overflow Flag,溢出标志),CF(Carry Flag,进位标志).<br><img src="/2017/03/28/第4章-IA-32寄存器基本讲解/4.png" alt="EFLAGS寄存器" title="EFLAGS寄存器"></p>
-<ul>
-<li><strong>ZF</strong><br>若运算结果为0,则其值为1(true),否则其值为0(False).</li>
-<li><strong>OF</strong><br>有符号整数(signed integer)溢出时,OF值被置为1.此外,MSB( Most Sginificant Bit,最高有效位)改变时,其值也被设为1.</li>
-<li><strong> CF </strong><br>无符号整数(unsigned integer )溢出时,其值也被置为1.</li>
-</ul>
-<h2 id="2-1-4-指令指针寄存器"><a href="#2-1-4-指令指针寄存器" class="headerlink" title="2.1.4 指令指针寄存器"></a>2.1.4 指令指针寄存器</h2><ul>
-<li><strong> EIP : Instruction Pointer,指令指针寄存器 </strong><br>指令指针寄存器保存着CPU要执行的指令地址,其大小为32位(4个字节).当程序运行时,CPU会读取EIP中的一条指令的地址,传送指令到指令缓冲区,EIP寄存器的值会自动增加,增加的大小即是读取指令的字节大小.</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第3章-小端序标记法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第3章-小端序标记法/" itemprop="url">
-                  第3章 小端序标记法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:13:00+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第3章-小端序标记法/" class="leancloud_visitors" data-flag-title="第3章 小端序标记法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在计算机领域中,字节序(Byte Ordering)是多字节数据在计算机内存中存储或网络传输时各字节的存储顺序.分为小端序(Little endian)和大端序(Big endian).</p>
-<h1 id="1-字节序"><a href="#1-字节序" class="headerlink" title="1. 字节序"></a>1. 字节序</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">BYTE  b  =  0x12;</div><div class="line">WORD  w  =  0x1234;</div><div class="line">DWORD  dw  =  0x12345678;</div><div class="line">char  str[ ]  =  &quot;abcde&quot;;</div></pre></td></tr></table></figure>
-<p>以下为不同数据根据不同字节序保存时的不同:</p>
-<table>
-<thead>
-<tr>
-<th>TYPE</th>
-<th>Name</th>
-<th>SIZE</th>
-<th>大端序类型</th>
-<th>小端序类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>BYTE</td>
-<td>b</td>
-<td>1</td>
-<td>[12]</td>
-<td>[12]</td>
-</tr>
-<tr>
-<td>WORD</td>
-<td>w</td>
-<td>2</td>
-<td>[12][34]</td>
-<td>[34]  [12]</td>
-</tr>
-<tr>
-<td>DWORD</td>
-<td>dw</td>
-<td>4</td>
-<td>[12][34][56][78]</td>
-<td>[78][56][34][12]</td>
-</tr>
-<tr>
-<td>char[]</td>
-<td>str</td>
-<td>6</td>
-<td>[61][62][63][64][65][00]</td>
-<td>[61][62][63][64][65][00]</td>
-</tr>
-</tbody>
-</table>
-<p><strong> 提示: </strong><br>查看ASCII码表,字母a的ASCII码的十六进制表示为0x61,字母e的ASCII码的十六进程表示为0x65.<strong> 字符串最好都是以NULL结尾.</strong><br>因为数据类型为字节型(BYTE),其长度都为1个字节,所以保存在大端序类型或者小端序类型,字节顺序都一致!如果数据长度超过2个字节,则会在大端序和小端序上面存储的数据不同.如果是字符串被保存在数组str中,字符数组在内存中连续,此时无论在大端序还是小端序,存储顺序都相同!</p>
-<h2 id="1-1-大端序和小端序"><a href="#1-1-大端序和小端序" class="headerlink" title="1.1 大端序和小端序"></a>1.1 大端序和小端序</h2><p>大端序常用于大型UNIX服务器的RISC系列的CPU中,而小端序采用逆向式存<br>储数据,在Intel x86 CPU常用到.</p>
-<h2 id="1-2-在OllyDbg中查看小端序"><a href="#1-2-在OllyDbg中查看小端序" class="headerlink" title="1.2 在OllyDbg中查看小端序"></a>1.2 在OllyDbg中查看小端序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#include &quot;windows.h&quot;</div><div class="line"></div><div class="line">BYTE    b       =   0x12;</div><div class="line">WORD    w       =   0x1234;</div><div class="line">DWORD   dw      =   0x12345678;</div><div class="line">char    str[]   =   &quot;abcde&quot;;</div><div class="line"></div><div class="line">int main(int argc, char *argv[])</div><div class="line">&#123;</div><div class="line">    BYTE    lb  =   b;</div><div class="line">    WORD    lw  =   w;</div><div class="line">    DWORD   ldw =   dw;</div><div class="line">    char    *lstr  =   str;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>用OllyDbg调试,用Go to命令(Ctrl+G)跳转到401000地址<br><img src="/2017/03/28/第3章-小端序标记法/1.png" alt="main()函数" title="main()函数"></p>
-<p>main()函数地址为401000,全局变量b、w、dw、str地址分别为40AC40、40AC44、40AC48、40AC4C.可以来到数据窗口用Go to命令跳转到40AC40处.<br><img src="/2017/03/28/第3章-小端序标记法/2.png" alt="全局变量的内存区域" title="全局变量的内存区域"></p>
-<p>可以看到,变量w与dw中的数据都采用了小端序存储.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2428,7 +2511,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-count">119</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

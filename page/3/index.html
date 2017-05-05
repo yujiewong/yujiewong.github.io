@@ -314,6 +314,357 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第5章-初始化与清理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/第5章-初始化与清理/" itemprop="url">
+                  第5章 初始化与清理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:36:32+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第5章-初始化与清理/" class="leancloud_visitors" data-flag-title="第5章 初始化与清理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>随着计算机革命的发展,”不安全”的编程方式以逐渐成为编程代价的主因之一.</p>
+<h1 id="1-用构造器确保初始化"><a href="#1-用构造器确保初始化" class="headerlink" title="1. 用构造器确保初始化"></a>1. 用构造器确保初始化</h1><p>Java中构造器与类相同的名称,在初始化期间要自动调用构造器.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> new05;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rock</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Rock</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated constructor stub</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> new05;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleConstructor</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</div><div class="line">			<span class="keyword">new</span> Rock();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在创建对象时,new Rock();将会为对象分配存储空间,并调用相应的构造器.因为构造器的名称必须与类名完全相同,所以”每个方法首字母小写”的编码风格并不适用于构造器.<br>不接受任何参数的构造器叫做默认构造器,Java文档中通常使用术语无参构造器.</p>
+<h1 id="2-方法重载"><a href="#2-方法重载" class="headerlink" title="2. 方法重载"></a>2. 方法重载</h1><p>为了让方法名相同而形式参数不同的构造器同时存在,必须用到<strong>方法重载</strong>.<br>示例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> new05;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> height;</div><div class="line">	<span class="comment">//默认构造器</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Tree</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Planting a seedling"</span>);</div><div class="line">		height = <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	Tree(<span class="keyword">int</span> initialHeight)&#123;</div><div class="line">		height = initialHeight;</div><div class="line">		System.out.println(<span class="string">"Creating new Tree that is"</span>+height+<span class="string">"ftte tall"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">info</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"Tree is"</span>+height+<span class="string">"feet tall"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">info</span><span class="params">(String s)</span></span>&#123;</div><div class="line">		System.out.println(s+<span class="string">":Tres is"</span>+height+<span class="string">"feet tall"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverLoading</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">			Tree t = <span class="keyword">new</span> Tree(i);</div><div class="line">			t.info();</div><div class="line">			t.info(<span class="string">"overloaded method"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">new</span> Tree();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建Tree对象的时候,既可以不含参数,也可以用树的高度为参数.前者表示一颗树苗,后者表示有一定高度的树苗.要支持这种创建方式,得有一个默认构造器和一个采用现有高度作为参数的构造器.</p>
+<h1 id="3-默认构造器"><a href="#3-默认构造器" class="headerlink" title="3. 默认构造器"></a>3. 默认构造器</h1><p>如果你写的类中没有构造器,则编译器会自动帮你创建一个默认的构造器.但如果你创建了一个构造器,编译器就不会帮你自动创建默认构造器.</p>
+<p>练习:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">Dog.java</div><div class="line">package new05;</div><div class="line"></div><div class="line">public class Dog &#123;</div><div class="line">	String name;</div><div class="line">	Dog(String name)&#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line">	public void bark()&#123;</div><div class="line">		System.out.println(this.name+&quot;is barking!&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">DogTest.java</div><div class="line">package new05;</div><div class="line"></div><div class="line">public class DogTest &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		for (int i = 0; i &lt; 5; i++) &#123;</div><div class="line">			Dog dog = new Dog(&quot;小&quot;+i);</div><div class="line">			dog.bark();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="4-this关键字"><a href="#4-this关键字" class="headerlink" title="4. this关键字"></a>4. this关键字</h1><p>this关键字只能在方法内部使用,表示对”调用方法的那个对象”的引用.</p>
+<h1 id="5-static的含义"><a href="#5-static的含义" class="headerlink" title="5. static的含义"></a>5. static的含义</h1><p>static方法就是没有this的方法,在static方法的内部不能调用非静态方法.而且可以在没有创建对象的前提下,仅仅通过类本身调用static方法.</p>
+<h1 id="6-清理-终结处理和垃圾回收"><a href="#6-清理-终结处理和垃圾回收" class="headerlink" title="6.  清理:终结处理和垃圾回收"></a>6.  清理:终结处理和垃圾回收</h1><p>垃圾回收器只知道释放那些由new分配的内存,但是finalize()能解决.</p>
+<p><strong>finalize()的用途?</strong></p>
+<ul>
+<li>垃圾回收只与内存有关</li>
+<li>对象可能不被垃圾回收</li>
+<li>垃圾回收并不等于”析构”</li>
+</ul>
+<p>JVM在没有面临内存耗尽的情形,它是不会浪费时间去执行垃圾回收以恢复内存的.</p>
+<h1 id="7-成员初始化"><a href="#7-成员初始化" class="headerlink" title="7. 成员初始化"></a>7. 成员初始化</h1><p>Java尽力保证:所有变量在使用前都能得到适当的初始化.对于方法的局部变量,Java以编译时错误的形式来贯彻这种保证.在类定义一个对象引用时,如果不将其初始化.此引用就会获得一个特殊值null.</p>
+<h1 id="8-构造器初始化"><a href="#8-构造器初始化" class="headerlink" title="8. 构造器初始化"></a>8. 构造器初始化</h1><p>无论创建多少个对象,静态数据都只占用一份存储区域.</p>
+<p><strong>总结一下对象的创建过程,假设有个名为dog的类:</strong></p>
+<ul>
+<li><p>即是没有显式地使用static关键字,构造器实际上也是静态方法.所以,当首次创建为dog的对象时,或者Dog类的静态方法/静态域首次被访问时,Java解析器必须查找类路径,以定位Dog.class文件.</p>
+</li>
+<li><p>然后载入Dog.class,有关静态初始化的所有动作都会被执行.所以,静态初始化只在class对象首次加载的时候进行一次.</p>
+</li>
+<li><p>当用new dog()创建对象的时候,首先将在推上为dog对象分配足够的存储空间.</p>
+</li>
+<li><p>这块存储空间会被清零,这就自动地将Dog对象中的基本类型数据都设置成了默认值.</p>
+</li>
+<li><p>执行所有出现于字段定义处的初始化动作.</p>
+</li>
+<li><p>执行构造器.<br>例子:</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> new05;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cup</span></span>&#123;</div><div class="line">	Cup(<span class="keyword">int</span> marker)&#123;</div><div class="line">		System.out.println(<span class="string">"Cup("</span>+marker+<span class="string">")"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">void</span>  <span class="title">f</span><span class="params">(<span class="keyword">int</span> marker)</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"f("</span>+marker+<span class="string">")"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cups</span></span>&#123;</div><div class="line">	<span class="keyword">static</span> Cup cup1;</div><div class="line">	<span class="keyword">static</span> Cup cup2;</div><div class="line">	<span class="keyword">static</span>&#123;</div><div class="line">		cup1 = <span class="keyword">new</span> Cup(<span class="number">1</span>);</div><div class="line">		cup2 = <span class="keyword">new</span> Cup(<span class="number">2</span>);</div><div class="line">	&#125;</div><div class="line">	Cups()&#123;</div><div class="line">		System.out.println(<span class="string">"Cups"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExplicitStatic</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Inside main()"</span>);</div><div class="line">		Cups.cup1.f(<span class="number">99</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="9-数组初始化"><a href="#9-数组初始化" class="headerlink" title="9. 数组初始化"></a>9. 数组初始化</h1><p>要定义一个数组,只需要在类型名后加上一对空方括号即可;编译器不允许指定数组的大小,只是对数组的一个引用.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>[] a1;</div></pre></td></tr></table></figure>
+<p><strong>例子:可变参数列表</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> new05;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AutoboxingVarargs</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(Integer...args)</span></span>&#123;</div><div class="line">		<span class="keyword">for</span> (Integer integer : args) &#123;</div><div class="line">			System.out.println(integer);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		f(<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第4章-控制执行流程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/第4章-控制执行流程/" itemprop="url">
+                  第4章 控制执行流程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:36:07+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第4章-控制执行流程/" class="leancloud_visitors" data-flag-title="第4章 控制执行流程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>就像有知觉的生物一样,程序必须在执行过程中控制它的世界,并做出选择.在Java中,你要使用执行控制语句来做出选择.</strong></p>
+<h1 id="1-return"><a href="#1-return" class="headerlink" title="1. return"></a>1. return</h1><p>如果在返回void的方法中没有return语句,那么在该方法的结尾处会有一个隐式的return.</p>
+<h1 id="2-break和continue"><a href="#2-break和continue" class="headerlink" title="2. break和continue"></a>2. break和continue</h1><p>break用于强强行退出循环,不执行循环中剩余的语句.而continue则停止执行当前的迭代,然后退回循环起始处,开始下一次迭代.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第3章-操作符/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2484,495 +2835,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/一-HTML基础-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/一-HTML基础-1/" itemprop="url">
-                  一.HTML基础(1)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:04:58+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
-                    <span itemprop="name">WebDesign</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/一-HTML基础-1/" class="leancloud_visitors" data-flag-title="一.HTML基础(1)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-认识windows快捷键"><a href="#1-认识windows快捷键" class="headerlink" title="1.  认识windows快捷键"></a>1.  认识windows快捷键</h1><p><img src="/2017/03/28/一-HTML基础-1/1.png" alt="快捷键的认识" title="快捷键的认识"></p>
-<h1 id="2-认识网页"><a href="#2-认识网页" class="headerlink" title="2.  认识网页"></a>2.  认识网页</h1><h2 id="2-1-网页的组成"><a href="#2-1-网页的组成" class="headerlink" title="2.1  网页的组成"></a>2.1  网页的组成</h2><p>文字,图片.按钮,输入框,视频等元素组成.</p>
-<h2 id="2-2-Web标准"><a href="#2-2-Web标准" class="headerlink" title="2.2  Web标准"></a>2.2  Web标准</h2><ul>
-<li>结构标准  :  HTML</li>
-<li>表现标准  :  CSS</li>
-<li>行为标准  :  JS</li>
-</ul>
-<h2 id="2-3-浏览器与服务器的关系"><a href="#2-3-浏览器与服务器的关系" class="headerlink" title="2.3  浏览器与服务器的关系"></a>2.3  浏览器与服务器的关系</h2><ul>
-<li>Http  :    浏览器与服务器之间传输信息的一种规范</li>
-<li>Https  :  加密处理</li>
-<li>Url地址  :    scheme://host.domain:port/filename</li>
-</ul>
-<h1 id="3-认识HTML"><a href="#3-认识HTML" class="headerlink" title="3.  认识HTML"></a>3.  认识HTML</h1><h2 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1  概述"></a>3.1  概述</h2><p>html ( Hyper   Text    Markup   Language ) 中文译为“超文本标记语言”,主要是通过html标记对网页中的文本,图片,声音等内容进行描述.</p>
-<h2 id="3-2-HTML结构"><a href="#3-2-HTML结构" class="headerlink" title="3.2  HTML结构"></a>3.2  HTML结构</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">!</span> <span class="attr">Doctype</span> <span class="attr">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>        根标签</div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p> &lt;! Doctype html&gt; 文档类型</p>
-<p><head></head> html 文档头部分</p>
-<p><title></title> 网页的标题</p>
-<p><body></body> html 结构的主体部分</p>
-</blockquote>
-<h2 id="3-3-标签的分类"><a href="#3-3-标签的分类" class="headerlink" title="3.3  标签的分类"></a>3.3  标签的分类</h2><ul>
-<li>单标签：只有开始标签没有结束标签<br><code>例如：&lt;! Doctype html&gt;</code></li>
-<li>双标签：有开始标签和有结束标签<br>`<br>例如： <body></body></li>
-</ul>
-<h2 id="3-4-标签关系分类"><a href="#3-4-标签关系分类" class="headerlink" title="3.4  标签关系分类"></a>3.4  标签关系分类</h2><ul>
-<li>并列关系（兄弟）<br><code>&lt;head&gt;&lt;/head&gt;  |  &lt;body&gt;&lt;/body&gt;</code></li>
-<li>嵌套关系（包含）<br><code>&lt;head&gt;
-&lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;</code></li>
-</ul>
-<h1 id="4-sublime的常用快捷键"><a href="#4-sublime的常用快捷键" class="headerlink" title="4.  sublime的常用快捷键"></a>4.  sublime的常用快捷键</h1><table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>说明书</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl+shift+D</td>
-<td>快速复制</td>
-</tr>
-<tr>
-<td>Ctrl+L</td>
-<td>快速选中</td>
-</tr>
-<tr>
-<td>Ctrl+鼠标左键</td>
-<td>集体输入</td>
-</tr>
-<tr>
-<td>Ctrl+h</td>
-<td>查找替换</td>
-</tr>
-<tr>
-<td>Ctrl+f</td>
-<td>标签查找</td>
-</tr>
-<tr>
-<td>Ctrl+shift+↑(↓)</td>
-<td>整体移动</td>
-</tr>
-</tbody>
-</table>
-<h1 id="5-Html-标签介绍"><a href="#5-Html-标签介绍" class="headerlink" title="5.  Html 标签介绍"></a>5.  Html 标签介绍</h1><h2 id="5-1-单标签"><a href="#5-1-单标签" class="headerlink" title="5.1  单标签"></a>5.1  单标签</h2><ul>
-<li>文本注释标签<br><code>&lt;!--hello,  world!--&gt;</code></li>
-<li>文本换行标签<br><code>&lt;br&gt;</code></li>
-<li>横线标签<br><code>&lt;hr&gt;</code></li>
-</ul>
-<h2 id="5-2-双标签"><a href="#5-2-双标签" class="headerlink" title="5.2  双标签"></a>5.2  双标签</h2><ul>
-<li>段落标签<br><code>&lt;p&gt;hello,world!&lt;/p&gt;</code></li>
-<li>标题标签(数字只能取1~6)<br><code>&lt;h1&gt;&lt;/h1&gt;</code></li>
-<li>文本标签<br><code>&lt;font&gt;&lt;/font&gt;</code></li>
-<li>文本格式化标签<ul>
-<li>文字加粗显示<br><code>&lt;strong&gt;&lt;strong&gt;</code><br><code>&lt;b&gt;&lt;/b&gt;</code></li>
-<li>文字斜体<br><code>&lt;em&gt;&lt;/em&gt;</code><br><code>&lt;i&gt;&lt;/i&gt;</code></li>
-<li>文字删除线<br><code>&lt;del&gt;&lt;/del&gt;</code><br><code>&lt;s&gt;&lt;/s&gt;</code></li>
-<li>文字下划线标签<br><code>&lt;ins&gt;&lt;/ins&gt;</code><br><code>&lt;u&gt;&lt;/u&gt;</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="5-3-图片标签"><a href="#5-3-图片标签" class="headerlink" title="5.3  图片标签"></a>5.3  图片标签</h2><p><code>&lt;img&gt;</code></p>
-<p><strong>属性  :</strong></p>
-<p>Src: 设置显示图片（图片名称或者图片路径）<br>Title：用来设置鼠标方到图片上显示的文字<br>Alt：当图盘无法正常显示的时候，对图片的描述<br>Width: 用来设置图片宽度<br>Height: 用来设置图片高度</p>
-<h2 id="5-4-相对路径"><a href="#5-4-相对路径" class="headerlink" title="5.4  相对路径"></a>5.4  相对路径</h2><ul>
-<li>当图片和文件（html）在同一文件夹中<br><code>&lt;img  src=&quot;1.jpg&quot;&gt;</code></li>
-<li>当图片在文件（html）的下一级目录中<br><code>`&lt;img  src=&quot;1/1.jpg&quot;&gt;</code></li>
-<li>当图片在文件（html）的上一级目录中<br><code>&lt;img  src=&quot;../图片所在文件夹名/1.jpg&quot;&gt;</code></li>
-</ul>
-<h2 id="5-5-绝对路径"><a href="#5-5-绝对路径" class="headerlink" title="5.5  绝对路径"></a>5.5  绝对路径</h2><p>凡是带有磁盘路径的都是绝对路径或者带有网站地址的也是绝对路径</p>
-<h2 id="5-6-超链接"><a href="#5-6-超链接" class="headerlink" title="5.6  超链接"></a>5.6  超链接</h2><p><code>&lt;a  href=&quot;http://www.itceo.net&quot;&gt;我是程序员&lt;/a&gt;</code><br><code>&lt;a  href=&quot;itceo.html&quot;&gt;我是程序员&lt;/a&gt;</code><br><strong>属性  :  </strong><br>Title: 当鼠标放到超链接上显示的文字<br>target=”_self” 默认值网页在当前页面中打开<br>target=”_blank” 网页在新窗口中打开</p>
-<h2 id="5-7-锚链接介绍"><a href="#5-7-锚链接介绍" class="headerlink" title="5.7  锚链接介绍"></a>5.7  锚链接介绍</h2><ul>
-<li>任何一个标签设置 id 属性,并取值<br><code>&lt;p  id=&quot;cat&quot;&gt;猫&lt;/p&gt;</code></li>
-<li>给 a 标签设置 href 属性 “#id 名称”<br><code>&lt;a  href=&quot;#cat&quot;&gt;抓猫&lt;/a&gt;</code></li>
-</ul>
-<h2 id="5-8-简单的下载功能"><a href="#5-8-简单的下载功能" class="headerlink" title="5.8  简单的下载功能"></a>5.8  简单的下载功能</h2><p>a 标签中通过给 href 属性设置一个压缩文件,即可实现下载功能.</p>
-<h2 id="5-9-超链接不跳转"><a href="#5-9-超链接不跳转" class="headerlink" title="5.9  超链接不跳转"></a>5.9  超链接不跳转</h2><p><code>&lt;a  href=&quot;#&quot;&gt;NULL&lt;/a&gt;</code></p>
-<h2 id="5-10-特殊字符"><a href="#5-10-特殊字符" class="headerlink" title="5.10  特殊字符"></a>5.10  特殊字符</h2><p><img src="/2017/03/28/一-HTML基础-1/2.png" alt="特殊字符" title="特殊字符"></p>
-<h1 id="6-列表"><a href="#6-列表" class="headerlink" title="6.  列表"></a>6.  列表</h1><h2 id="6-1-无序列表（ul-）"><a href="#6-1-无序列表（ul-）" class="headerlink" title="6.1  无序列表（ul ）"></a>6.1  无序列表（ul ）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span> 列表项</div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">......</div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><strong>属性介绍  :  </strong><br>type=”square” 小方块显示<br>type=”circle” 小圆圈</p>
-<h2 id="6-2-有序列表（ol-）"><a href="#6-2-有序列表（ol-）" class="headerlink" title="6.2  有序列表（ol ）"></a>6.2  有序列表（ol ）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="6-3-自定义列表（dl-）"><a href="#6-3-自定义列表（dl-）" class="headerlink" title="6.3  自定义列表（dl ）"></a>6.3  自定义列表（dl ）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span> 小标题</div><div class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span> 列表项</div><div class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></div></pre></td></tr></table></figure>
-<h1 id="7-总结"><a href="#7-总结" class="headerlink" title="7.  总结"></a>7.  总结</h1><p><code>&lt;embed  src=&quot;1.mp3&quot;  hidden=&quot;true&quot;&gt;放置背景音乐</code><br><code>&lt;marquee&gt;页面自动滚动效果&lt;/marquee&gt;</code></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第13章-运行时压缩/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第13章-运行时压缩/" itemprop="url">
-                  第13章 运行时压缩
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:58:27+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第13章-运行时压缩/" class="leancloud_visitors" data-flag-title="第13章 运行时压缩">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-数据压缩"><a href="#1-数据压缩" class="headerlink" title="1.  数据压缩"></a>1.  数据压缩</h1><p>经过压缩的文件若能100%恢复,就称该压缩为”无损压缩”(Lossless  Data  Compression)  ;若不能恢复原状,称之为”有损压缩”(Loss  Data  Compression).</p>
-<h2 id="1-1-无损压缩"><a href="#1-1-无损压缩" class="headerlink" title="1.1  无损压缩"></a>1.1  无损压缩</h2><p>它们最根本的压缩理念也是Run-Lenght,  Lempel-Ziv,  Huffman,  然后应有了一些各自特有的技术(压缩率,压缩/解压时间).</p>
-<h2 id="1-2-有损压缩"><a href="#1-2-有损压缩" class="headerlink" title="1.2  有损压缩"></a>1.2  有损压缩</h2><p>有损压缩允许压缩文件(数据)时损失一定信息,以此换取高压缩率.</p>
-<h1 id="2-运行时压缩器"><a href="#2-运行时压缩器" class="headerlink" title="2.  运行时压缩器"></a>2.  运行时压缩器</h1><table>
-<thead>
-<tr>
-<th>项目</th>
-<th>普通压缩</th>
-<th>运行时压缩</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>对象文件</td>
-<td>所有文件</td>
-<td>PE文件(exe,dll,sys)</td>
-</tr>
-<tr>
-<td>压缩结果</td>
-<td>压缩文件(zip,rar)</td>
-<td>PE文件(exe,dll,sys)</td>
-</tr>
-<tr>
-<td>解压缩方式</td>
-<td>使用专门解压缩程序</td>
-<td>内部含有解码程序</td>
-</tr>
-<tr>
-<td>文件是否可执行</td>
-<td>本身不可执行</td>
-<td>本身可执行</td>
-</tr>
-<tr>
-<td>优点</td>
-<td>可以对所有文件以高压缩率压缩</td>
-<td>无须专门解压缩程序便可直接运行</td>
-</tr>
-<tr>
-<td>缺点</td>
-<td>若无专门解压缩软件则无法使用压缩文件</td>
-<td>每次运行均需要解码程序导致运行时间过长</td>
-</tr>
-</tbody>
-</table>
-<p>把普通PE文件创建后运行时压缩文件的实用程序称为”压缩器(Packer)”.经反逆向(Anti-Reversing)技术特别处理的压缩器称为保护器(Protector).</p>
-<h2 id="2-1-压缩器"><a href="#2-1-压缩器" class="headerlink" title="2.1  压缩器"></a>2.1  压缩器</h2><p>PE压缩器是指可执行文件的压缩器,称为”运行时压缩器”,它是PE文件的专用压缩器.</p>
-<ul>
-<li><p>实用目的<br>压缩PE文件的大小,便于网络传输保存<br>隐藏PE文件内部代码与资源<br>压缩后的数据以难以辨认的二进制保存,从文件本身来看,还能有效隐藏内部代码与资源.</p>
-</li>
-<li><p>使用现状</p>
-</li>
-</ul>
-<p>现状的实用程序,”打补丁”文件,普通程序都广泛应用运行时压缩.</p>
-<ul>
-<li>压缩器种类<br>PE压缩器大致分两类  :  一类是单纯用于压缩普通PE文件的压缩器;另一类是对源文件进行较大变形,严重破坏PE头的压缩器.</li>
-</ul>
-<h2 id="2-2-保护器"><a href="#2-2-保护器" class="headerlink" title="2.2  保护器"></a>2.2  保护器</h2><p>不但像普通压缩器一样仅对PE文件进行运行时压缩,而应用了多种防止代码逆向分析的技术.</p>
-<ul>
-<li><p>使用目的<br>防止破解,保护代码与资源.</p>
-</li>
-<li><p>使用现状<br>安全保护程序为了防止恶意破解而使用各种保护器来保护自己,常见的恶性代码中也大量使用保护器来防止(或减少)杀毒软件的检测.有些保护器还提供”多变的代码”,每次都会生成不同形态(但功能相同)的代码,这给病毒诊断带来很大的困难.</p>
-</li>
-<li><p>保护器种类<br>保护器种类多样,有公用程序,商业程序,还有专门提供而已代码使用的保护器.</p>
-</li>
-</ul>
-<h1 id="3-运行时压缩测试"><a href="#3-运行时压缩测试" class="headerlink" title="3.  运行时压缩测试"></a>3.  运行时压缩测试</h1><p>用压缩器UPX压缩notepad.exe,比较了下文件状态.</p>
-<p><img src="/2017/03/28/第13章-运行时压缩/1.png" alt="比较notepad.exe与notepad_upx.exe" title="比较notepad.exe与notepad_upx.exe"></p>
-<blockquote>
-<p>比较notepad.exe与notepad_upx.exe</p>
-<ul>
-<li>PE头的大小一样(0~400h)</li>
-<li>节区名称改变(“.text-&gt;”upx0”,”.data”-&gt;”upx1”).</li>
-<li>第一个节区的RawDataSize=0(文件中的大小为0).</li>
-<li>EP位于第二个节区(原notepad.exe的EP在第一个节区).</li>
-<li>资源节区(.rsrc)大小几乎无变化.</li>
-</ul>
-</blockquote>
-<p>我们用PEView查看第一个节区头,如图.</p>
-<p><img src="/2017/03/28/第13章-运行时压缩/2.png" alt="PEView" title="PEView"></p>
-<p>从VirtualSize值可以发现问题,第一个节区的VirtualSize值竟被设置为10000(而SizeOFRawData值为0).也就是说,经过UPX压缩后的PE文件在运行瞬间将(文件中)压缩的代码解压到(内存中的)第一个节区.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3022,7 +2884,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">117</span>
+                <span class="site-state-item-count">119</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
