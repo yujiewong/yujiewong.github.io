@@ -314,6 +314,1130 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/1-安卓基础之Android介绍与入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/1-安卓基础之Android介绍与入门/" itemprop="url">
+                  1.安卓基础之Android介绍与入门
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T15:41:06+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/1-安卓基础之Android介绍与入门/" class="leancloud_visitors" data-flag-title="1.安卓基础之Android介绍与入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-通讯技术的介绍"><a href="#1-通讯技术的介绍" class="headerlink" title="1. 通讯技术的介绍"></a>1. 通讯技术的介绍</h1><ul>
+<li>1G通信标准: 模拟制式</li>
+<li>2G通信标准: GSM/CDMA2.5G , 通信标准: GPRS</li>
+<li>2.75G通信标准: EDGE</li>
+<li>3G通信标准: WCDMA/CDMA2000/TD-SCDMA</li>
+<li>3.5G/3.75G通信标准: HSDPA/HSDPA+/HSUDA</li>
+<li>4G通信标准: TD-LTE</li>
+</ul>
+<h1 id="2-Android体系结构"><a href="#2-Android体系结构" class="headerlink" title="2. Android体系结构"></a>2. Android体系结构</h1><p><img src="/2017/03/28/1-安卓基础之Android介绍与入门/1.jpg" alt="Android体系结构" title="Android体系结构"></p>
+<h1 id="3-开发工具的疑问"><a href="#3-开发工具的疑问" class="headerlink" title="3. 开发工具的疑问"></a>3. 开发工具的疑问</h1><ul>
+<li><strong>启动Eclipse报错?</strong><br>因为Eclipse是由Java代码编写的,需要JVM的支持才能启动.如果启动失败,通常是没有搭配环境变量.</li>
+<li><p><strong>ADB是用来干什么的呢?</strong><br>adb(Android Debug Bridge)是Android 提供的一个通用的调试工具.借助这个工具,可以管理设备模拟器的状态 ,还可以进行以下的操作:</p>
+<ul>
+<li>快速更新设备或手机模拟器中的代码,如应用或Android系统升级;</li>
+<li>在设备上运行shell命令;</li>
+<li>管理设备或手机模拟器上的预定端口;</li>
+<li>在设备或手机模拟器上上传下载文件;</li>
+</ul>
+</li>
+<li><p><strong>Intel x86模拟器?</strong><br>Google默认提供的模拟器是基于arm处理器的, 这种模拟器运行速度慢并非常卡顿, 影响开发和学习的效率, x86模拟器采用硬件加速功能来提升运行速度, 基本和真机无异.</p>
+</li>
+<li><p><strong>x86模拟器使用要求?</strong><br>CPU必须是Intel公司的, 并且需要是i3(包含)以上.成功安装硬件加速执行管理器: IntelHaxm.exe.</p>
+</li>
+</ul>
+<h1 id="4-常用到的命令"><a href="#4-常用到的命令" class="headerlink" title="4. 常用到的命令 ?"></a>4. 常用到的命令 ?</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">adb devices 列出所有的设置</div><div class="line">adb start-server 开启adb服务</div><div class="line">adb kill-server	关闭adb服务</div><div class="line">adb logcat 查看Log</div><div class="line">adb shell 挂载到Linux的空间</div><div class="line">adb install &lt;应用程序(加扩展名)&gt; 	安装应用程序</div><div class="line">adb install &lt;应用程序(加扩展名)&gt; 安装应用到指定模拟器</div><div class="line">adb uninstall &lt;程序包名&gt;</div><div class="line">adb pull &lt;remote&gt; &lt;local&gt;</div><div class="line">adb push &lt;local&gt; &lt;remote&gt;</div></pre></td></tr></table></figure>
+<h1 id="5-Android常见布局"><a href="#5-Android常见布局" class="headerlink" title="5. Android常见布局"></a>5. Android常见布局</h1><ul>
+<li><p><strong>LinearLayout    线性布局</strong></p>
+<ul>
+<li><strong> orientation 属性是指定线性布局的排列方向:  </strong><br><code>horizontal 水平  vertical 垂直</code></li>
+<li><strong> gravity属性是指定当前控件内容显示位置: </strong><br><code>left 左边  right 右边  top 上边  bottom 底边</code></li>
+<li><p><strong> layout_gravity属性是指定当前控件在父元素的位置: </strong><br><code>left 左边  right 右边  top 上边  bottom 底边</code><br><code>layout_weightSum属性是把线性布局中剩余空间分成N份.</code><br><code>layout_weight属性是指定当前控件在父元素(线性布局)中占N份.</code></p>
+</li>
+<li><p><strong> visibility属性是控制布局是否显示: </strong><br><code>visible 显示  invisible 不显示但占空间  gone 隐藏</code></p>
+</li>
+</ul>
+</li>
+<li><p><strong>RelativeLayout    相对布局</strong><br><code>android:layout_toRightOf        在指定控件的右边
+android:layout_toLeftOf        在指定控件的左边
+android:layout_above        在指定控件的上边
+android:layout_below        在指定控件的下边
+android:layout_alignBaseline        跟指定控件水平对齐
+android:layout_alignLeft        跟指定控件左对齐
+android:layout_alignRight        跟指定控件右对齐
+android:layout_alignTop        跟指定控件顶部对齐
+android:layout_alignBottom        跟指定控件底部对齐
+android:layout_alignParentLeft    是否跟父布局左对齐
+android:layout_alignParentTop    是否跟父布局顶部对齐
+android:layout_alignParentRight    是否跟父布局右对齐
+android:layout_alignParentBottom    是否跟父布局底部对齐
+android:layout_centerVertical    在父布局中垂直居中
+android:layout_centerHorizontal    在父布局中水平居中
+android:layout_centerInParent    在父布局中居中</code></p>
+</li>
+<li><strong>AbsoluteLayout    绝对布局</strong><br><code>android:layout_x    指定控件在父布局的x轴坐标
+android:layout_y    指定控件在父布局的y轴坐标</code></li>
+<li><p><strong>FrameLayout    帧布局</strong></p>
+<ul>
+<li>帧布局每次添加的控件都显示在最上面，最后显示在界面上的是最后添加的一个控件.</li>
+</ul>
+</li>
+<li><p><strong>TableLayout 表格布局</strong><br><code>android:shrinkColumns        收缩列
+android:stretchColumns        拉伸列
+android:collapseColumns        隐藏列
+android:layout_column        指定列(作用在列的身上)
+android:layout_span        合并列(作用在列的身上)</code><br>TableRow单元行里的单元格的宽度小于默认的宽度时就不起作用,其默认是fill_parent，高度可以自定义大小.</p>
+</li>
+</ul>
+<h1 id="6-Android中控件的宽高单位"><a href="#6-Android中控件的宽高单位" class="headerlink" title="6. Android中控件的宽高单位"></a>6. Android中控件的宽高单位</h1><ul>
+<li>px (pixels) 像素</li>
+<li>dip或dp (device independent pixels) 设备独立像素</li>
+<li>sp (scaled pixels — best for text size) 比例像素</li>
+</ul>
+<p><strong> 除了上面三个显示单位，下面还有几个不太常用：</strong></p>
+<ul>
+<li>in (inches) 英寸</li>
+<li>mm (millimeters) 毫米  </li>
+<li>pt (points)点，1/72英寸</li>
+</ul>
+<p><strong> 为了适应不同分辨率, 不同的像素密度, 推荐使用dip/dp, 文字使用sp.</strong></p>
+<h1 id="7-练习"><a href="#7-练习" class="headerlink" title="7.练习"></a>7.练习</h1><ul>
+<li>一键呼叫妻子:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">MainActivity.java部分:</div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        <span class="comment">//初始化控件的操作</span></div><div class="line">        btn = (Button) findViewById(R.id.callWife);</div><div class="line">        <span class="comment">//设置响应的onclick回调的监听器</span></div><div class="line">        btn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line"></div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View arg0)</span> </span>&#123;</div><div class="line">				<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">				<span class="comment">//获得意图对象</span></div><div class="line">				Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">				<span class="comment">//通过意图打电话</span></div><div class="line">				intent.setAction(intent.ACTION_CALL);</div><div class="line">				<span class="comment">//打电话也需要相应的协议</span></div><div class="line">				intent.setData(Uri.parse(<span class="string">"tel://13800138000"</span>));</div><div class="line">				startActivity(intent);</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">AndroidManifest.xml部分:(需要添加打电话权限)</div><div class="line"> <span class="tag">&lt;<span class="name">uses-permission</span></span></div><div class="line">        <span class="attr">android:name</span>=<span class="string">"android.permission.CALL_PHONE"</span>/&gt;</div><div class="line"></div><div class="line">Layout部分:</div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">       	<span class="attr">android:id</span>=<span class="string">"@+id/callWife"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:layout_centerHorizontal</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"呼叫老婆"</span></div><div class="line">        /&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>小米计算器的布局:<br><img src="/2017/03/28/1-安卓基础之Android介绍与入门/2.png" alt="计算器的布局" title="计算器的布局"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div></pre></td><td class="code"><pre><div class="line">Activity_main.xml部分:</div><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> &gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"C"</span></div><div class="line">            <span class="attr">android:textColor</span>=<span class="string">"#FFC928"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"DEL"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"÷"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"×"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> &gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"7"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"8"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"9"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"－"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> &gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"4"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"5"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"6"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"＋"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">	    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">	    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	    <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></div><div class="line">	    &gt;</div><div class="line">	    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">	        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">	        <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">	        <span class="attr">android:layout_weight</span>=<span class="string">"3"</span></div><div class="line">	        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	        &gt;</div><div class="line">	        <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">	            <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">	            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	            <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></div><div class="line">	            &gt;</div><div class="line">	            <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">	                <span class="attr">android:text</span>=<span class="string">"1"</span></div><div class="line">	                <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">	                <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">	                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line"></div><div class="line">	            <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">	                <span class="attr">android:text</span>=<span class="string">"2"</span></div><div class="line">	                <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">	                <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">	                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line"></div><div class="line">	            <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">	                <span class="attr">android:text</span>=<span class="string">"3"</span></div><div class="line">	                <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">	                <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">	                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line"></div><div class="line">	        <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">	            <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">	            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">	            <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></div><div class="line">	            &gt;</div><div class="line">	            <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">	                <span class="attr">android:text</span>=<span class="string">"0"</span></div><div class="line">	                <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">	                <span class="attr">android:layout_weight</span>=<span class="string">"2"</span></div><div class="line">	                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line"></div><div class="line">	            <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">	                <span class="attr">android:text</span>=<span class="string">"."</span></div><div class="line">	                <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">	                <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">	                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line"></div><div class="line"></div><div class="line">	        <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">	        <span class="attr">android:text</span>=<span class="string">"="</span></div><div class="line">	        <span class="attr">android:background</span>=<span class="string">"#F07A23"</span></div><div class="line">	        <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">	        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">	        <span class="attr">android:gravity</span>=<span class="string">"bottom|right"</span></div><div class="line">	        <span class="attr">android:layout_height</span>=<span class="string">"fill_parent"</span></div><div class="line">	        /&gt;</div><div class="line">	<span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>点击获取Q币:</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">MainActivity.java部分:</div><div class="line"></div><div class="line">	<span class="keyword">private</span> EditText number;</div><div class="line">	<span class="keyword">private</span> EditText password;</div><div class="line">	<span class="keyword">private</span> Button login_btn;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        <span class="comment">//做初始化控件操作</span></div><div class="line">        number = (EditText) findViewById(R.id.qq_number);</div><div class="line">        password = (EditText) findViewById(R.id.qq_password);</div><div class="line"></div><div class="line">        login_btn = (Button) findViewById(R.id.btn_login);</div><div class="line"></div><div class="line">        login_btn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line"></div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View arg0)</span> </span>&#123;</div><div class="line">				<span class="comment">// 获得号码与密码</span></div><div class="line">				String numValue = number.getText().toString();</div><div class="line">				String pasValue = password.getText().toString();</div><div class="line"></div><div class="line">				<span class="comment">//拿到号码的发送管理器</span></div><div class="line">				SmsManager smsManager = SmsManager.getDefault();</div><div class="line">				<span class="comment">// destinationAddress : 目的地</span></div><div class="line">				<span class="comment">// scAddress :  源 地址  </span></div><div class="line">				<span class="comment">// text :  发送的文本数据</span></div><div class="line">				<span class="comment">// sentIntent :  发送成功 报告</span></div><div class="line">				<span class="comment">// deliveryIntent :  对方开机后收到 短信的报告</span></div><div class="line">				smsManager.sendTextMessage(<span class="string">"5556"</span>, <span class="keyword">null</span>, numValue+<span class="string">"---"</span>+pasValue, <span class="keyword">null</span>, <span class="keyword">null</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">activity_main.xml部分:</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:src</span>=<span class="string">"@drawable/qq"</span></div><div class="line">    /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"请输入您的QQ号码"</span></div><div class="line">    /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/qq_number"</span></div><div class="line">    /&gt;</div><div class="line">     <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"请输入您的QQ密码"</span></div><div class="line">    /&gt;</div><div class="line">       <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/qq_password"</span></div><div class="line">    /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/btn_login"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"登陆"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"></div><div class="line">AndroidManifest.xml部分:获得SMS的读取权限</div><div class="line"></div><div class="line"> <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.SEND_SMS"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>点击事件四种实现方式<br>方式1: 布局文件声明onClick属性.<br>方式2: 使用匿名内部类.<br>方式3: 使用内部类.<br>方式4: 使用当前类对象, 当前类需要实现对应的接口.</li>
+</ul>
+<h1 id="8-总结"><a href="#8-总结" class="headerlink" title="8 . 总结"></a>8 . 总结</h1><p>刚入门,没有什么可以写的.记住:每一个不曾起舞的日子,都是对生命的辜负!</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/二-C语言中的数据类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/二-C语言中的数据类型/" itemprop="url">
+                  二.C语言中的数据类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T15:27:55+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/二-C语言中的数据类型/" class="leancloud_visitors" data-flag-title="二.C语言中的数据类型">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-转义字符"><a href="#1-转义字符" class="headerlink" title="1.  转义字符"></a>1.  转义字符</h1><p><img src="/2017/03/28/二-C语言中的数据类型/1.png" alt="转义字符" title="转义字符"></p>
+<h2 id="1-1-演示代码"><a href="#1-1-演示代码" class="headerlink" title="1.1  演示代码"></a>1.1  演示代码</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">#include&lt;Windows.h&gt;</div><div class="line"></div><div class="line">void main() &#123;</div><div class="line">	while (-1) &#123;</div><div class="line">		putchar('\x42');//16  4*16+2=66</div><div class="line">		putchar('\a');//发声</div><div class="line">		Sleep(1000);</div><div class="line">		system("\"D:\\Program Files (x86)\\Tencent\\QQ\\Bin\\QQScLauncher.exe\"");</div><div class="line">		putchar('\0');</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="2-什么是变量与常量"><a href="#2-什么是变量与常量" class="headerlink" title="2.  什么是变量与常量"></a>2.  什么是变量与常量</h1><ul>
+<li><p>常量就是计算机内存里面不变得数据</p>
+</li>
+<li><p>变量就是计算机内存里面需要并且经常改变的数据</p>
+</li>
+</ul>
+<p>变量是指其值可以变化的量.计算机中,指令代码/数据都存储于内存中.变量也需要存储在内存中.在计算机中,每个变量都被分配了一块内存空间,在这些空间里存储的就是变量的值.变量之所以可以变化,就是这个存储空间可以存储不同的数值.存储空间里的值变化,则变量对应的值也变化.同一个时间,内存空间里只能保存一份值,新值冲掉了原来的旧值.每个内存单元都有编号,这些是内存的地址.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</div><div class="line">    <span class="comment">//这段代码表示了从寄存器修改数据</span></div><div class="line">	_asm &#123;</div><div class="line">		mov eax,<span class="number">8</span></div><div class="line">		mov a,eax</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%p\n"</span>, &amp;a); <span class="comment">//%p 是以16进制的形式输出内存地址</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, a);</div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-1-定义变量"><a href="#2-1-定义变量" class="headerlink" title="2.1  定义变量"></a>2.1  定义变量</h2><ul>
+<li><strong>标识符</strong><ul>
+<li>定义  :<br>程序中用于标识常量、变量、函数的字符序列</li>
+<li>组成  :<br>只能由字母/数字/下划线组成,第一个字母必须是字母或下划线,大小写有区别<br>不能使用C语言的关键字.</li>
+<li>规则  :<br>见名知意<br>不宜混淆</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-1-变量为何一定要初始化"><a href="#2-1-1-变量为何一定要初始化" class="headerlink" title="2.1.1  变量为何一定要初始化"></a>2.1.1  变量为何一定要初始化</h3><p>变量如果不初始化,可以编译成功,但是执行的时候,很可能报错 .</p>
+<p><strong>操作系统是如何管理内存的!</strong></p>
+<p>每当一个应用程序打开时,操作系统为其分配内存,内存有内存地址与内存单元,当应用程序初始化运行时,就会往内存单元里面写数据,当操作系统回收的时候,并不清空内存单元,所以存在大量的垃圾数据.</p>
+<p>如果变量不初始化,就会默认读取垃圾数据,有些垃圾数据会导致程序崩溃.<br>VC++2010的编译器可以感知变量没有初始化,调试的时候就会出错.<br>所以,变量使用之前,必须初始化.</p>
+<h3 id="2-1-2-变量交换"><a href="#2-1-2-变量交换" class="headerlink" title="2.1.2  变量交换"></a>2.1.2  变量交换</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main1</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</div><div class="line">	<span class="keyword">int</span> b = <span class="number">5</span>;</div><div class="line">	<span class="keyword">int</span> temp;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"a=%d,b=%d\n"</span>, a, b);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"交换后:\n"</span>);</div><div class="line"></div><div class="line">	temp = a;	<span class="comment">//temp = 10;a = 10; b = 5;</span></div><div class="line">	a = b;	<span class="comment">//temp = 10;a = 5; b = 5;</span></div><div class="line">	b = temp; <span class="comment">// temp = 10;a = 5; b = 10;</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"a=%d,b=%d\n"</span>, a, b);</div><div class="line">	getchar();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</div><div class="line">	<span class="keyword">int</span> b = <span class="number">5</span>;</div><div class="line"></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"a=%d,b=%d\n"</span>, a, b);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"交换后:\n"</span>);</div><div class="line"></div><div class="line">	a = a ^ b;	<span class="comment">//a=15,b=5</span></div><div class="line">	b = a ^ b;	<span class="comment">//a=10,a=15</span></div><div class="line">	a = a ^ b;	<span class="comment">//a=5,b=10</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"a=%d,b=%d\n"</span>, a, b);</div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-2-定义常量"><a href="#2-2-定义常量" class="headerlink" title="2.2  定义常量"></a>2.2  定义常量</h2><ul>
+<li>定义常量有什么好处呢?<ul>
+<li>通过有意义的单词符号,可以指明该常量的意思,使得程序员在阅读代码时,减少迷惑.</li>
+<li>需要修改常量的时候,可以只需要修改一次,实现批量修改,效率高而且准确.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Windows.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> 诸葛亮	100</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="comment">//真正的常量,不能直接修改!因为C语言只能操作内存,不能操作寄存器</span></div><div class="line">	<span class="keyword">const</span> <span class="keyword">int</span> a = <span class="number">1000</span>;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,诸葛亮);</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a);</div><div class="line"></div><div class="line">	getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="3-进制问题"><a href="#3-进制问题" class="headerlink" title="3.  进制问题"></a>3.  进制问题</h1><h2 id="3-1-进制的计算"><a href="#3-1-进制的计算" class="headerlink" title="3.1  进制的计算"></a>3.1  进制的计算</h2><p><img src="/2017/03/28/二-C语言中的数据类型/2.png" alt="进制转换" title="进制转换"></p>
+<h2 id="3-2-二进制转换八进制"><a href="#3-2-二进制转换八进制" class="headerlink" title="3.2  二进制转换八进制"></a>3.2  二进制转换八进制</h2><ul>
+<li>二进制转换成八进制  :  从右向左,每3位一组(不足3位左补0),转换成八进制<br>(1101001)2=(001,101,001)2=(151)8</li>
+<li>八进制转换成二进制  :  用3位二进制数代替每一位八进制数.<br>(246)8=(010,100,110)2=(10100110)2</li>
+</ul>
+<h2 id="3-3-二进制转换十六进制"><a href="#3-3-二进制转换十六进制" class="headerlink" title="3.3  二进制转换十六进制"></a>3.3  二进制转换十六进制</h2><ul>
+<li>二进制转换成十六进制  :  从右向左,每4位一组(不足4位左补0),转换成十六进制<br>(11010101111101)2=(0011,0101,0111,1101)2=(357D)16</li>
+<li>十六进制转换成二进制  :  用4位二进制数代替每一位十六进制数<br>(4B9E)16=(0100,1011,1001,1110)2=(100101110011110)2<blockquote>
+<p>0000 ~ 0<br>0001 ~ 1<br>0010 ~ 2<br>0011 ~ 3<br>0100 ~ 4<br>0101 ~ 5<br>0110 ~ 6<br>0111 ~ 7<br>1000 ~ 8<br>1001 ~ 9<br>1010 ~ A<br>1011 ~ B<br>1100 ~ C<br>1101 ~ D<br>1110 ~ E<br>1111 ~ F</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-4-十进制转换二进制"><a href="#3-4-十进制转换二进制" class="headerlink" title="3.4  十进制转换二进制"></a>3.4  十进制转换二进制</h2><ul>
+<li><p><strong>十进制整数转换为二进制  :  方法是除以2取余,逆序排列,以(89)10为例,如下.</strong><br>89 ÷ 2     余1<br>44 ÷ 2     余0<br>22 ÷ 2     余0<br>11 ÷ 2     余1<br>5  ÷ 2     余1<br>2  ÷ 2     余0<br>1    余1<br>(89)10 = (1011001)2<br>(5)10 = (101)2<br>(2)10 = (10)2  </p>
+</li>
+<li><p><strong>二进制转换为十进制</strong><br>十进制是逢十进一,由数字符号0,1,2,3,4,5,6,7,8,9组成,可以这样分析十进制数  :<br>(1234)10 = 1 <em> 10^3 + 2 </em> 10^2 + 3 <em> 10^1 + 4 </em> 10^0 = 1000 + 200 +30 + 4 =(1234)10</p>
+</li>
+<li><p><strong>采用同样的方式转换二进制到十进制</strong><br>(1101)2 = 1 <em> 2^3 + 1 </em> 2^2 + 0 <em> 2^1 + 1 </em> 2^0 = 8 + 4 + 0 + 1 = (13)10<br>(10.01)2 = 1 <em> 2^1 + 0 </em> 2^0 + 0 <em> 2^-1 + 1 </em> 2^-2 = 2 + 0 + 0 + 0.25 = (2.25)10</p>
+</li>
+<li><p><strong>十进制小数的转换为二进制  :  方法是乘以2取整,顺序排列,以(0.625)10为例,如下  :</strong><br>0.625 <em> 2 = 1.25    取整1<br>0.25 </em> 2 = 0.5    取整0<br>0.5 * 2 = 1    取整1<br>(0.625)10 = (0.101)2<br>(0.25)10 = (0.01)2<br>(0.5)10 = (0.1)2</p>
+</li>
+</ul>
+<h1 id="4-计算机存储数据"><a href="#4-计算机存储数据" class="headerlink" title="4.  计算机存储数据"></a>4.  计算机存储数据</h1><p>程序员编写的程序以及所使用的数据在计算机的内存中是以二进制位序列的方式存放的.</p>
+<p>典型的计算机内存段二进制位序如下  :<br>…0001000101010101000101010111011001010010100100010010010010….</p>
+<p>上面的二进制位序里,每一位上的数字,要么是0,要么是1.在计算机中,位(bit)是含有0或者1值的一个单元.在物理上,它的值是一个负或是一个正电荷.也就是计算机中可以通过电压的高低来表示一位所含有的值.如果是0,则用低电压表示,如果是1,则用高电压表示.</p>
+<p>在上面的二进制位序这个层次上,位的集合没有结构,很难来解释这些系列的意义.为了能够从整体上考虑这些位,于是给这些位序列强加上结构的概念,这样的结构被称作为字节(byte)和字(word).通常,一个字节由8位构成,而一个字由32位构成.或者说是4个字节构成。</p>
+<h1 id="5-sizeof运算符"><a href="#5-sizeof运算符" class="headerlink" title="5.  sizeof运算符"></a>5.  sizeof运算符</h1><p>sizeof是个单目运算符,用来计算操作数在内存中占据的字节数,其操作数既可以是括在圆括号中的类型标识符,其返回值是size_t类型,即无符号整数.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">sizeof</span>(<span class="keyword">short</span>);				<span class="comment">/*返回2*/</span></div><div class="line"><span class="keyword">sizeof</span>(<span class="keyword">long</span>);				<span class="comment">/*返回4*/</span></div><div class="line"><span class="keyword">sizeof</span>(<span class="keyword">int</span>);	       <span class="comment">/*不确定，取决于不同的系统*/</span></div><div class="line">也可以是一个表达式，如：</div><div class="line"><span class="keyword">short</span> x；</div><div class="line"><span class="keyword">sizeof</span>(x);					<span class="comment">/*返回2*/</span></div></pre></td></tr></table></figure>
+<h1 id="6-原码和反码和补码"><a href="#6-原码和反码和补码" class="headerlink" title="6.  原码和反码和补码"></a>6.  原码和反码和补码</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>原码</th>
+<th>反码</th>
+<th>补码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+7</td>
+<td>00000111</td>
+<td>00000111</td>
+<td>00000111</td>
+</tr>
+<tr>
+<td>-7</td>
+<td>10000111</td>
+<td>11111000</td>
+<td>11111001</td>
+</tr>
+<tr>
+<td>+0</td>
+<td>00000000</td>
+<td>00000000</td>
+<td>00000000</td>
+</tr>
+<tr>
+<td>-0</td>
+<td>10000000</td>
+<td>11111111</td>
+<td>00000000</td>
+</tr>
+<tr>
+<td>数的范围</td>
+<td>01111111~11111111(-127~+127)</td>
+<td>01111111~10000000(-127~+127)</td>
+<td>01111111~10000000(-128~+127)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>负数补码转换成十进制数  :  最高位不动,其余位取反加1.</strong></p>
+<blockquote>
+<p>补码  :  11111001<br>取反  :  10000110<br>加1  :  10000111=-7</p>
+</blockquote>
+<p><strong>数值的表示方法——原码/反码和补码</strong></p>
+<ul>
+<li>原码  :  最高位为符号位,其余各位为数值本身的绝对值</li>
+<li>反码  :<br>正数  :  反码与原码相同<br>负数  :  符号位为1,其余位对原码取反</li>
+<li>补码  :<br>正数  :  原码  /  反码  /  补码相同<br>负数  :  最高位为1,其余位为原码取反,再对整个数加1</li>
+</ul>
+<p>在计算机系统中,数值一律用补码来表示(存储). 主要原因  :  使用补码,可以将符号位和其它位统一处理;同时,减法也可按加法来处理.另外,两个用补码表示的数相加时,如果最高位(符号位)有进位,则进位被舍弃.</p>
+<p>采用原码表示法简单易懂,但它的最大缺点是加法运算复杂.这是因为,当两数相加时,如果是同号则数值相加;如果是异号,则要进行减法.而在进行减法时还要比较绝对值的大小,然后大数减去小数,最后还要给结果选择符号.为了解决这些矛盾,人们找到了补码表示法.机器数的补码可由原码得到.如果机器数是正数m则该机器数的补码与原码一样;如果机器数是负数,则该机器数的补码是对它的原码(除符号位外)各位取反,并在未位加1而得到的.</p>
+<h1 id="7-总结与练习"><a href="#7-总结与练习" class="headerlink" title="7.  总结与练习"></a>7.  总结与练习</h1><ul>
+<li>计算  :<ul>
+<li>十进制192 到二进制  :  11000000</li>
+<li>十进制62 到二进制  :  111110</li>
+<li>二进制1111001001010 到十进制  :  7754</li>
+<li>二进制1111101111010 到十进制  :  8058</li>
+<li>0.5转化为二进制  :  0.1</li>
+<li>1.25转换为二进制  :  1.01</li>
+</ul>
+</li>
+<li>推理运算结果  :</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> num = <span class="number">-2</span>;</div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data = <span class="number">4294967294u</span>;</div><div class="line"><span class="keyword">int</span> num1 = <span class="number">4294967294u</span>;</div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> data1 = <span class="number">-2</span>;</div><div class="line"></div><div class="line"><span class="built_in">printf</span>(<span class="string">"%d"</span>, num);  <span class="comment">//-2</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%u"</span>, num); <span class="comment">//4294967294</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%d"</span>, num1); <span class="comment">//-2</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%u"</span>, num1); <span class="comment">//4294967294</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%u"</span>, data); <span class="comment">//4294967294</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%d"</span>, data); <span class="comment">//-2</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%u"</span>, data1); <span class="comment">//4294967294</span></div><div class="line"><span class="built_in">printf</span>(<span class="string">"\n%d"</span>, data1); <span class="comment">//-2</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/一-愉快的开始-hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/一-愉快的开始-hello-world/" itemprop="url">
+                  一.愉快的开始-hello world
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T13:04:48+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-C/" itemprop="url" rel="index">
+                    <span itemprop="name">C/C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/一-愉快的开始-hello-world/" class="leancloud_visitors" data-flag-title="一.愉快的开始-hello world">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-include-头文件包含"><a href="#1-include-头文件包含" class="headerlink" title="1.  include 头文件包含"></a>1.  include 头文件包含</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;/*包含该头文件的目的是使用了函数printf*/</span></span></div><div class="line">		       <span class="comment">/*空行，主要是为了分隔，编译器忽略。*/</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span>		<span class="comment">/*主函数，入口点*/</span></span></div><div class="line">&#123;					<span class="comment">/*函数开始*/</span></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"Hello World!"</span>);	<span class="comment">/*打印字符串*/</span></div><div class="line">         getchar();<span class="comment">//等待输入，起到等待的作用</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>include 是要告诉编译器，包含一个头文件,在 C 语言当中,任何库函数调用都需要提前包含头文件&lt;头文件&gt;,代表让 C 语言编译器去系统目录下寻找相关的头文件”头文件”,代表让 C 语言编译器去用户当前目录下寻找相关头文件如果是使用了一个 C 语言库函数需要的头文件，那么一定是<code>#include &lt;&gt;</code>如果使用了一个自定义的 h 文件,那么一定是<code>#include &quot;&quot;</code>.</p>
+<h1 id="2-main-函数"><a href="#2-main-函数" class="headerlink" title="2.  main 函数"></a>2.  main 函数</h1><p>main 函数是 C 语言中的主函数,一个 C 语言的程序必须有一个主函数,也只能有一个主函数.</p>
+<h1 id="3-注释"><a href="#3-注释" class="headerlink" title="3.  注释"></a>3.  注释</h1><p>//,单行注释,代表注释,就是一个文字说明,没有实质的意义，单行注释是 C++语言的注释方法.</p>
+<p>/<em> </em>/,多行注释,多行注释是标准 C 语言的注释方法.</p>
+<h1 id="4-括号，程序题和代码块"><a href="#4-括号，程序题和代码块" class="headerlink" title="4.  {} 括号，程序题和代码块"></a>4.  {} 括号，程序题和代码块</h1><p>C 语言所有的函数的代码都是在{}里包着的</p>
+<h1 id="5-声明"><a href="#5-声明" class="headerlink" title="5.  声明"></a>5.  声明</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>  a;</div></pre></td></tr></table></figure>
+<p>声明一个变量名字叫 a,对于 c 语言,变量的名称是可以子定义的.</p>
+<h1 id="6-C-语言自定义名字的要求"><a href="#6-C-语言自定义名字的要求" class="headerlink" title="6.  C 语言自定义名字的要求"></a>6.  C 语言自定义名字的要求</h1><p>可以使用大小写字母,下划线,数字,但第一个字母必须是字母或者下划线字母区分大小写不能用 C 语言的关键字做为变量名称每一行,必须是<code>;</code>结尾!</p>
+<h1 id="7-printf-函数"><a href="#7-printf-函数" class="headerlink" title="7.  printf 函数"></a>7.  printf 函数</h1><p>printf 是向标准输出设备输出字符串的如果要输出一个字符串.</p>
+<p>例如：<code>printf(&quot;hello world&quot;);</code></p>
+<p>如果要输出一个整数.</p>
+<p>例如：<code>printf(&quot;%d&quot;,6）;</code></p>
+<p><code>Printf(&quot;\n&quot;);</code>会输出一个回车换行</p>
+<h1 id="8-return-语句"><a href="#8-return-语句" class="headerlink" title="8. return 语句"></a>8. return 语句</h1><p>一个函数遇到 return 语句就终止了,return 是 c 语言的关键字.</p>
+<h1 id="9-System-系统调用"><a href="#9-System-系统调用" class="headerlink" title="9.  System 系统调用"></a>9.  System 系统调用</h1><p>System 库函数的功能是执行操作系统的命令或者运行指定的程序,system 库函数的调用需要<code>include&lt;stdlib.h&gt;</code></p>
+<h1 id="10-C-语言编译过程-gcc-参数简介"><a href="#10-C-语言编译过程-gcc-参数简介" class="headerlink" title="10.  C 语言编译过程,gcc 参数简介"></a>10.  C 语言编译过程,gcc 参数简介</h1><p><img src="/2017/03/28/一-愉快的开始-hello-world/1.png" alt="C语言编译过程" title="C语言编译过程"></p>
+<ul>
+<li><p>-E  预编译</p>
+<ul>
+<li><p><code>Gcc –E –o a.e a.c</code><br>预编译 a.c 文件,生成的目标文件名为 a.e</p>
+</li>
+<li><p>预编译是将 include 包含的头文件内容替换到 C 文件中中,同时将代码中没用的注释部分删除.</p>
+</li>
+</ul>
+</li>
+<li><p>-S 汇编</p>
+<ul>
+<li>-S 就是将 c 语言转化为汇编语言</li>
+</ul>
+</li>
+<li>-C 编译<ul>
+<li>将代码编译为二进制的机器指令</li>
+</ul>
+</li>
+<li>链接<ul>
+<li>Gcc 没有任何参数，代表就是链接</li>
+</ul>
+</li>
+</ul>
+<h1 id="11-操作系统结构"><a href="#11-操作系统结构" class="headerlink" title="11.  操作系统结构"></a>11.  操作系统结构</h1><p><img src="/2017/03/28/一-愉快的开始-hello-world/2.png" alt="操作系统结构" title="操作系统结构"></p>
+<ul>
+<li>用户模式<ul>
+<li>应用程序都是运行在用户区域</li>
+</ul>
+</li>
+<li>内核模式<ul>
+<li>操作系统的内核,设备驱动程序,这些都是在内核模式下运行的</li>
+</ul>
+</li>
+</ul>
+<h1 id="12-C-语言关键字"><a href="#12-C-语言关键字" class="headerlink" title="12.  C  语言关键字"></a>12.  C  语言关键字</h1><p><img src="/2017/03/28/一-愉快的开始-hello-world/3.png" alt="C语言的32个关键字" title="C语言的32个关键字"></p>
+<h1 id="13-C-语言的控制符"><a href="#13-C-语言的控制符" class="headerlink" title="13.  C  语言的控制符"></a>13.  C  语言的控制符</h1><p><img src="/2017/03/28/一-愉快的开始-hello-world/4.png" alt="9种控制语句" title="9种控制语句"></p>
+<h1 id="14-C语言的运算符"><a href="#14-C语言的运算符" class="headerlink" title="14.  C语言的运算符"></a>14.  C语言的运算符</h1><p><img src="/2017/03/28/一-愉快的开始-hello-world/5.png" alt="34种运算符" title="34种运算符"></p>
+<h1 id="15-总结与训练"><a href="#15-总结与训练" class="headerlink" title="15.  总结与训练"></a>15.  总结与训练</h1><ul>
+<li><p><strong>.c和.cpp的区别</strong></p>
+<ul>
+<li><p>在编译源文件时,C编译器和C++编译器都会对符号(函数或变量)名作某些修正,但两者采用的修正方法不同,所以两者生成的目标文件不能互相链接.</p>
+</li>
+<li><p>在C++中使用extern “C”可以让C++符号获得C链接特性.由于C++编译器会自动定义__cplusplus宏,所以在C语言头文件中采用这种结构可以保证无论使用何种编译器,生成的目标文件都具有C链接特性,能够与标准C编译器所生成的目标文件相链接.通常c/c++编译器会根据文件后缀来选择符号修正,所以最好把c的代码放到.c文件中,把c++的代码放到.cpp文件中.</p>
+</li>
+</ul>
+</li>
+<li><p>Windows  实现工具箱</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line">	system(<span class="string">"mspaint"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>利用  define  进行代码混迹</p>
+<ul>
+<li><p>可以自定义一个<code>1.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	给哥跑起来	main</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	输出	printf</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在源文件这样写:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"1.h"</span></span></div><div class="line"><span class="keyword">void</span> 给哥跑起来()</div><div class="line">&#123;</div><div class="line">	输出(<span class="string">"哈哈"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/27/Lesson-60-The-future-卜算未来/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/27/Lesson-60-The-future-卜算未来/" itemprop="url">
+                  Lesson 60 The future 卜算未来
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T22:21:05+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index">
+                    <span itemprop="name">English</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/27/Lesson-60-The-future-卜算未来/" class="leancloud_visitors" data-flag-title="Lesson 60 The future 卜算未来">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="单词讲解"><a href="#单词讲解" class="headerlink" title="单词讲解"></a>单词讲解</h1><ul>
+<li><p>future  n.未来,前途<br>in  future  往后,今后<br>In  future,  you  should  come  to  the  office  earlier.<br>in  the  future  将来,未来<br>The  old  lady  said  that  she  knew  what  would  happen  in  the  future.</p>
+</li>
+<li><p>fair<br>n.集市<br>a  book  fair  书展<br>adj.公正的<br>a  fair  game</p>
+</li>
+<li><p>forture  -  teller  n.算命人<br>forture  n.命运,运气</p>
+</li>
+<li><p>crystal  n.水晶</p>
+</li>
+<li><p>relation  n.亲属<br>Sam  is  a  relation  of  Mary’s<br>a  relation  by  marriage  姻亲<br>There  is  no  relation  between  the  two  accidents.(关系)</p>
+</li>
+<li><p>impatiently  adv.不耐烦地<br>im  +  patiently<br>possible  –  impossible</p>
+</li>
+</ul>
+<h1 id="语法讲解"><a href="#语法讲解" class="headerlink" title="语法讲解"></a>语法讲解</h1><ul>
+<li><p>At  a  village  fair,…<br>called  Madam  Bellinsky  过去分词作后置定语</p>
+</li>
+<li><p>…  she  looked  into  a  crystal  ball…<br>look  into  向里面看去,调查,研究<br>look  into  the  box<br>look  into  the  accident</p>
+</li>
+<li><p>A  relation  of  yours  is…<br>名词的双重所有格<br>a  friend  of  mine<br>a  relation  of  Nick’s</p>
+</li>
+<li><p>She  will  be  arriving…<br>will  be  doing  将来进行时(表示某种可能或者猜测)</p>
+</li>
+<li><p>The  moment  you  leave  this  tent,…<br>the  moment(that)  as  soon  as  一…就…<br>I  recognized  Ryan  the  moment  (that)  I  saw  him.</p>
+</li>
+<li><p>A  woman  you  know  well  will…<br>A  woman  whom  you  know  well  will…</p>
+</li>
+<li><p>…She  will  lead  you  away  from  this  place.<br>lead  sb.away  form  …  领着某人从…离开<br>Jane’s  mother  led  her  away  form  the  park.</p>
+</li>
+<li><p>That  is  all.<br>就是这些.<br>Bob  will  come  and  stay  here  for  a  few  days.That’s  all.</p>
+</li>
+<li><p>….  I  forgot  all  about  Madam…<br>forget  all  about…  把…忘得一干二净<br>I  remember  all  about  what    he  said.</p>
+</li>
+<li><p>…my  wife  hurried  towards  me.<br>hurry  towards.  向…走去<br>Jack  was  late.He  hurried  towards  the  meeting  room.</p>
+</li>
+<li><p>Your  sister  will  be  here  in  less  than  an  hour…<br>in  less  than  an  hour  不到一个小时<br>in  less  than  a  week  /  month</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/27/Lesson-59-In-or-out-进来还是出去/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/27/Lesson-59-In-or-out-进来还是出去/" itemprop="url">
+                  Lesson 59 In or out 进来还是出去? 
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T22:20:42+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index">
+                    <span itemprop="name">English</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/27/Lesson-59-In-or-out-进来还是出去/" class="leancloud_visitors" data-flag-title="Lesson 59 In or out 进来还是出去? ">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="单词讲解"><a href="#单词讲解" class="headerlink" title="单词讲解"></a>单词讲解</h1><ul>
+<li>press  v.按,压<br>press  the  button<br>press  any  key  to  continue<br>n.出版社,新闻界<br>Foreign  Language  Teaching  and  Research  Press</li>
+<li>pressure n.压力</li>
+<li>develop  v.养成<br>develop  a  bad  /  good  habit<br>a  developing  country  发展中国家</li>
+</ul>
+<h1 id="语法讲解"><a href="#语法讲解" class="headerlink" title="语法讲解"></a>语法讲解</h1><ul>
+<li>Our  dag,  used  to  sit  outside  out  front  gate…<br>used  to  :  过去常常做某事,现在不做了</li>
+<li><p><strong>Every  time</strong>  he  wanted  to  come…  he  would  bark  until  someone  opened  the  gate.<br>complain  of  /  about…<br>spend  +  时间/钱  +  on  sth./(in)doing  sth.<br>train  sb.  to  do  sth.</p>
+</li>
+<li><p>…  my  husband  spent  weeks  training  him  to  press  his  paw  on  the  latch  to  let  himself  in.<br>表示目的  :<br>to  do  /  in  order  to  do  /  so  as  to  do<br>I  am  coming  to  see  you.</p>
+</li>
+<li><p>Rex…  became  an  expert  at  opening  the  gate.</p>
+</li>
+<li><p>…  when  I  was  going  out  shopping  last  week,I  noticed  him  in  the  garden…</p>
+</li>
+<li><p>…  he  was  barking  so  that  someone  would  let  him  out!<br>so  that…<br>He  ran  to  the  station  so  that  he  caught  the  train.  引导状语从句<br>He  ran  to  the  station  so  that  he  might  catch  the  train.<br>The  ball  struck  him  so  hard  that  he  nearly  fell…(因果关系)</p>
+</li>
+<li><p>my  husband  removed  the  gate  and  Rex  got  so  annoyed(that)  we  have  not  seen  him  since.</p>
+</li>
+</ul>
+<h1 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h1><p>表示目的  :<br>to  do<br>in  order  to  do<br>so  as  to  do<br>He  told  you  about  it  to  warn  you.<br>so  that  +  句子(有情态动词)<br>in  order  that  +  句子<br>He  told  you  about  it  so  that  you  would  be  careful.<br>He  ran  to  the  station.  He  wanted  to  catch  the  last  train.<br>He  ran  to  the  station  to  catch  the  last  train.<br>He  ran  to  the  station  so  that  the  would  catch  the  last  train.<br>他跑去车站,目的是赶上车.<br>The  thief  ran  quickly.  The  policeman  couldn’t  catch  him.<br>The  thief  ran  quickly.  so  that  the  policeman  couldn’t  catch  him.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/27/Lesson-58-A-blessing-in-disguise-是因祸得福吗/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1307,1024 +2431,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/27/Lesson-53-Hot-snake-触电的蛇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/Lesson-53-Hot-snake-触电的蛇/" itemprop="url">
-                  Lesson 53 Hot snake 触电的蛇
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T22:17:52+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index">
-                    <span itemprop="name">English</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/27/Lesson-53-Hot-snake-触电的蛇/" class="leancloud_visitors" data-flag-title="Lesson 53 Hot snake 触电的蛇">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="单词讲解"><a href="#单词讲解" class="headerlink" title="单词讲解"></a>单词讲解</h1><ul>
-<li><p>cause<br>v.引起  Carelesses  causes  accidents.<br>粗心会引起事故<br>n.  起因  the  cause  of  the  fire</p>
-</li>
-<li><p>examine  v.检查<br>examner  n.主考官<br>examination  n.检查考试(exam)</p>
-</li>
-<li><p>accidentlly  adv.意外地,偶然地<br>do  sth.  ccidently<br>do  sth.  by  accident<br>do  sth.  by  chance<br>accident  n.<br>accidental  adj.</p>
-</li>
-<li><p>remains  n.残骸<br>remain  v.保持,保留<br>remain  silent</p>
-</li>
-<li><p>wire  n.电线<br>wireless  adj.无线的<br>wireless  network  /  mouse  /  keyboard</p>
-</li>
-<li><p>solve  v.解决<br>solve  the  mystery<br>solve  the  problem  of…<br>solve  the  problem  of  air  pollution  /  earthquake</p>
-</li>
-</ul>
-<h1 id="语法讲解"><a href="#语法讲解" class="headerlink" title="语法讲解"></a>语法讲解</h1><blockquote>
-<p> Key  points<br><strong>现在完成时</strong></p>
-</blockquote>
-<p>形式  :  have  /  has  +  done<br>用法  :<br>现在全部完成<br>现在部分完成</p>
-<ul>
-<li>He  has  waited  for  three  hours.<br>他现在的之前已经等了三个小时了.</li>
-</ul>
-<blockquote>
-<p> 现在完成时<br>He  has  left.<br>现在全部完成<br>We  have  learned  English  for  ten  years.<br>现在部分完成<br>We  have  been  learning  English  for  ten  years.</p>
-</blockquote>
-<ul>
-<li>He  has  been  waiting  for  three  hours.<br>现在完成进行时<br>have  /  has  +  been  doing<br>“现在的之前  +  进行”</li>
-</ul>
-<p><strong>现在完成进行时</strong></p>
-<p>Alicia  has  planed(has  been  planing)  to  go  to  Egypt  for  2  years,and  she  is  still  on  it.<br>Alicia  has  planed  to  go  to  Egypt  for  2  years,but  she  gives  up.</p>
-<ul>
-<li>At  last  firemen  <strong>have  put</strong>  out  a  big  forest  fire  in  California.<br>现在完成时</li>
-<li><p>Since  then,they  <strong>have  been  trying  </strong>  to  find  out…<br>现在完成进行时</p>
-</li>
-<li><p>…  they  have  been  trying  to  find  out  <strong>how  the  fire  began</strong>.宾语从句</p>
-</li>
-<li><p>Forest  fires  <strong>are  often  caused  by</strong>  broken  glass  or  by  cigarette  ends  <strong>which  people  carelessly  throw  away</strong>.<br>forest  fires<br>cigarette  ends  名词变复数,后变前不变</p>
-</li>
-<li><p>He  noticed  the  remains  of  a  snake  <strong>which  was  would  round  the  electirc  wires  of  a  16,000-volt  power  line.</strong><br>看从句  :  往前看  :  snake<br>定语从句    /    同位语从句<br>修饰限定n.  /    解析说明<br>任意名词后    /  抽象名词后</p>
-</li>
-</ul>
-<p>…  he  became  the  …  owner  of  a  bed  <strong>which  had  springs.</strong></p>
-<ul>
-<li>The  <strong>explanation</strong>  was  simple  but  very  unusual.<br>explanation  n.<br>explain  v.</li>
-</ul>
-<h1 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h1><p><strong>现在完成时</strong><br>have  /  has  +  done<br>现在的之前</p>
-<p>现在完成进行时<br>have  /  has  +  been  doing<br>现在的之前  +  进行</p>
-<p>我们学习英语十年了.<br>We  have  been  learning  English  for  10  years.</p>
-<p>她现在已经吃了2个小时了还在吃.<br>She  has  been  eating  for  2  hours.</p>
-<p>他们现在已经在这个项目上工作了好几个星期,还没完.<br>They  have  been  working  on  the  project  for  weeks.</p>
-<p>我已经等了你好长时间.<br>I  have  been  waiting  for  you  for  ages.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/27/Lesson-52-A-pretty-carpet-漂亮的地毯/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/Lesson-52-A-pretty-carpet-漂亮的地毯/" itemprop="url">
-                  Lesson 52 A pretty carpet 漂亮的地毯
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T22:17:34+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index">
-                    <span itemprop="name">English</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/27/Lesson-52-A-pretty-carpet-漂亮的地毯/" class="leancloud_visitors" data-flag-title="Lesson 52 A pretty carpet 漂亮的地毯">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="单词讲解"><a href="#单词讲解" class="headerlink" title="单词讲解"></a>单词讲解</h1><ul>
-<li><p>temporarily  adv.暂时地<br>temporary  adj.暂时的<br>temporary  employee  临时工<br>temporary  job  临时工作<br>temporary  agreement  临时协议<br>They  agreed  temporarily  to  stay.<br>Sam  temporarily  remained  silent.</p>
-</li>
-<li><p>inch  n.英寸(度量单位)<br>The  car  is  moving  inch  by  inch.(一点点的,缓慢地)</p>
-</li>
-<li><p>space  n.空间<br>a  parking  space  停车位<br>There  isn’t  enough  space  in  the  bookcase  for  all  the  new  books.</p>
-</li>
-<li><p>actually  adv.实际上<br>actual  size  实际尺寸<br>actual  cost  实际成本<br>actually  ==  in  fact<br>Actually,Ted  doesn’t  like  his  job.</p>
-</li>
-</ul>
-<h1 id="语法讲解"><a href="#语法讲解" class="headerlink" title="语法讲解"></a>语法讲解</h1><ul>
-<li>…  I  have  been  working  hard  all  morning.<br>have  /  has  been  doing  现在完成进行时</li>
-</ul>
-<p>句子中常含有时间状语  :<br>all  +  表示时间的词语(all  moring,all  day,all  week…)<br>for,since…<br>Ted  has  been  working  on  his  essay  for  several  weeks.<br>Rick  has  been  playing  the  game  all  moring.</p>
-<ul>
-<li><p>…  get  my  new  room  in  order.<br>get  …  in  order  :  把…整理好<br>put  …  in  order<br>Bob  gets  everything  in  order  before  he  leaves  the  office.</p>
-</li>
-<li><p>To  make  matters  worse,…<br>更糟糕的是</p>
-</li>
-<li><p>…  the  room  is  rather  small…<br>rather  adv.相当的<br>The  movie  is  rather  boring(无聊地).<br>It’s  rather  cold  here  in  winter.<br>fairly  adv.相当(常修饰褒义词)<br>He  is  a  fairly  nice  man.<br>It’s  fairly  delicious(美味的).</p>
-</li>
-<li><p>At  the  moment…<br>此时,此刻<br>just  at  the  moment  就在此时<br>When  Vicky  was  standing  by  the  sea,  everything  was  so  peaceful  at  the  moment.</p>
-</li>
-<li><p>She  went  into  my  room  and  got  a  big  surprise…</p>
-</li>
-</ul>
-<p>get  a  surprise  感到吃惊<br>get  a  big  surprise  大吃一惊</p>
-<ul>
-<li><p>“This  is  the  prettiest  carpet  I  have  ever  seen,”…<br>This  is  the  prettiest  carpet  that  I  have  ever  seen.<br>先行词为物,且前有形容词最高级修饰,定语从句关系代词只能用that<br>It’s  the  most  beautiful  painting  that  I  have  ever  seen.</p>
-</li>
-<li><p>She  gazed  at  it…<br>gaze  at  盯着看,凝视<br>Her  eyes  were  fixed  on  her  plate…<br>fix  one’s  eyes  on</p>
-</li>
-<li><p>You  can  sit  here  in  your  spare  time…<br>spare  adj.空闲的,多余的<br>in  one’s  spare  time  空闲的<br>I  will  visit  you  in  my  spare  time.<br>You  can  stay  here  toight.We  have  a  spare  bedroom.</p>
-</li>
-</ul>
-<h1 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h1><p>现在完成进行时  :  过去已经发生,一直持续到现在<br>have  /  has  been  doing<br>表示开始于过去的动作持续到现在,而且动作往往还没有结束,将继续持续下去.</p>
-<p>与现在完成进行时常连用的时间状语  :<br>for  +  时间段<br>since  +  时间点<br>all  morning<br>all  day<br>….<br>Sam  has  been  repairing  his  bicycle  since  9  o’clock  this  morning.<br>Mr.Green  has  been  teaching  in  this  school  for  20  years.<br>I  have  been  waiting  for  you  for  ages.</p>
-<p>翻译  :<br>尼克最近一直在考虑换个工作.<br>Nick  has  been  thinking  about  changing  his  job.<br>自从玛丽和约翰吵架后,他们一直避免见到对方.<br>Mary  and  John  have  been  avoiding  each  other  since  they  had  a  quarrel.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/27/Lesson-51-Reward-for-virtue-对美德的奖赏/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/Lesson-51-Reward-for-virtue-对美德的奖赏/" itemprop="url">
-                  Lesson 51 Reward for virtue 对美德的奖赏
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T22:17:10+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index">
-                    <span itemprop="name">English</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/27/Lesson-51-Reward-for-virtue-对美德的奖赏/" class="leancloud_visitors" data-flag-title="Lesson 51 Reward for virtue 对美德的奖赏">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="单词讲解"><a href="#单词讲解" class="headerlink" title="单词讲解"></a>单词讲解</h1><ul>
-<li><p>reward<br>n.报偿<br>v.给奖赏<br>reward  sb.<br>reward  oneself<br>You  worked  so  hard,and  you  need  to  reward  yourself  occasionally.</p>
-</li>
-<li><p>diet  n.节食<br>go  on  a  diet  /  begin  a  diet<br>be  on  a  diet<br>I  am  on  a  diet  now.</p>
-</li>
-<li><p>hurriedly  adv.匆忙地<br>do  sth.hurriedly<br>hurry  v.匆忙</p>
-</li>
-<li><p>embarrass  v.使尴尬<br>You  embarrass  me.<br>I  am  embarrassed.<br>embarrassed  adj.尴尬的<br>embarrassing  adj.使人尴尬的</p>
-</li>
-<li><p>guiltily  adv.内疚地<br>guilt  n.<br>guilty  adj.</p>
-</li>
-<li><p>occasionally  adv.偶尔地<br>occasion  n.<br>occasional  adj.</p>
-</li>
-</ul>
-<h1 id="语法讲解"><a href="#语法讲解" class="headerlink" title="语法讲解"></a>语法讲解</h1><ul>
-<li><p>My  friend,  Hugh,has  always  been  fat…<br>has  been  :  现在完成时  :  现在的之前(从现在往之前看)</p>
-</li>
-<li><p>…  but  things  got  so  bad  recently  that  he  decided  to  go  on  a  diet.<br>get  got  got/gotten<br>get  bad<br>go  on  a  diet<br>so  …  that  …  :  以便…为了…<br>The  story  is  interesting.  I  want  to  share  it  with  you.<br>The  story  is  so  interesting  that  I  want  to  share  it…</p>
-</li>
-<li><p>First  of  all,he  wrote  out  a  …  list  of  all  the  foods  which  were  forbidden(不允许的).<br>first  of  all<br>write    /    wrote    /  written</p>
-</li>
-<li><p>The  list  included  most  of  the  things  Hugh  loves:butter,  potatoes,  rice,  beer,  milk…<br>The  list  included(包含)  most  of  the  things  (that)  Hugh  loves</p>
-</li>
-<li><p>Yesterday  I  paid  him  a  visit.<br>pay  sb.a  visit  =  visit  sb.<br>n.  v.</p>
-</li>
-<li><p>I  rang  the  bell  and  was  not  surprised  to  see  that  …<br>ring    rang    rung<br>ring  the  bell<br>be  surprised  to  do  sth</p>
-</li>
-<li><p>…  to  see  that  Hugh  was  still  as  fat  as  ever.<br>as  …  as…<br>as  fat  as  ever</p>
-</li>
-<li><p>He  led  me  into  his  room  and  hurriedly  hid  a  ..  parcel…<br>lead    led    led<br>hide    hid    hidden</p>
-</li>
-<li><p>It  was  obvious(明显的)  that  he  was  very  embarrassed.<br>=  That  he  was  very  embarrassed  was  obvious  主语从句</p>
-</li>
-<li><p>When  I  asked  him  what  he  was  doing,  he  smiled  guiltily  and  then  put  the  parcel…</p>
-</li>
-<li><p>He  explained  that  his  diet  was  so  strict  that  he  had  to  reward  himself  occasionally.</p>
-</li>
-<li><p>Then  he  showed  me  the  contents  of  the  parcel.<br>contents  n.内有的物品<br>the  contents  of…</p>
-</li>
-</ul>
-<h1 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h1><ul>
-<li><p>My  friend,Hugh,has  always  been  fat,  but  things  got  so  bad  recently  that  he  decided  to  go  on  a  diet.<br>My  friend,Hugh  同位语<br>has  been  现在完成时<br>but  并列句(表示转折)<br>so…  that…  结果状语从句<br>get  bad<br>decide  to  do<br>go  on  a  diet</p>
-</li>
-<li><p>I    rang  the  bell  and  was  not  surprised  to  see  that  Hugh  was  still  as  fat  as  ever.<br>ring  the  bell<br>be  surprised  to  do<br>and  并列句<br>see  that…  宾语从句</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/27/Lesson-50-Taken-for-a-ride-乘车兜风/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/Lesson-50-Taken-for-a-ride-乘车兜风/" itemprop="url">
-                  Lesson 50 Taken for a ride 乘车兜风
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T22:16:41+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index">
-                    <span itemprop="name">English</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/27/Lesson-50-Taken-for-a-ride-乘车兜风/" class="leancloud_visitors" data-flag-title="Lesson 50 Taken for a ride 乘车兜风">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="单词讲解"><a href="#单词讲解" class="headerlink" title="单词讲解"></a>单词讲解</h1><ul>
-<li><p>ride  n.旅行<br>We  went  for  a  ride  in  Tom’s  new  car.<br>Sally  gave  me  a  ride  in  her  car.</p>
-</li>
-<li><p>excursion  n.远足<br>go  on  an  excursion  to  the  mountains.<br>Jim’s  parents  took  him  on  an  excursion  to  an  island.</p>
-</li>
-<li><p>conductor  n.售票员<br>conduct  (v.引导,管理)  +  -or</p>
-</li>
-<li><p>view  n.景色<br>a  beautiful  view<br>A  room  with  a  View  &lt;看得见风景的房间&gt;</p>
-</li>
-</ul>
-<h1 id="语法讲解"><a href="#语法讲解" class="headerlink" title="语法讲解"></a>语法讲解</h1><ul>
-<li>I  love  travelling  in  the  country…<br>love  doing  习惯上,一直以来喜欢<br>love  to  do  一时或某一次喜欢</li>
-</ul>
-<p>Rick  loves  playing  basketball  in  the  afternoon.<br>Rick  loves  to  play  football  this  afternoon.</p>
-<ul>
-<li><p>…  but  I  don’t  like  losing  my  way.<br>…  but  I  am  not  willing  to  lose  my  way.(不愿意)<br>Alan  lost  his  way  and  had  to  ask  a  pol  ceman.</p>
-</li>
-<li><p>I  went  on  an  excursion…<br>go  on  为(某一目的)而去<br>go  on  an  excusion  作一次短途旅行<br>go  on  a  trip  去旅行<br>take  v.花费(时间)<br>It  takes  sb.some  time  to  do  sth.<br>It  took  me  a  week  to  read  the  novel.</p>
-</li>
-<li><p>…  as  I  got  on  the  bus…<br>get  on  the  bus</p>
-</li>
-<li><p>I’ll  tell  you  where  to  get  off,”…<br>连接副词  +  不定式短语(连接副词常为疑问副词)<br>这种结构常在tell,know,learn,show,decide,wonder,remember,teach,explain等动词后作宾语.</p>
-</li>
-</ul>
-<p>Helen  didn’t  know  how  to  operate  the  machine.<br>Dave  knew  what  to  do  next.</p>
-<ul>
-<li><p>I  sat  in  the  front  of  the  bus…<br>in  the  front  of  在(某一事物内)前部<br>in  front  of  在…的前面(两者往往有间隔)<br>Angela  always  spends  hours  in  front  of  the  mirror.<br>Jack  sat  in  the  front  of  the  theater.</p>
-</li>
-<li><p>…  to  get  a  good  view  of  the  countryside.<br>get  a  view  of…  观赏风景<br>get  a  wonderful  view  of  the  lake</p>
-</li>
-<li><p>Looking  round,…<br>现在分词作时间状语<br>when  I  looked  round</p>
-</li>
-<li><p>…  I  realized  with  a  shock  that…<br>with  a  shock  吃惊地,惊奇地<br>She  looked  at  the  stranger  with  a  shock.<br>left  on  the  bus<br>过去分词作后置定语,修饰the  only  passenger</p>
-</li>
-<li><p>This  is  as  far  as…<br>as  far  as  :  到…的程度,到…的限度,就…的限度而言<br>As  far  as  we  know,Mr.Johnson  will  not  leave.<br>就我们所知…<br>I  will  help  you  as  far  as  I  can.<br>我将尽全力帮助你.</p>
-</li>
-<li><p>I  forget  to…<br>forget  to  do  忘记要去做某事<br>forget  doing  忘记曾经做过某事</p>
-</li>
-</ul>
-<p>Don’t  forget  to  take  an  umbrella.<br>别忘了带把雨伞.<br>He  forgot  updating  the  software.<br>我忘记更新这个软件了.</p>
-<ul>
-<li><p>…  put  you  off.<br>put  off  让…下车(船,飞机等)<br>The  taxi  driver  put  me  off  at  the  hotel.</p>
-</li>
-<li><p>Well,in  that  case,…<br>well  感叹词,”恩”<br>in  this  case/in  that  case  既然这样<br>You  promise  that  you  will  come  home  early,In  that  case,  you  may  go  to  the  party.</p>
-</li>
-<li><p>…  I  prefer  to  stay…<br>prefer  to  do  宁愿选择做某事,更喜欢做某事<br>Frank  wanted  to  go  to  Canada,but  I  would  prefer  to  go  to  France.</p>
-</li>
-</ul>
-<h1 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h1><p>喜欢表达的句型    :</p>
-<ul>
-<li>prefer  sth<br>Would  you  prefer  coffee?</li>
-<li>prefer  doing<br>I  prefer  swimming</li>
-<li>prefer  A  to  B<br>Jenny  prefers  coffee  to  tea.</li>
-<li>prefer  doing  A  to  doing  B<br>I  prefer  swimming  to  fishing.</li>
-<li>prefer  to  do<br>Personally(就个人而言),  I’d  prefer  to  go  to  Paris.</li>
-<li>prefer  to  do  A  rather  than  do  B<br>Actually(实际上),most  people  prefer  to  talk  rather  than  listen.</li>
-<li>would  rather  do  A  than  do  B<br>Frank  would  rather  go  swimming  than  stay  at  home.</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/27/Lesson-49-The-end-of-a-dream-美梦告终/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/Lesson-49-The-end-of-a-dream-美梦告终/" itemprop="url">
-                  Lesson 49 The end of a dream 美梦告终
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T22:16:20+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index">
-                    <span itemprop="name">English</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/27/Lesson-49-The-end-of-a-dream-美梦告终/" class="leancloud_visitors" data-flag-title="Lesson 49 The end of a dream 美梦告终">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="单词讲解"><a href="#单词讲解" class="headerlink" title="单词讲解"></a>单词讲解</h1><ul>
-<li><p>tired  adj.厌烦的,劳累的<br>be  tired  of…<br>We  were  tired  of  English  /  studying  English.</p>
-</li>
-<li><p>gust  n.一阵风<br>a  gust  of  wind</p>
-</li>
-<li><p>sweep  v.扫,刮<br>sweep    /  swept    /  swept<br>sleep    /    slept    /  slept<br>keep    /    kept    /    kept<br>creep    /  crept    /  crept</p>
-</li>
-<li><p>smash  v.碰碎,摔<br>smash  sth.to  /  into  pieces</p>
-</li>
-<li><p>miraculously  adv.奇迹般地<br>miracle  n.<br>miraculous  adj.</p>
-</li>
-<li><p>glance  v.扫视<br>glance  at…</p>
-</li>
-<li><p>promptly  adv.迅速地<br>fast    quickly    rapidly<br>fleetly    swiftly</p>
-</li>
-</ul>
-<h1 id="语法讲解"><a href="#语法讲解" class="headerlink" title="语法讲解"></a>语法讲解</h1><p>分词作状语  :  </p>
-<ul>
-<li>分词  ?<br>doing  /  done</li>
-<li>作状语  ?<br>修饰动词/句子,表示描述性的信息<blockquote>
-<p>   错误的<br>While  he  was  talking  with  me,he  broke  his  cup  carelessly.<br>时间状语从句  :  While  je  was  talking  with  me<br>主句  :  he  broke  his  cup  carelessly<br> 正确的<br>While  talking  with  me,he  broke  his  cup  carelessly.<br>doing  分词,作状语  表示主动</p>
-</blockquote>
-</li>
-</ul>
-<p>Punished,she  burst  into  tears.<br>done  分词,被动</p>
-<ul>
-<li>Because  he  was  tired  of  sleeping  on  the  fooor,a  young  man  saved  up  for  years  to  buy  a  real  bed.<br>相同的省略  :  he  去掉</li>
-</ul>
-<p>After  the  man  glanced  at  the  bits  of  wood  and  metal,the  man  sadly  picked  up  the  mattress.<br>相同的去掉  :  the  man<br>Glancing  at  the  bits  of  wood  and  metal,  the  man  sadly  picked  up  the  mattress.<br>doing  分词,主动</p>
-<blockquote>
-<p> 总结一下  :<br>两件事主语相同;<br>一件事写成一个句子,另外一件事写成分词作状语.<br>我走进教室,拿着一个包.<br>I  walked  into  the  classroom,taking  a  bag.<br>I  walked  into  the  classroom,followed  by  five  students.<br>I  walked  into  the  classroom,talking  a  bag,followed  by  five  students.</p>
-</blockquote>
-<ul>
-<li><p>A  gust  of  wind  swept  the  bed  off  the  roof  and  sent  it…</p>
-</li>
-<li><p>The…  man  did  not  wake  up  until  the  bed  had  struck  the  ground.<br>until  the  bed  had  sturck  the  ground.  时间状语从句</p>
-</li>
-<li><p>Althoungh  the  bed  was  smashed  to  pieces,the  man  was…unhurt.<br>让步状语从句</p>
-</li>
-<li><p>When  he  woke  up,he  was  still  on  the  mattress(床垫).</p>
-</li>
-<li><p>Glancing  at  the  bits  of  wood  and  metal  that  lay  around  him…</p>
-</li>
-</ul>
-<h1 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h1><p>分词作定语<br>a  <strong>passing</strong>  plane<br>a  <strong>used</strong>  car<br>分词作状语<br>Talking  with  me,  he  broke  his  cup  carelssly.<br>Punished,  she  burst  into  tears.</p>
-<blockquote>
-<p> 分词作定语/状语<br>相同点  :<br>doing  分词  表示主动<br>done  分词  表示被动<br>不同点  :<br>作定语  修饰n.<br>作状语  修饰句子(句子主语)</p>
-</blockquote>
-<p>She  walked  into  a  room, smiling.<br>doing  分词表示主动</p>
-<p>She  bought  a  used  car.<br>done  分词表示被动<br>作为定语</p>
-<p>非谓语动词</p>
-<ul>
-<li>What?</li>
-<li>When?</li>
-<li>What?<br>doing  /  done  /  to  do</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2369,7 +2480,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">119</span>
+                <span class="site-state-item-count">124</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2380,7 +2491,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2391,7 +2502,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

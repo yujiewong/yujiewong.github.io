@@ -314,6 +314,1656 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/一-最常用和最难用的控件-ListView/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/一-最常用和最难用的控件-ListView/" itemprop="url">
+                  一.最常用和最难用的控件(ListView)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:28:43+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/一-最常用和最难用的控件-ListView/" class="leancloud_visitors" data-flag-title="一.最常用和最难用的控件(ListView)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>ListView允许用户通过手指上下滑动的方式将屏幕外的数据滚动到屏幕内,同时屏幕上原有的数据则会滚动出屏幕.</p>
+<h1 id="1-ListView的简单用法"><a href="#1-ListView的简单用法" class="headerlink" title="1. ListView的简单用法"></a>1. ListView的简单用法</h1><p>首先新建一个ListViewTest项目,然后修改<code>activity_main.xml</code>代码.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">     <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">     <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">ListView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/list_view"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;<span class="tag">&lt;/<span class="name">ListView</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>为ListView指定一个id,然后将宽度和高度都修改为<code>match_parent</code>,这样ListView就占据了整个布局的空间.<br><img src="/2017/03/28/一-最常用和最难用的控件-ListView/1.png" alt="ListView布局" title="ListView布局"></p>
+<p>接下来修改<code>MainActivity</code>中的代码.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> String[] data = &#123;<span class="string">"Apple"</span>,<span class="string">"Banana"</span>,<span class="string">"Orange"</span>,<span class="string">"Watermelon"</span>,</div><div class="line">			<span class="string">"Pear"</span>,<span class="string">"Grape"</span>,<span class="string">"Pineapple"</span>,<span class="string">"Strawberry"</span>,<span class="string">"Cherry"</span>,<span class="string">"Mango"</span>&#125;;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        <span class="comment">//先创建适配器,并且把内容放入去.</span></div><div class="line">        ArrayAdapter&lt;String&gt; adapter = <span class="keyword">new</span> ArrayAdapter&lt;String&gt;</div><div class="line">        (MainActivity.<span class="keyword">this</span>, android.R.layout.simple_list_item_1,data);</div><div class="line">        ListView listView = (ListView) findViewById(R.id.list_view);</div><div class="line">        <span class="comment">//调用ListView的对象把适配器传进去.</span></div><div class="line">        listView.setAdapter(adapter);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>数组中的数据是无法直接传递给ListView的,我们需要借助适配器来完成,其中最好用的是<code>ArrayAdapter</code>它可以通过泛型来指定要添加的数据类型,然后在构造函数中把要适配的数据传入即可.注意我们使用了<code>android.R.layout.simple_list_item_1</code>作为ListView的子项布局的id,以及要适配的数据.</p>
+<p>最后,我们要调用ListView的<code>SetAdapter()</code>方法,将构造好的适配器对象传递进去,这样ListView和数据之间的关联就建立完成了.<br><img src="/2017/03/28/一-最常用和最难用的控件-ListView/2.png" alt="ListView与数据关联" title="ListView与数据关联"></p>
+<h1 id="2-定制ListView的界面"><a href="#2-定制ListView的界面" class="headerlink" title="2. 定制ListView的界面"></a>2. 定制ListView的界面</h1><p>接着定义一个实体类,作为ListView适配器的适配类型,新建类<code>Fruit</code>,需要准备一组图片.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> imageId;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Fruit</span><span class="params">(String name, <span class="keyword">int</span> imageId)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">		<span class="keyword">this</span>.imageId = imageId;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getImageId</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> imageId;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>Fruit</code>类中只有两个字段,<code>name</code>表示水果的名字,<code>imageId</code>表示水果对应图片的资源id.</p>
+<p>然后需要为ListView的子项指定一个我们自定义的布局,在layout目录下新建<code>fruit_item.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/fruit_image"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/fruit_name"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:layout_marginLeft</span>=<span class="string">"10dip"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在这个布局里,我们定义了一个<code>ImageView</code>用于显示水果的图片,又定义了一个<code>TextView</code>用于显示水果的名称.</p>
+<p>接下来需要创建一个自定义的适配器,这个适配器继承自<code>ArrayAdapter</code>,并将泛型指定为<code>Fruit</code>类.新建类<code>FruitAdapter</code>,代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FruitAdapter</span> <span class="keyword">extends</span> <span class="title">ArrayAdapter</span>&lt;<span class="title">Fruit</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> resourceId;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">FruitAdapter</span><span class="params">(Context context, <span class="keyword">int</span> textViewResourceId,</span></span></div><div class="line">			List&lt;Fruit&gt; objects) &#123;</div><div class="line">		<span class="keyword">super</span>(context, textViewResourceId, objects);</div><div class="line">		resourceId = textViewResourceId;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</div><div class="line">		Fruit fruit = getItem(position);</div><div class="line">		View view = LayoutInflater.from(getContext()).inflate(resourceId, <span class="keyword">null</span>);</div><div class="line">        ImageView fruitImage = (ImageView) view.findViewById(R.id.fruit_image);</div><div class="line">        TextView  fruitName = (TextView) view.findViewById(R.id.fruit_name);</div><div class="line">        fruitImage.setImageResource(fruit.getImageId());  </div><div class="line">        fruitName.setText(fruit.getName());</div><div class="line">        <span class="keyword">return</span> view;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>FruitAdapter重写了父类的一组构造函数,用于将上下文,ListView子项布局的id和数据都传递进来.另外又重写了<code>getView()</code>方法,首先通过<code>getItem()</code>方法得到当前项的Fruit的实例,然后使用<code>LayoutInflater</code>来为这个子项加载我们传入的布局,接着调用View的<code>fndViewById()方法分别获取到</code>ImageView<code>和TextView</code>的实例,并分别调用它们的<code>setImageResource</code>和<code>setText</code>方法来设置显示的图片和文字,最好将布局返回.</p>
+<p>下面修改<code>MainActivity</code>中的代码,如下所示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> List&lt;Fruit&gt; fruitList = <span class="keyword">new</span> ArrayList&lt;Fruit&gt;();</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContentView(R.layout.activity_main);</div><div class="line">		initFruits();</div><div class="line">		FruitAdapter adapter = <span class="keyword">new</span> FruitAdapter(MainActivity.<span class="keyword">this</span>,</div><div class="line">				R.layout.fruit_item, fruitList);</div><div class="line">		ListView listView = (ListView) findViewById(R.id.list_view);</div><div class="line">		listView.setAdapter(adapter);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initFruits</span><span class="params">()</span> </span>&#123;</div><div class="line">		Fruit apple = <span class="keyword">new</span> Fruit(<span class="string">"Apple"</span>, R.drawable.apple_pic);</div><div class="line">		fruitList.add(apple);</div><div class="line">		Fruit banana = <span class="keyword">new</span> Fruit(<span class="string">"Banana"</span>, R.drawable.banana_pic);</div><div class="line">		fruitList.add(banana);</div><div class="line">		Fruit orange = <span class="keyword">new</span> Fruit(<span class="string">"Orange"</span>, R.drawable.orange_pic);</div><div class="line">		fruitList.add(orange);</div><div class="line">		Fruit watermelon = <span class="keyword">new</span> Fruit(<span class="string">"Watermelon"</span>, R.drawable.watermelon_pic);</div><div class="line">		fruitList.add(watermelon);</div><div class="line">		Fruit pear = <span class="keyword">new</span> Fruit(<span class="string">"Pear"</span>, R.drawable.pear_pic);</div><div class="line">		fruitList.add(pear);</div><div class="line">		Fruit grape = <span class="keyword">new</span> Fruit(<span class="string">"Grape"</span>, R.drawable.grape_pic);</div><div class="line">		fruitList.add(grape);</div><div class="line">		Fruit pineapple = <span class="keyword">new</span> Fruit(<span class="string">"Pineapple"</span>, R.drawable.pineapple_pic);</div><div class="line">		fruitList.add(pineapple);</div><div class="line">		Fruit strawberry = <span class="keyword">new</span> Fruit(<span class="string">"Strawberry"</span>, R.drawable.strawberry_pic);</div><div class="line">		fruitList.add(strawberry);</div><div class="line">		Fruit cherry = <span class="keyword">new</span> Fruit(<span class="string">"Cherry"</span>, R.drawable.cherry_pic);</div><div class="line">		fruitList.add(cherry);</div><div class="line">		Fruit mango = <span class="keyword">new</span> Fruit(<span class="string">"Mango"</span>, R.drawable.mango_pic);</div><div class="line">		fruitList.add(mango);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到,这里添加了一个<code>initFruits()</code>方法,用于初始化所有水果的数据,在Fruit类构造函数将水果的名字和对应图片id传入,然后把创建好的对象添加到水果列表中,接着我们再<code>onCreate()</code>方法中创建了FruitAdapter对象,并将FruitAdapter作为适配器传递给ListView.</p>
+<h1 id="3-提升ListView的运行效率"><a href="#3-提升ListView的运行效率" class="headerlink" title="3. 提升ListView的运行效率"></a>3. 提升ListView的运行效率</h1><p>因为在FruitAdapter的<code>getView()</code>方法中每次都将布局重新加载了一次,当ListView快速滚动的时候就会成为性能的阻碍.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FruitAdapter</span> <span class="keyword">extends</span> <span class="title">ArrayAdapter</span>&lt;<span class="title">Fruit</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> resourceId;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">FruitAdapter</span><span class="params">(Context context, <span class="keyword">int</span> textViewResourceId,</span></span></div><div class="line">			List&lt;Fruit&gt; objects) &#123;</div><div class="line">		<span class="keyword">super</span>(context, textViewResourceId, objects);</div><div class="line">		resourceId = textViewResourceId;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</div><div class="line">		Fruit fruit = getItem(position); <span class="comment">// 获取当前项的Fruit实例</span></div><div class="line">		View view;</div><div class="line">		<span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</div><div class="line">			view = LayoutInflater.from(getContext()).inflate(resourceId, <span class="keyword">null</span>);</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			view = convertView;</div><div class="line">		&#125;</div><div class="line">		ImageView fruitImage = (ImageView) view.findViewById(R.id.fruit_image);</div><div class="line">		TextView fruitName = (TextView) view.findViewById(R.id.fruit_name);</div><div class="line">		fruitImage.setImageResource(fruit.getImageId());</div><div class="line">		fruitName.setText(fruit.getName());</div><div class="line">		<span class="keyword">return</span> view;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>所以,我们再<code>getView()</code>方法中进行了判断,如果convertView为空,则使用LayoutInflater去加载布局,如果不为空则直接对convertView进行重用.</p>
+<p>每次在<code>getView()</code>方法中还是会调用View的<code>findViewById()</code>方法来获取一次控件的实例,我们还可以借助一个ViewHolder来对这部分性能进行优化,修改FruitAdapter`中的代码,如下所示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FruitAdapter</span> <span class="keyword">extends</span> <span class="title">ArrayAdapter</span>&lt;<span class="title">Fruit</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> resourceId;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">FruitAdapter</span><span class="params">(Context context, <span class="keyword">int</span> textViewResourceId,</span></span></div><div class="line">			List&lt;Fruit&gt; objects) &#123;</div><div class="line">		<span class="keyword">super</span>(context, textViewResourceId, objects);</div><div class="line">		resourceId = textViewResourceId;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</div><div class="line">		Fruit fruit = getItem(position);</div><div class="line">		View view;</div><div class="line">		ViewHolder viewHolder;</div><div class="line">		<span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</div><div class="line">			view = LayoutInflater.from(getContext()).inflate(resourceId, <span class="keyword">null</span>);</div><div class="line">			viewHolder = <span class="keyword">new</span> ViewHolder();</div><div class="line">			viewHolder.fruitImage = (ImageView) view.findViewById(R.id.fruit_image);</div><div class="line">			viewHolder.fruitName = (TextView) view.findViewById(R.id.fruit_name);</div><div class="line">			view.setTag(viewHolder);</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			view = convertView;</div><div class="line">			viewHolder = (ViewHolder) view.getTag();</div><div class="line">		&#125;</div><div class="line">		viewHolder.fruitImage.setImageResource(fruit.getImageId());</div><div class="line">		viewHolder.fruitName.setText(fruit.getName());</div><div class="line">		<span class="keyword">return</span> view;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>&#123;</div><div class="line"></div><div class="line">		ImageView fruitImage;</div><div class="line"></div><div class="line">		TextView fruitName;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们新建了一个内部类ViewHolder,用于对控件的实例进行缓存.当convertView为空的时候,创建一个ViewHolder对象,并将控件的实例都存放在ViewHolder里,然后调用View的<code>SetTag()</code>方法,将<code>ViewHolder</code>对象存储在<code>View</code>中.当convertView不为空的时候则调用View的<code>getTag()</code>方法,把ViewHolder重新取出.这样所有控件的实例都缓存在ViewHolder里,就没有必要每次都通过<code>findViewById()</code>方法来获取控件实例了.</p>
+<h1 id="4-ListView的点击事件"><a href="#4-ListView的点击事件" class="headerlink" title="4. ListView的点击事件"></a>4. ListView的点击事件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">listView.setOnItemClickListener(<span class="keyword">new</span> OnItemClickListener() &#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view,</span></span></div><div class="line">			<span class="keyword">int</span> position, <span class="keyword">long</span> id) &#123;</div><div class="line">		Fruit fruit = fruitList.get(position);</div><div class="line">		Toast.makeText(MainActivity.<span class="keyword">this</span>, fruit.getName(),</div><div class="line">				Toast.LENGTH_SHORT).show();</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><img src="/2017/03/28/一-最常用和最难用的控件-ListView/3.png" alt="最终效果图" title="最终效果图"></p>
+<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h1><ul>
+<li>先在布局中加入ListView控件</li>
+<li>然后自定义适配器,这个适配器继承自ArrayAdapter</li>
+<li>初始化数据,把数据传入自定义适配器</li>
+<li>然后将适配器传递给ListView.</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/五-Css基础-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/五-Css基础-3/" itemprop="url">
+                  五.Css基础(3)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:22:45+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
+                    <span itemprop="name">WebDesign</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/五-Css基础-3/" class="leancloud_visitors" data-flag-title="五.Css基础(3)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-复习回顾"><a href="#1-复习回顾" class="headerlink" title="1.  复习回顾"></a>1.  复习回顾</h1><h2 id="1-1-行高-Line-height"><a href="#1-1-行高-Line-height" class="headerlink" title="1.1  行高(Line-height)"></a>1.1  行高(Line-height)</h2><ul>
+<li>行高浏览器的默认字体大小为16px</li>
+<li>浏览器默认文字行高为18px<br>行高  =  上间距  +  文字大小  +  下间距<br>![详解行高使文字垂直居中]五-Css基础-3/1.png “详解行高使文字垂直居中”)</li>
+</ul>
+<ul>
+<li>行高单位问题</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>单独给一个标签设置行高</th>
+<th style="text-align:left">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>如果行高单位是px</td>
+<td style="text-align:left">行高与文字大小无关</td>
+</tr>
+<tr>
+<td>如果行高单位是em</td>
+<td style="text-align:left">行高=文字大小*行高值</td>
+</tr>
+<tr>
+<td>如果行高单位是  %</td>
+<td style="text-align:left">行高=文字大小*行高值</td>
+</tr>
+<tr>
+<td>如果行高没有单位</td>
+<td style="text-align:left">行高=文字大小*行高值</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>给父元素设置行高</th>
+<th style="text-align:left">子元素行高结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>行高单位是px</td>
+<td style="text-align:left">行高=父元素行高</td>
+</tr>
+<tr>
+<td>行高单位是em</td>
+<td style="text-align:left">行高=父元素文字大小*行高值（与子元素文字大小无关）</td>
+</tr>
+<tr>
+<td>行高单位是%</td>
+<td style="text-align:left">同上</td>
+</tr>
+<tr>
+<td>行高单位无</td>
+<td style="text-align:left">行高=子元素文字大小*行高值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-2-盒模型"><a href="#1-2-盒模型" class="headerlink" title="1.2  盒模型"></a>1.2  盒模型</h2><p>所谓<strong>盒子模型</strong>就是把HTML页面中的元素看作是一个矩形的盒子,也就是一个盛装内容的容器.每个矩形都由元素的<strong>内容</strong>,<strong>内边距(padding)</strong>,<strong>边框(border)</strong>和<strong>外边距(margin)</strong>组成.<br>![盒子模型]五-Css基础-3/2.png “盒子模型”)</p>
+<p>![Paste_Image]五-Css基础-3/3.png “Paste_Image”)</p>
+<p>css中盒子模型由三部分组成  :  1.边框(border)  2.内边距(padding)  3.外边距(margin)</p>
+<h2 id="1-2-1-盒模型之边框-broder"><a href="#1-2-1-盒模型之边框-broder" class="headerlink" title="1.2.1  盒模型之边框(broder)"></a>1.2.1  盒模型之边框(broder)</h2><ul>
+<li>语法  :<br><code>border  :  border-width  ||  border-style  ||  border-color</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th style="text-align:left">介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>border-width</td>
+<td style="text-align:left">设置边框宽度单位以px为主例如:12px</td>
+</tr>
+<tr>
+<td>border-style</td>
+<td style="text-align:left">设置边框样式</td>
+</tr>
+<tr>
+<td>border-color</td>
+<td style="text-align:left">设置边框颜色</td>
+</tr>
+<tr>
+<td>border-top</td>
+<td style="text-align:left">设置上边框样式</td>
+</tr>
+<tr>
+<td>border-bottom</td>
+<td style="text-align:left">设置下边框样式</td>
+</tr>
+<tr>
+<td>border-left</td>
+<td style="text-align:left">设置左边框样式</td>
+</tr>
+<tr>
+<td>border-right</td>
+<td style="text-align:left">设置右边框样式</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>热身  :  </li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">			div&#123;</div><div class="line">				width:100px;</div><div class="line">				height:100px;</div><div class="line">				border-width:1px;</div><div class="line">				border-style:dotted;</div><div class="line">				border-color:green;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			p&#123;</div><div class="line">				width:100px;</div><div class="line">				height:100px;</div><div class="line">				border-width:1px;</div><div class="line">				border-style:solid;</div><div class="line">				border-color:red;</div><div class="line">			&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">    	 <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		 <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="1-2-2-盒模型之内边距-padding"><a href="#1-2-2-盒模型之内边距-padding" class="headerlink" title="1.2.2  盒模型之内边距(padding)"></a>1.2.2  盒模型之内边距(padding)</h2><table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th style="text-align:left">介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>padding:10px</td>
+<td style="text-align:left">上,下,左,右距离分别是10px</td>
+</tr>
+<tr>
+<td>padding:10px 40px</td>
+<td style="text-align:left">上下10px  左右40px</td>
+</tr>
+<tr>
+<td>padding:10px 40px 20px</td>
+<td style="text-align:left">上10px  左右40px  下20px</td>
+</tr>
+<tr>
+<td>padding:10px 20px 30px 40px</td>
+<td style="text-align:left">上10  右20px  下30px  左40px</td>
+</tr>
+<tr>
+<td>padding-top</td>
+<td style="text-align:left">上内边距</td>
+</tr>
+<tr>
+<td>padding-right</td>
+<td style="text-align:left">右内边距</td>
+</tr>
+<tr>
+<td>padding-bottom</td>
+<td style="text-align:left">下内边距</td>
+</tr>
+<tr>
+<td>padding-left</td>
+<td style="text-align:left">左内边距</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p> padding影响盒子大小问题<br>盒子宽度=盒子宽度+左右内边距+边框宽度</p>
+</blockquote>
+<h2 id="1-2-3-盒子模型之外边距-margin"><a href="#1-2-3-盒子模型之外边距-margin" class="headerlink" title="1.2.3  盒子模型之外边距(margin)"></a>1.2.3  盒子模型之外边距(margin)</h2><table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th style="text-align:left">介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>margin:10px</td>
+<td style="text-align:left">距离上下左右边距10px</td>
+</tr>
+<tr>
+<td>margin:10px 20px</td>
+<td style="text-align:left">距离上下10px 左右20px</td>
+</tr>
+<tr>
+<td>margin:10px 20px 30px</td>
+<td style="text-align:left">距离上10px 左右 20px</td>
+</tr>
+<tr>
+<td>margin:10px 20px 30px 40px</td>
+<td style="text-align:left">距离上10px 右20px 下 3左40px</td>
+</tr>
+<tr>
+<td>margin-left:</td>
+<td style="text-align:left">距离左边</td>
+</tr>
+<tr>
+<td>margin-right</td>
+<td style="text-align:left">距离右边</td>
+</tr>
+<tr>
+<td>margin-top</td>
+<td style="text-align:left">距离上边</td>
+</tr>
+<tr>
+<td>margin-bottom</td>
+<td style="text-align:left">距离下边</td>
+</tr>
+<tr>
+<td>margin:0 auto</td>
+<td style="text-align:left">auto 设置为相对边的值</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p> <strong>Margin之边框合并</strong><br>外边距合并(叠加)是一个相当简单的概念.简单地说,外边距合并指的是,当两个垂直外边距相遇时,它们将形成一个外边距.合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者.当一个元素出现在另一个元素上面时,第一个元素的下外边距与第二个元素的上外边距会发生合并.<br><img src="/2017/03/28/五-Css基础-3/4.png" alt="Margin之边框合并" title="Margin之边框合并"></p>
+</blockquote>
+<p><img src="/2017/03/28/五-Css基础-3/5.png" alt="Margin之边框合并" title="Margin之边框合并"></p>
+<blockquote>
+<p> <strong>行内元素不要给上下的margin 和padding注意  :</strong><br>上下margin和padding会被忽略,左右margin和padding会起作用.</p>
+</blockquote>
+<ul>
+<li><strong>热身</strong></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">				*&#123;</div><div class="line">					 margin: 0;</div><div class="line">					 padding:0;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">				.box&#123;</div><div class="line">					 height:382px;</div><div class="line">					 width:208px;</div><div class="line">					 border: 1px solid #CECECE;</div><div class="line">					 margin: 20px auto;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">				.title&#123;</div><div class="line">					 height:25px;</div><div class="line">					 background: #ECEDEE;</div><div class="line">				&#125;</div><div class="line">				h4&#123;</div><div class="line">					 height:25px;</div><div class="line">					 line-height: 25px;</div><div class="line">					 font-size:14px;</div><div class="line">					 padding-left: 10px;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">				.photo&#123;</div><div class="line">					 width: 180px;</div><div class="line">					 height: 180px;</div><div class="line">					 border:1px solid #CCCCCC;</div><div class="line">					 margin:10px auto;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">				.weibo&#123;</div><div class="line">					 text-align: center;</div><div class="line">					 border-bottom: 1px dotted #D1D1D1;</div><div class="line">					 padding-bottom:15px;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">				.weibo input&#123;</div><div class="line">					 width: 70px;</div><div class="line">					 height: 21px;</div><div class="line">					 background: url("vb.jpg") no-repeat;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">				 .friend&#123;</div><div class="line">				 	text-align: center;</div><div class="line">				 	margin-top: 5px;</div><div class="line">				 &#125;</div><div class="line">				.friend input&#123;</div><div class="line">					 width: 69px;</div><div class="line">					 height: 23px;</div><div class="line">					 margin-bottom:5px;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">    	   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></div><div class="line"></div><div class="line">    	   		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span></div><div class="line">    	   			 <span class="tag">&lt;<span class="name">h4</span>&gt;</span>个人资料<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></div><div class="line">    	   		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    	   		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"photo"</span>&gt;</span></div><div class="line">    	   			 ![](1.jpg)</div><div class="line">    	   		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    	   		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"weibo"</span>&gt;</span></div><div class="line">    	   			 <span class="tag">&lt;<span class="name">span</span>&gt;</span>V闪闪<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    	   			 ![](v.jpg)</div><div class="line">    	   			 <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">    	   			 <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">    	   			 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"微博"</span>&gt;</span></div><div class="line">    	   		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    	   		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"friend"</span>&gt;</span></div><div class="line"></div><div class="line">    	   			 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"加好友"</span>&gt;</span></div><div class="line">    	   			 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"加好友"</span>&gt;</span></div><div class="line">    	   			 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"加好友"</span>&gt;</span></div><div class="line">    	   			 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"加好友"</span>&gt;</span></div><div class="line">    	   		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    	   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="2-新知识"><a href="#2-新知识" class="headerlink" title="2.  新知识"></a>2.  新知识</h1><h2 id="2-1-标准流normal-flow-文档流"><a href="#2-1-标准流normal-flow-文档流" class="headerlink" title="2.1  标准流normal flow(文档流)"></a>2.1  标准流normal flow(文档流)</h2><p>标准流  :  块级元素纵向有序排列,行内块(行内)元素横向有序排列</p>
+<h2 id="2-2-浮动-float"><a href="#2-2-浮动-float" class="headerlink" title="2.2  浮动  (float)"></a>2.2  浮动  (float)</h2><ul>
+<li>语法  :  float:left | right</li>
+<li>特点  :<ul>
+<li>设置了浮动的元素不占原来的位置（脱标）</li>
+<li>可以让块级元素在一行上显示    </li>
+<li>浮动可以行内元素转化为行内块元素<br>模式转换的过程中，能用display就用display</li>
+</ul>
+</li>
+<li><p>作用  :</p>
+<ul>
+<li>浮动用来解决文字图片环绕问题</li>
+<li>制作导航栏</li>
+<li>网页布局</li>
+</ul>
+</li>
+<li><p>热身</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"Generator"</span> <span class="attr">content</span>=<span class="string">"EditPlus®"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"Author"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"Keywords"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"Description"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">		div&#123;</div><div class="line">			width:300px;</div><div class="line">			height:400px;</div><div class="line">			border:1px solid red;</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line">		div	img&#123;</div><div class="line">			float:left;</div><div class="line">		&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">		![](1.jpg)</div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>热身</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"Generator"</span> <span class="attr">content</span>=<span class="string">"EditPlus®"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"Author"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"Keywords"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"Description"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">	*&#123;</div><div class="line">		margin:0;</div><div class="line">		padding:0;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.nav&#123;</div><div class="line">		height:55px;</div><div class="line">		background: url("head_bg.jpg");</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.nav li&#123;</div><div class="line">		list-style:none;</div><div class="line">		float:left;</div><div class="line">		line-height:55px;</div><div class="line">		background: url("li_bg.png") no-repeat right;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	ul&#123;</div><div class="line">		margin-left: 390px;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	a&#123;</div><div class="line">		height:55px;</div><div class="line">		display:inline-block;</div><div class="line">		padding:0 10px;</div><div class="line">		text-decoration:none;</div><div class="line">		color:black;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	a:hover&#123;</div><div class="line">		background-color:yellowgreen;</div><div class="line">	&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav"</span>&gt;</span></div><div class="line"></div><div class="line">		   <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">			 <span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">				 <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>智能手机<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			 <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			 <span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">				 <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>智能手机<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			 <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			 <span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">				 <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>智能手机<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			 <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="2-3-清除浮动"><a href="#2-3-清除浮动" class="headerlink" title="2.3  清除浮动"></a>2.3  清除浮动</h2><p>当父容器没有设置高度,里面的盒子没有设置浮动的情况下会将父容器的高度撑开.一旦父容器中的盒子设置浮动,脱离标准文档流,父容器立马没有高度,下面的盒子会跑到浮动的盒子下面.出现这种情况,我们需要清除浮动.</p>
+<h3 id="2-3-1-清除浮动的方式"><a href="#2-3-1-清除浮动的方式" class="headerlink" title="2.3.1  清除浮动的方式"></a>2.3.1  清除浮动的方式</h3><ul>
+<li>使用  :<br><code>clear:left|  right  | both</code><br>在要清除的浮动的元素后面添加一个标签<br><img src="/2017/03/28/五-Css基础-3/6.png" alt="添加标签" title="添加标签"></li>
+</ul>
+<p><img src="/2017/03/28/五-Css基础-3/7.png" alt="清除浮动" title="清除浮动"></p>
+<ul>
+<li>给父容器设置高度</li>
+<li>通过设置clear:left | right | both</li>
+<li>给父容器设置 overflow:hidden</li>
+<li>通过伪元素  :  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">clearfix:after&#123;</div><div class="line">      content:"";</div><div class="line">      height:0; line-height:0;</div><div class="line">      visibily:hidden;</div><div class="line">      clear:both;</div><div class="line">      display:block;</div><div class="line">&#125;</div><div class="line">.clearfix&#123;</div><div class="line">      zoom:1  为了兼容IE浏览器</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2-4-overflow介绍"><a href="#2-4-overflow介绍" class="headerlink" title="2.4  overflow介绍"></a>2.4  overflow介绍</h2><p>overflow  属性规定当内容溢出元素框时发生的事情.</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th style="text-align:left">介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>overflow:visible</td>
+<td style="text-align:left">默认值.内容不会被修剪,会呈现在元素框之外.</td>
+</tr>
+<tr>
+<td>overflow:hidden</td>
+<td style="text-align:left">内容会被修剪,并且其余内容是不可见的.</td>
+</tr>
+<tr>
+<td>overflow:scroll</td>
+<td style="text-align:left">内容会被修剪,但是浏览器会显示滚动条以便查看其余的内容.</td>
+</tr>
+<tr>
+<td>overflow:auto</td>
+<td style="text-align:left">如果内容被修剪,则浏览器会显示滚动条以便查看其余的内容.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>热身</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line"></div><div class="line">div&#123;</div><div class="line"></div><div class="line">width: 300px;</div><div class="line"></div><div class="line">height: 300px;</div><div class="line"></div><div class="line">border: 1px solid green;</div><div class="line"></div><div class="line">overflow: scroll; /* 添加滚动条 */</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>asdfasdfasdf<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>asdfasdfasdf<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>asdfasdfasdf<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>asdfasdfasdf<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="3-定位-position"><a href="#3-定位-position" class="headerlink" title="3.  定位  (position)"></a>3.  定位  (position)</h1><table>
+<thead>
+<tr>
+<th>语法</th>
+<th style="text-align:left">介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position:static</td>
+<td style="text-align:left">静态定位</td>
+</tr>
+<tr>
+<td>position:absolute</td>
+<td style="text-align:left">绝对定位</td>
+</tr>
+<tr>
+<td>position:relative</td>
+<td style="text-align:left">相对定位</td>
+</tr>
+<tr>
+<td>position:fixed</td>
+<td style="text-align:left">固定定位</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-1-静态定位"><a href="#3-1-静态定位" class="headerlink" title="3.1  静态定位"></a>3.1  静态定位</h2><ul>
+<li>静态定位  :  就是按照标准流的方式显示</li>
+<li>用法  :<br><code>position  :  static;</code></li>
+</ul>
+<h2 id="3-2-绝对定位-absloute-看脸型"><a href="#3-2-绝对定位-absloute-看脸型" class="headerlink" title="3.2  绝对定位(absloute)看脸型"></a>3.2  绝对定位(absloute)看脸型</h2><ul>
+<li>绝对定位以浏览器左上角为基准设置位置</li>
+<li>当一个盒子包含在另一个盒子中,父盒子未设置定位,盒子以浏览器左上角为基准设置位置; 当父盒子设置定位,子盒子以父盒子左上角为基准设置位置</li>
+<li>绝对定位绝对不占空间位置(与浮动一样)</li>
+<li>绝对定位可是实现模式转换</li>
+</ul>
+<h2 id="3-3-相对定位-relative-自恋型"><a href="#3-3-相对定位-relative-自恋型" class="headerlink" title="3.3  相对定位(relative)自恋型"></a>3.3  相对定位(relative)自恋型</h2><ul>
+<li>相对定位以元素自身的位置为基准设置位置</li>
+<li>相对定位占位置</li>
+<li>一般子元素设置相对定位,父元素设置绝对定位(子绝父相)</li>
+</ul>
+<h1 id="4-案例与作业"><a href="#4-案例与作业" class="headerlink" title="4.  案例与作业"></a>4.  案例与作业</h1><ul>
+<li>导航练习</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"></div><div class="line">*&#123;</div><div class="line"></div><div class="line">margin:0;</div><div class="line"></div><div class="line">padding:0;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">.box&#123;</div><div class="line"></div><div class="line">width:600px;</div><div class="line"></div><div class="line">height:150px;</div><div class="line"></div><div class="line">background-image:url("banner_bg.jpg");</div><div class="line"></div><div class="line">margin:0 auto;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">.nav&#123;</div><div class="line"></div><div class="line">background-image:url("nav_bg.jpg");</div><div class="line"></div><div class="line">height:32px;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">li&#123;</div><div class="line"></div><div class="line">list-style:none;</div><div class="line"></div><div class="line">float:left;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">li a&#123;</div><div class="line"></div><div class="line">height:32px;</div><div class="line"></div><div class="line">width:80px;</div><div class="line"></div><div class="line">display:inline-block;</div><div class="line"></div><div class="line">background-image:url("a_bg.jpg");</div><div class="line"></div><div class="line">line-height:32px;</div><div class="line"></div><div class="line">text-align:center;</div><div class="line"></div><div class="line">text-decoration:none;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">li a:hover&#123;</div><div class="line"></div><div class="line">background-image:url("button2.jpg");</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></div><div class="line"></div><div class="line">![](banner1.jpg)</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nav"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>首页导航<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>首页导航<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>首页导航<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>首页导航<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>首页导航<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>首页导航<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>固定定位</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"></div><div class="line">*&#123;margin:0;padding:0;&#125;</div><div class="line"></div><div class="line">.box&#123;</div><div class="line"></div><div class="line">width:998px;</div><div class="line"></div><div class="line">height:1667px;</div><div class="line"></div><div class="line">margin:0 auto;</div><div class="line"></div><div class="line">margin-top:44px;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">.header&#123;</div><div class="line"></div><div class="line">position:fixed;</div><div class="line"></div><div class="line">top:0;</div><div class="line"></div><div class="line">left:0;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">.left,.right&#123;</div><div class="line"></div><div class="line">position:fixed;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">.left&#123;</div><div class="line"></div><div class="line">left:0;</div><div class="line"></div><div class="line">top:70px;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">.right&#123;</div><div class="line"></div><div class="line">right:0;</div><div class="line"></div><div class="line">top:70px;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></div><div class="line"></div><div class="line">![](box.png)</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"header"</span>&gt;</span></div><div class="line"></div><div class="line">![](r1_c1.png)</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line"></div><div class="line">![](r2_c1.png)</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></div><div class="line"></div><div class="line">![](r2_c2.png)</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>小米导航</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line"></div><div class="line">.box&#123;</div><div class="line"></div><div class="line">width: 1226px;</div><div class="line"></div><div class="line">height: 460px;</div><div class="line"></div><div class="line">margin:0 auto;</div><div class="line"></div><div class="line">position: relative;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">.left&#123;</div><div class="line"></div><div class="line">width: 234px;</div><div class="line"></div><div class="line">height: 457px;</div><div class="line"></div><div class="line">position: absolute;</div><div class="line"></div><div class="line">top:1px;</div><div class="line"></div><div class="line">left:0px;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">.left_s&#123;</div><div class="line"></div><div class="line">position: absolute;</div><div class="line"></div><div class="line">left:244px;</div><div class="line"></div><div class="line">top: 214px;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">.right_s&#123;</div><div class="line"></div><div class="line">position: absolute;</div><div class="line"></div><div class="line">right:0px;</div><div class="line"></div><div class="line">top: 214px;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"img"</span>&gt;</span></div><div class="line"></div><div class="line">![](1.jpg)</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></div><div class="line"></div><div class="line">![](xiaom_left.png)</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left_s"</span>&gt;</span></div><div class="line"></div><div class="line">![](left.png)</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right_s"</span>&gt;</span></div><div class="line"></div><div class="line">![](right.png)</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5.  总结  :"></a>5.  总结  :</h1><ul>
+<li>background: url(“li_bg.png”) no-repeat right;  no-repeat  :  含义为不平铺</li>
+<li>display:inline-block;    在同一行显示</li>
+<li>text-decoration:none;  文字修饰设置为无</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/四-Css基础-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/四-Css基础-2/" itemprop="url">
+                  四.Css基础(2)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:18:18+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
+                    <span itemprop="name">WebDesign</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/四-Css基础-2/" class="leancloud_visitors" data-flag-title="四.Css基础(2)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-复习回顾"><a href="#1-复习回顾" class="headerlink" title="1.  复习回顾"></a>1.  复习回顾</h1><p>概念  :  层叠样式表或者叫级联样式表</p>
+<p>内嵌式  :  基本实现css代码与html代码分离.当前样式只能控制当前页面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">”text/css”</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>语法  :  选择器{属性:值; }</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>赋值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>color:red;</td>
+<td>文字颜色</td>
+</tr>
+<tr>
+<td>font-size</td>
+<td>font-size:20px;</td>
+<td>文字大小</td>
+</tr>
+<tr>
+<td>font-family</td>
+<td>ont-family:宋体;</td>
+<td>文字字体</td>
+</tr>
+<tr>
+<td>font-weight</td>
+<td>font-weight:bold(700)  /  normal</td>
+<td>文字加粗</td>
+</tr>
+<tr>
+<td>font-style</td>
+<td>font-style:italic  /  normal</td>
+<td>文字斜体(italic)</td>
+</tr>
+<tr>
+<td>background-color</td>
+<td>background-color:red;</td>
+<td>背景颜色</td>
+</tr>
+<tr>
+<td>width</td>
+<td>height  /  width: 12px;</td>
+<td>宽度和高度</td>
+</tr>
+<tr>
+<td>text-align</td>
+<td>text-align:center;</td>
+<td>文字居中</td>
+</tr>
+<tr>
+<td>text-indent</td>
+<td>text-indent:2em;</td>
+<td>首行缩进</td>
+</tr>
+<tr>
+<td>margin</td>
+<td>margin: 0 auto;</td>
+<td>盒子居中显示</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-1-基础选择器"><a href="#1-1-基础选择器" class="headerlink" title="1.1  基础选择器"></a>1.1  基础选择器</h2><ul>
+<li><p>标签选择器<br><code>P{属性:值;}</code></p>
+</li>
+<li><p>类选择器<br>定义  :<br><code>.fontcolor{color: red;}</code><br>调用  :<br><code>&lt;p class=”fontcolor”&gt;文字&lt;/p&gt;</code><br>特点  :<br>谁调用谁改变<br>一个标签可以同时调用多个类样式<br>多个标签可以同时调用一个类样式<br>命名  :<br>不推荐使用汉字定义类名<br>不推荐使用标签名或者属性名定义类名<br>不能使用纯数字或者特殊字符  (“_”除外)定义类名</p>
+</li>
+<li><p>id 选择器<br>定义  :<br><code>#自定义名称{属性:值;}</code><br>注意  :<br>页面中的表 id 名称不能重复<br>同一个标签不能调用多个 id 样式</p>
+</li>
+<li><p>通配符选择器<br><code>*{属性:值;}</code></p>
+</li>
+</ul>
+<h2 id="1-2-复合选择器"><a href="#1-2-复合选择器" class="headerlink" title="1.2  复合选择器"></a>1.2  复合选择器</h2><ul>
+<li>标签指定式选择器<br><code>P.类选择器{属性:值;}</code><br>既…又…</li>
+<li>后代选择器<br><code>选择器 选择器{属性:值;}</code><br>标签之间的关系属于嵌套关系</li>
+<li>并集选择器<br><code>选择器,选择器,选择器{属性:值;}</code></li>
+</ul>
+<h1 id="2-Css书写位置"><a href="#2-Css书写位置" class="headerlink" title="2.  Css书写位置"></a>2.  Css书写位置</h1><ul>
+<li>内嵌式  :  基本实现css代码与html代码分离.当前样式只能控制当前页面<br><img src="/2017/03/28/四-Css基础-2/1.png" alt="内嵌式" title="内嵌式"></li>
+</ul>
+<ul>
+<li>外链式  :  完全实现css代码与html代码分离,当前样式可以作用到整个网站<br><img src="/2017/03/28/四-Css基础-2/2.png" alt="外链式" title="外链式"></li>
+</ul>
+<ul>
+<li>行内式  :  完全没有实现css代码与html代码相分离,写法简答.维护成本高<br><img src="/2017/03/28/四-Css基础-2/3.png" alt="行内式" title="行内式"></li>
+</ul>
+<h1 id="3-Html标签的分类"><a href="#3-Html标签的分类" class="headerlink" title="3.  Html标签的分类"></a>3.  Html标签的分类</h1><h2 id="3-1-块级元素"><a href="#3-1-块级元素" class="headerlink" title="3.1  块级元素"></a>3.1  块级元素</h2><p><img src="/2017/03/28/四-Css基础-2/4.png" alt="块状元素" title="块状元素"></p>
+<ul>
+<li>特点  :<br>元素自己独占一行显示（与宽度无关）<br>可以设置宽度和高度<br>当嵌套一个块级元素,子元素如果不设置宽度,那么该子元<br>素的宽度为父元素的宽度.</li>
+</ul>
+<h2 id="3-2-行内元素"><a href="#3-2-行内元素" class="headerlink" title="3.2  行内元素"></a>3.2  行内元素</h2><p><img src="/2017/03/28/四-Css基础-2/5.png" alt="行内元素" title="行内元素"></p>
+<ul>
+<li>特点  :<br>元素在一行上显示<br>不能直接设置宽度和高度</li>
+</ul>
+<h2 id="3-3-行内块元素"><a href="#3-3-行内块元素" class="headerlink" title="3.3  行内块元素"></a>3.3  行内块元素</h2><p><img src="/2017/03/28/四-Css基础-2/6.png" alt="行内块元素" title="行内块元素"></p>
+<ul>
+<li>特点  :<br>元素在一行上显示<br>可以设置宽度和高度</li>
+</ul>
+<h2 id="3-4-元素之间的转换"><a href="#3-4-元素之间的转换" class="headerlink" title="3.4  元素之间的转换"></a>3.4  元素之间的转换</h2><p>display  :  inline 将元素转化为行内元素<br>display  :  inline-block 将元素转化行内块元素<br>display  :  block 将元素转化为块元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">div&#123;</div><div class="line">      display  :  inline;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="4-Css特性"><a href="#4-Css特性" class="headerlink" title="4.  Css特性"></a>4.  Css特性</h1><h2 id="4-1-层叠性"><a href="#4-1-层叠性" class="headerlink" title="4.1  层叠性"></a>4.1  层叠性</h2><p>样式的覆盖. 样式的层叠性与样式的调用顺序没有关系,与样式的定义顺序有关.<br>层叠性发生的前提  :  样式冲突</p>
+<h2 id="4-2-继承性"><a href="#4-2-继承性" class="headerlink" title="4.2  继承性"></a>4.2  继承性</h2><p>继承性发生的前提是标签之间属于一种嵌套关系</p>
+<ul>
+<li>文字颜色可以实现继承</li>
+<li>文字大小可以实现继承</li>
+<li>字体可以实现继承</li>
+<li>行高可以实现继承</li>
+<li>与文字有关的属性都可以,实现继承</li>
+<li>特殊性  :<br><code>&lt;a href=”#”&gt;&lt;/a&gt;</code> 不能继承父元素中的文字颜色(层叠掉了)<br><code>&lt;h1&gt;&lt;/h1&gt;</code>标题标签不能继承父元素中的文字大小</li>
+</ul>
+<h2 id="4-3-优先级"><a href="#4-3-优先级" class="headerlink" title="4.3  优先级"></a>4.3  优先级</h2><p>默认样式&lt;标签选择器&lt;类选择器&lt;id 选择器&lt;行内样式&lt;!important<br><img src="/2017/03/28/四-Css基础-2/7.png" alt="优先级" title="优先级"></p>
+<h1 id="5-伪类介绍"><a href="#5-伪类介绍" class="headerlink" title="5.  伪类介绍"></a>5.  伪类介绍</h1><ul>
+<li>:link  :  伪类,适用于未被用户访问过的链接<br><img src="/2017/03/28/四-Css基础-2/8.png" alt="a:link" title="a:link"></li>
+</ul>
+<ul>
+<li>:visited  :  伪类,适用于已被用户访问过的链接</li>
+</ul>
+<p><img src="/2017/03/28/四-Css基础-2/9.png" alt="a:visited" title="a:visited"></p>
+<ul>
+<li>:hover  :  伪类,光标指向一个元素,但此元素未被激活时的样式<br><img src="/2017/03/28/四-Css基础-2/10.png" alt="a:hover" title="a:hover"></li>
+</ul>
+<ul>
+<li>:active  :  伪类,适用于一个元素被激活时的样式<br><img src="/2017/03/28/四-Css基础-2/11.png" alt="a:active" title="a:active"></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>伪类常用属性</th>
+<th>属性介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  text-decoration:none  /  underline</td>
+<td>设置文字是否有下横线</td>
+</tr>
+</tbody>
+</table>
+<h1 id="6-背景-background"><a href="#6-背景-background" class="headerlink" title="6.  背景(background)"></a>6.  背景(background)</h1><ul>
+<li>background-color  背景颜色</li>
+<li>background-image  背景图片</li>
+</ul>
+<blockquote>
+<p> 注意  :<br>设置背景图片时候一定要设置宽度和高度</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">div&#123;</div><div class="line">	background-image:url("1.png");</div><div class="line">	width: 500px;</div><div class="line">	height:500px;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>background-repeat(设置背景平铺)<br>repeat （默认值）|no-repeat （不平铺）|repeat-x | （横向平铺）repeat-y （纵向平铺）</p>
+</li>
+<li><p>background-position(设置背景位置)<br>设置具体值  :  left| right| top| bottom| cneter</p>
+</li>
+<li><p>background-attachment(设置背景是否固定)<br>Scroll(默认值)滚动| fixed(图片固定)</p>
+</li>
+<li><p>背景属性联写  :<br>background: url(“1.png”) red   no-repeat 30px 40px;</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/三-Css基础-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/三-Css基础-1/" itemprop="url">
+                  三.Css基础(1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:14:21+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
+                    <span itemprop="name">WebDesign</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/三-Css基础-1/" class="leancloud_visitors" data-flag-title="三.Css基础(1)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-Css概念"><a href="#1-Css概念" class="headerlink" title="1.  Css概念"></a>1.  Css概念</h1><p>CSS 指层叠样式表 (Cascading Style Sheets)级联样式表</p>
+<h2 id="1-1-Css与Html的关系"><a href="#1-1-Css与Html的关系" class="headerlink" title="1.1  Css与Html的关系"></a>1.1  Css与Html的关系</h2><ul>
+<li>Css 以 html 为基础的.</li>
+<li>Css 主要设置的就是 html 标签中的属性样式,css 进行网页布局.</li>
+</ul>
+<h2 id="1-2-Css语法"><a href="#1-2-Css语法" class="headerlink" title="1.2  Css语法"></a>1.2  Css语法</h2><ul>
+<li><strong>选择器{属性:值; 属性:值;…. }</strong></li>
+<li>选择器  :  就是一个选择谁的过程.</li>
+<li>参数说明  :  属性和属性值之间用冒号(:)隔开,定义多个属性时,属性之间用英文输入法下的分号;隔开.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>赋值</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color</td>
+<td>color: red;</td>
+<td>前景色（文字颜色）</td>
+</tr>
+<tr>
+<td>font-size</td>
+<td>font-size: 20px;</td>
+<td>设置文字大小</td>
+</tr>
+<tr>
+<td>width</td>
+<td>width: 30px;</td>
+<td>设置宽度</td>
+</tr>
+<tr>
+<td>width</td>
+<td>width: 30px;</td>
+<td>设置宽度</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>height:30px;</td>
+<td>设置高度</td>
+</tr>
+<tr>
+<td>Background-color</td>
+<td>background-color:red;</td>
+<td>设置背景颜色</td>
+</tr>
+<tr>
+<td>Text-align</td>
+<td>text-align:center; left/right;</td>
+<td>文字居中</td>
+</tr>
+<tr>
+<td>Text-indent</td>
+<td>text-indent: 2em；</td>
+<td>首行缩进</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Px  :  像素</li>
+<li>注意  :<ul>
+<li>Text-align:center; 在块级元素中可以让文字居中</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3-Css-书写位置介绍"><a href="#1-3-Css-书写位置介绍" class="headerlink" title="1.3  Css 书写位置介绍"></a>1.3  Css 书写位置介绍</h2><ul>
+<li>内嵌式写法<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">        p&#123;</div><div class="line">          color:red;</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="1-4-选择器的分类"><a href="#1-4-选择器的分类" class="headerlink" title="1.4  选择器的分类"></a>1.4  选择器的分类</h2><ul>
+<li>基础选择器<ul>
+<li>标签选择器</li>
+<li><strong>类选择器</strong></li>
+<li>id 选择器<br>-通配符选择器</li>
+</ul>
+</li>
+<li>复合选择器<ul>
+<li><strong>标签指定式选择器</strong></li>
+<li><strong>后代选择器</strong></li>
+<li>并集选择器</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-5-标签选择器"><a href="#1-5-标签选择器" class="headerlink" title="1.5  标签选择器"></a>1.5  标签选择器</h2><ul>
+<li>标签  :  就是 html 中的标签</li>
+<li>用法  :<br>标签名{属性:值; 属性:值;}</li>
+</ul>
+<p><img src="/2017/03/28/三-Css基础-1/1.png" alt="标签选择器" title="标签选择器"></p>
+<ul>
+<li>颜色的显示方式<ul>
+<li>直接设置对应颜色的名称<br><code>p{color:red;}</code></li>
+<li>通过十六进制显示<br><code>color:#2934DE</code>;</li>
+<li>通过 rgb 方式显示<ul>
+<li>R  :  代表的是红色（red） 0-255<br>G  :  代表的是绿色（green） 0-255<br>B  :  代表的是蓝色（blue） 0-255</li>
+</ul>
+</li>
+<li>rgba<ul>
+<li>a  :  设置透明度 alpha 0-1<br><img src="/2017/03/28/三-Css基础-1/2.png" alt="rgba" title="rgba"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-6-类选择器"><a href="#1-6-类选择器" class="headerlink" title="1.6  类选择器"></a>1.6  类选择器</h1><ul>
+<li>用法  :<ul>
+<li>.自定名称{属性:值;}</li>
+</ul>
+</li>
+<li>调用  :<ul>
+<li>标签通过 class 属性调用类样式<br><code>.fontcolor{color:red;}</code></li>
+</ul>
+</li>
+<li>特点  :<ul>
+<li>谁调用谁改变,多个标签可以同时调用一个类样式.</li>
+<li>一个标签可以调用多个类样式</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-7-类的命名规范"><a href="#1-7-类的命名规范" class="headerlink" title="1.7  类的命名规范"></a>1.7  类的命名规范</h1><p><img src="/2017/03/28/三-Css基础-1/3.png" alt="类的命名规范" title="类的命名规范"></p>
+<ul>
+<li>不能以纯数字或者以数字开头定义类名</li>
+<li>不推荐使用汉字定义类名</li>
+<li>不能以特殊符号或者以特殊符号开头（“_”除外）定义类名</li>
+<li>不建议使用标签名或者属性名定义类名</li>
+</ul>
+<h1 id="1-8-Id选择器"><a href="#1-8-Id选择器" class="headerlink" title="1.8  Id选择器"></a>1.8  Id选择器</h1><ul>
+<li>用法  :<ul>
+<li>#id名称{属性:值;}</li>
+</ul>
+</li>
+<li>调用  :<br><code>&lt;p  id  =&quot;p_color&quot;&gt;hello,world!&lt;/p&gt;</code></li>
+<li>特点  :<ul>
+<li>不建议多个标签使用同一 id 选择器的样式</li>
+<li>一个标签只能调用一个 id 样式</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-9-通配符选择器"><a href="#1-9-通配符选择器" class="headerlink" title="1.9  通配符选择器"></a>1.9  通配符选择器</h2><ul>
+<li>用法  :  <ul>
+<li><em>{属性:值; 属性:值;}<br>`</em>{color:  red;  font-size:  30px;}`</li>
+</ul>
+</li>
+<li>特点  :  <ul>
+<li>将页面中所有的标签都选中,设置样式</li>
+<li>进行页面样式的初始化</li>
+</ul>
+</li>
+<li>注意  :<ul>
+<li>在写样式的时候  (类选择器),如果有样式代码重复使用的时候,我们<br>要提取公共类.</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-10-字体相关属性"><a href="#1-10-字体相关属性" class="headerlink" title="1.10  字体相关属性"></a>1.10  字体相关属性</h2><ul>
+<li>Font-size  :  设置文字大小</li>
+<li>Font-family  :  设置文字字体</li>
+<li>Font-weight  :  设置文字加粗</li>
+<li>Font-style  :  设置文字斜体</li>
+<li>Line-height  :  行高</li>
+</ul>
+<h2 id="1-11-Font-family"><a href="#1-11-Font-family" class="headerlink" title="1.11  Font-family"></a>1.11  Font-family</h2><ul>
+<li>直接设置汉字<br><code>p{font-family:  微软雅黑;}</code></li>
+<li><p>设置对应字体的英文<br><img src="/2017/03/28/三-Css基础-1/4.png" alt="对应字体的英文" title="对应字体的英文"></p>
+</li>
+<li><p>可以设置 unicode 编码</p>
+</li>
+<li>Font-family 可以设置多个值;<br>{<code>font-family:  &quot;Simsum&quot;,&quot;宋体&quot;</code>}</li>
+</ul>
+<h2 id="1-12-Font-weight"><a href="#1-12-Font-weight" class="headerlink" title="1.12  Font-weight"></a>1.12  Font-weight</h2><ul>
+<li>取值方式  :  <ul>
+<li>直接设置数字 100-900</li>
+<li>bold (字体加粗) 效果与 700-900</li>
+<li>normal (文字字体正常显示)</li>
+</ul>
+</li>
+<li>注意  :  <ul>
+<li>文字加粗显示,推荐使用 font-weight:700;</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-13-Font-style-斜体"><a href="#1-13-Font-style-斜体" class="headerlink" title="1.13  Font-style(斜体)"></a>1.13  Font-style(斜体)</h2><ul>
+<li>italic 文字斜体显示</li>
+<li>normal 文字正常显示</li>
+</ul>
+<h2 id="1-14-Font-属性联写"><a href="#1-14-Font-属性联写" class="headerlink" title="1.14 Font 属性联写"></a>1.14 Font 属性联写</h2><ul>
+<li><p>用法  :  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">font: font-style font-weight font-size/line-height</div><div class="line">font-family</div></pre></td></tr></table></figure>
+</li>
+<li><p>注意  :</p>
+</li>
+<li>font 属性联写必须有 font-size 和 font-family(其他属性可以不写)</li>
+<li>font-size 和 font-family 的顺序不能换</li>
+</ul>
+<h1 id="2-标签指定选择器"><a href="#2-标签指定选择器" class="headerlink" title="2.  标签指定选择器"></a>2.  标签指定选择器</h1><ul>
+<li>用法  :<br>标签名.选择器名{属性:值; 属性:值;}</li>
+</ul>
+<h1 id="3-后代选择器"><a href="#3-后代选择器" class="headerlink" title="3.  后代选择器"></a>3.  后代选择器</h1><ul>
+<li>特点  :<ul>
+<li>标签之间必须属于嵌套关系.</li>
+</ul>
+</li>
+<li>用法  :<ul>
+<li>选择器 +空格+ 选择器{属性:值; 属性:值;…}</li>
+</ul>
+</li>
+<li>特点  :<ul>
+<li>选择器之间必须有空格</li>
+</ul>
+</li>
+<li>关系  :<ul>
+<li>父与子的关系</li>
+</ul>
+</li>
+</ul>
+<h1 id="4-并集选择器"><a href="#4-并集选择器" class="headerlink" title="4.  并集选择器"></a>4.  并集选择器</h1><ul>
+<li>用法  :<ul>
+<li>选择器,选择器,选择器{属性:值;}</li>
+</ul>
+</li>
+<li>作用  :<ul>
+<li>将样式集体声明,css 样式初始化.</li>
+</ul>
+</li>
+<li>特点  :<ul>
+<li>并集选择器之间必须用逗号隔开!</li>
+<li>margin: 0 auto; 让盒子居中显示。</li>
+</ul>
+</li>
+</ul>
+<h1 id="5-作业与一些总结"><a href="#5-作业与一些总结" class="headerlink" title="5.  作业与一些总结"></a>5.  作业与一些总结</h1><p><img src="/2017/03/28/三-Css基础-1/5.png" alt="作业" title="作业"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">          .newsTitle&#123;Text-align:center;&#125;</div><div class="line">          .secondTitle&#123;Text-align:center;&#125;</div><div class="line">          .time&#123;</div><div class="line">            color: #AABBCC;</div><div class="line">            font-size: 14px;&#125;</div><div class="line">          .adTitle&#123;color: #990000;font-size: 14px;&#125;</div><div class="line">          .show&#123;color: red;&#125;</div><div class="line">          .search&#123;</div><div class="line">            color: #008000;</div><div class="line">          &#125;</div><div class="line">          .essay&#123;</div><div class="line">            text-indent:2em;</div><div class="line">          &#125;</div><div class="line">          .weibo&#123;</div><div class="line">            color: #3399CC;</div><div class="line">          &#125;</div><div class="line"></div><div class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"newsTitle"</span>&gt;</span>中乙队赛前突然换帅仍胜毅腾 高原黑马欲阻击舜天<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"secondTitle"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">font</span> <span class="attr">class</span>=<span class="string">"time"</span>&gt;</span>2014年07月16日20:11<span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">font</span> <span class="attr">class</span>=<span class="string">"adTitle"</span>&gt;</span>新浪体育 评论中大奖（11人参与）<span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.w3school.com.cn"</span>&gt;</span>收藏本文<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"show"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">"请输入查询条件"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"search"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"搜索"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">hr</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"essay"</span>&gt;</span></div><div class="line">  新浪体育讯　7月16日是燕京啤酒<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"weibo"</span> <span class="attr">href</span>=<span class="string">"http://www.w3school.com.cn"</span>&gt;</span>[微博]<span class="tag">&lt;/<span class="name">a</span>&gt;</span>2014中国足协杯第三轮比赛，丽江嘉云昊队主场迎战哈尔滨毅腾队的比赛日。然而就在比赛日中午，丽江嘉云昊队主帅李虎和另外两名成员悄然向俱乐部提出了辞呈，并且收拾行囊准备离开。在这样的情况下，丽江嘉云昊队不得不由此前的教练员杨贵东代理指挥了本场比赛。</div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"essay"</span>&gt;</span></div><div class="line">在昨日丽江嘉云昊队主帅李虎就缺席了赛前的新闻发布会，当时俱乐部给出的解释是李虎由于身体欠佳，去医院接受治疗。然而今日李虎出现在俱乐部时，向记者否认了这一说法，并且坦言已经向俱乐部提出了辞呈。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"essay"</span>&gt;</span></div><div class="line">据记者多方了解的情况，李虎<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"weibo"</span> <span class="attr">href</span>=<span class="string">"http://www.w3school.com.cn"</span>&gt;</span>[微博]<span class="tag">&lt;/<span class="name">a</span>&gt;</span>极其教练组近来在执教成绩上承受了不小的压力，在联赛间歇期期间，教练组曾向俱乐部提出能够多引进有实力的球员补强球队，然而由于和俱乐部在投入以及成绩指标上的分歧，李虎最终和教练组一起在比赛日辞职。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"essay"</span>&gt;</span></div><div class="line">这样的情况并没有影响到丽江嘉云昊队<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"weibo"</span> <span class="attr">href</span>=<span class="string">"http://www.w3school.com.cn"</span>&gt;</span>[微博]<span class="tag">&lt;/<span class="name">a</span>&gt;</span>的队员，在比赛中丽江队在主场拼的非常凶，在暴雨之中仍然发挥出了体能充沛的优势，最终凭借点球击败了中超球队哈尔滨毅腾，顺利晋级下一轮比赛。<span class="tag">&lt;<span class="name">B</span>&gt;</span>根据中国足协杯的赛程，丽江嘉云昊队将在本月23日迎战江苏舜天队。<span class="tag">&lt;/<span class="name">B</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/二-HTML基础-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/二-HTML基础-2/" itemprop="url">
+                  二.HTML基础(2)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:13:43+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
+                    <span itemprop="name">WebDesign</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/二-HTML基础-2/" class="leancloud_visitors" data-flag-title="二.HTML基础(2)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-复习与回顾"><a href="#1-复习与回顾" class="headerlink" title="1.  复习与回顾"></a>1.  复习与回顾</h1><p>#1.1  单标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 文本内容--&gt;</span> 注释标签 Ctrl+/</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span> 换行标签</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span> 横线标签</div></pre></td></tr></table></figure>
+<h2 id="1-2-双标签"><a href="#1-2-双标签" class="headerlink" title="1.2  双标签"></a>1.2  双标签</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span> 段落标签</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">hn</span>&gt;</span><span class="tag">&lt;/<span class="name">hn</span>&gt;</span> n 的取值 1-6 标题标签</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">size</span>=<span class="string">”10”</span> <span class="attr">color</span>=<span class="string">”red”</span>&gt;</span><span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">strong</span>&gt;</span> <span class="tag">&lt;<span class="name">b</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span> 文本加粗</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span> i 文本斜体</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ins</span>&gt;</span><span class="tag">&lt;/<span class="name">ins</span>&gt;</span> u 文本下横线</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">del</span>&gt;</span><span class="tag">&lt;/<span class="name">del</span>&gt;</span> s 删除线</div></pre></td></tr></table></figure>
+<h2 id="1-3-img标签与属性"><a href="#1-3-img标签与属性" class="headerlink" title="1.3  img标签与属性"></a>1.3  img标签与属性</h2><p><strong>src 属性:</strong></p>
+<ul>
+<li>alt 属性  :  图片无法显示，对图片的描述</li>
+<li>title 属性: 鼠标放到图片上显示的文字</li>
+<li>width 属性  :  宽度</li>
+<li>height 属性  :  高度</li>
+</ul>
+<h2 id="1-4-锚链接"><a href="#1-4-锚链接" class="headerlink" title="1.4  锚链接"></a>1.4  锚链接</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"cat"</span>&gt;</span>猫<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#cat"</span>&gt;</span>抓猫<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="1-5-列表"><a href="#1-5-列表" class="headerlink" title="1.5  列表"></a>1.5  列表</h2><ul>
+<li>无序列表</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>有序列表</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>自定义列表</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="2-标签介绍"><a href="#2-标签介绍" class="headerlink" title="2.  标签介绍"></a>2.  标签介绍</h1><h2 id="2-1-Meta标签介绍-作用在head标签"><a href="#2-1-Meta标签介绍-作用在head标签" class="headerlink" title="2.1  Meta标签介绍  (作用在head标签)"></a>2.1  Meta标签介绍  (作用在head标签)</h2><ul>
+<li><p><meta charset="utf-8"></p>
+<ul>
+<li>Charset ：字符集</li>
+<li>ASCII</li>
+<li>ANSI</li>
+<li>Unicode</li>
+<li>Gbk</li>
+<li>Gb2312</li>
+<li>Big5</li>
+</ul>
+</li>
+<li><p><meta name="keywords" content="我是程序员"><br>作用  :  对网站进行优化的作用SEO与网址的描述.</p>
+</li>
+<li><p><meta http-equiv="refresh" content="5;url=http://www.baidu.com"><br>作用  :  网址重定向</p>
+</li>
+</ul>
+<h2 id="2-2-Link标签介绍-作用在head标签"><a href="#2-2-Link标签介绍-作用在head标签" class="headerlink" title="2.2  Link标签介绍  (作用在head标签)"></a>2.2  Link标签介绍  (作用在head标签)</h2><ul>
+<li><p><link rel="icon" href="favicon.ico"><br>作用  :  给网页 titile 中放置小图标</p>
+</li>
+<li><p><link rel="stylesheet" href="1.css"><br>作用  :  引入外部样式表</p>
+</li>
+</ul>
+<h2 id="2-3-表格-table"><a href="#2-3-表格-table" class="headerlink" title="2.3  表格  (table)"></a>2.3  表格  (table)</h2><p>作用  :  显示数据</p>
+<ul>
+<li>组成  :<ul>
+<li>table 定义表格</li>
+<li>tr 行</li>
+<li>td 列  (单元格)</li>
+</ul>
+</li>
+<li><p>属性介绍  :</p>
+<ul>
+<li>border  :  设置表格边框</li>
+<li>width  :  设置表格宽度</li>
+<li>Height  :  设置高度</li>
+<li>cellspacing  :  设置单元格之间的距离</li>
+<li>cellpadding  :  文字距离单元格边框的距离</li>
+<li>bgcolor=”red”  :  设置背景颜色</li>
+<li>align=center left| right   :  给 td 或者 tr 设置让文字居中</li>
+<li>table 设置表格居中</li>
+</ul>
+</li>
+<li><p><th></th> 设置表格标题，用法和 td 一样</p>
+</li>
+<li><p>设置表格表头<br><code>&lt;caption&gt;  &lt;h3&gt;课程表&lt;/h3&gt;&lt;/caption&gt;</code></p>
+</li>
+<li><p>单元格的合并</p>
+<ul>
+<li>横向和合并</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>  <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>纵向合并</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>  <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="3-表单-from"><a href="#3-表单-from" class="headerlink" title="3.  表单  (from)"></a>3.  表单  (from)</h1><h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1  作用"></a>3.1  作用</h2><p>表单的作用用来收集信息</p>
+<h2 id="3-2-组成"><a href="#3-2-组成" class="headerlink" title="3.2  组成"></a>3.2  组成</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span>  <span class="attr">action</span>=<span class="string">""</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">from</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>属性  :<ul>
+<li>action  |  处理用户数据信息</li>
+<li>Method  :  get | post<ul>
+<li>Get 数据提交  :  通过地址栏的方式进行数据提交,将用户输入的信息显出来.</li>
+<li>Post 提交  :  数据通过后台进行提交,不会将用户信息显示出来,安全性比较好.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-3-表单控件"><a href="#3-3-表单控件" class="headerlink" title="3.3  表单控件"></a>3.3  表单控件</h2><p><strong>表单文字输入</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">用户名  :  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">maxlength</span>=<span class="string">"6"</span>&gt;</span></div><div class="line">密码  :  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li>属性  :<ul>
+<li>maxlength  :    设置文本输入框最多能输多少字符</li>
+<li>readonly=”readonly”   设置文本输入框为只读（只能读不能编辑）</li>
+<li>disabled=”disabled”   控件属于非激活的状态</li>
+<li>name=”username”   给输入框设置名称</li>
+<li>Value=””   设置或者显示输入的值</li>
+</ul>
+</li>
+</ul>
+<p><strong>单选按钮</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"xb"</span>  <span class="attr">checked</span>=<span class="string">"checked"</span> <span class="attr">value</span>=<span class="string">"nan"</span>&gt;</span>男</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"xb"</span> <span class="attr">value</span>=<span class="string">"nv"</span> &gt;</span>女</div></pre></td></tr></table></figure></p>
+<ul>
+<li>属性  :<ul>
+<li>checked=”checked”     设置默认选中项</li>
+</ul>
+</li>
+</ul>
+<p><strong>下拉按钮</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">multiple</span>=<span class="string">"multiple"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>山东<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>山西<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>河南<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>河北<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">option</span>  <span class="attr">selected</span>=<span class="string">"selected"</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>属性  :<br>selected=”selected”    设置默认选中项<br>multiple=”multiple”       可以实现多选效果</li>
+</ul>
+<p><strong>下拉列表分组显示</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"name"</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">optgroup</span> <span class="attr">label</span>=<span class="string">"北京市"</span>&gt;</span>	 	</div><div class="line">			<span class="tag">&lt;<span class="name">option</span>&gt;</span> 西城区 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">			 <span class="tag">&lt;<span class="name">option</span>&gt;</span>东城区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">optgroup</span>&gt;</span></div><div class="line"></div><div class="line">	 <span class="tag">&lt;<span class="name">optgroup</span> <span class="attr">label</span>=<span class="string">"山东省"</span>&gt;</span>  	 	</div><div class="line">			<span class="tag">&lt;<span class="name">option</span>&gt;</span> 西城区 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">option</span>&gt;</span>东城区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">optgroup</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>多选控件</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">checked</span>=<span class="string">"checked"</span>&gt;</span>java</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span>android</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span>ios</div></pre></td></tr></table></figure>
+<p><strong>多行文本输入框</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">textarea</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>图片上传控件</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>按钮系列</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>  <span class="attr">value</span>=<span class="string">"登录"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span>  <span class="attr">value</span>=<span class="string">"普通按钮"</span> &gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">value</span>=<span class="string">"重置按钮"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"image"</span> <span class="attr">src</span>=<span class="string">"图片按钮.jpg"</span>&gt;</span>`</div></pre></td></tr></table></figure></p>
+<p><strong>表单分组控件</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>用户注册<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>表单补充</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 网址判断 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span>  <span class="attr">type</span>=<span class="string">"url"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 邮箱判断 --&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 日期控件 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 时间控件 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"time"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 只能输入数字的控件 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span>  <span class="attr">step</span>=<span class="string">"5"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 进度条 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"range"</span>  <span class="attr">max</span>=<span class="string">"100"</span>  <span class="attr">step</span>=<span class="string">"5"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/一-HTML基础-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1445,1028 +3095,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第9章-Process-Explorer-最优秀的进程管理工具/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第9章-Process-Explorer-最优秀的进程管理工具/" itemprop="url">
-                  第9章 Process Explorer - 最优秀的进程管理工具
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:38:57+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第9章-Process-Explorer-最优秀的进程管理工具/" class="leancloud_visitors" data-flag-title="第9章 Process Explorer - 最优秀的进程管理工具">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-Process-Explorer"><a href="#1-Process-Explorer" class="headerlink" title="1.  Process Explorer"></a>1.  Process Explorer</h1><p>Process Explorer  是  Windows  操作系统下最优秀的进程管理工具.</p>
-<p><img src="/2017/03/28/第9章-Process-Explorer-最优秀的进程管理工具/1.png" alt="Process Explorer的运行界面" title="Process Explorer的运行界面"></p>
-<h1 id="2-具体有哪些优点呢"><a href="#2-具体有哪些优点呢" class="headerlink" title="2.  具体有哪些优点呢?"></a>2.  具体有哪些优点呢?</h1><ul>
-<li>Process  /  Child  进程树结构.</li>
-<li>以不同颜色显示进程运行/终止.</li>
-<li>进程终止  (kill)  功能  (支持Kill  Process  Tree)  功能.</li>
-<li>检测  DLL/Handle  (检索加载到进程中的DLL或进程占有的句柄).</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第8章-abex-crackme-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第8章-abex-crackme-2/" itemprop="url">
-                  第8章 abex'crackme#2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:32:40+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第8章-abex-crackme-2/" class="leancloud_visitors" data-flag-title="第8章 abex'crackme#2">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-运行abex’crackme-2"><a href="#1-运行abex’crackme-2" class="headerlink" title="1.  运行abex’crackme#2"></a>1.  运行abex’crackme#2</h1><p><img src="/2017/03/28/第8章-abex-crackme-2/1.png" alt="运行界面" title="运行界面"></p>
-<p>输入合适的Name与Serial,按Check按钮,会弹出错误的消息框!<br><img src="/2017/03/28/第8章-abex-crackme-2/2.png" alt="错误的消息框" title="错误的消息框"></p>
-<h1 id="2-Visual-Basic文件的特征"><a href="#2-Visual-Basic文件的特征" class="headerlink" title="2.  Visual  Basic文件的特征"></a>2.  Visual  Basic文件的特征</h1><h2 id="2-1-VB专用引擎"><a href="#2-1-VB专用引擎" class="headerlink" title="2.1  VB专用引擎"></a>2.1  VB专用引擎</h2><p>  举个VB引擎的例子,显示消息框时,VB代码中要调用MsgBox()函数.其实,VB编辑器真正调用到的MSVBVM60.dll里的rtcMsgBox()函数,在该函数内部通过调用user32.dll里的MessageBoxW()函数(Win32  API)来工作(也可以在VB代码中直接调用user32.dll里的MessageBoxM()).</p>
-<h2 id="2-2-本地代码和伪代码"><a href="#2-2-本地代码和伪代码" class="headerlink" title="2.2  本地代码和伪代码"></a>2.2  本地代码和伪代码</h2><p>VB文件可以编译为本地代码  (N  code)  与伪代码  (P  code)  .本地代码一般使用易于调试器解析的IA-32指令;而伪代码是一种解析器  (Interpreter)  语言,它使用由VB引擎实现虚拟机并自解析的指令  (字节码)  .因此,若想准确解析VB的伪代码,就需要分析VB引擎并实现模拟器.</p>
-<h2 id="2-3-事件处理程序"><a href="#2-3-事件处理程序" class="headerlink" title="2.3  事件处理程序"></a>2.3  事件处理程序</h2><p>VB主要用来编写GUI程序,由于VB程序采用windows操作系统的事件驱动工作,所以在main()或winmain()中并不吃存在用户代码(希望调试的代码),用户代码存在于各个事件处理程序(event  handler)之中.</p>
-<p>就上述abex’crackme#2而言,用户代码在点击check按钮时触发的事件处理程序内.</p>
-<h2 id="2-4-未文档化的结构体"><a href="#2-4-未文档化的结构体" class="headerlink" title="2.4  未文档化的结构体"></a>2.4  未文档化的结构体</h2><p>  VB中使用的各种信息  (diglog,control,form,module,function等)  以结构体形式保存在文件内部.由于微软未作公开这种结构体信息,所以调试VB文件会难一些.</p>
-<h1 id="3-开始调试"><a href="#3-开始调试" class="headerlink" title="3.  开始调试"></a>3.  开始调试</h1><p>运行OllyDbg,查看abex’crackme#2文件的反汇编代码<br><img src="/2017/03/28/第8章-abex-crackme-2/3.png" alt="EP" title="EP"></p>
-<p>执行程序后,在EP代码中首先要做的是调用VB引擎的主函数  (ThunRTMain()).<br><img src="/2017/03/28/第8章-abex-crackme-2/4.png" alt="ThunRTMain()" title="ThunRTMain()"></p>
-<p>EP的地址为401238.401238地址处的PUSH  401E14命令用来把RT_MainStruct结构体的地址(401E14)压入栈.然后40123D地址处的CALL  00401232命令调用401232地址处的的JMP DOWRD  PTR  DS:[4010A0]指令.该JMP指令会跳转至VB引擎的主函数ThunRTMain()(前面压入栈的401E14的值作为ThunRTMain()的参数.)</p>
-<h2 id="3-1-间接调用"><a href="#3-1-间接调用" class="headerlink" title="3.1  间接调用"></a>3.1  间接调用</h2><p>40123地址处的CALL 401232命令用于调用ThunRTMain()函数,这里使用了较为特别的技法.不是直接转到MSVBVM60.dll里的ThunRTMain()函数,而是通过中间401232地址处的JMP指令跳转.<br><img src="/2017/03/28/第8章-abex-crackme-2/5.png" alt="间接调用" title="间接调用"></p>
-<p>这就是VC++,VB编译器中常用的间接调用法  (Indirect  Call).</p>
-<blockquote>
-<p> 4010A0地址是IAT  (Import  Address  Table,导入地址表)区域,包含着MSVBVM60.ThunRTMain()函数的实际地址.</p>
-</blockquote>
-<h2 id="3-2-RT-MainStruct结构体"><a href="#3-2-RT-MainStruct结构体" class="headerlink" title="3.2  RT_MainStruct结构体"></a>3.2  RT_MainStruct结构体</h2><p>要注意的是ThunRTMain()函数的参数RT_MainStruct结构体.这里,RT_MainStruct结构体存在于401E14地址处.VB引擎通过参数传递过来的RT_MainStruct结构体获取到程序运行需要的所有信息.</p>
-<h2 id="3-3-ThunRTMain-函数"><a href="#3-3-ThunRTMain-函数" class="headerlink" title="3.3  ThunRTMain()函数"></a>3.3  ThunRTMain()函数</h2><p><img src="/2017/03/28/第8章-abex-crackme-2/6.png" alt="ThunRTMain()代码开始" title="ThunRTMain()代码开始"></p>
-<h1 id="4-分析crackme"><a href="#4-分析crackme" class="headerlink" title="4.  分析crackme"></a>4.  分析crackme</h1><p>目前找RT_MainSturct结构体非容易之事,我们借助思路查找错误消息框和字符串.</p>
-<h2 id="4-1-检索字符串"><a href="#4-1-检索字符串" class="headerlink" title="4.1  检索字符串"></a>4.1  检索字符串</h2><p><img src="/2017/03/28/第8章-abex-crackme-2/7.png" alt="All  referenced  text  strings" title="All  referenced  text  strings"></p>
-<p>双击相应字符串,转到其他地址处.<br><img src="/2017/03/28/第8章-abex-crackme-2/8.png" alt="403458地址处" title="403458地址处"></p>
-<p>消息框的标题(“Wrong  serial!”),内容(“Nope,this  serial  is  wrong!”),还有实际调用信息框函数的代码(4034A6)都显示出来了.</p>
-<p>从编程的观点来看,使用某种算法生成序列号,通过比较用户输入的序列号与字符串,代码分为TRUE(序列号相同)与FALSE(序列号不同)两大部分.通俗点说,就是前后存在的字符串比较代码.且序列号正确时程序代码会调用消息框输出成功信息.</p>
-<p>往上拖动滚动条,在前面看到了条件转移语句的代码.<br><img src="/2017/03/28/第8章-abex-crackme-2/9.png" alt="条件转移指令" title="条件转移指令"></p>
-<p>调用403329地址的_vbaVarTstEq()函数,比较(Test命令)返回值(AX)后,由403332地址的条件转移指令(JE指令)决定执行”真”代码还是”假”代码.</p>
-<blockquote>
-<p> 上述代码使用的汇编指令说明</p>
-<ul>
-<li>Test  :  逻辑比较  (Logical  Compare)<br>与bit-wise  logical”AND”一样(仅改变EFLAGS寄存器而不改变操作数的值)若两个操作数中一个为0,则AND运算结果被置为0-&gt;ZF=1.</li>
-<li>JE  :  条件跳转指令  (Jump  if  equal),  若ZF=1,则跳转.</li>
-</ul>
-</blockquote>
-<h2 id="4-2-查找字符串地址"><a href="#4-2-查找字符串地址" class="headerlink" title="4.2  查找字符串地址"></a>4.2  查找字符串地址</h2><p>403329地址处的_vbaVarTstEq()函数为字符串比较函数,起上方的2个PUSH指令为比较函数的参数,即比较字符串.</p>
-<p><strong>调试至403329</strong></p>
-<p><img src="/2017/03/28/第8章-abex-crackme-2/10.png" alt="403329地址处" title="403329地址处"><br>00403321地址处的SS:[EBP-44]表达的是  :  SS是栈段,EBP是基址指针寄存器.换言之,SS:[EBP-44]指的是栈内地址,它恰好又是函数中声明的局部对象的地址(局部对象存储在栈内).在此状态下查看栈.(栈地址会随调试的环境不同而改变)</p>
-<p><img src="/2017/03/28/第8章-abex-crackme-2/11.png" alt="跟随堆栈地址" title="跟随堆栈地址"></p>
-<p>EDX表示实际的地址,EAX表示用户输入的地址.</p>
-<p>我们选择数据窗口,<strong>长型</strong>查看实际的字符串.<br><img src="/2017/03/28/第8章-abex-crackme-2/12.png" alt="Serial字符串" title="Serial字符串"></p>
-<p>我们重新运行程序,输入Name=”kevin”,Serial=”CFC9DACD”并提示破解成功!<br><img src="/2017/03/28/第8章-abex-crackme-2/13.png" alt="成功" title="成功"></p>
-<p>但是Name和Serial之间什么关系呢?为了测试我们输入Name的另外一个值,Serial保存不变.程序显示错误!这就证明了最初的判断  :  “以name字符串为基础随时生成Serial”的算法.</p>
-<h2 id="4-3-生成Serial的算法"><a href="#4-3-生成Serial的算法" class="headerlink" title="4.3  生成Serial的算法"></a>4.3  生成Serial的算法</h2><p><strong>查找函数开始部分</strong></p>
-<p>很显然条件转移代码属于某个函数,该函数可能就是Check按钮的事件来处理程序.原因在于选择Check按钮后,该函数会被调用执行.且含有用户代码来弹出成功/失败消息框.</p>
-<p>我们向上查找函数开始部分,仔细查看00402ED0地址处的命令.</p>
-<p><img src="/2017/03/28/第8章-abex-crackme-2/14.png" alt="00402ED0地址处" title="00402ED0地址处"></p>
-<p>上述代码是栈帧代码,开始执行函数就会形成栈帧.由此得知该位置就是函数开始部分,即是Check按钮事件的处理程序.</p>
-<blockquote>
-<p> 汇编指令<br>VB文件的函数之间存在着NOP指令.NOP指令表示不执行任何动作的指令.</p>
-</blockquote>
-<p><strong>为了准确分析代码,在402ED0位置处下断点后调试.</strong></p>
-<p><img src="/2017/03/28/第8章-abex-crackme-2/15.png" alt="按钮事件的处理程序" title="按钮事件的处理程序"></p>
-<h2 id="4-4-预测代码"><a href="#4-4-预测代码" class="headerlink" title="4.4  预测代码"></a>4.4  预测代码</h2><ul>
-<li>若是Win32  API程序,则有如下特点.<ul>
-<li>读取Name字符串  (使用GetWindowText  /  GetDlgItemText  等API).</li>
-<li>启动循环,对字符加密  (XOR  /  ADD  /  SUB等).</li>
-</ul>
-</li>
-</ul>
-<p>上述代码使用VB引擎函数编写而成,若预测正确,在事件处理程序开始代码开始调试.查找读取Name字符串的部分后,接着就是出现加密循环.</p>
-<h2 id="4-5-读取Name字符串的代码"><a href="#4-5-读取Name字符串的代码" class="headerlink" title="4.5  读取Name字符串的代码"></a>4.5  读取Name字符串的代码</h2><p><img src="/2017/03/28/第8章-abex-crackme-2/16.png" alt="读取Name字符串的代码" title="读取Name字符串的代码"></p>
-<p>查看00402F8E地址处的代码可以看到,函数的局部对象ss:[ebp-0x88]地址传递给(PUSH)函数的参数.查看该地址.<strong>先在00402FA0处下一个断点</strong>然后选中跟随数据<br><img src="/2017/03/28/第8章-abex-crackme-2/17.png" alt="ss:[ebp-0x88]" title="ss:[ebp-0x88"></p>
-<p>Name字符串(以字符串对象形式)存储到[EBP-88]地址处.</p>
-<h2 id="4-6-加密循环"><a href="#4-6-加密循环" class="headerlink" title="4.6  加密循环"></a>4.6  加密循环</h2><p>继续调试,遇到如下循环,即一系列循环语句.</p>
-<p><img src="/2017/03/28/第8章-abex-crackme-2/18.png" alt="循环语句" title="循环语句"></p>
-<p>简单的动作原理为  :  链表中使用next指针引用下一个元素,并且设置EBX,4  使其按指定的次数运转循环.</p>
-<blockquote>
-<p> 实际仅使用了接收的Name字符串中的4个字符.在代码内检查字符串的长度,若少于4个字符,就会弹出错误消息框.</p>
-</blockquote>
-<h2 id="4-7-加密方法"><a href="#4-7-加密方法" class="headerlink" title="4.7  加密方法"></a>4.7  加密方法</h2><ul>
-<li>从该给定的Name字符串前端逐一读取字符(共4次).</li>
-<li>将字符转换为数字(ASCII代码).</li>
-<li>向变换后的数字加64.</li>
-<li>再次将数字转换为字符.</li>
-<li>连接变换后的字符.</li>
-</ul>
-<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5.  总结"></a>5.  总结</h1><p>通过”Wrong  serial”字符串作为目标,然后查找该字符串的代码.从查找的代码开始,向上拖动滑动条.找到生成栈帧(函数开始)的部分.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第7章-栈帧/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第7章-栈帧/" itemprop="url">
-                  第7章 栈帧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:27:03+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第7章-栈帧/" class="leancloud_visitors" data-flag-title="第7章 栈帧">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>栈帧  (Stack  Frame) ,在程序中用于声明局部变量/调用函数.</p>
-<h1 id="1-栈帧"><a href="#1-栈帧" class="headerlink" title="1.  栈帧"></a>1.  栈帧</h1><p>栈帧就是利用EBP  (栈帧指针)  寄存器访问栈内局部变量,参数,函数返回地址等的手段.ESP寄存器承担着栈顶指针的作用,而EBP寄存器则负责栈帧指针的职能.程序运行时,ESP寄存器的值随时变化,访问栈中函数的局部变量,参数时,若以ESP值为基准编写程序会十分困难,并且以很难使CPU引用到准确的地址.所以,调用某函数时,先要把用作基准点  (函数起始地址)  的ESP值保存到EBP,并维持在函数内部.这样,无论ESP的值如何变量,以EBP的为基准  (base)  能够安全访问到相关的函数的局部变量,参数,返回地址,这就是EBP寄存器作为栈帧指针的作用.</p>
-<p><img src="/2017/03/28/第7章-栈帧/1.png" alt="栈帧结构" title="栈帧结构"></p>
-<h1 id="2-调试示例-StackFrame-exe"><a href="#2-调试示例-StackFrame-exe" class="headerlink" title="2.  调试示例:  StackFrame.exe"></a>2.  调试示例:  StackFrame.exe</h1><h2 id="2-1-StackFrame-cpp"><a href="#2-1-StackFrame-cpp" class="headerlink" title="2.1  StackFrame.cpp"></a>2.1  StackFrame.cpp</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">long</span> <span class="title">add</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">long</span> x = a, y = b;</div><div class="line">    <span class="keyword">return</span> (x + y);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">long</span> a = <span class="number">1</span>, b = <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, add(a, b));</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>使用OllyDbg调试工具打开StackFrame.exe文件,按CTRL+G快捷键  (Go  to命令)  转到401000地址处.<br><img src="/2017/03/28/第7章-栈帧/2.png" alt="调试器界面" title="调试器界面"></p>
-<h2 id="2-2-开始执行-main-函数-amp-生成栈帧"><a href="#2-2-开始执行-main-函数-amp-生成栈帧" class="headerlink" title="2.2  开始执行  main()  函数&amp;生成栈帧"></a>2.2  开始执行  main()  函数&amp;生成栈帧</h2><blockquote>
-<p> 首先在StackFrame.cpp源程序的主函数分析,代码如下.<br>int main(int argc, char* argv[])<br>{</p>
-</blockquote>
-<p>函数main()是程序开始执行的地方,在main()函数的起始地址(401020)处,按F2键设置一个断点,然后按F9运行程序,程序运行到main()函数的断点处暂停.</p>
-<p><img src="/2017/03/28/第7章-栈帧/3.png" alt="栈初始" title="栈初始"></p>
-<p>当前ESP的初始值为0019FF3C,EBP的值为0019FF80.切记地址401250保存在ESP(0019FF3C)中,它是main()函数执行完毕后返回的地址.</p>
-<p>main()函数一开始运行就生成与其对应的函数栈帧.</p>
-<p><code>00401020        push ebp        ;  #  main()</code></p>
-<p>PUSH是一条压栈指令,上面这条PUSH语句的含义是”把EBP值压入栈”.main()函数中,EBP为栈帧指针,用来把EBP之前的值备份到栈中  (main()函数执行完毕,返回之前,该值会再次恢复).</p>
-<p><code>00401021        mov ebp,esp</code></p>
-<p>MOV是一条数据传送命令,上面这条MOV语句的命令是”把esp值传送到ebp”.换原之,就是两值相等,并且直到main()函数执行完毕,EBP的值始终保持不变.也就是说,我们通过EBP可以安全访问到存储在栈中的函数参数与局部变量.执行完401020与401021地址处后的两条命令后,函数main()的栈帧就生成了.</p>
-<p>进入OllyDbg的栈窗口,单击鼠标右键,在弹出的菜单中依次选择Address-Relative  to  EBP,把地址转换为相对于EBP的偏移后,能够直接观察到栈内情况.</p>
-<p><img src="/2017/03/28/第7章-栈帧/4.png" alt="备份到栈中的EBP初始值" title="备份到栈中的EBP初始值"></p>
-<p>如图,当前EBP值为0019FF38,与ESP的值一致,19FF80地址处保存着19FF80,它是main()函数开始执行时EBP持有的初始值.</p>
-<h1 id="2-3-设置局部变量"><a href="#2-3-设置局部变量" class="headerlink" title="2.3  设置局部变量"></a>2.3  设置局部变量</h1><blockquote>
-<p> 下面开始分析源文件StackFrame.cpp中的变量声明与赋值语句.<br>    long a = 1, b = 2;</p>
-</blockquote>
-<p>main()函数中,上述语句用于在栈中为局部变量(a,b)分配空间,并赋初始值.</p>
-<p><code>00401023        sub esp,0x8</code></p>
-<p>SUB是汇编语言中的一条减法指令,上面这条语句用来将ESP的值减去8个字节.执行该指令前ESP的值为:0019FF38,执行后变为:0019FF30.<strong>为什么要减去8个字节</strong>,其实质为函数的局部变量  (a与b)开辟空间,以便将它们保存在栈中.由于局部变量a与b都是long型,它们分别占据4个字节大小,所以需要在栈中开辟8个字节的空间来保存这2个变量.</p>
-<p>使用SUB指令从ESP中减去8个字节,为2个函数变量开辟栈空间后,在main()内部,无论ESP的值如何变化,变量a与b的栈空间都不会受到损坏.由于EBP的值在main()函数内部是固定不变的,我们就能以它作为基准来访问函数的局部变量了.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">00401026        mov [EBP-4],1        ;  [EBP-4]  =  local  &apos;a&apos;</div><div class="line">0040102D        mov [EBP-8],2        ;  [EBP-8]  =  local  &apos;b&apos;</div></pre></td></tr></table></figure>
-<p>分析上面的2条MOV命令,它们的含义是”把数据1与2分别保存到[local.1]与[local2]中”.</p>
-<p><img src="/2017/03/28/第7章-栈帧/5.png" alt="变量a与变量b" title="变量a与变量b"></p>
-<h1 id="2-4-add-函数参数传递与调用"><a href="#2-4-add-函数参数传递与调用" class="headerlink" title="2.4  add()函数参数传递与调用"></a>2.4  add()函数参数传递与调用</h1><blockquote>
-<p> StackFrame.cpp源代码中使用如下语句调用add()函数,执行加法运算并输出函数返回值.<br>    printf(“%d\n”, add(a, b));</p>
-</blockquote>
-<p><img src="/2017/03/28/第7章-栈帧/6.png" alt="5行汇编代码" title="5行汇编代码"></p>
-<p>请看上面5行汇编代码,它描述了调用add()函数的整个过程.地址40103C处为”CALL  401000”命令,该命令用于调用401000处的函数,而401000处的函数即为add()函数.函数add()接收a,b这2个长整型参数,所以调用add()之前先把2个参数压入栈, 地址401034~40103B之间的代码即用于此.参数入栈的顺序与C语言源码中的参数顺序刚好相反.换言之,变量b首先入栈,接着变量a再入栈.执行完地址401034~40103B之间的代码后,栈内变化情况所示.</p>
-<p><img src="/2017/03/28/第7章-栈帧/7.png" alt="传递add()函数的参数" title="传递add()函数的参数"></p>
-<p>接下来进入add()函数(401000)内部,分析整个函数调用过程.</p>
-<p><strong>返回地址</strong><br>执行CALL命令进入被调用的函数之前,CPU会先把函数的返回地址压入栈,用作函数执行完毕后的返回地址.在地址处调用了40103C处调用了add()函数,它的下 一条命令的地址为401041.函数add()执行完毕后,程序执行完返回到401041地址处,该地址即被称为add()函数的返回地址.执行完40103C地址处的CALL命令后进入函数,栈内情况如图:<br><img src="/2017/03/28/第7章-栈帧/8.png" alt="函数add()返回地址" title="函数add()返回地址"></p>
-<h1 id="2-5-开始执行add-函数-amp-生成栈帧"><a href="#2-5-开始执行add-函数-amp-生成栈帧" class="headerlink" title="2.5  开始执行add()函数&amp;生成栈帧"></a>2.5  开始执行add()函数&amp;生成栈帧</h1><blockquote>
-<p> StackFrame.cpp源代码中,函数add()的前2行代码如下:<br>long add(long a, long b)<br>{</p>
-</blockquote>
-<p>函数开始执行时,栈中会单独生成与其对应的栈帧.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">0040100        push ebp                                                                                                     </div><div class="line">00401001      mov ebp,esp</div></pre></td></tr></table></figure>
-<p>上述2行代码与开始执行main()函数时的代码完全相同,先把EBP值保存到栈中,再把当前的ESP存储到EBP,这样函数add()的栈帧就生成了.</p>
-<p><img src="/2017/03/28/第7章-栈帧/9.png" alt="函数add()的栈帧" title="函数add()的栈帧"></p>
-<p>可以看到,main()函数使用的EBP值(19FF38)被备份到栈中,然后EBP的值被设置为一个新值19FF20.</p>
-<h2 id="2-6-设置add-函数的局部变量-X-Y"><a href="#2-6-设置add-函数的局部变量-X-Y" class="headerlink" title="2.6  设置add()函数的局部变量(X,Y)"></a>2.6  设置add()函数的局部变量(X,Y)</h2><blockquote>
-<p> StackFrame.cpp源代码中.<br>    long x = a, y = b;</p>
-</blockquote>
-<p>上面一行语句声明了2个长整型的局部变量(X,Y),并使用2个形式参数(a,b)分别为它们进行赋值初始.</p>
-<p><code>00401003  sub esp,0x8</code></p>
-<p>在栈内存中为局部变量X,Y开辟8个字节的空间.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">00401006  mov eax,[arg.1]  //a</div><div class="line"></div><div class="line">00401009  mov [local.2],eax  //x</div><div class="line"></div><div class="line">0040100C  mov ecx,[arg.2]  //b</div><div class="line"></div><div class="line">0040100F  mov [local.1],ecx  //y</div></pre></td></tr></table></figure>
-<p><img src="/2017/03/28/第7章-栈帧/10.png" alt="函数add()的局部变量X/Y" title="函数add()的局部变量X/Y"></p>
-<h2 id="2-7-ADD-运算"><a href="#2-7-ADD-运算" class="headerlink" title="2.7  ADD  运算"></a>2.7  ADD  运算</h2><blockquote>
-<p> StackFrame.cpp源代码中,下面这条语句用于返回2个局部变量之和.<br>    return (x + y);</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">00401012  mov eax,[local.2]        //语句执行完毕,变量X的值会被传送到EAX</div><div class="line"></div><div class="line">00401015  add eax,[local.1]        //变量Y</div></pre></td></tr></table></figure>
-<p>上述这条语句中,变量Y与EAX的原值(X)相加,且运算结果被存储到EAX中,运算完后EAX的值为3.</p>
-<h2 id="2-8-删除函数add-的栈帧-amp-函数执行完毕-返回"><a href="#2-8-删除函数add-的栈帧-amp-函数执行完毕-返回" class="headerlink" title="2.8  删除函数add()的栈帧&amp;函数执行完毕(返回)"></a>2.8  删除函数add()的栈帧&amp;函数执行完毕(返回)</h2><blockquote>
-<p> “删除函数栈帧与函数执行完毕返回”对应于StackFrame.app文件中的如下代码.<br>    return (x + y);<br>}</p>
-</blockquote>
-<p>执行完加法运算后,要返回函数add(),在此之前要先删除函数add()的栈帧.</p>
-<p><code>00401018  mov esp,ebp</code></p>
-<p>上面这条命令将当前的EBP赋值给ESP,等价于将EBP中的值恢复到ESP中.</p>
-<p><strong>提示</strong><br>执行完上面的命令后,地址401003处的SUB  ESP,8命令失效,即是函数里面的局部变量不再有效.</p>
-<p><code>0040101A  pop ebp</code></p>
-<p>上面这条命令用于恢复函数add()开始执行时备份到栈中的EBP值,它与401000地址处的PUSH  EBP  命令对应.EBP值恢复为0019FF38,它是main()函数的EBP值.到此,add()函数的栈帧就被删除了.</p>
-<p><img src="/2017/03/28/第7章-栈帧/11.png" alt="删除函数add()的栈帧" title="删除函数add()的栈帧"></p>
-<p>可以看到ESP的值为:0019FF24,该地址值位:401041,它是执行CALL  401000命令时CPU存储到栈中的返回地址.</p>
-<p><code>0040101B  retn</code></p>
-<p>执行上述语句,存储在栈中的返回地址被返回.</p>
-<h2 id="2-9-从栈中删除函数add-的参数-整理栈"><a href="#2-9-从栈中删除函数add-的参数-整理栈" class="headerlink" title="2.9  从栈中删除函数add()的参数  (整理栈)"></a>2.9  从栈中删除函数add()的参数  (整理栈)</h2><p><code>00401041  add esp,0x8</code></p>
-<p>函数add()执行完毕后,就不需要参数a与b了,所以要把esp加上8,将它们从栈中清理掉.</p>
-<h2 id="2-10-调用-printf-函数"><a href="#2-10-调用-printf-函数" class="headerlink" title="2.10  调用  printf()  函数"></a>2.10  调用  printf()  函数</h2><blockquote>
-<p> StackFrame.cpp源代码中用于打印运算结果的语句如下所示.<br>    printf(“%d\n”, add(a, b));</p>
-</blockquote>
-<p>调用printf()函数的汇编代码如下.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">00401044  push eax</div><div class="line"></div><div class="line">00401045  push StackFra.0040B384                           ;  ASCII &quot;%d\n&quot;</div><div class="line"></div><div class="line">0040104A  call StackFra.00401067</div><div class="line"></div><div class="line">0040104F  add esp,0x8</div></pre></td></tr></table></figure>
-<p>地址401044处的EAX寄存器中存储函数add()的返回值,它是执行加法运算后的结果3.地址40104A处的CALL  401067命令中调用的是401067地址处的函数.它是一个C标准函数printf(),由于上面的printf()函数有两个参数,大小为8个字节,所以在40104F地址处使用ADD命令,将ESP加上8个字节,把函数的参数从栈中删除,函数printf()执行完毕后通过ADD命令删除参数.</p>
-<h2 id="2-11-设置返回值"><a href="#2-11-设置返回值" class="headerlink" title="2.11  设置返回值"></a>2.11  设置返回值</h2><blockquote>
-<p>StackFrame.cpp中设置返回值的语句如下:<br>    return 0;</p>
-</blockquote>
-<p>main()函数使用该语句设置返回值  (0).</p>
-<p><code>00401052  xor eax,eax</code></p>
-<p>XOR命令用来进行异或运算,起特点为  <strong>“2个相同的值进行XOR运算,结果为0”.</strong>XOR命令比MOV  EAX  ,0命令执行速度快,常用语寄存器的初始化操作.</p>
-<h2 id="2-12-删除栈帧-main-函数终止"><a href="#2-12-删除栈帧-main-函数终止" class="headerlink" title="2.12  删除栈帧%main()函数终止"></a>2.12  删除栈帧%main()函数终止</h2><blockquote>
-<p>StackFrame.cpp中对于代码如下:<br>    return 0;<br>}<br>最终主函数终止,同add()函数一样,其返回值要先从栈中删除与其对应的栈帧.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">00401054  mov esp,ebp</div><div class="line"></div><div class="line">00401056  pop ebp</div></pre></td></tr></table></figure>
-<p>执行完上面2条命令后,main()函数的栈帧即将被删除,其局部变量a,b也不再有效.执行完毕.</p>
-<p><code>00401057  RETN</code></p>
-<p>执行完上面命令后,主函数执行完毕之后,程序执行跳转到  (401250),该地址指向Visual  C++的启动函数区域,随后执行进程终止代码.</p>
-<h1 id="3-设置-OllyDbg的选项"><a href="#3-设置-OllyDbg的选项" class="headerlink" title="3.  设置  OllyDbg的选项"></a>3.  设置  OllyDbg的选项</h1><h2 id="3-1-打开OllyDbg的Debugging-options对话框-快捷键Alt-O"><a href="#3-1-打开OllyDbg的Debugging-options对话框-快捷键Alt-O" class="headerlink" title="3.1  打开OllyDbg的Debugging  options对话框  (快捷键Alt+O)."></a>3.1  打开OllyDbg的Debugging  options对话框  (快捷键Alt+O).</h2><p><img src="/2017/03/28/第7章-栈帧/12.png" alt="OllyDbg的Debugging  options对话框" title="OllyDbg的Debugging  options对话框"></p>
-<p>可以设置一些适合自己的选项.</p>
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4.  总结"></a>4.  总结</h1><p>栈帧技术使用EBP寄存器(而非ESP寄存器)管理局部变量/参数/返回地址等.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第6章-分析abex-crackme-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第6章-分析abex-crackme-1/" itemprop="url">
-                  第6章 分析abex'crackme#1
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:19:37+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第6章-分析abex-crackme-1/" class="leancloud_visitors" data-flag-title="第6章 分析abex'crackme#1">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Abex’crackme是一个简单的绝著名小程序,国内外都有许多网站都对它进行了详细的讲解与说明.将自己的破解方法与其他人作为比较,能够提供自己的计算水平.</p>
-<h1 id="1-abex’crackme-1"><a href="#1-abex’crackme-1" class="headerlink" title="1.  abex’crackme  #1"></a>1.  abex’crackme  #1</h1><p>调试前先运行程序,显示”Make  me  think  your  HD  is  a  CD-ROM”消息.<br><img src="/2017/03/28/第6章-分析abex-crackme-1/1.png" alt="运行程序" title="运行程序"></p>
-<p>消息的最后部分出现了”CD-Rom”这个词,由于我们没有太多的选择,只能继续点击消息窗口的”确定”按钮.</p>
-<p>程序弹出ERROR消息窗口后就结束了运行.<br><img src="/2017/03/28/第6章-分析abex-crackme-1/2.png" alt="弹出消息窗口" title="弹出消息窗口"></p>
-<h2 id="1-1-开始调试"><a href="#1-1-开始调试" class="headerlink" title="1.1  开始调试"></a>1.1  开始调试</h2><p>首先运行OllyDbg软件载入小程序,代码窗口可以看到程序的汇编代码.<br><img src="/2017/03/28/第6章-分析abex-crackme-1/3.png" alt="EP代码" title="EP代码"></p>
-<p>EP代码非常短,是因为采用了汇编语言写出来的可执行文件,如果是使用了VC++/VC/Delphi等开发工具编写程序时,除了自己编写的代码外,还有一部分启动函数是由编译器添加的,经过反编译后,代码看上去就变得非常复杂.但是如果直接使用了汇编语言编写程序,汇编代码会直接变为反汇编代码.<code>main()</code>直接出现在EP中,简单直观.</p>
-<h2 id="1-2-分析代码"><a href="#1-2-分析代码" class="headerlink" title="1.2  分析代码"></a>1.2  分析代码</h2><p>重点看部分关于  Win32  API  调用的内容.<br><img src="/2017/03/28/第6章-分析abex-crackme-1/4.png" alt="Win32  API  调用的内容" title="Win32  API  调用的内容"></p>
-<p>在消息窗口按”确定”后,程序会调用<code>GetDriveTyppe()</code>  API,获取C驱动器的类型(大部分返回的是HDD类型),然后操作它,使之被识别为CD-ROM类型,再在消息窗口输出”OK,I  really  think  that  your  HD  is  a  CD-ROM  !”.下面逐行分析crackme的代码.<br><img src="/2017/03/28/第6章-分析abex-crackme-1/5.png" alt="比较两值" title="比较两值"></p>
-<p>若两值相等,则跳转到<code>40103D</code>,否则从<code>401028</code>继续执行!</p>
-<p><strong>提示</strong></p>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PUSH</td>
-<td>入栈指令</td>
-</tr>
-<tr>
-<td>CALL</td>
-<td>调用指定的函数</td>
-</tr>
-<tr>
-<td>INC</td>
-<td>值加1</td>
-</tr>
-<tr>
-<td>DEC</td>
-<td>值减1</td>
-</tr>
-<tr>
-<td>JMP</td>
-<td>跳转到制定地址</td>
-</tr>
-<tr>
-<td>CMP</td>
-<td>比较给定的两个操作数与SUB命令类似,但操作数的值不会改变,仅改变EFLAGS寄存器.  (若2个操作数的值一致,SUB结果为0,ZF设置为1)</td>
-</tr>
-<tr>
-<td>JE</td>
-<td>条件跳转指令  (若ZF为1,则跳转)</td>
-</tr>
-</tbody>
-</table>
-<h1 id="2-破解"><a href="#2-破解" class="headerlink" title="2.  破解"></a>2.  破解</h1><p>首先移动光标到401026地址处,按空格键,在打开的汇编窗口中将汇编指令<code>JE  SHORT  0040130D</code>更改为<code>JMP  0040103D</code>,如图所示:</p>
-<p><img src="/2017/03/28/第6章-分析abex-crackme-1/6.png" alt="修改汇编指令" title="修改汇编指令"></p>
-<p>意思就是将条件分支语句(JE)替换为无条件跳转语句(JMP).</p>
-<h1 id="3-将参数压入栈"><a href="#3-将参数压入栈" class="headerlink" title="3.  将参数压入栈"></a>3.  将参数压入栈</h1><p>首先,请看地址00401000~0040100E之间的命令,可以发现调用MessageBoxA()函数之前使用了4个PUSH命令,把函数需要的参数逆序压入栈.<br><img src="/2017/03/28/第6章-分析abex-crackme-1/7.png" alt="4个PUSH命令" title="4个PUSH命令"></p>
-<p>将上述汇编代码转换为C语言函数调用代码,如下所示.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MessageBox(<span class="literal">NULL</span>,<span class="string">"Make  me  think  your  HD  is  a  CD-Rom."</span> ,<span class="string">"abex' 1st crackme"</span>,MB_OK|MB_APPLMODAL);</div></pre></td></tr></table></figure>
-<p>比较C语言代码与汇编代码可以看到,函数调用时的参数顺序(正序)与参数入栈时的顺序(逆序)相反.那么参数入栈时,为什么采用逆序的方式?我们可以从内存结构(FILO,Firts  In  Last  Out)即可.</p>
-<blockquote>
-<p> 栈的结构是FILO  (先进后出),所以把参数压入栈时,只有按照逆序的方式压入,MessageBoxA()函数才能以正确的顺序接收到该参数!</p>
-</blockquote>
-<p>利用调试器执行到<code>EIP=0040100E</code>地址处,观察右下角的栈窗口.<br><img src="/2017/03/28/第6章-分析abex-crackme-1/栈.png" alt="栈" title="栈"></p>
-<p>MessageBoxA()函数从栈中获取需要的参数时,存储在栈中的参数会按照先进后出的规则依次弹出.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第5章-栈/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第5章-栈/" itemprop="url">
-                  第5章 栈
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:17:55+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第5章-栈/" class="leancloud_visitors" data-flag-title="第5章 栈">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>栈(Stack)的用途广泛,通常用于存储局部变量/传递函数参数/保存函数返回地址等.</p>
-<h1 id="1-栈"><a href="#1-栈" class="headerlink" title="1. 栈"></a>1. 栈</h1><p>栈内存在进程中的作用如下:</p>
-<ul>
-<li>暂时保存函数内的局部变量.</li>
-<li>调用函数时传递参数.</li>
-<li>保存函数返回后的地址.</li>
-</ul>
-<h2 id="1-1-栈的特征"><a href="#1-1-栈的特征" class="headerlink" title="1.1 栈的特征"></a>1.1 栈的特征</h2><p><img src="/2017/03/28/第5章-栈/1.png" alt="栈" title="栈"><br>一个进程中,栈顶指针(ESP)初始状态指向栈底端.执行<code>PUSH</code>命令将数据压入栈时,栈顶指针就会上移到栈顶端.执行<code>POP</code>命令从栈中弹出数据时,若栈为空,则栈顶指针重新移动到栈底端.向栈中压数据就像一层层砌砖,每向上砌一层,砖墙就增高一点儿.</p>
-<h1 id="1-2-栈操作示例"><a href="#1-2-栈操作示例" class="headerlink" title="1.2 栈操作示例"></a>1.2 栈操作示例</h1><p>栈顶指针的值为<code>19FF84</code>,观察右下角的栈长裤,可以看到ESP指向的地址及其值.<br><img src="/2017/03/28/第5章-栈/2.png" alt="栈的初始状态" title="栈的初始状态"></p>
-<p>在代码窗口中按F7键(Step Into),执行<code>401000</code>地址处的<code>PUSH 100</code>命令.</p>
-<p>可以看到ESP值变为<code>19FF80</code>,比原来减少了<code>4</code>个字节,并且当前栈顶指针指向<code>19FF80</code>,该地址中保存着<code>100</code>这个值.换言之,执行<code>PUSH</code>命令时,数值<code>100</code>被压入栈,ESP随之向上移动,即ESP的值减少了<code>4</code>个字节.再次按F7(Step Into),执行<code>401005</code>地址处的<code>POP  EAX</code>命令.<br><img src="/2017/03/28/第5章-栈/3.png" alt="PUSH命令" title="PUSH命令"></p>
-<p>执行完<code>POP  EAX</code>命令后,ESP值又增加了<code>4</code>个字节,变为<code>19FF84</code>,栈又变为初始状态.换言之,从栈中弹出数据后,ESP随之向下移动.向栈压入数据从栈中弹出数据时,栈顶指针的变化情形如下:</p>
-<ul>
-<li>向栈压入数据时,栈顶指针减小,向低地址移动;从栈中弹出数据时,栈顶指针增高,向高地址移动.</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2511,7 +3144,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">119</span>
+                <span class="site-state-item-count">124</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2522,7 +3155,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2533,7 +3166,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
