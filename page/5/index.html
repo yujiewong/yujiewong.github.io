@@ -314,6 +314,890 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第13章-运行时压缩/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/第13章-运行时压缩/" itemprop="url">
+                  第13章 运行时压缩
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:58:27+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
+                    <span itemprop="name">ReverseEngineerin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第13章-运行时压缩/" class="leancloud_visitors" data-flag-title="第13章 运行时压缩">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-数据压缩"><a href="#1-数据压缩" class="headerlink" title="1.  数据压缩"></a>1.  数据压缩</h1><p>经过压缩的文件若能100%恢复,就称该压缩为”无损压缩”(Lossless  Data  Compression)  ;若不能恢复原状,称之为”有损压缩”(Loss  Data  Compression).</p>
+<h2 id="1-1-无损压缩"><a href="#1-1-无损压缩" class="headerlink" title="1.1  无损压缩"></a>1.1  无损压缩</h2><p>它们最根本的压缩理念也是Run-Lenght,  Lempel-Ziv,  Huffman,  然后应有了一些各自特有的技术(压缩率,压缩/解压时间).</p>
+<h2 id="1-2-有损压缩"><a href="#1-2-有损压缩" class="headerlink" title="1.2  有损压缩"></a>1.2  有损压缩</h2><p>有损压缩允许压缩文件(数据)时损失一定信息,以此换取高压缩率.</p>
+<h1 id="2-运行时压缩器"><a href="#2-运行时压缩器" class="headerlink" title="2.  运行时压缩器"></a>2.  运行时压缩器</h1><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>普通压缩</th>
+<th>运行时压缩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对象文件</td>
+<td>所有文件</td>
+<td>PE文件(exe,dll,sys)</td>
+</tr>
+<tr>
+<td>压缩结果</td>
+<td>压缩文件(zip,rar)</td>
+<td>PE文件(exe,dll,sys)</td>
+</tr>
+<tr>
+<td>解压缩方式</td>
+<td>使用专门解压缩程序</td>
+<td>内部含有解码程序</td>
+</tr>
+<tr>
+<td>文件是否可执行</td>
+<td>本身不可执行</td>
+<td>本身可执行</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>可以对所有文件以高压缩率压缩</td>
+<td>无须专门解压缩程序便可直接运行</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>若无专门解压缩软件则无法使用压缩文件</td>
+<td>每次运行均需要解码程序导致运行时间过长</td>
+</tr>
+</tbody>
+</table>
+<p>把普通PE文件创建后运行时压缩文件的实用程序称为”压缩器(Packer)”.经反逆向(Anti-Reversing)技术特别处理的压缩器称为保护器(Protector).</p>
+<h2 id="2-1-压缩器"><a href="#2-1-压缩器" class="headerlink" title="2.1  压缩器"></a>2.1  压缩器</h2><p>PE压缩器是指可执行文件的压缩器,称为”运行时压缩器”,它是PE文件的专用压缩器.</p>
+<ul>
+<li><p>实用目的<br>压缩PE文件的大小,便于网络传输保存<br>隐藏PE文件内部代码与资源<br>压缩后的数据以难以辨认的二进制保存,从文件本身来看,还能有效隐藏内部代码与资源.</p>
+</li>
+<li><p>使用现状</p>
+</li>
+</ul>
+<p>现状的实用程序,”打补丁”文件,普通程序都广泛应用运行时压缩.</p>
+<ul>
+<li>压缩器种类<br>PE压缩器大致分两类  :  一类是单纯用于压缩普通PE文件的压缩器;另一类是对源文件进行较大变形,严重破坏PE头的压缩器.</li>
+</ul>
+<h2 id="2-2-保护器"><a href="#2-2-保护器" class="headerlink" title="2.2  保护器"></a>2.2  保护器</h2><p>不但像普通压缩器一样仅对PE文件进行运行时压缩,而应用了多种防止代码逆向分析的技术.</p>
+<ul>
+<li><p>使用目的<br>防止破解,保护代码与资源.</p>
+</li>
+<li><p>使用现状<br>安全保护程序为了防止恶意破解而使用各种保护器来保护自己,常见的恶性代码中也大量使用保护器来防止(或减少)杀毒软件的检测.有些保护器还提供”多变的代码”,每次都会生成不同形态(但功能相同)的代码,这给病毒诊断带来很大的困难.</p>
+</li>
+<li><p>保护器种类<br>保护器种类多样,有公用程序,商业程序,还有专门提供而已代码使用的保护器.</p>
+</li>
+</ul>
+<h1 id="3-运行时压缩测试"><a href="#3-运行时压缩测试" class="headerlink" title="3.  运行时压缩测试"></a>3.  运行时压缩测试</h1><p>用压缩器UPX压缩notepad.exe,比较了下文件状态.</p>
+<p><img src="/2017/03/28/第13章-运行时压缩/1.png" alt="比较notepad.exe与notepad_upx.exe" title="比较notepad.exe与notepad_upx.exe"></p>
+<blockquote>
+<p>比较notepad.exe与notepad_upx.exe</p>
+<ul>
+<li>PE头的大小一样(0~400h)</li>
+<li>节区名称改变(“.text-&gt;”upx0”,”.data”-&gt;”upx1”).</li>
+<li>第一个节区的RawDataSize=0(文件中的大小为0).</li>
+<li>EP位于第二个节区(原notepad.exe的EP在第一个节区).</li>
+<li>资源节区(.rsrc)大小几乎无变化.</li>
+</ul>
+</blockquote>
+<p>我们用PEView查看第一个节区头,如图.</p>
+<p><img src="/2017/03/28/第13章-运行时压缩/2.png" alt="PEView" title="PEView"></p>
+<p>从VirtualSize值可以发现问题,第一个节区的VirtualSize值竟被设置为10000(而SizeOFRawData值为0).也就是说,经过UPX压缩后的PE文件在运行瞬间将(文件中)压缩的代码解压到(内存中的)第一个节区.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第12章-PE文件格式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/第12章-PE文件格式/" itemprop="url">
+                  第12章 PE文件格式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:51:14+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
+                    <span itemprop="name">ReverseEngineerin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第12章-PE文件格式/" class="leancloud_visitors" data-flag-title="第12章 PE文件格式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.  介绍"></a>1.  介绍</h1><p>PE文件是Window操作系统下使用的可执行文件格式.PE文件是指32位的可执行文件,也称为PE32.64位的可执行文件称为PE+或PE32+,是PE(pe32)文件的一种扩展形式.</p>
+<h1 id="2-PE文件格式"><a href="#2-PE文件格式" class="headerlink" title="2.  PE文件格式"></a>2.  PE文件格式</h1><table>
+<thead>
+<tr>
+<th>种类</th>
+<th>主扩展名  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可执行系列</td>
+<td>EXE  /  SCR  </td>
+</tr>
+<tr>
+<td>库系列</td>
+<td>DLL  /  OCX  /  CPL  /  DRV  </td>
+</tr>
+<tr>
+<td> 驱动程序系列</td>
+<td>SYS  /  VXD</td>
+</tr>
+<tr>
+<td> 对象文件序列</td>
+<td>OBJ</td>
+</tr>
+</tbody>
+</table>
+<p>OBJ(对象)文件之外的所有文件都是可执行文件,DLL  /  SYS  文件等虽然不能直接在Shell(Explorer.exe)中运行,但可以使用其它方法执行.</p>
+<p>下面以打开<code>notepad.exe</code>为例,notepad.exe文件运行需要的所有信息都存储在PE头中,如果加载到内存,从何处开始运行,运行中需要什么DLL,有哪些堆栈内存等,大量信息以结构体形式存储在PE头中, 学习PE文件格式就是学习PE头中的结构体.<br><img src="/2017/03/28/第12章-PE文件格式/1.png" alt="notepad.exe文件" title="notepad.exe文件"></p>
+<h1 id="2-1-基本结构"><a href="#2-1-基本结构" class="headerlink" title="2.1  基本结构"></a>2.1  基本结构</h1><p>从  DOS  头(Dos  header)到节区头(Section  header)是PE头部分,其下的节区合称PE体.文件中使用偏移(offset),内存中使用VA(Virtual  Address  ,虚拟地址)来表示位置.文件加载到内存时,情况就会发生变化(节区的大小,位置等).文件的内容一般可分为代码(.text)  /  数据(.data)  /  资源(.rsrc)节,分别保存.</p>
+<p>各节区头定义了各节区在文件或内存中的大小,位置,属性等.</p>
+<p>PE头与各节区的尾部存在一个区域,称为NULL填充(NULL  padding).在计算机中,为了提高处理文件,内存,网络包的效率.文件  /  内存中各节区的起始位置应该在各个文件  /  内存  最小单位的倍数位置上,空白区域将用NULL填充.</p>
+<p><img src="/2017/03/28/第12章-PE文件格式/2.png" alt="notepad.exe加载到内存中的情形" title="notepad.exe加载到内存中的情形"></p>
+<h1 id="2-2-VA-amp-RVA"><a href="#2-2-VA-amp-RVA" class="headerlink" title="2.2  VA  &amp;  RVA"></a>2.2  VA  &amp;  RVA</h1><p>VA指的是进程虚拟内存的绝对地址,RVA(Relative  Virtual  Address,相对虚拟地址)指从某个基准位置(ImageBase)开始的相对地址.VA  与  RVA  满足下面的换算关系.<br><code>RVA  +  ImageBase  =  VA</code><br>PE头内部信息大多以RVA形式存在.原因在于,PE文件(主要是DLL)加载到进程虚拟内存的特定位置时,该位置可能已经加载了其他PE文件(DLL).此时必须通过重定位(Relocation)将其加载到其他空白的位置,若PE头信息使用的是VA,则无法正常访问,因此使用RVA来定位信息,即是发生了重定位,只要相对于基准位置的相对地址没有变化,就能正常访问到指定信息,不会出现任何问题.</p>
+<h1 id="3-PE头"><a href="#3-PE头" class="headerlink" title="3.  PE头"></a>3.  PE头</h1><h2 id="3-1-DOS-头"><a href="#3-1-DOS-头" class="headerlink" title="3.1  DOS  头"></a>3.1  DOS  头</h2><p>在PE头的最前面添加了一个IMAGE_DOS_HEADER结构体,用来扩展已经有的DOS  EXE头.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">typedef struct _IMAE_DOS_HEADER &#123;		//DOS .EXE header                                    位置</div><div class="line">	WORD e_magic;						//Magic number;                                      0x00</div><div class="line">	WORD e_cblp;                        //Bytes on last page of file                         0x02</div><div class="line">	WORD e_cp;                          //Pages in file										 0x04</div><div class="line">	WORD e_crlc;                        //Relocations                                        0x06</div><div class="line">	WORD e_cparhdr;						//Size of header in paragraphs                       0x08</div><div class="line">	WORD e_minalloc;                    //Minimum extra paragraphs needed                    0x0A</div><div class="line">	WORD e_maxalloc;					//Maximum extra paragraphs needed                    0x0C</div><div class="line">	WORD e_ss;                          //Initial (relative) SS value						 0x0E</div><div class="line">	WORD e_sp;							//Initial SP value									 0x10</div><div class="line">	WORD e_csum;						//Checksum											 0x12</div><div class="line">	WORD e_ip;							//Initial IP value									 0x14</div><div class="line">	WORD e_cs;							//Initial (relative) CS value                        0x16</div><div class="line">	WORD e_lfarlc;						//File address of relocation table                   0x18</div><div class="line">	WORD e_ovno;						//Overlay number                                     0x1A</div><div class="line">	WORD e_res[4];						//Reserved words                                     0x1C</div><div class="line">	WORD e_oemid;						//OEM identifier (for e_oeminfo)                     0x24</div><div class="line">	WORD e_oeminfo;						//OEM information; e_oemid specific                  0x26</div><div class="line">	WORD e_res2[10];					//Reserved words                                     0x28</div><div class="line">	LONG e_lfanew;						//File address of new exe header                     0x3C</div><div class="line">&#125; IMAGE_DOS-HEADER, *PIMAGE_DOS_HEADER;</div></pre></td></tr></table></figure>
+<p>IMAGE_DOS_HEADER  结构体的大小为40个字节,从该结构体必须知道两个重要成员,第一个字段e_magic与最后一个字段e_lfanew.</p>
+<blockquote>
+<p>e_magic  :  DOS签名(signature,  4D5A=&gt;ASCII值”MZ”)<br>e_lfanew  :  指示NT头的偏移(根据不同文件拥有可变值).</p>
+</blockquote>
+<p>所有PE文件在开始部分(e_magic)都有DOS签名(“MZ”).e_lfanew值指向NT头所在位置(NT头的名称在IMAGE_DOS_HEADERS).</p>
+<p>使用  Hex  Editor  打开  notepad.exe  ,查看IMAGE_DOS_HEADERS结构体.</p>
+<p><img src="/2017/03/28/第12章-PE文件格式/3.png" alt="IMAGE_DOS_HEADERS" title="IMAGE_DOS_HEADERS"></p>
+<p>根据  PE  规范,文件开头的2个字节为4D5A,e_lfanew值为000000E0,假若修改了这些值,可以发现程序无法正常运行,因为根据PE的规范它已经不是PE文件了.</p>
+<h2 id="3-2-DOS-存根"><a href="#3-2-DOS-存根" class="headerlink" title="3.2  DOS  存根"></a>3.2  DOS  存根</h2><p>DOS存根(stub)在DOS头下方,是个可选项,且大小不固定(即使没有DOS存根,文件也能正常运行).DOS存根由代码与数据混合而成.</p>
+<p><img src="/2017/03/28/第12章-PE文件格式/4.png" alt="DOS存根" title="DOS存根"></p>
+<p>文件偏移40~4D区域为16位的汇编指令.</p>
+<p>打开命令窗口,输入<code>debug  c:\windows\notepad.exe</code></p>
+<h2 id="3-3-NT-头"><a href="#3-3-NT-头" class="headerlink" title="3.3  NT  头"></a>3.3  NT  头</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">typedef struct _IMAGE_DOS_HEADER</div><div class="line">&#123;</div><div class="line">    DWORD  Signature;</div><div class="line">    IMAGE_FILE_HEADER  FileHeader;</div><div class="line">    IMAGE_ OPTIONAL_HEADER32  OptionalHeader;</div><div class="line">&#125; IMAGE_DOS_HEADER, *PIMAGE_DOS_HEADER32;</div></pre></td></tr></table></figure>
+<p>IMAGE_DOS_HEADERS结构体由三个成员组成, 第一个成员的签名为(Signature)结构体,其值为50450000h(“PE”00).另外两个成员分别为文件头(File  Header)与可选头(Optional  Header)结构体.<br><img src="/2017/03/28/第12章-PE文件格式/5.png" alt="IMAGE_DOS_HEADERS" title="IMAGE_DOS_HEADERS"></p>
+<h2 id="3-4-NT头-文件头"><a href="#3-4-NT头-文件头" class="headerlink" title="3.4  NT头  :  文件头"></a>3.4  NT头  :  文件头</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">typedef struct _IMAGE_DOS_HEADER</div><div class="line">&#123;</div><div class="line">    WORD  Machine;</div><div class="line">    WORD  NumberOfSections;</div><div class="line">    DWORD  TimeDateStamp;</div><div class="line">    DWORD  PointerToSymbolTable;</div><div class="line">    DWORD  NumberOfSymbols;</div><div class="line">    WORD  SizeOfOptionalHeader;</div><div class="line">    WORD  Characteristics;</div><div class="line">&#125; IMAGE_DOS_HEADER, *PIMAGE_DOS_HEADER32;</div></pre></td></tr></table></figure>
+<p>IMAGE_DOS_HEADERS结构体中有以下四种重要成员(若设置不对,不能正常运行.)</p>
+<ul>
+<li>Machine<br>每个CPU都拥有唯一的Machine码,兼容32位  Intel  x86  芯片的Machine码为14C.</li>
+<li><p>NumberOfSections<br>NumberOfSections用来指出文件中存在的节区数量.该值一定要大于0,且当定义的节区数量与实际节区不同时,将发生运行错误.</p>
+</li>
+<li><p>SizeOfOptionalHeader<br>IMAGE_DOS_HEADERS结构体的最后一个成员为IMAGE_DOS_HEADER32结构体.SizeOfOptionalHeader成员用来指定出IMAGE_DOS_HEADER32结构体的长度.IMAGE_DOS_HEADER32结构体由C语言编写而成,故其大小已确认.但是Windows的PE装载器需要查看IMAGE_DOS_HEADER的SizeOfOptionalHeader值,从而识别出IMAGE_DOS_HEADER32结构体的大小.</p>
+</li>
+<li><p>Characteristics</p>
+</li>
+</ul>
+<p>该字段用来标识文件的属性,文件是否可以运行状态,是否为DLL文件等信息.以  bit  OR  形式组合起来.</p>
+<h2 id="3-5-NT头-可选头"><a href="#3-5-NT头-可选头" class="headerlink" title="3.5  NT头  :  可选头"></a>3.5  NT头  :  可选头</h2><p>在IMAGE_DOS_HEADER32结构体中需要关注以下成员,这些值文件是必须运行的,设置错误将导致文件无法正常运行.</p>
+<ul>
+<li><p>Magic<br>为IMAGE_DOS_HEADER32结构体时,Magic码为10B;为IMAGE_DOS_HEADER64结构体时,Magic码为20B;</p>
+</li>
+<li><p>AddressOfEntryPoint<br>AddressOfEntryPoint持有EP的RVA值,该值指出程序最先执行的代码起始地址,相当重要.</p>
+</li>
+<li><p>ImageBase<br>进程虚拟内存的范围是  0~FFFFFFFF(32位系统).PE文件被加载到如此大的内存中时,ImageBase指出文件的优先载入地址.</p>
+</li>
+</ul>
+<p>EXE,DLL文件被装载到用户内存的0~7FFFFFFF中,SYS文件被载入内核内存的80000000~FFFFFFFF中.</p>
+<ul>
+<li><p>SectionAlignment,FileAlignment<br>PE文件的Body部分划分为若干节区,这些节存储着不同类别的数据.FileAlignment指定了节区在磁盘文件中的最小单位,而SectionAlignment则指定了节区在内存中最小单位.磁盘文件或内存的节区大小必定为FileAlignment或SectionAlignment值的整数倍.</p>
+</li>
+<li><p>SizeOfImage<br>加载到PE文件到内存时,SizeOfImage指定了PE  Image在虚拟内存中所占空间的大小.</p>
+</li>
+<li><p>SizeOfHeader<br>SizeOfHeader用来指定整个PE头的大小,该值也必须是FileAlignment的整数倍.</p>
+</li>
+<li><p>SubSystem</p>
+</li>
+</ul>
+<p>该SubSystem值用来区分系统驱动文件(<em>.sys)与普通的可执行文件(</em>.exe,*.dll).Subsystem成员可拥有的值如表.</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+<th>备注  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Driver文件</td>
+<td>系统驱动(如:ntfs.sys)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GUI文件</td>
+<td>窗口应用程序(如:notepad.exe)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CUI文件</td>
+<td>控制台应用程序(如:cmd.exe)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>NumberOfRvaAndSize<br>NumberOfRvaAndSize用来指定DataDirectory(IMAGE_OPTIONAL_HEADER32结构体的最后一个成员)数组的个数.</p>
+</li>
+<li><p>DataDirectory<br>DataDirectory是由IMAGE_DATA_DIRECTORY结构体组成的数组,数组的每项都要被定义的值.</p>
+</li>
+</ul>
+<p><strong>IMAGE_OPTIONAL_HEADER</strong><br><img src="/2017/03/28/第12章-PE文件格式/6.png" alt="notepad.exe的IMAGE_OPTIONAL_HEADER" title="notepad.exe的IMAGE_OPTIONAL_HEADER"></p>
+<p>HEX  Editor  描述的是notepad.exe的IMAGE_OPTIONAL_HEADER结构体区域.</p>
+<h2 id="3-6-节区头"><a href="#3-6-节区头" class="headerlink" title="3.6  节区头"></a>3.6  节区头</h2><p>把具有相拟属性的数据统一保存在一个被称为”节区”的地方,然后需要把各节区属性记录在节区头中.</p>
+<p>需要为每个code/data/resource分别设置不用的特性,访问权限等.<br>类别| 访问权限<br>—|—<br>code| 执行,读取权限<br>data |  非执行,读取权限<br>resource | 非执行,读取权限</p>
+<p><strong>IMAGE_SECTION_HEADER</strong><br>节区头是由IMAGE_SECTION_HEADER结构体组成的数组,每个结构体对应一个节区.</p>
+<h1 id="4-RVA-TO-RAW"><a href="#4-RVA-TO-RAW" class="headerlink" title="4.  RVA  TO  RAW"></a>4.  RVA  TO  RAW</h1><p>PE文件加载到内存时,每个节区都要能准确完成内存地址与文件偏移间的映射.这种映射一般称为  RVA  to  RAW.</p>
+<ul>
+<li>查找RVA所在节区.</li>
+<li>换算公式<br>RAW  -  PointtoRawData  =  RVA  -  VirtualAddress<br>RAW  =  RVA  -  VirtualAddress  +  PointtoRawData  </li>
+</ul>
+<h1 id="5-IAT"><a href="#5-IAT" class="headerlink" title="5.  IAT"></a>5.  IAT</h1><p>IAT  (Import  Address  Table,导入地址表).IAT保存的内容与Windows操作系统的核心进程,内存,DLL结构等有关.简单理解  :  IAT是一种表格,用来记录程序正在使用那些库中的那些函数.</p>
+<h2 id="5-1-DLL"><a href="#5-1-DLL" class="headerlink" title="5.1  DLL"></a>5.1  DLL</h2><ul>
+<li>不要把库包含到程序中,单独组成DLL文件,需要时调用即可.</li>
+<li>内存映射技术使加载后的DLL代码,资源在多个进程中实现共享.</li>
+<li>更新库时只要替换相关DLL文件即可.</li>
+</ul>
+<p>加载DLL文件时有两种方式  :  一种是”显式链接”(Explicit  Linking),程序使用DLL时加载,使用完毕后释放内存;另一种是”隐式链接(Implicit  Linking)”,程序开始时即一同加载DLL,程序终止时再释放占用的内存.</p>
+<h2 id="5-2-IMAGE-IMPORT-DESCRIPTOR"><a href="#5-2-IMAGE-IMPORT-DESCRIPTOR" class="headerlink" title="5.2  IMAGE_IMPORT_DESCRIPTOR"></a>5.2  IMAGE_IMPORT_DESCRIPTOR</h2><p>IMAGE_IMPORT_DESCRIPTOR结构体中记录着PE文件要导入那些库文件.</p>
+<blockquote>
+<p> 提示<br>Import  :  导入,向库提供服务(函数)<br>Export  :  导出,从库向其他PE文件提供服务(函数)</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第11章-Tut-ReverseMe1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/第11章-Tut-ReverseMe1/" itemprop="url">
+                  第11章 Tut.ReverseMe1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:41:53+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
+                    <span itemprop="name">ReverseEngineerin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第11章-Tut-ReverseMe1/" class="leancloud_visitors" data-flag-title="第11章 Tut.ReverseMe1">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-运行"><a href="#1-运行" class="headerlink" title="1.  运行"></a>1.  运行</h1><p>弹出消息对话框,显示2条信息.</p>
+<ul>
+<li>删除所有烦人的Nags</li>
+<li>查找registration  code<br><img src="/2017/03/28/第11章-Tut-ReverseMe1/1.png" alt="选择&quot;确认&quot;按钮,显示主窗口" title="选择&quot;确认&quot;按钮,显示主窗口"></li>
+</ul>
+<h1 id="2-分析"><a href="#2-分析" class="headerlink" title="2.  分析"></a>2.  分析</h1><h2 id="2-1-目标-1-去除消息框"><a href="#2-1-目标-1-去除消息框" class="headerlink" title="2.1  目标(1)  :  去除消息框"></a>2.1  目标(1)  :  去除消息框</h2><p>使用OllyDbg打开文件,从00401162地址处看到主函数<code>ThunRTMain</code>.<br><img src="/2017/03/28/第11章-Tut-ReverseMe1/2.png" alt="EP代码" title="EP代码"></p>
+<p>要去除消息框,只要操作调用消息框的函数部分.Visual  Basic中调用消息框的函数为<code>MSVBVM50.rtcMsgBox</code>.</p>
+<p>在OllyDbg中使用鼠标右键菜单的Search  for-All  intermodular  calls命令,将会列出程序中调用的API目录.<br><img src="/2017/03/28/第11章-Tut-ReverseMe1/3.png" alt="All  intermodular  calls" title="All  intermodular  calls"></p>
+<p>根据函数名称排序,共有四处调用要找到的函数rtcMsgBox.选择鼠标右键菜单中的Set  breakpoint  on  every  call  to  rtcMsgBox菜单,在所有调用rtcMsgBox的代码处设置断点,如图.<br><img src="/2017/03/28/第11章-Tut-ReverseMe1/4.png" alt="在所有调用rtcMsgBox的代码处设置断点" title="在所有调用rtcMsgBox的代码处设置断点"></p>
+<p>然后在调试器中按F9键运行程序,程序运行到设有断点的地方停下来.<br><img src="/2017/03/28/第11章-Tut-ReverseMe1/5.png" alt="运行到402CFE地址处停止" title="运行到402CFE地址处停止"></p>
+<p>向上拉一下滚动条,可以看到消息框显示的字符串,该部分就是程序开始运行时用来显示消息框的代码部分.</p>
+<h2 id="2-2-打补丁-1-去除消息框"><a href="#2-2-打补丁-1-去除消息框" class="headerlink" title="2.2  打补丁(1)  :  去除消息框"></a>2.2  打补丁(1)  :  去除消息框</h2><p><strong>第一次尝试</strong><br>先修改402CFE地址处的CALL命令,如下图示.<br><img src="/2017/03/28/第11章-Tut-ReverseMe1/6.png" alt="402CFE地址处" title="402CFE地址处"></p>
+<p>修改后,402CFE地址处的ADD,ESP,14命令的含义是,按照传递给rtcMsgBox()参数的大小(14)清理栈.并用NOP填充其余两个字节,以保证代码不会乱(原来CALL命令的大小为5个字节,ADD命令用3个字节,还余下2个字节).</p>
+<p>但这样修改是错误的,原因是没有正确处理rtcMsgBox()函数的返回值(EAX寄存器).</p>
+<p><strong>第二次尝试</strong></p>
+<p>可以看到402C17地址处表示函数开始的栈帧prologue.<br><img src="/2017/03/28/第11章-Tut-ReverseMe1/7.png" alt="402C17地址" title="402C17地址"></p>
+<p>402CFE的rtcMsgBox函数调用代码也是属于其他函数内部的代码.所以如果上层函数无法调用,或直接返回.最终将不会调用rtcMsgBox函数.像下面这样修改401C17处的指令</p>
+<p><img src="/2017/03/28/第11章-Tut-ReverseMe1/8.png" alt="原来" title="原来"></p>
+<p><img src="/2017/03/28/第11章-Tut-ReverseMe1/9.png" alt="修改后" title="修改后"></p>
+<blockquote>
+<p> 注意<br>要根据传递给函数的参数大小调整栈(RETN XX).</p>
+</blockquote>
+<p>此时就成功去除消息框.</p>
+<h2 id="2-3-目标-2-查找注册码"><a href="#2-3-目标-2-查找注册码" class="headerlink" title="2.3  目标(2)  :  查找注册码"></a>2.3  目标(2)  :  查找注册码</h2><p>随便输入一个<code>abcd1234</code>,会弹出错误消息框.<br><img src="/2017/03/28/第11章-Tut-ReverseMe1/10.png" alt="错误消息框" title="错误消息框"></p>
+<p>在OllyDbg中检索消息字符串,查看402A69地址处的代码,双击鼠标得到.<br><img src="/2017/03/28/第11章-Tut-ReverseMe1/11.png" alt="402A69地址处的代码" title="402A69地址处的代码"></p>
+<p>看图中代码,402A2A地址处有<code>`I&#39;mlena151</code>字符串,其下方的402A2F地址处是<strong>vbaStrCmp()函数调用代码.</strong>vbaStrCmp()API是VB中比较字符串的函数,在本例中用于比较用户输入的字符串与<code>I&#39;mlena151</code>字符串作为比较,我们再向上拖动滚动条.</p>
+<p>在4028BD处也存在<code>I&#39;mlena151</code>字符串,可以肯定该字符串就是正确的注册码.</p>
+<p><img src="/2017/03/28/第11章-Tut-ReverseMe1/12.png" alt="成功消息框" title="成功消息框"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第10章-函数调用约定/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/第10章-函数调用约定/" itemprop="url">
+                   第10章 函数调用约定
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:40:04+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
+                    <span itemprop="name">ReverseEngineerin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第10章-函数调用约定/" class="leancloud_visitors" data-flag-title=" 第10章 函数调用约定">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-函数调用约定"><a href="#1-函数调用约定" class="headerlink" title="1.  函数调用约定"></a>1.  函数调用约定</h1><p>Calling  Convention  ,它是对函数调用时如何传递参数的一种约定.调用函数前先要把参数压入栈然后再传递给函数.栈就是定义在进程中的一段内存空间,向下(低地址方向)扩展,且其大小被记录在PE头中.也就是说,进程运行时确定栈内存的大小(与malloc/new动态分配内存不同).</p>
+<ul>
+<li><p>函数执行完毕后,栈中的参数如何处理?<br>由于只是临时使用存储在栈中的值,即使不再使用,清除工作也会浪费CPU资源.下一次再向栈存入其他值时,原有值会被自然覆盖掉,并且栈内存是固定的,所以既不能也没必要释放内存.</p>
+</li>
+<li><p>函数执行完毕后,ESP值如何变化?<br>ESP值要恢复到函数调用之前,这样可引用的栈大小才不会减缩.栈内存是固定的,ESP用来指定栈的当前位置,若ESP指向栈底,则无法再使用该栈.函数调用后如何处理ESP,这就是函数用来约定要解决的问题.主要的函数调用约定如下.</p>
+<ul>
+<li>cdecl</li>
+<li>stdcall</li>
+<li>fastcall</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p> 术语说明<br>调用者  ==  调用函数的一方.<br>被调用者  ==  被调用的函数.<br>比如在 main()函数中调用printf()函数时,调用者为main(),被调用者为printf().</p>
+</blockquote>
+<h1 id="1-1-cdecl"><a href="#1-1-cdecl" class="headerlink" title="1.1    cdecl"></a>1.1    cdecl</h1><p>cdecl是主要在C语言中使用的方式,调用者负责处理栈.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> (a + b);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> add(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用OllyDbg调试cdecl.exe文件,从图中可以看到401013~40101C地址间的代码可以发现,add()函数的参数1,2与逆序方式压入栈,调用add()函数(401000)后,使用  ADD  ESP,8命令整理栈.调用者main()函数直接清理其压入栈的函数参数,这样的方式就是cdecl.<br><img src="/2017/03/28/第10章-函数调用约定/1.png" alt="cdecl.exe文件" title="cdecl.exe文件"></p>
+<blockquote>
+<p> 提示<br>cdecl方式的好处在于,它可以像C语言中的printf()函数一样,向被调用函数传递长度可变的参数.这种长度可变的参数在其他调用约定中很难实现.</p>
+</blockquote>
+<h2 id="1-2-stdcall"><a href="#1-2-stdcall" class="headerlink" title="1.2  stdcall"></a>1.2  stdcall</h2><p>stdcall方式常用语Win  32  API,该方式由被调用者清理栈.因C语言中默认的函数调用方式为cdecl.若想使用stdcall方式编译源码,只能使用_stdcall关键字即可.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> _<span class="function">stdcall <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> (a + b);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> add(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用OllyDbg调试stdcall.exe文件,从图中可以看到,在main()函数中调用add()函数后,省略了清理栈的代码(ADD  ESP,8).</p>
+<p>栈的清理工作由add()函数中最后(40100A)的  RETN  8  命令来执行.  RETN  8  命令的含义是  RETN  +  POP8字节,即返回后使用ESP增加指定空间.</p>
+<p><img src="/2017/03/28/第10章-函数调用约定/2.png" alt="stdcall.exe" title="stdcall.exe"><br>stdcall方式的好处在于,被调用者函数内部存在着栈清理代码,与每次调用函数时都要用ADD  ESP,XXX命令的cdecl命令相比,代码尺寸更小.虽然  Win32  API  是使用C语言编写的,但其采用的方式是stdcall方式.</p>
+<h2 id="1-3-fastcall"><a href="#1-3-fastcall" class="headerlink" title="1.3  fastcall"></a>1.3  fastcall</h2><p>fastcall方式与stdcall方式基本类似,但该方式通常会使用寄存器(而非栈内存)去传递那些需要传递给函数的部分参数.若某函数有4个参数,则前两个参数分别使用ECX,EDX寄存器传递.</p>
+<p>fasgcall方式的优势在于可以实现对函数的快速调用(因为从CPU的立场看,访问寄存器的速度要远比内存快得多.)单从函数调用本身来看,fastcall方式非常快,但是有时需要额外的系统分销来管理ECX,EDX寄存器.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第9章-Process-Explorer-最优秀的进程管理工具/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1525,1072 +2409,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第3章-小端序标记法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第3章-小端序标记法/" itemprop="url">
-                  第3章 小端序标记法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:13:00+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第3章-小端序标记法/" class="leancloud_visitors" data-flag-title="第3章 小端序标记法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在计算机领域中,字节序(Byte Ordering)是多字节数据在计算机内存中存储或网络传输时各字节的存储顺序.分为小端序(Little endian)和大端序(Big endian).</p>
-<h1 id="1-字节序"><a href="#1-字节序" class="headerlink" title="1. 字节序"></a>1. 字节序</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">BYTE  b  =  0x12;</div><div class="line">WORD  w  =  0x1234;</div><div class="line">DWORD  dw  =  0x12345678;</div><div class="line">char  str[ ]  =  &quot;abcde&quot;;</div></pre></td></tr></table></figure>
-<p>以下为不同数据根据不同字节序保存时的不同:</p>
-<table>
-<thead>
-<tr>
-<th>TYPE</th>
-<th>Name</th>
-<th>SIZE</th>
-<th>大端序类型</th>
-<th>小端序类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>BYTE</td>
-<td>b</td>
-<td>1</td>
-<td>[12]</td>
-<td>[12]</td>
-</tr>
-<tr>
-<td>WORD</td>
-<td>w</td>
-<td>2</td>
-<td>[12][34]</td>
-<td>[34]  [12]</td>
-</tr>
-<tr>
-<td>DWORD</td>
-<td>dw</td>
-<td>4</td>
-<td>[12][34][56][78]</td>
-<td>[78][56][34][12]</td>
-</tr>
-<tr>
-<td>char[]</td>
-<td>str</td>
-<td>6</td>
-<td>[61][62][63][64][65][00]</td>
-<td>[61][62][63][64][65][00]</td>
-</tr>
-</tbody>
-</table>
-<p><strong> 提示: </strong><br>查看ASCII码表,字母a的ASCII码的十六进制表示为0x61,字母e的ASCII码的十六进程表示为0x65.<strong> 字符串最好都是以NULL结尾.</strong><br>因为数据类型为字节型(BYTE),其长度都为1个字节,所以保存在大端序类型或者小端序类型,字节顺序都一致!如果数据长度超过2个字节,则会在大端序和小端序上面存储的数据不同.如果是字符串被保存在数组str中,字符数组在内存中连续,此时无论在大端序还是小端序,存储顺序都相同!</p>
-<h2 id="1-1-大端序和小端序"><a href="#1-1-大端序和小端序" class="headerlink" title="1.1 大端序和小端序"></a>1.1 大端序和小端序</h2><p>大端序常用于大型UNIX服务器的RISC系列的CPU中,而小端序采用逆向式存<br>储数据,在Intel x86 CPU常用到.</p>
-<h2 id="1-2-在OllyDbg中查看小端序"><a href="#1-2-在OllyDbg中查看小端序" class="headerlink" title="1.2 在OllyDbg中查看小端序"></a>1.2 在OllyDbg中查看小端序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#include &quot;windows.h&quot;</div><div class="line"></div><div class="line">BYTE    b       =   0x12;</div><div class="line">WORD    w       =   0x1234;</div><div class="line">DWORD   dw      =   0x12345678;</div><div class="line">char    str[]   =   &quot;abcde&quot;;</div><div class="line"></div><div class="line">int main(int argc, char *argv[])</div><div class="line">&#123;</div><div class="line">    BYTE    lb  =   b;</div><div class="line">    WORD    lw  =   w;</div><div class="line">    DWORD   ldw =   dw;</div><div class="line">    char    *lstr  =   str;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>用OllyDbg调试,用Go to命令(Ctrl+G)跳转到401000地址<br><img src="/2017/03/28/第3章-小端序标记法/1.png" alt="main()函数" title="main()函数"></p>
-<p>main()函数地址为401000,全局变量b、w、dw、str地址分别为40AC40、40AC44、40AC48、40AC4C.可以来到数据窗口用Go to命令跳转到40AC40处.<br><img src="/2017/03/28/第3章-小端序标记法/2.png" alt="全局变量的内存区域" title="全局变量的内存区域"></p>
-<p>可以看到,变量w与dw中的数据都采用了小端序存储.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第2章-逆向分析Hello-World-程序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第2章-逆向分析Hello-World-程序/" itemprop="url">
-                  第2章 逆向分析Hello World! 程序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:05:19+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第2章-逆向分析Hello-World-程序/" class="leancloud_visitors" data-flag-title="第2章 逆向分析Hello World! 程序">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-Hello-World-程序"><a href="#1-Hello-World-程序" class="headerlink" title="1. Hello World!程序"></a>1. Hello World!程序</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"windows.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"tchar.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, TCHAR *argv[])</div><div class="line">&#123;</div><div class="line">	MessageBox(<span class="literal">NULL</span>,</div><div class="line">			   <span class="string">L"Hello World!"</span>,</div><div class="line">			   <span class="string">L"www.reversecore.com"</span>,</div><div class="line">			   MB_OK);</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>不论用那种语言编写的程序,编译后都会生成二进制可执行文件.</p>
-<h1 id="2-调试HelloWorld-exe程序"><a href="#2-调试HelloWorld-exe程序" class="headerlink" title="2. 调试HelloWorld.exe程序"></a>2. 调试HelloWorld.exe程序</h1><p><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/1.png" alt="OllyDbg基本界面" title="OllyDbg基本界面"></p>
-<p><strong> 提示 </strong></p>
-<ul>
-<li>分析时可采用 OllyDbg 的 Win32 专业调试工具.</li>
-<li>达到一定水平建议使用 Hex -Rays 公司的 IDA Pro.<blockquote>
-<p>代码窗口 : 默认用于显示反汇编代码,适用于显示各种注释,标签,分析代码时显示循环,跳转位置等信息.<br>寄存器窗口 : 实时显示CPU寄存器的值,可用于修改特定的寄存器.<br>栈窗口 : 实时显示ESP寄存器指向的进程栈内存,并允许修改.</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="2-1-入口点"><a href="#2-1-入口点" class="headerlink" title="2.1 入口点"></a>2.1 入口点</h2><p>调试器停止的地点即为HelloWorld.exe执行的起始地址(4011A0),它是一段EP(EntryPoint入口点)代码.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/2.png" alt="地址-指令-反汇编代码-注释]" title="地址-指令-反汇编代码-注释]"></p>
-<p><strong> EP(EntryPoint,入口点)</strong><br>EP是 Window 可执行文件(EXE,DLL,SYS等)的代码入口点,是执行应用程序最先执行的代码的起始位置,它依赖于CPU.</p>
-<h2 id="2-2-跟踪-40270C-函数"><a href="#2-2-跟踪-40270C-函数" class="headerlink" title="2.2 跟踪 40270C 函数"></a>2.2 跟踪 40270C 函数</h2><p><strong> OllyDbg基本指令(适用于代码窗)</strong></p>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>快捷键</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Restart</td>
-<td>Ctrl+F2</td>
-<td>重新开始调试</td>
-</tr>
-<tr>
-<td>Step Into</td>
-<td>F7</td>
-<td>执行一句OP code(操作码),若遇到命令(CALL),将进入函数代码内部</td>
-</tr>
-<tr>
-<td>Step Over</td>
-<td>F8</td>
-<td>执行一句OP code(操作码),若遇到命令(CALL),仅执行函数自身,不跟随进入</td>
-</tr>
-<tr>
-<td>Execute till Return(执行到返回)</td>
-<td>Ctrl+F9</td>
-<td>一直在函数代码内部运行,直到遇到RETN命令,跳出函数</td>
-</tr>
-</tbody>
-</table>
-<p>在 EP 代码的40010A0地址处使用Step Into(F7)指令,进入40270C函数.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/3.png" alt="40270C函数" title="40270C函数"></p>
-<p>4027A1地址处有一个RETN指令,它用于返回函数调用者的下一条指令,一般是被调用函数的最后一句.在4027A1地址处的RETN指令上执行SETP over(F8)或Execute till Return(Ctrl+F9)命令.程序会跳转到4011A5地址处.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/4.png" alt="4011A5函数" title="4011A5函数"></p>
-<h2 id="2-3-跟踪-40104F-跳转语句"><a href="#2-3-跟踪-40104F-跳转语句" class="headerlink" title="2.3 跟踪 40104F 跳转语句"></a>2.3 跟踪 40104F 跳转语句</h2><p>执行4011A5 地址处的跳转命令JMP 0040104F,跳转到40104F.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/5.png" alt="40104F处的部分代码" title="40104F处的部分代码"></p>
-<h2 id="2-4-查找main-函数"><a href="#2-4-查找main-函数" class="headerlink" title="2.4 查找main()函数"></a>2.4 查找main()函数</h2><p>在40104F地址开始,每执行一次Step Into(F7)命令就下移1行代码,移动到401056地址处的CALL 402524函数调用命令时,执行Step Into(F7)命令,进入402524函数.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/6.png" alt="调用40104F" title="调用40104F"></p>
-<p><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/7.png" alt="402524函数" title="402524函数"></p>
-<p>我们很难把402524函数称为Main()函数,因为在它的代码中没发现调用MessageBox()API的代码.执行Execute till Return(Ctrl+F9)指令,跳出402524函数,返回到40105B地址处.</p>
-<p>同样,在40104F地址处执行Step Into(F7)命令调试,遇到函数调用就进入函数查看代码,确认是否是main()函数.若不是main()函数,则使用(Ctrl+F9)命令跳出相关函数,继续以相同方式调试.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/8.png" alt="调用API" title="调用API"></p>
-<p>4010E4地址处的CALL Kernel32.GetCommandLineW指令是调用Win32 API的代码.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/9.png" alt="main()函数" title="main()函数"></p>
-<p>401000函数内部出现了调用MessageBoxW()API的代码,该API的函数参数为与源码内容一致,由此可以判断401000函数就是我们需要找的main()函数.</p>
-<h1 id="3-进一步熟悉调试器"><a href="#3-进一步熟悉调试器" class="headerlink" title="3. 进一步熟悉调试器"></a>3. 进一步熟悉调试器</h1><h2 id="3-1-调试器指令"><a href="#3-1-调试器指令" class="headerlink" title="3.1 调试器指令"></a>3.1 调试器指令</h2><table>
-<thead>
-<tr>
-<th>指令</th>
-<th>快捷键</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Go to</td>
-<td>Ctrl+G</td>
-<td>移动到指定地址,用来查看代码或内存,运行时不可用</td>
-</tr>
-<tr>
-<td>Execute till Cursor</td>
-<td>F4</td>
-<td>执行到光标位置,即直接转到要调试的地址</td>
-</tr>
-<tr>
-<td>Comment</td>
-<td>;</td>
-<td>添加注释</td>
-</tr>
-<tr>
-<td>User-defined comment</td>
-<td></td>
-<td>鼠标右键菜单Search for User-defined comment</td>
-</tr>
-<tr>
-<td>Set/Reset BreakPoint</td>
-<td>F2</td>
-<td>设置或取消断点(BP)</td>
-</tr>
-<tr>
-<td>Run</td>
-<td>F9</td>
-<td>运行(若设置了断点,则执行到断点处)</td>
-</tr>
-<tr>
-<td>Show the previous Cursor</td>
-<td>-</td>
-<td>显示上一个光标的位置</td>
-</tr>
-<tr>
-<td>Preview CALL/JMP address</td>
-<td>Enter</td>
-<td>若光标处有CALL/JMP等指令,则跟踪并显示相关地址(运行时不可用,简单查看函数内容时非常好用)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="3-2-“大本营”"><a href="#3-2-“大本营”" class="headerlink" title="3.2 “大本营”"></a>3.2 “大本营”</h2><p>当每次重新运行调试器时,调试器会返回到EP处,并从此处新开始调试.</p>
-<h2 id="3-3-设置”大本营”的四种方法"><a href="#3-3-设置”大本营”的四种方法" class="headerlink" title="3.3 设置”大本营”的四种方法"></a>3.3 设置”大本营”的四种方法</h2><ul>
-<li><strong>GoTo命令 </strong></li>
-</ul>
-<p>设置地址40104F.执行Go to(Ctrl+G)命令,在文本框中输入”40104F”<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/10.png" alt="Go to(Ctrl+G)命令" title="Go to(Ctrl+G)命令"></p>
-<p>执行Execute till cursor(F4)命令,让调试运行到该处,然后从40104F处开始调试代码.</p>
-<ul>
-<li><strong>设置断点 </strong></li>
-</ul>
-<p>调试代码,还可以设置BP断点,让调试直接流转到”大本营”.设置断点后,程序运行到断点处将会暂停.</p>
-<p>在OllyDbg菜单栏中依次选择View-Breakpoints(快捷键ALT+B),打开Breakpoints对话框,列出代码中设置的断点.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/11.png" alt="断点" title="断点"></p>
-<ul>
-<li><strong> 注释 </strong></li>
-</ul>
-<p>键盘上的”;”键可以在指定位置添加注释,还可以通过命令找到它.</p>
-<p>在鼠标右键中依次选择Search for User defined comment,这样就能看到用户输入的所有注释.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/12.png" alt="用户的注释" title="用户的注释"></p>
-<p>红色显示的文字即是光标当前所在的位置,当注释位置与光标位置重合时,将仅以红色方式显示.</p>
-<ul>
-<li><strong> 标签 </strong></li>
-</ul>
-<p>我们能通过标签功能在指定的地址添加特定名称.移动光标到40104F地址处,按”:”键输入标签.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/13.png" alt="标签" title="标签"></p>
-<h1 id="4-快速查找指定代码的四种方法"><a href="#4-快速查找指定代码的四种方法" class="headerlink" title="4. 快速查找指定代码的四种方法"></a>4. 快速查找指定代码的四种方法</h1><p>调试代码时,main()函数并不直接位于可执行代码的EP位置上,出现的是开发工具生成的启动函数.</p>
-<h2 id="4-1-代码执行法"><a href="#4-1-代码执行法" class="headerlink" title="4.1 代码执行法"></a>4.1 代码执行法</h2><p>按F8键逐行执行命令,在某个时刻弹出信息对话框,显示”hello world!”信息.按Ctrl+F2再次载入待调试的可执行文件并重新调试,不断按F8键,某个时刻一定会弹出信息对话框.弹出信息对话框调用时的函数即为main()函数.</p>
-<p><strong> 提示 </strong><br>Win32 应用程序中,API函数的参数是通过栈传递的.VC++中默认字符串是使用Unicode码表示,并且,处理字符串的API函数也全部变更为Unicode系列函数.</p>
-<h2 id="4-2-字符串检索法"><a href="#4-2-字符串检索法" class="headerlink" title="4.2 字符串检索法"></a>4.2 字符串检索法</h2><p>鼠标右键菜单 - Search for - All referenced text strings</p>
-<p>OllDbg初次载入待调试程序有预分析过程,此过程中会查看进程内存,程序中引用的字符串和调用的API都会被摘录出来,调整到另外一个列表中.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/14.png" alt="All referenced text strings" title="All referenced text strings"></p>
-<p>地址401007处有一个PUSH 004092A0命令,该命令引用004092A0处即是字符串”helloworld!”双击,光标定位到main()函数中调用MessageBoxW()函数的代码处,在Dump窗口中使用Go to(Ctrl+G)命令,进一步查看内存4092A0地址处的字符串.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/15.png" alt="4092A0地址处的字符串" title="4092A0地址处的字符串"></p>
-<p><strong> 提示: </strong><br>VC++中,static字符串会被默认保存为Unicode码格式.需要注意的是4092A0地址,它与我们之前代码区地址(401XXX)不同,在helloworld.exe进程中,409XXX地址空间被用来保存程序中的数据,<strong> 代码与数据所在的区域是彼此分开的.</strong></p>
-<h2 id="4-3-API索引法-1-在调用代码中设置断点"><a href="#4-3-API索引法-1-在调用代码中设置断点" class="headerlink" title="4.3 API索引法(1) : 在调用代码中设置断点"></a>4.3 API索引法(1) : 在调用代码中设置断点</h2><p><strong> 鼠标右键菜单 - Search for - All  intermodular calls </strong><br>应用程序想向显示屏输出内容时,需要在程序内部调用Win 32 API.helloworld.exe,它在运行时会弹出一个信息窗口,由此可以判断该程序调用了user32.MessageBox()API.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/16.png" alt="Intermodular calls" title="Intermodular calls"></p>
-<p>可以查看调用MessageBoxW()的代码,该函数位于40100E地址处,它是user.MessageBoxW()API.</p>
-<h2 id="4-4-API索引法-2-在API代码中设置断点"><a href="#4-4-API索引法-2-在API代码中设置断点" class="headerlink" title="4.4 API索引法(2) : 在API代码中设置断点"></a>4.4 API索引法(2) : 在API代码中设置断点</h2><p><strong> 鼠标右键菜单  Search for - Name in all calls </strong><br>如果使用了压缩器/保护器工具对可执行文件进行压缩或保护,因为文件结构的改变.此时用该方法显得十分困难.</p>
-<p>DLL代码库会被加载到进程内存中,然后我们可以直接向DLL代码库添加断点,API是操作系统对用户应用程序提供一系列函数,它们位于C:\windows\system32文件夹中的*.dll文件(如kernel32.dll,user32.dll,gdi32.dll,advapi32.dll,ws2_32.dll等)内部.因为编写的应用程序执行某些操作时,必须使用os提供的API向os提出请求,然后与被调用API对用的系统DLL文件就会被加载到应用程序的进程内存.</p>
-<p>菜单栏-&gt;View-Memory菜单(快捷键ALT+M),打开内存映射窗口.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/17.png" alt="内存映射窗口" title="内存映射窗口"></p>
-<p>然后通过查找命令将光标定位到MessageBoxW上.</p>
-<h1 id="5-使用”打补丁”方式修改”hello-world-”字符串"><a href="#5-使用”打补丁”方式修改”hello-world-”字符串" class="headerlink" title="5. 使用”打补丁”方式修改”hello world!”字符串"></a>5. 使用”打补丁”方式修改”hello world!”字符串</h1><h2 id="5-1-“打补丁”"><a href="#5-1-“打补丁”" class="headerlink" title="5.1 “打补丁”"></a>5.1 “打补丁”</h2><p>使调试流运行到main函数的起始地址处(401000),在401000地址处按F2设置断点,再按F9执行程序.</p>
-<h2 id="5-2-修改字符串的两种方法"><a href="#5-2-修改字符串的两种方法" class="headerlink" title="5.2 修改字符串的两种方法"></a>5.2 修改字符串的两种方法</h2><p><strong> 直接修改字符缓冲区(buffer).</strong><br><strong> 在其他内存区域生成新字符串并传递给消息函数.</strong></p>
-<ul>
-<li><strong> 直接修改字符串缓冲区 </strong><br>在Dump窗口中Ctrl+G快捷键Go to 命令,在窗口中输入4092A0字符串缓冲区.使用鼠标选中4092A0地址的内容,按Ctrl+E快捷键打开编辑窗口 .<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/18.png" alt="helloworld字符串" title="helloworld字符串"></li>
-</ul>
-<p>在Dump窗口中,选中更改后的字符串,通过鼠标右键,在弹出的菜单中选中Copy to executable file 菜单,然后选中保存即可.</p>
-<ul>
-<li><strong> 在其他内存区域新建字符串并传递给消息函数</strong><br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/19.png" alt="main()函数" title="main()函数"></li>
-</ul>
-<p>401007地址处有一条PUSH 00409A0命令,它把409A0地址处的”Hello world!”字符串以参数形式传递给MessageBoxW()函数.</p>
-<p>我们修改字符串地址为4092A0,下面用Dump窗口查看该部分,相应内存区域由NULL填充(NULL padding)结束.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/20.png" alt="内存中NULL填充区域" title="内存中NULL填充区域"></p>
-<p>这就是程序中未使用NULL填充区域.</p>
-<p><strong> 提示 </strong><br>应用程序被加载到内存时有一个最小的内存分配大小,一般为1000.即使程序运行时只占用了100内存,它被加载到内存时依然会分到1000左右的内存,这些内存一部分被程序占用,其余部分分为空余区域,全部被填充为NULL.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/21.png" alt="从空白区域写入新的字符串" title="从空白区域写入新的字符串"></p>
-<p>因为新建了缓冲区,接下来把新的缓冲区地址(409F50)作为参数传递给MessageBoxW()函数.为此,我们在代码窗口使用汇编命令修改代码.用空格键打开Assemble窗口.<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/22.png" alt="原字符串地址" title="原字符串地址"></p>
-<p>在打开的Assemble窗口中输入”PUSH 409F50”指令,那么将把409F50作为新字符串的首地址!<br><img src="/2017/03/28/第2章-逆向分析Hello-World-程序/23.png" alt="新字符串地址" title="新字符串地址"></p>
-<p><strong> 提示 </strong><br>可执行文件被加载到内存并以进程形式运行时,文件并非原封不动地载入内存,而要遵守一定规则进行.在这一过程中,通常进程的内存地址是存在的,但是相应的文件偏移(offset)并不存在.</p>
-<h1 id="6-小结"><a href="#6-小结" class="headerlink" title="6. 小结"></a>6. 小结</h1><ul>
-<li><strong> OllDbg常用命令 </strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>快捷键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Step Into</td>
-<td>F7</td>
-<td>执行一条OP code(操作码),遇到CALL命令时,进入函数代码内部.</td>
-</tr>
-<tr>
-<td>Step Over</td>
-<td>F8</td>
-<td>执行一条OP code(操作码),遇到CALL命令时,不进入函数代码内部,仅执行函数本身.</td>
-</tr>
-<tr>
-<td>Restart</td>
-<td>Ctrl+F2</td>
-<td>再次从头调试(终止调试中的过程,重新载入调试程序)</td>
-</tr>
-<tr>
-<td>Go to</td>
-<td>Ctrl+G</td>
-<td>跳转到指定地址(查看代码时使用,非运行时命令)</td>
-</tr>
-<tr>
-<td>Run</td>
-<td>F9</td>
-<td>运行(运动断点会暂停)</td>
-</tr>
-<tr>
-<td>Execute till return</td>
-<td>Ctrl+F9</td>
-<td>执行函数代码内的命令,直到遇到RETN命令,用于跳出函数整体.</td>
-</tr>
-<tr>
-<td>Execute till cursor</td>
-<td>F4</td>
-<td>执行到光标所在的位置(直接调到要指定的位置)</td>
-</tr>
-<tr>
-<td>Comment</td>
-<td>;</td>
-<td>添加注释</td>
-</tr>
-<tr>
-<td>User-defined comment</td>
-<td>鼠标右键菜单Search for - User-defined comment</td>
-<td>查看用户的注释目录</td>
-</tr>
-<tr>
-<td>Label</td>
-<td>:</td>
-<td>添加标签</td>
-</tr>
-<tr>
-<td>User -defined label</td>
-<td>鼠标右键菜单Search for - Usr-defined label</td>
-<td>查看用户输入的标签目录</td>
-</tr>
-<tr>
-<td>Breakpoint</td>
-<td>F2</td>
-<td>设置或取消断点</td>
-</tr>
-<tr>
-<td>All referenced text strings</td>
-<td>鼠标右键菜单Search for -All referenced text strings</td>
-<td>查看代码中引用的字符串</td>
-</tr>
-<tr>
-<td>All intermodular calls</td>
-<td>鼠标右键菜单Search for -All intermodular calls</td>
-<td>查看代码中调用的所有API函数</td>
-</tr>
-<tr>
-<td>Name is all modules</td>
-<td>鼠标右键菜单Search for -Name is all modules</td>
-<td>查看所有的API函数</td>
-</tr>
-<tr>
-<td>Edit data</td>
-<td>Ctrl+E</td>
-<td>编辑数据</td>
-</tr>
-<tr>
-<td>Assemble</td>
-<td>Space</td>
-<td>编写汇编代码</td>
-</tr>
-<tr>
-<td>Copy to executable file</td>
-<td>鼠标右键菜单Copy to executable file</td>
-<td>创建文本副本(修改的项目被保留)</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>Assemble(汇编语言)基础指令</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CALL XXXX</td>
-<td>调用XXXX地址处的函数</td>
-</tr>
-<tr>
-<td>JMP XXXX</td>
-<td>跳转到XXXX地址处</td>
-</tr>
-<tr>
-<td>PUSH XXXX</td>
-<td>保存XXXX到栈</td>
-</tr>
-<tr>
-<td>RETN</td>
-<td>跳转到栈中保持的地址</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>修改(Path)进程数据与代码的方法</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>术语</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>VA(Virtual Address)</td>
-<td>进程的虚拟地址</td>
-</tr>
-<tr>
-<td>OP code(Operation code)</td>
-<td>CPU指令(字节码byte code)</td>
-</tr>
-<tr>
-<td>PE(Portable Executable)</td>
-<td>Window可执行文件(EXE,DLL,SYS等)</td>
-</tr>
-</tbody>
-</table>
-<p><strong> 疑问 </strong></p>
-<ul>
-<li>快捷键F4与F9最大的不同在于F4可以看做为断点+运行的组合.</li>
-<li>启动函数(Stub code)不是用户编写的代码,在调试程序中,我们不需要仔细分析启动函数.</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第1章-关于逆向工程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/第1章-关于逆向工程/" itemprop="url">
-                  第1章 关于逆向工程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T16:05:25+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
-                    <span itemprop="name">ReverseEngineerin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/第1章-关于逆向工程/" class="leancloud_visitors" data-flag-title="第1章 关于逆向工程">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-逆向工程"><a href="#1-逆向工程" class="headerlink" title="1. 逆向工程"></a>1. 逆向工程</h1><p>逆向工程(Reverse Engineering,简称PE).</p>
-<h1 id="2-代码逆向工程"><a href="#2-代码逆向工程" class="headerlink" title="2. 代码逆向工程"></a>2. 代码逆向工程</h1><p>代码逆向工程(简称RCE)</p>
-<h2 id="2-1-逆向分析法"><a href="#2-1-逆向分析法" class="headerlink" title="2.1 逆向分析法"></a>2.1 逆向分析法</h2><ul>
-<li><p><strong> 1. 静态分析法 </strong><br>静态分析法是在不执行代码文件的情况下,对代码进行静态分析.靠观察代码文件 的外部特征,获取文件的类型(EXE,DLI,DOC,ZIP等),大小,PE头信息,Import/Export API, 内部字符串,是否运行时解压缩,注册信息,调试信息,数字证书等多种信息.</p>
-</li>
-<li><p><strong> 2. 动态分析法 </strong><br>动态分析法是在程序文件执行过程中对代码进行动态的分析,它通过调试来分析代码流,获得内存的状态等.</p>
-</li>
-</ul>
-<p>一般先用静态分析法收集代码信息,然后通过收集到的信息推测程序的结构和行为机制.</p>
-<h2 id="2-2-源代码-十六进制代码-汇编代码"><a href="#2-2-源代码-十六进制代码-汇编代码" class="headerlink" title="2.2 源代码,十六进制代码,汇编代码"></a>2.2 源代码,十六进制代码,汇编代码</h2><p>源代码(Source Code)-&gt;十六进制代码(Hex Code)-&gt;汇编代码(Assembly Code),即把待分析代码转换为汇编代码后才分析.</p>
-<h2 id="2-3-“打补丁”与”破解”"><a href="#2-3-“打补丁”与”破解”" class="headerlink" title="2.3 “打补丁”与”破解”"></a>2.3 “打补丁”与”破解”</h2><p>打补丁(Path)与破解(Crack)的区别在于道德问题.</p>
-<h2 id="2-4-代码逆向准备"><a href="#2-4-代码逆向准备" class="headerlink" title="2.4 代码逆向准备"></a>2.4 代码逆向准备</h2><p>目标&amp;激情&amp;谷歌</p>
-<h2 id="2-5-学习逆向分析技术的禁忌"><a href="#2-5-学习逆向分析技术的禁忌" class="headerlink" title="2.5 学习逆向分析技术的禁忌"></a>2.5 学习逆向分析技术的禁忌</h2><p>勿贪心勿急躁</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/Lesson-18-He-often-does-this-他经常干这种事-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/Lesson-18-He-often-does-this-他经常干这种事-1/" itemprop="url">
-                  Lesson 18 He often does this! 他经常干这种事
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T15:59:52+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index">
-                    <span itemprop="name">English</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/Lesson-18-He-often-does-this-他经常干这种事-1/" class="leancloud_visitors" data-flag-title="Lesson 18 He often does this! 他经常干这种事">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-单词讲解"><a href="#1-单词讲解" class="headerlink" title="1.  单词讲解"></a>1.  单词讲解</h1><ul>
-<li><p>pub  n.小酒馆</p>
-<ul>
-<li>public house</li>
-<li>They  went  to  the  pub  for  a  drink.</li>
-</ul>
-</li>
-<li><p>landlord  n.店主</p>
-<ul>
-<li>The  landlord  asked  Ted  to  pay  the  rent(租金).</li>
-</ul>
-</li>
-<li><p>bill  n.账单</p>
-<ul>
-<li>telephone  bill</li>
-<li>gas  bill</li>
-<li>pay  one’s  bill</li>
-<li>Bill,  please</li>
-<li>a  ten-dollar  bill  一张十美元纸币</li>
-</ul>
-</li>
-</ul>
-<h1 id="2-语法讲解"><a href="#2-语法讲解" class="headerlink" title="2.  语法讲解"></a>2.  语法讲解</h1><ul>
-<li><p>After  I  had  had  lunch  at  a  village  pub…</p>
-<ul>
-<li>had  done  过去完成时  (have为助动词,无词义)</li>
-<li>have  lunch  (have为实义动词,有”吃,喝”)</li>
-<li>have  coffee</li>
-<li>Dave  has  a  brother</li>
-</ul>
-</li>
-<li><p>…I  looked  for(寻找)  my  bag.</p>
-<ul>
-<li>Nick  looked  for  his  dog  everywhere.</li>
-<li>He  didn’t  find  it.</li>
-</ul>
-</li>
-<li><p>I  had  left  it  on  a  chair  beside  the  door…</p>
-<ul>
-<li>leave  sth.  +  介词短语<br>He  left  his  bag  on  the  train.</li>
-<li>beside  prep.  ==  next  to<br>She  is  sitting  beside  the  woindow.</li>
-<li>besides  prep.  ==  in  addition  to<br>Besides  Ellen,  five  of  us  have  watched  the  movie.</li>
-</ul>
-</li>
-<li><p>As  I  was  looking  for  it…</p>
-<ul>
-<li>as  conj.  当…的时候</li>
-<li>As  I  was  writing  a  report(报告),  George  came  up  to  me.</li>
-</ul>
-</li>
-<li><p>I  haven’t  got  my…</p>
-<ul>
-<li>have  got  ==  have<br>Jack  has  got  a  dog  /  Jack  has  a  dog.<br>否定句  :<br>Jack  hasn’t  got  a  dog.  /  Jack  hasn’t  a  dog.<br>疑问句  :<br>Has  Jack  got  a  dog?  /  Has  Jack  a  dog?</li>
-</ul>
-</li>
-<li><p>…  immediately  went  out.</p>
-<ul>
-<li>immediately  ==  at  once  (立即)</li>
-</ul>
-</li>
-<li><p>He  often  does…</p>
-<ul>
-<li>he  ==  the  dog</li>
-</ul>
-</li>
-</ul>
-<h1 id="3-知识扩展"><a href="#3-知识扩展" class="headerlink" title="3.  知识扩展"></a>3.  知识扩展</h1><ul>
-<li>have<ul>
-<li><strong>助动词</strong><br>He  has  never  been  abroad  before.  他以前从来没有出过国.</li>
-<li><strong>实义动词</strong><br>He  has  two  sisters.(有)<br>Jim  had  breakfast  at  7  this  morning.(吃)<br>Would  you  like  to  have  a  cup  of  coffee?(喝)</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2640,7 +2458,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-count">128</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
