@@ -314,6 +314,243 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/6-安卓基础之多线程下载-Activity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/6-安卓基础之多线程下载-Activity/" itemprop="url">
+                  6.安卓基础之多线程下载&Activity
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T15:51:52+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/6-安卓基础之多线程下载-Activity/" class="leancloud_visitors" data-flag-title="6.安卓基础之多线程下载&Activity">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-利用开源框架-xUtils-master-实现多线程下载"><a href="#1-利用开源框架-xUtils-master-实现多线程下载" class="headerlink" title="1.  利用开源框架-xUtils-master-实现多线程下载"></a>1.  利用开源框架-xUtils-master-实现多线程下载</h1><ul>
+<li>需要开启如下权限</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_EXTERNAL_STORAGE"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>实现代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">(View v)</span></span>&#123;</div><div class="line">		 String path = ed_path.getText().toString().trim();</div><div class="line">		 HttpUtils util = <span class="keyword">new</span> HttpUtils();</div><div class="line">		 util.download(path, <span class="string">"/mnt/sdcard/jjyy.exe"</span>, <span class="keyword">true</span>, <span class="keyword">new</span> RequestCallBack&lt;File&gt;() &#123;</div><div class="line">				 <span class="meta">@Override</span></div><div class="line">				 <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(ResponseInfo&lt;File&gt; responseInfo)</span> </span>&#123;</div><div class="line">						 toastshow.setText(<span class="string">"下载成功"</span>);</div><div class="line">				 &#125;</div><div class="line">				 <span class="meta">@Override</span></div><div class="line">				 <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(HttpException error, String msg)</span> </span>&#123;</div><div class="line">						 toastshow.setText(<span class="string">"下载失败!"</span>);</div><div class="line">				 &#125;</div><div class="line">		 &#125;);</div></pre></td></tr></table></figure>
+<h1 id="2-多界面应用的实现"><a href="#2-多界面应用的实现" class="headerlink" title="2.  多界面应用的实现"></a>2.  多界面应用的实现</h1><p><img src="/2017/03/28/6-安卓基础之多线程下载-Activity/1.png" alt="多界面应用的实现" title="多界面应用的实现"></p>
+<p>每个应用都可以实现多个界面,如果一个应用需要多个界面,那么需要在应用中添加多个activity就可以.</p>
+<p>一般情况下,一个应用内部的组件可以使用显示意图也可以使用隐式意图去激活这个组件,但是如果一个外部应用中,想激活另一个应用的组件时,一般推荐使用隐式意图.</p>
+<ul>
+<li>从AndroidManifest.xml注册一个Activity</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  <span class="comment">&lt;!-- 注册一个activity --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".SecondActivity"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- MAIN  :  表示程序入口,LAUNCHER  :  表示应用程序可以从laucher启动 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>设置两个activity_main.xml布局</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- activity_main.xml --&gt;</span></div><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/activity_main"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:paddingBottom</span>=<span class="string">"@dimen/activity_vertical_margin"</span></div><div class="line">    <span class="attr">android:paddingLeft</span>=<span class="string">"@dimen/activity_horizontal_margin"</span></div><div class="line">    <span class="attr">android:paddingRight</span>=<span class="string">"@dimen/activity_horizontal_margin"</span></div><div class="line">    <span class="attr">android:paddingTop</span>=<span class="string">"@dimen/activity_vertical_margin"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">"com.javami.twoactivity.MainActivity"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"Hello World!"</span> /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- activity_main2.xml --&gt;</span></div><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/activity_main"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:paddingBottom</span>=<span class="string">"@dimen/activity_vertical_margin"</span></div><div class="line">    <span class="attr">android:paddingLeft</span>=<span class="string">"@dimen/activity_horizontal_margin"</span></div><div class="line">    <span class="attr">android:paddingRight</span>=<span class="string">"@dimen/activity_horizontal_margin"</span></div><div class="line">    <span class="attr">android:paddingTop</span>=<span class="string">"@dimen/activity_vertical_margin"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">"com.javami.twoactivity.MainActivity"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"Hello World2!"</span> /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div><div class="line"></div><div class="line">```在SecondActivity引入新的布局文件</div><div class="line"></div><div class="line">```java</div><div class="line">public class SecondActivity extends Activity &#123;</div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-1-人品计算器的实现"><a href="#2-1-人品计算器的实现" class="headerlink" title="2.1  人品计算器的实现"></a>2.1  人品计算器的实现</h2><ul>
+<li>务必注册一个活动</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".SecondActivity"</span>&gt;</span><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>activity_main.xml的写法</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">RadioGroup</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/rgb"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> &gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">RadioButton</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/male"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:checked</span>=<span class="string">"true"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"男"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">RadioButton</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/female"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"女"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">RadioButton</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/unknown"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"未知"</span> /&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">RadioGroup</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> &gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/ed_name"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"3"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:onClick</span>=<span class="string">"cacl"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"计算"</span> /&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/rp_value"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>activity_main2.xml的写法</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">android:background</span>=<span class="string">"#44ff0000"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/rp_value"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"我是第二个界面"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/iv"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>MainActivity.java的写法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> EditText ed_name;</div><div class="line">    <span class="keyword">private</span> TextView tv_rp;</div><div class="line">    <span class="keyword">private</span> RadioGroup rgb;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        ed_name = (EditText)findViewById(R.id.ed_name);</div><div class="line">        tv_rp = (TextView) findViewById(R.id.rp_value);</div><div class="line">        rgb = (RadioGroup)findViewById(R.id.rgb);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cacl</span><span class="params">(View v)</span></span>&#123;</div><div class="line">        String name = ed_name.getText().toString().trim();</div><div class="line">        <span class="keyword">if</span>(TextUtils.isEmpty(name))&#123;</div><div class="line">            Toast.makeText(<span class="keyword">this</span>,<span class="string">"姓名不能为空"</span>,<span class="number">0</span>).show();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//将内容A---&gt;B</span></div><div class="line">        Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">        intent.setClass(<span class="keyword">this</span>,SecondActivity.class);</div><div class="line">        intent.putExtra(<span class="string">"name"</span>,name);</div><div class="line">        intent.putExtra(<span class="string">"sex"</span>,rgb.getCheckedRadioButtonId());</div><div class="line">        intent.putExtra(<span class="string">"img"</span>, BitmapFactory.decodeResource(getResources(),R.drawable.cat));</div><div class="line">        startActivity(intent);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>SecondActivity.java的写法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> TextView rp_value;</div><div class="line">    <span class="keyword">private</span> ImageView iv;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main2);</div><div class="line">        rp_value = (TextView)findViewById(R.id.rp_value);</div><div class="line">        iv = (ImageView)findViewById(R.id.iv);</div><div class="line"></div><div class="line">        <span class="comment">//拿到激活SecondActivity是那个意图的对象</span></div><div class="line">        Intent intent = getIntent();</div><div class="line">        String name = intent.getStringExtra(<span class="string">"name"</span>);</div><div class="line">        <span class="keyword">int</span> sex = intent.getIntExtra(<span class="string">"sex"</span>,R.id.male);</div><div class="line"></div><div class="line">        Bitmap img = intent.getParcelableExtra(<span class="string">"img"</span>);</div><div class="line">        iv.setImageBitmap(img);</div><div class="line"></div><div class="line">        <span class="keyword">byte</span>[] bb = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span>&#123;</div><div class="line">            <span class="keyword">switch</span> (sex)&#123;</div><div class="line">                <span class="keyword">case</span> R.id.male:</div><div class="line">                    <span class="comment">//将UTF-8编码变为二进制数据</span></div><div class="line">                    bb = name.getBytes();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> R.id.female:</div><div class="line">                    bb = name.getBytes(<span class="string">"gbk"</span>);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> R.id.unknown:</div><div class="line">                    bb = name.getBytes(<span class="string">"iso8859-1"</span>);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">byte</span>[] result = bb;</div><div class="line">        <span class="keyword">int</span> total = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">byte</span> b : result)&#123;</div><div class="line">            <span class="keyword">int</span> data = b&amp;<span class="number">0xff</span>;</div><div class="line">            total = total+Math.abs(data);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> rp = total%<span class="number">100</span>;</div><div class="line">        String data = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(rp&gt;<span class="number">90</span>)&#123;</div><div class="line">            data = <span class="string">"good!"</span>;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (rp&gt;<span class="number">60</span>)&#123;</div><div class="line">            data = <span class="string">"happy"</span>;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rp&gt;<span class="number">30</span>)&#123;</div><div class="line">            data = <span class="string">"sad"</span>;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            data = <span class="string">"I'm 5555..."</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        rp_value.setText(data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-2-短信助手的应用"><a href="#2-2-短信助手的应用" class="headerlink" title="2.2  短信助手的应用"></a>2.2  短信助手的应用</h2><ul>
+<li>开启短信发送权限与活动的注册</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".SmsAcitivityList"</span>&gt;</span><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".ContactListActivity"</span>&gt;</span><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.SEND_SMS"</span>&gt;</span><span class="tag">&lt;/<span class="name">uses-permission</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>activity_main.xml的写法</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> &gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/ed_contact"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"3"</span></div><div class="line">            <span class="attr">android:hint</span>=<span class="string">"请输入联系人"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:onClick</span>=<span class="string">"selectContact"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"0dip"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"+"</span> /&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/sms_body"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:hint</span>=<span class="string">"请输入短信内容"</span></div><div class="line">        <span class="attr">android:lines</span>=<span class="string">"5"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:onClick</span>=<span class="string">"selectMsg"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"选择短信的模版"</span> /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:onClick</span>=<span class="string">"sendmsg"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"点击发送短信"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>contact_item.xml的写法</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">TextView</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> &gt;</div><div class="line"></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">TextView</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>contactslist.xml的写法</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ListView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/contacts_lv"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"fill_parent"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">ListView</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>smsitem.xml的写法</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">TextView</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> &gt;</div><div class="line"></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">TextView</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>smslist.xml的写法</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ListView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/lv"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"fill_parent"</span></div><div class="line">        &gt;<span class="tag">&lt;/<span class="name">ListView</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>ContactListActivity.java的写法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by 诸葛亮 on 2016/11/20.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContactListActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">    String[] contacts =&#123;</div><div class="line"></div><div class="line">            <span class="string">"13987654321"</span>,</div><div class="line">            <span class="string">"18217180124"</span>,</div><div class="line">            <span class="string">"13687987653"</span>,</div><div class="line">            <span class="string">"13687987222"</span>,</div><div class="line">            <span class="string">"13687987555"</span>,</div><div class="line">            <span class="string">"13687987666"</span>,</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ListView contacts_lv;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line"></div><div class="line">        setContentView(R.layout.contactslist);<span class="comment">//需要传入菜单</span></div><div class="line">        contacts_lv = (ListView)findViewById(R.id.contacts_lv);</div><div class="line"></div><div class="line">        contacts_lv.setAdapter(<span class="keyword">new</span> ArrayAdapter&lt;String&gt;(<span class="keyword">this</span>,R.layout.contact_item,contacts));</div><div class="line"></div><div class="line">        <span class="comment">//添加一个item监听器</span></div><div class="line">        contacts_lv.setOnItemClickListener(<span class="keyword">new</span> AdapterView.OnItemClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</div><div class="line">                String contact = contacts[position];</div><div class="line">                Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">                intent.putExtra(<span class="string">"contact"</span>,contact);</div><div class="line">                setResult(<span class="number">0</span>,intent);</div><div class="line">                finish();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>MainActivity.java的写法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> EditText sms_body;</div><div class="line">    <span class="keyword">private</span> EditText ed_contact;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        sms_body = (EditText)findViewById(R.id.sms_body);</div><div class="line">        ed_contact = (EditText)findViewById(R.id.ed_contact);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//选择联系人</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectContact</span><span class="params">(View v)</span></span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">        intent.setClass(<span class="keyword">this</span>,ContactListActivity.class);</div><div class="line">        startActivityForResult(intent,<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//选择短信</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectMsg</span><span class="params">(View v)</span></span>&#123;</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">        intent.setClass(<span class="keyword">this</span>,SmsAcitivityList.class);</div><div class="line"></div><div class="line">        startActivityForResult(intent,<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//发送普通文本内容内的短信，使用的是SmsMessage类的sendTextMessage()方法</span></div><div class="line"></div><div class="line">    <span class="comment">//首先调用SmsMessage类的getDefault()方法获取到SmsMessage的实例对象</span></div><div class="line">    <span class="keyword">final</span> SmsManager smsManager = SmsManager.getDefault();</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendmsg</span><span class="params">(View v)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/*</span></div><div class="line">     * destinationAddress：手机号码</div><div class="line">     * scAddress：服务中心号码</div><div class="line">     * text：短信内容</div><div class="line">     * sentIntent：PendingIntent，信息发送成功或失败时触发</div><div class="line">     * deliveryIntent：PendingIntent，信息抵达收件人触发</div><div class="line">     */</div><div class="line">        System.out.print(ed_contact.getText().toString().trim());</div><div class="line">        smsManager.sendTextMessage(ed_contact.getText().toString().trim(),<span class="keyword">null</span>,sms_body.getText().toString().trim(),<span class="keyword">null</span>,<span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(requestCode==<span class="number">1</span>)&#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span>(data!=<span class="keyword">null</span>)&#123;</div><div class="line">                String contact = data.getStringExtra(<span class="string">"contact"</span>);</div><div class="line">                ed_contact.setText(contact);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (requestCode==<span class="number">2</span>)&#123;</div><div class="line"></div><div class="line"></div><div class="line">            <span class="keyword">if</span>(data!=<span class="keyword">null</span>)&#123;</div><div class="line">                String msg = data.getStringExtra(<span class="string">"msg"</span>);</div><div class="line">                sms_body.setText(msg);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>SmsAcitivityList.java的写法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by 诸葛亮 on 2016/11/20.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmsAcitivityList</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> ListView lv;</div><div class="line">    String[] msgs = &#123;</div><div class="line">            <span class="string">"想到你的名字心就会砰砰跳！看到你的容颜脸就会火辣辣烧！牵你的手像云朵轻轻飘！你可知道？我被你彻底迷倒！发誓要和你一起变老"</span>,</div><div class="line">            <span class="string">"你是否愿意给我一个依靠：可以让我在红尘的烦恼与喧嚣中一想到你，就会有甜蜜的平静和无穷的动力，就会有足够的勇气继续向前走。"</span>,</div><div class="line">            <span class="string">"命运让我们相遇，让我沉醉在你的眼眸里。我想陪着你，为你阻挡一生的风雨。请你相信，我会让你的生命，充满快乐回忆！"</span>,</div><div class="line">            <span class="string">"我会把心里最好的地方留给你，只要你敲敲门，我就拥你入怀。因为爱你，愿意为你在这世界造一处平台，与你纵观爱情的古往今来。"</span>,</div><div class="line">            <span class="string">"不经意间，相遇；不经意间，相惜；不经意间，刻骨；不经意间，铭记；不经意间，爱上了你。看似不经意，但我真的很在意。"</span>,</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.smslist);</div><div class="line">        lv = (ListView)findViewById(R.id.lv);</div><div class="line"></div><div class="line">        <span class="comment">//设置一个适配器,将意图的内容出传递进去</span></div><div class="line">        lv.setAdapter(<span class="keyword">new</span> ArrayAdapter&lt;String&gt;(<span class="keyword">this</span>,R.layout.smsitem,msgs));</div><div class="line"></div><div class="line">        lv.setOnItemClickListener(<span class="keyword">new</span> OnItemClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</div><div class="line">                String msg = msgs[position];</div><div class="line"></div><div class="line">                Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">                intent.putExtra(<span class="string">"msg"</span>,msg);</div><div class="line">                setResult(<span class="number">0</span>,intent);</div><div class="line">                finish();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-3-给一段文字使用版权链接"><a href="#2-3-给一段文字使用版权链接" class="headerlink" title="2.3  给一段文字使用版权链接"></a>2.3  给一段文字使用版权链接</h2><ul>
+<li>开启联网权限</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>&gt;</span><span class="tag">&lt;/<span class="name">uses-permission</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>基础代码的写法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> TextView links;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        links = (TextView)findViewById(R.id.links);</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> *</div><div class="line">&lt;intent-filter&gt;</div><div class="line">        &lt;action android:name="android.intent.action.VIEW" /&gt;</div><div class="line">        &lt;category android:name="android.intent.category.DEFAULT" /&gt;</div><div class="line">        &lt;category android:name="android.intent.category.BROWSABLE" /&gt;</div><div class="line">        &lt;data android:scheme="http" /&gt;</div><div class="line">        &lt;data android:scheme="https" /&gt;</div><div class="line">        &lt;data android:scheme="about" /&gt;</div><div class="line">        &lt;data android:scheme="javascript" /&gt;</div><div class="line">&lt;/intent-filter&gt;</div><div class="line"></div><div class="line"> */</div><div class="line">        links.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                Intent intent = <span class="keyword">new</span> Intent(<span class="string">"android.intent.action.VIEW"</span>);</div><div class="line">                intent.setData(Uri.parse(<span class="string">"http://www.fkcat.com"</span>));</div><div class="line">                startActivity(intent);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3.  总结"></a>3.  总结</h1><p>加强与总结,多实践代码!并且看谷歌官方文档!</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/5-安卓基础之网络编程-开源框架-多线程下载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2226,215 +2463,6 @@ android:layout_span        合并列(作用在列的身上)</code><br>TableRow�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/27/Lesson-58-A-blessing-in-disguise-是因祸得福吗/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/27/Lesson-58-A-blessing-in-disguise-是因祸得福吗/" itemprop="url">
-                  Lesson 58 A blessing in disguise 是因祸得福吗
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T22:20:20+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index">
-                    <span itemprop="name">English</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/27/Lesson-58-A-blessing-in-disguise-是因祸得福吗/" class="leancloud_visitors" data-flag-title="Lesson 58 A blessing in disguise 是因祸得福吗">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="单词讲解"><a href="#单词讲解" class="headerlink" title="单词讲解"></a>单词讲解</h1><ul>
-<li><p>blessing  n.福气,福分<br>bless  v.祝福,保佑<br>bless  +  _ing<br>It  was  a  blessing  that  he  wasn’t  injured  in  the  accident.</p>
-</li>
-<li><p>disguise  n.伪装<br>a  blessing  in  disguise</p>
-</li>
-<li><p>ting  adj.极小的<br>a  ting  island<br>a  ting  baby</p>
-</li>
-<li><p>possess  v.拥有<br>He  gave  away  everything  he  possessed.<br>Bob  possesses  a  sense  of  humor.<br>possession  n.</p>
-</li>
-<li><p>cursed  adj.可恨的<br>curse  v.诅骂<br>That  cursed  dog  was  barking  all  day.</p>
-</li>
-<li><p>increase  v.增加<br>The  population  of  this  city  has  increased.<br>My  boss  has  promised  that  he  would  increase  my  salary.</p>
-</li>
-<li><p>plant  v.种植<br>plant  trees<br>plant  flowers  in  the  garden</p>
-</li>
-<li><p>church  n.教堂<br>go  to  church  去做礼拜</p>
-</li>
-<li><p>evil  adj.坏的<br>Gargamel  is  an  evil  man  with  evil  ideas.</p>
-</li>
-<li><p>reputation  n.名声<br>The  baker  has  a  good  reputation.<br>The  restaurant  has  gained  a  good  reputation  for  good  food.</p>
-</li>
-<li><p>claim  v.以…为其后果<br>The  tsunami  claimed  thousands  of  lives.</p>
-</li>
-<li><p>victim  n.受害者,牺牲品<br>victims  of  war<br>Sam  fell  victim  to  the  flu.(成为…的受害者)</p>
-</li>
-<li><p>source  n.来源<br>a  source  of  income<br>The  scientists  discovered  the  source  of  the  river.</p>
-</li>
-<li><p>income  n.收入<br>He  spent  half  of  his  income  on  his  new  phone.<br>live  within  one’s  income  过量入为出的生活</p>
-</li>
-</ul>
-<h1 id="语法讲解"><a href="#语法讲解" class="headerlink" title="语法讲解"></a>语法讲解</h1><ul>
-<li><p>The  tiny  village  of  Frinley  is  said  to…<br>be  said  to  …  据说…<br>Mr.  Lee  is  said  to  join  our  team.<br>It  is  said  that…  据说…<br>It  is  said  that  Mr.Lee  will  join  our  team.</p>
-</li>
-<li><p>Because  the  tree  was  mentioned…<br>mention  v.提及<br>Don’t  mention  the  problem  at  the  meeting.<br>Don’t  mention  it.(不用客气;没关系)</p>
-</li>
-<li><p>…  the  number  of  visitors  to  Frinley…<br>the  number  of  …的数目/数量<br>The  number  of  tourists  has  decreased.<br>a  number  of  许多的,大量的<br>A  number  of  tourists  have  visited  the  tower.</p>
-</li>
-<li><p>…  but  it  is  only  in  recent  years  that  it…<br>强调句型  :  It  is  /  was  +  被强调部分  +  that  /  who  /  whom  +  句子的其他部分<br>Helen  visited  Professor  Smith  last  week.<br>It  was  Helen  who  visited  Professor  Smith  last  week.<br>It  was  Professor  Smith  whom  Helen  visited  last  week.<br>It  was  last  week  that  Helen  visited  Professor  Smith.</p>
-</li>
-<li><p>…  it  has  gained  an  evil  reputation.<br>gain  a  …  reputation  获得一个…的名声<br>gain  a  good  reputation  获得良好的声誉</p>
-</li>
-<li><p>It  is  said  that  if  anyone…<br>It  is  said  that  …  据说…</p>
-</li>
-<li><p>The  vicar  has  been  asked  to  have  the  tree  cut  down…<br>have  sth  /  sb  done  使某事/某人被…<br>I’m  going  to  have  my  hair  cut.</p>
-</li>
-<li><p>…  but  so  far  he  has  refused.<br>so  far  到目前为止<br>Kim  has  made  great  progress  so  far.</p>
-</li>
-<li><p>He  has  pointed  out  that…<br>point  out  指出<br>Mary  pointed  out  to  us  that  there  was  a  change  in  the  plan.</p>
-</li>
-<li><p>In  spite  of  all  that  has  been  said…<br>in  spite  of  尽管,不管<br>In  spite  of  his  illness,  Mr.Johnson  went  to  Shanghai  for  a  business  trip.<br>In  spite  of  this,she  often  appears  on  the  stage  as  a  young  girl.</p>
-</li>
-<li><p>…  not  one  of  them  has  been  struck  down…<br>not  one  of  them  一个人也没有<br>none  of  them  /  no  one  语气弱<br>strike  down  使病倒;使突然死去<br>His  uncle  was  struck  down  by  cancer.</p>
-</li>
-</ul>
-<h1 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h1><p>It  is  I  who  (be)right.<br>It  is  he  that  (be)wrong.<br><strong>强调句型  :  It  is  /  was  +  被强调部分  +  that/who  +  其他部分…</strong><br>I  am  right.<br>He  is  wrong.<br>It  is  I  who  am  ringht.<br>It  is  he  that  is  wrong.</p>
-<p>It’s    my  brother  who  keeps  encouraging  me  not  to  lose  heart  when  I  have  difficulties  in  my  studies.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2484,7 +2512,7 @@ android:layout_span        合并列(作用在列的身上)</code><br>TableRow�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">128</span>
+                <span class="site-state-item-count">129</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
