@@ -314,6 +314,175 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第6章-访问权限控制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/第6章-访问权限控制/" itemprop="url">
+                  第6章 访问权限控制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:37:16+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第6章-访问权限控制/" class="leancloud_visitors" data-flag-title="第6章 访问权限控制">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>访问权限控制的等级,以最大权限到最小权限依次为:public,protected,包访问权限(没有关键字)和private.</p>
+<h1 id="1-包-库单元"><a href="#1-包-库单元" class="headerlink" title="1. 包 : 库单元"></a>1. 包 : 库单元</h1><p>如我们使用java.util中的一个叫做ArrayList的类.那么我们则要:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FullQualificaction</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">    java.util.ArrayList list = <span class="keyword">new</span> java.util.ArrayList();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果我们导入包import则不用.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div></pre></td></tr></table></figure></p>
+<h2 id="1-1-代码组织"><a href="#1-1-代码组织" class="headerlink" title="1.1 代码组织"></a>1.1 代码组织</h2><p>package和import关键字允许你做的,是将单一的全局名字空间分割开,使得无论多少人使用Internet以及Java开始编写类,都不会出现名称冲突的问题.</p>
+<h2 id="1-2-创建独一无二的包名"><a href="#1-2-创建独一无二的包名" class="headerlink" title="1.2 创建独一无二的包名"></a>1.2 创建独一无二的包名</h2><p>Java解释器的运行过程如下:首先,找出环境变量CLASSPATH,得到的路径会与CLASSPATH中的各个不同的项相连接,解释器就在这些目录中查找与你所有创建的类名称相关的.class文件.</p>
+<h2 id="1-3-定制工具库"><a href="#1-3-定制工具库" class="headerlink" title="1.3 定制工具库"></a>1.3 定制工具库</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Print</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(Object object)</span></span>&#123;</div><div class="line">		System.out.println(object);</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Print.print(<span class="string">"hello"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="2-Java访问权限修饰词"><a href="#2-Java访问权限修饰词" class="headerlink" title="2. Java访问权限修饰词"></a>2. Java访问权限修饰词</h1><ul>
+<li>使该成员成为public,无论谁,无论哪里,都可以访问该成员.</li>
+<li>继承而来的类既可以访问public成员也可以访问protected成员(但访问不了private成员).</li>
+<li>提供访问器(accessor)和变异器(mutaror)方法,</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> debug;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SoupTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</div><div class="line">			System.out.println(Soup.newSoup());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Soup</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Soup s = <span class="keyword">new</span> Soup();</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Soup</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Soup <span class="title">newSoup</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"good!!!"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><ul>
+<li>为了使用户不用碰上那些不该碰到的部分,这些部分对于类内部的操作是必要的.</li>
+<li>为了让类库设计者可以更改类的内部工作方式,而不必担心这样会对客户端程序员产生重大的影响.</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第5章-初始化与清理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2554,287 +2723,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/二-HTML基础-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/二-HTML基础-2/" itemprop="url">
-                  二.HTML基础(2)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T18:13:43+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
-                    <span itemprop="name">WebDesign</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/二-HTML基础-2/" class="leancloud_visitors" data-flag-title="二.HTML基础(2)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-复习与回顾"><a href="#1-复习与回顾" class="headerlink" title="1.  复习与回顾"></a>1.  复习与回顾</h1><p>#1.1  单标签</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 文本内容--&gt;</span> 注释标签 Ctrl+/</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span> 换行标签</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span> 横线标签</div></pre></td></tr></table></figure>
-<h2 id="1-2-双标签"><a href="#1-2-双标签" class="headerlink" title="1.2  双标签"></a>1.2  双标签</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span> 段落标签</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">hn</span>&gt;</span><span class="tag">&lt;/<span class="name">hn</span>&gt;</span> n 的取值 1-6 标题标签</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">size</span>=<span class="string">”10”</span> <span class="attr">color</span>=<span class="string">”red”</span>&gt;</span><span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">strong</span>&gt;</span> <span class="tag">&lt;<span class="name">b</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span> 文本加粗</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span> i 文本斜体</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ins</span>&gt;</span><span class="tag">&lt;/<span class="name">ins</span>&gt;</span> u 文本下横线</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">del</span>&gt;</span><span class="tag">&lt;/<span class="name">del</span>&gt;</span> s 删除线</div></pre></td></tr></table></figure>
-<h2 id="1-3-img标签与属性"><a href="#1-3-img标签与属性" class="headerlink" title="1.3  img标签与属性"></a>1.3  img标签与属性</h2><p><strong>src 属性:</strong></p>
-<ul>
-<li>alt 属性  :  图片无法显示，对图片的描述</li>
-<li>title 属性: 鼠标放到图片上显示的文字</li>
-<li>width 属性  :  宽度</li>
-<li>height 属性  :  高度</li>
-</ul>
-<h2 id="1-4-锚链接"><a href="#1-4-锚链接" class="headerlink" title="1.4  锚链接"></a>1.4  锚链接</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"cat"</span>&gt;</span>猫<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#cat"</span>&gt;</span>抓猫<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="1-5-列表"><a href="#1-5-列表" class="headerlink" title="1.5  列表"></a>1.5  列表</h2><ul>
-<li>无序列表</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>有序列表</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>自定义列表</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></div></pre></td></tr></table></figure>
-<h1 id="2-标签介绍"><a href="#2-标签介绍" class="headerlink" title="2.  标签介绍"></a>2.  标签介绍</h1><h2 id="2-1-Meta标签介绍-作用在head标签"><a href="#2-1-Meta标签介绍-作用在head标签" class="headerlink" title="2.1  Meta标签介绍  (作用在head标签)"></a>2.1  Meta标签介绍  (作用在head标签)</h2><ul>
-<li><p><meta charset="utf-8"></p>
-<ul>
-<li>Charset ：字符集</li>
-<li>ASCII</li>
-<li>ANSI</li>
-<li>Unicode</li>
-<li>Gbk</li>
-<li>Gb2312</li>
-<li>Big5</li>
-</ul>
-</li>
-<li><p><meta name="keywords" content="我是程序员"><br>作用  :  对网站进行优化的作用SEO与网址的描述.</p>
-</li>
-<li><p><meta http-equiv="refresh" content="5;url=http://www.baidu.com"><br>作用  :  网址重定向</p>
-</li>
-</ul>
-<h2 id="2-2-Link标签介绍-作用在head标签"><a href="#2-2-Link标签介绍-作用在head标签" class="headerlink" title="2.2  Link标签介绍  (作用在head标签)"></a>2.2  Link标签介绍  (作用在head标签)</h2><ul>
-<li><p><link rel="icon" href="favicon.ico"><br>作用  :  给网页 titile 中放置小图标</p>
-</li>
-<li><p><link rel="stylesheet" href="1.css"><br>作用  :  引入外部样式表</p>
-</li>
-</ul>
-<h2 id="2-3-表格-table"><a href="#2-3-表格-table" class="headerlink" title="2.3  表格  (table)"></a>2.3  表格  (table)</h2><p>作用  :  显示数据</p>
-<ul>
-<li>组成  :<ul>
-<li>table 定义表格</li>
-<li>tr 行</li>
-<li>td 列  (单元格)</li>
-</ul>
-</li>
-<li><p>属性介绍  :</p>
-<ul>
-<li>border  :  设置表格边框</li>
-<li>width  :  设置表格宽度</li>
-<li>Height  :  设置高度</li>
-<li>cellspacing  :  设置单元格之间的距离</li>
-<li>cellpadding  :  文字距离单元格边框的距离</li>
-<li>bgcolor=”red”  :  设置背景颜色</li>
-<li>align=center left| right   :  给 td 或者 tr 设置让文字居中</li>
-<li>table 设置表格居中</li>
-</ul>
-</li>
-<li><p><th></th> 设置表格标题，用法和 td 一样</p>
-</li>
-<li><p>设置表格表头<br><code>&lt;caption&gt;  &lt;h3&gt;课程表&lt;/h3&gt;&lt;/caption&gt;</code></p>
-</li>
-<li><p>单元格的合并</p>
-<ul>
-<li>横向和合并</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>  <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>纵向合并</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>  <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div></pre></td></tr></table></figure>
-<h1 id="3-表单-from"><a href="#3-表单-from" class="headerlink" title="3.  表单  (from)"></a>3.  表单  (from)</h1><h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1  作用"></a>3.1  作用</h2><p>表单的作用用来收集信息</p>
-<h2 id="3-2-组成"><a href="#3-2-组成" class="headerlink" title="3.2  组成"></a>3.2  组成</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span>  <span class="attr">action</span>=<span class="string">""</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">from</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>属性  :<ul>
-<li>action  |  处理用户数据信息</li>
-<li>Method  :  get | post<ul>
-<li>Get 数据提交  :  通过地址栏的方式进行数据提交,将用户输入的信息显出来.</li>
-<li>Post 提交  :  数据通过后台进行提交,不会将用户信息显示出来,安全性比较好.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-3-表单控件"><a href="#3-3-表单控件" class="headerlink" title="3.3  表单控件"></a>3.3  表单控件</h2><p><strong>表单文字输入</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">用户名  :  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">maxlength</span>=<span class="string">"6"</span>&gt;</span></div><div class="line">密码  :  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<ul>
-<li>属性  :<ul>
-<li>maxlength  :    设置文本输入框最多能输多少字符</li>
-<li>readonly=”readonly”   设置文本输入框为只读（只能读不能编辑）</li>
-<li>disabled=”disabled”   控件属于非激活的状态</li>
-<li>name=”username”   给输入框设置名称</li>
-<li>Value=””   设置或者显示输入的值</li>
-</ul>
-</li>
-</ul>
-<p><strong>单选按钮</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"xb"</span>  <span class="attr">checked</span>=<span class="string">"checked"</span> <span class="attr">value</span>=<span class="string">"nan"</span>&gt;</span>男</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"xb"</span> <span class="attr">value</span>=<span class="string">"nv"</span> &gt;</span>女</div></pre></td></tr></table></figure></p>
-<ul>
-<li>属性  :<ul>
-<li>checked=”checked”     设置默认选中项</li>
-</ul>
-</li>
-</ul>
-<p><strong>下拉按钮</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">multiple</span>=<span class="string">"multiple"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>山东<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>山西<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>河南<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">option</span>&gt;</span>河北<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">option</span>  <span class="attr">selected</span>=<span class="string">"selected"</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>属性  :<br>selected=”selected”    设置默认选中项<br>multiple=”multiple”       可以实现多选效果</li>
-</ul>
-<p><strong>下拉列表分组显示</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"name"</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">optgroup</span> <span class="attr">label</span>=<span class="string">"北京市"</span>&gt;</span>	 	</div><div class="line">			<span class="tag">&lt;<span class="name">option</span>&gt;</span> 西城区 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">			 <span class="tag">&lt;<span class="name">option</span>&gt;</span>东城区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">optgroup</span>&gt;</span></div><div class="line"></div><div class="line">	 <span class="tag">&lt;<span class="name">optgroup</span> <span class="attr">label</span>=<span class="string">"山东省"</span>&gt;</span>  	 	</div><div class="line">			<span class="tag">&lt;<span class="name">option</span>&gt;</span> 西城区 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">option</span>&gt;</span>东城区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">optgroup</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><strong>多选控件</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">checked</span>=<span class="string">"checked"</span>&gt;</span>java</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span>android</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span>ios</div></pre></td></tr></table></figure>
-<p><strong>多行文本输入框</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">textarea</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><strong>图片上传控件</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><strong>按钮系列</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>  <span class="attr">value</span>=<span class="string">"登录"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span>  <span class="attr">value</span>=<span class="string">"普通按钮"</span> &gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">value</span>=<span class="string">"重置按钮"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"image"</span> <span class="attr">src</span>=<span class="string">"图片按钮.jpg"</span>&gt;</span>`</div></pre></td></tr></table></figure></p>
-<p><strong>表单分组控件</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>用户注册<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><strong>表单补充</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 网址判断 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span>  <span class="attr">type</span>=<span class="string">"url"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 邮箱判断 --&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 日期控件 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 时间控件 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"time"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 只能输入数字的控件 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span>  <span class="attr">step</span>=<span class="string">"5"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 进度条 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"range"</span>  <span class="attr">max</span>=<span class="string">"100"</span>  <span class="attr">step</span>=<span class="string">"5"</span>&gt;</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2884,7 +2772,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">129</span>
+                <span class="site-state-item-count">130</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

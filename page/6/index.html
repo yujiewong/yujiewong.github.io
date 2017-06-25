@@ -314,6 +314,174 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第5章-栈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王裕杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰言杰语">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/28/第5章-栈/" itemprop="url">
+                  第5章 栈
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T17:17:55+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ReverseEngineerin/" itemprop="url" rel="index">
+                    <span itemprop="name">ReverseEngineerin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/28/第5章-栈/" class="leancloud_visitors" data-flag-title="第5章 栈">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>栈(Stack)的用途广泛,通常用于存储局部变量/传递函数参数/保存函数返回地址等.</p>
+<h1 id="1-栈"><a href="#1-栈" class="headerlink" title="1. 栈"></a>1. 栈</h1><p>栈内存在进程中的作用如下:</p>
+<ul>
+<li>暂时保存函数内的局部变量.</li>
+<li>调用函数时传递参数.</li>
+<li>保存函数返回后的地址.</li>
+</ul>
+<h2 id="1-1-栈的特征"><a href="#1-1-栈的特征" class="headerlink" title="1.1 栈的特征"></a>1.1 栈的特征</h2><p><img src="/2017/03/28/第5章-栈/1.png" alt="栈" title="栈"><br>一个进程中,栈顶指针(ESP)初始状态指向栈底端.执行<code>PUSH</code>命令将数据压入栈时,栈顶指针就会上移到栈顶端.执行<code>POP</code>命令从栈中弹出数据时,若栈为空,则栈顶指针重新移动到栈底端.向栈中压数据就像一层层砌砖,每向上砌一层,砖墙就增高一点儿.</p>
+<h1 id="1-2-栈操作示例"><a href="#1-2-栈操作示例" class="headerlink" title="1.2 栈操作示例"></a>1.2 栈操作示例</h1><p>栈顶指针的值为<code>19FF84</code>,观察右下角的栈长裤,可以看到ESP指向的地址及其值.<br><img src="/2017/03/28/第5章-栈/2.png" alt="栈的初始状态" title="栈的初始状态"></p>
+<p>在代码窗口中按F7键(Step Into),执行<code>401000</code>地址处的<code>PUSH 100</code>命令.</p>
+<p>可以看到ESP值变为<code>19FF80</code>,比原来减少了<code>4</code>个字节,并且当前栈顶指针指向<code>19FF80</code>,该地址中保存着<code>100</code>这个值.换言之,执行<code>PUSH</code>命令时,数值<code>100</code>被压入栈,ESP随之向上移动,即ESP的值减少了<code>4</code>个字节.再次按F7(Step Into),执行<code>401005</code>地址处的<code>POP  EAX</code>命令.<br><img src="/2017/03/28/第5章-栈/3.png" alt="PUSH命令" title="PUSH命令"></p>
+<p>执行完<code>POP  EAX</code>命令后,ESP值又增加了<code>4</code>个字节,变为<code>19FF84</code>,栈又变为初始状态.换言之,从栈中弹出数据后,ESP随之向下移动.向栈压入数据从栈中弹出数据时,栈顶指针的变化情形如下:</p>
+<ul>
+<li>向栈压入数据时,栈顶指针减小,向低地址移动;从栈中弹出数据时,栈顶指针增高,向高地址移动.</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/第4章-IA-32寄存器基本讲解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2486,273 +2654,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://javami.com/2017/03/28/7-安卓基础之activity生命周期-receiver广播接收者/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王裕杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="杰言杰语">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/7-安卓基础之activity生命周期-receiver广播接收者/" itemprop="url">
-                  7.安卓基础之activity生命周期&receiver广播接收者
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T15:54:19+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/28/7-安卓基础之activity生命周期-receiver广播接收者/" class="leancloud_visitors" data-flag-title="7.安卓基础之activity生命周期&receiver广播接收者">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-Activity"><a href="#1-Activity" class="headerlink" title="1.  Activity"></a>1.  Activity</h1><p>Android中的第一个核心的组件,每次创建一个工程,都会创建一个默认的MainActivity.</p>
-<ul>
-<li><p>onCreate  在创建对象的时候调用<br>Activity启动后第一个被调用的函数,常用来进行Activity的初始化,例如创建View/绑定数据或恢复信息等.</p>
-</li>
-<li><p>onDestory  在对象销毁的时候调用<br>在Activity被终止前,即进入非活动状态前,该函数被调用.</p>
-</li>
-<li><p>onStart  在界面可见的时候被调用<br>当Activity显示在屏幕时,该函数被调用.</p>
-</li>
-<li><p>onStop  在界面不可见的时候被调用<br>当Activity进入停止状态时,该函数被调用.</p>
-</li>
-<li><p>onPause  当界面处于可见,但是又失去焦点这个阶段的时候会被调用<br>当Activity进入暂停状态时,该函数被调用.一般用来保持持久的数据或释放占用的资源.</p>
-</li>
-<li><p>onReumse  当界面处于可见到获得焦点这段时间被调用<br>当Activity被终止时,即进入非活动状态时,该函数被调用.</p>
-</li>
-</ul>
-<h2 id="1-1-生命周期之记事本的应用"><a href="#1-1-生命周期之记事本的应用" class="headerlink" title="1.1  生命周期之记事本的应用"></a>1.1  生命周期之记事本的应用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> EditText ed_content;</div><div class="line"></div><div class="line">    SharedPreferences sp;</div><div class="line"></div><div class="line">    <span class="comment">//创建时调用</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ed_content = (EditText) findViewById(R.id.ed_content);</div><div class="line"></div><div class="line">        sp = getSharedPreferences(<span class="string">"config"</span>,<span class="number">0</span>);</div><div class="line">        String v1 = sp.getString(<span class="string">"content"</span>,<span class="string">""</span>);</div><div class="line">        ed_content.setText(v1);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//当销毁时调用</span></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line"></div><div class="line">        String content = ed_content.getText().toString().trim();</div><div class="line">        SharedPreferences.Editor edit = sp.edit();</div><div class="line">        edit.putString(<span class="string">"content"</span>,content);</div><div class="line">        edit.commit();</div><div class="line">        Toast.makeText(<span class="keyword">this</span>,<span class="string">"已默认保存!"</span>,<span class="number">0</span>).show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="1-2-生命周期之格斗小游戏的应用"><a href="#1-2-生命周期之格斗小游戏的应用" class="headerlink" title="1.2  生命周期之格斗小游戏的应用"></a>1.2  生命周期之格斗小游戏的应用</h2><ul>
-<li>AndroidManifest.xml<br>如果配置了这个属性,当我们<strong>横竖屏切换的时候会直接调用</strong>onCreate方法中的onConfigurationChanged方法,而不会重新执行onCreate方法,那当然如果不配置这个属性的话就会重新调用onCreate方法了.<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".MainActivity"</span> <span class="attr">android:configChanges</span>=<span class="string">"keyboardHidden|orientation|screenSize"</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>默认的情况下,一个activity声明周期在横竖屏切换的时候,会销毁当前的activity,然后去重新创建一个activity.所以在当前游戏中,会影响到用户的感受.</p>
-<h1 id="2-Activity的启动模式"><a href="#2-Activity的启动模式" class="headerlink" title="2.  Activity的启动模式"></a>2.  Activity的启动模式</h1><p>Task  :  任务,维护记录了当前应用的内存空间中,有哪些组件在运行着.<br>Stack  :  栈,栈的特点(后进先出),队列(先进先出)</p>
-<ul>
-<li>启动模式(lauchMode)有四种  :<ul>
-<li>standard  :  标准的模式,也是默认模式.<br>每次收到intent,那么就会新创建activity的实例出来,放到任务栈中.</li>
-<li>singleTop  :  单一顶部模式<br>如果发现当前的任务栈中的栈顶是当前activity实例,那么就直接使用当前的activity实例,不再创建.(源生的mms编辑短信activity启动模式是singleTop,为了提高用户感受,可以很好的提示用户之前的短信还没有编辑完)</li>
-<li>singleTask  :  单一任务模式<br>表示当前的activity只会在当前任务栈中创建一个实例.如果再次去尝试启动之前的activity时候,当前的activity不是处于任务栈的栈顶,会清空当前处于activity之上的activity.(如果一个activity启动的时候,占用的CPU资源非常多,非常耗内存.而手机中的内存又非常珍贵,那么这个时候就建议使用activity的启动模式设置为:singleTask).</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">android:launchMode="singleTask"</div></pre></td></tr></table></figure>
-<ul>
-<li>singleInstance  :  单一实例模式<br>如果某个activity的启动模式设置为singleInstance,那么在整个android手机就只会有一个实例了.(对于一些整个系统中,永远都只存在一个同样的界面的activity就会声明使用这种启动模式)</li>
-</ul>
-<h1 id="3-broadcastReceiver-广播接收者"><a href="#3-broadcastReceiver-广播接收者" class="headerlink" title="3.  broadcastReceiver(广播接收者)"></a>3.  broadcastReceiver(广播接收者)</h1><ul>
-<li>具体实现步骤  :<ul>
-<li>写个类,继承BroadcastReceiver的类,那么就等价于拥有了一个收音机</li>
-<li>到清单manifest文件中进行装电池,配置的问题</li>
-<li>调节频道,设置接受广播的类型</li>
-</ul>
-</li>
-</ul>
-<p>在整个android系统中,有很多系统已经定义好的广播事件,这些事件是在系统启动,运行的时候发出的.</p>
-<p>例如  :  sd卡被挂载  /  开机完成  /  电话拨出  /  应用被安装/被卸载</p>
-<h2 id="3-1-编写开机完成广播接收者"><a href="#3-1-编写开机完成广播接收者" class="headerlink" title="3.1  编写开机完成广播接收者"></a>3.1  编写开机完成广播接收者</h2><ul>
-<li>AndroidManifest.xml<ul>
-<li>先开启接收广播权限</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RECEIVE_BOOT_COMPLETED"</span>/&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">"com.itheima.bootcompletion.BootCompletionReceiver"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span> &gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.BOOT_COMPLETED"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BootCompletionReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 监听开机启动完成</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line"></div><div class="line">        String action = intent.getAction();</div><div class="line">        System.out.println(<span class="string">"开机完成了 .... : "</span> + action);</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="3-2-IP拨号器之广播"><a href="#3-2-IP拨号器之广播" class="headerlink" title="3.2  IP拨号器之广播"></a>3.2  IP拨号器之广播</h2><ul>
-<li>AndroidManifest.xml</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--先声明广播权限,允许一个程序接收到 ACTION_BOOT_COMPLETED广播在系统完成启动--&gt;</span><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RECEIVE_BOOT_COMPLETED"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--然后说明那个广播器,接收什么类型的广播--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".OutPhone"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.NEW_OUTGOING_CALL"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>MainActivity.java的代码实现</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> EditText ed_phone;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ed_phone = (EditText)findViewById(R.id.ed_prefix);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(View v)</span></span>&#123;</div><div class="line">        String prefix = ed_phone.getText().toString().trim();</div><div class="line">        <span class="keyword">if</span>(TextUtils.isEmpty(prefix))&#123;</div><div class="line">            Toast.makeText(<span class="keyword">this</span>,<span class="string">"ip号码不能为空"</span>,<span class="number">0</span>).show();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        SharedPreferences sp = getSharedPreferences(<span class="string">"config"</span>,<span class="number">0</span>);</div><div class="line">        SharedPreferences.Editor editor = sp.edit();</div><div class="line">        editor.putString(<span class="string">"prefix"</span>,prefix);</div><div class="line">        editor.commit();</div><div class="line">        Toast.makeText(<span class="keyword">this</span>,<span class="string">"IP前缀保存成功"</span>,<span class="number">0</span>).show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>OutPhone.java</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OutPhone</span>   <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//alt+enter补全代码</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line"></div><div class="line">        SharedPreferences sp = context.getSharedPreferences(<span class="string">"config"</span>,<span class="number">0</span>);</div><div class="line">        String ipdata = sp.getString(<span class="string">"prefix"</span>,<span class="string">""</span>);</div><div class="line">        <span class="keyword">if</span>(ipdata.startsWith(<span class="string">"0"</span>))&#123;</div><div class="line">            <span class="comment">//说明是长途电话</span></div><div class="line">            setResultData(ipdata);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="3-2-对应用内的数据进行统计之广播"><a href="#3-2-对应用内的数据进行统计之广播" class="headerlink" title="3.2  对应用内的数据进行统计之广播"></a>3.2  对应用内的数据进行统计之广播</h2><ul>
-<li>AndroidManifest.xml</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">"com.javami.bigdatacollect.AppStatusReceiver"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">intent-filter</span> &gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.PACKAGE_ADDED"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.PACKAGE_REMOVED"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"package"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>AppStatusReceiver.java</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppStatusReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">		String action = intent.getAction();</div><div class="line"></div><div class="line">		System.out.println(action);</div><div class="line">		<span class="keyword">if</span>(<span class="string">"android.intent.action.PACKAGE_ADDED"</span>.equals(action))&#123;</div><div class="line">			System.out.println(<span class="string">"应用安装了: "</span> + intent.getData());</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"android.intent.action.PACKAGE_REMOVED"</span>.equals(action))&#123;</div><div class="line">			System.out.println(<span class="string">"应用卸载了 "</span> + intent.getData());</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="4-自定义广播"><a href="#4-自定义广播" class="headerlink" title="4.  自定义广播"></a>4.  自定义广播</h1><h2 id="4-1-无序广播"><a href="#4-1-无序广播" class="headerlink" title="4.1  无序广播"></a>4.1  无序广播</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendBroadcast</span><span class="params">(View v)</span></span>&#123;</div><div class="line">	System.out.println(<span class="string">"发出自定义的广播了"</span>);</div><div class="line">	Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">	intent.setAction(<span class="string">"com.javami.honey"</span>);</div><div class="line">	sendBroadcast(intent);  <span class="comment">// 发送一个广播出去</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="4-2-接收自定义广播"><a href="#4-2-接收自定义广播" class="headerlink" title="4.2  接收自定义广播"></a>4.2  接收自定义广播</h2><ul>
-<li>AndroidManifest.xml</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".MyBroadCastReciver"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.javami.honey"</span>&gt;</span><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>MyBroadCastReciver.java</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBroadCastReciver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"收到了广播 : "</span> + intent.getAction());</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h2 id="4-2-有序广播"><a href="#4-2-有序广播" class="headerlink" title="4.2 有序广播"></a>4.2 有序广播</h2><ul>
-<li>AndroidManifest.xml</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".ShengZhang"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--数字越大,优先级别越高--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span> <span class="attr">android:priority</span>=<span class="string">"1000"</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!--隐式调用广播--&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.javmai.send.Money"</span>&gt;</span><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".Baixing"</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!--数字越大,优先级别越高--&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">intent-filter</span> <span class="attr">android:priority</span>=<span class="string">"5000"</span>&gt;</span></div><div class="line">				<span class="comment">&lt;!--隐式调用指定的广播--&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.javmai.send.Money"</span>&gt;</span><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>MainActivity.java</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMarshroom</span><span class="params">(View v)</span></span>&#123;</div><div class="line">		Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">                <span class="comment">// intent  :  设置一个意图行动</span></div><div class="line">		intent.setAction(<span class="string">"com.javmai.send.Money"</span>);</div><div class="line">		<span class="comment">// intent  :  意图对象</span></div><div class="line">		<span class="comment">// receiverPermission  :  接收广播的 组件需要什么样的权限</span></div><div class="line">		<span class="comment">// resultReceiver  :  广播事件的最终 接收者</span></div><div class="line">		<span class="comment">// scheduler  :  调度器</span></div><div class="line">		<span class="comment">// initialCode  :  发送广播时的初始码</span></div><div class="line">		<span class="comment">// initialData  :  广播 发出的 原始数据  -- 未被 修改过的原始数据</span></div><div class="line">		<span class="comment">// initialExtras  :  广播发出时的一些额外的数据</span></div><div class="line">		sendOrderedBroadcast(intent,<span class="keyword">null</span>,<span class="keyword">new</span> FinalResultReveiver(),<span class="keyword">null</span>,<span class="number">1</span>,<span class="string">"每人1000元"</span>,<span class="keyword">null</span>);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>ShengZhang.java and BaiXing.java and FinalResultReceiver.java</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShengZhang</span>  <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span></span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">        String money = getResultData();</div><div class="line">        setResultData(<span class="string">"500元"</span>);</div><div class="line">        System.out.print(<span class="string">"收到"</span>+money);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Baixing</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">        String money = getResultData();</div><div class="line">        System.out.print(<span class="string">"收到"</span>+money);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalResultReveiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">        <span class="comment">//纪委部</span></div><div class="line">        String money = getResultData();</div><div class="line">        System.out.print(<span class="string">"实际百姓只收到"</span>+money);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p><strong>有序广播和无序广播的区别</strong></p>
-<p>有序广播可以在特定的接收者收到广播后,取消广播的继续发送,并且可以更改广播的数据.而无序广播是不能取消广播的发送,不可以更改广播的内容.</p>
-<h1 id="5-手机锁屏解锁之广播接收者"><a href="#5-手机锁屏解锁之广播接收者" class="headerlink" title="5.  手机锁屏解锁之广播接收者"></a>5.  手机锁屏解锁之广播接收者</h1><ul>
-<li>MainActivity.java</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> PhoneScreenListener phoneReceiver;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">	<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">	setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">	<span class="comment">//注册监听手机解锁/锁屏的广播接收者</span></div><div class="line">	phoneReceiver = <span class="keyword">new</span> PhoneScreenListener();</div><div class="line"></div><div class="line">	IntentFilter filter = <span class="keyword">new</span> IntentFilter();</div><div class="line">	filter.addAction(<span class="string">"android.intent.action.SCREEN_OFF"</span>);</div><div class="line">	filter.addAction(<span class="string">"android.intent.action.SCREEN_ON"</span>);</div><div class="line"></div><div class="line">	<span class="comment">//注册广播接收者</span></div><div class="line">	registerReceiver(phoneReceiver, filter);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">	<span class="keyword">super</span>.onDestroy();</div><div class="line">	<span class="comment">// 解除注册 的 广播接收者</span></div><div class="line">	unregisterReceiver(phoneReceiver);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>PhoneScreenListener.java</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhoneScreenListener</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line"></div><div class="line">		System.out.println(<span class="string">"========= 手机  屏幕 解锁或者锁屏了 "</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="6-总结"><a href="#6-总结" class="headerlink" title="6.  总结"></a>6.  总结</h1><ul>
-<li><p>先写一个类继承broadCastReceiver的类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmsListener</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span></span></div></pre></td></tr></table></figure>
-</li>
-<li><p>写清单配置这个类</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">"com.javami.smslistener.SmsListener"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">intent-filter</span> <span class="attr">android:priority</span>=<span class="string">"1000"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.provider.Telephony.SMS_RECEIVED"</span>&gt;</span><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>调节频道接收这个类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2802,7 +2703,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">129</span>
+                <span class="site-state-item-count">130</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
